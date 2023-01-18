@@ -16,7 +16,7 @@ SELECT
 	   p.title as post
 
   FROM storage_worker_shifts sw
-	   JOIN storages s ON s.id = sw.storage_id
-	   JOIN workers w  ON w.id = sw.worker_id
+	   JOIN storages s ON s.id   = sw.storage_id
+	   JOIN workers w  ON w.id   = sw.worker_id
 	   JOIN posts p    ON w.post = p.id
 ;

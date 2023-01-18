@@ -6,6 +6,7 @@ SELECT
        pr.title as product_name,
        os.description as order_status,
 	   s.id as storage_id,
+	   st.title,
        s.locality,
        s.street,
        s.house_number,
@@ -22,6 +23,7 @@ SELECT
   JOIN products pr                ON pr.id = o.product_id
   JOIN order_statuses os          ON os.id = oh.status_id
   JOIN storages s                 ON s.id = oh.current_storage_id
+  JOIN storage_types st           ON st.id = s.storage_type
   LEFT JOIN workers_in_orders wio ON oh.order_id = wio.order_id
 	                             AND wio.status_changed_at = oh.status_changed_at
   LEFT JOIN workers w             ON w.id = wio.worker_id
