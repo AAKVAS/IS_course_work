@@ -5,7 +5,9 @@ SELECT
        p.title,
 	   p.description,
        p.price,
+	   p.category_id,
 	   c.title as category,
+	   p.supplier_id,
 	   s.title as supplier,
 	   p.supplier_percent
 

@@ -8,6 +8,9 @@ SELECT
 	   u.phone_number,
 	   u.birthday,
 	   u.email,
-	   u.sex,
-	   u.country
-  FROM users u;
+	   IIF(u.is_male = 1, 'мужчина', 'женщина') as sex,
+	   c.title as country
+  FROM users u
+  JOIN countries c ON c.id = u.country_id
+  
+;

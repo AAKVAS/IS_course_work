@@ -7,6 +7,8 @@ SELECT
        os.description as order_status,
 	   s.id as storage_id,
 	   st.title,
+	   s.country,
+	   s.federal_subject,
        s.locality,
        s.street,
        s.house_number,
@@ -15,7 +17,6 @@ SELECT
        w.firstname,
        w.lastname,
        w.patronymic,
-       w.sex,
        p.title as post
   FROM 
        order_history oh 
@@ -27,7 +28,7 @@ SELECT
   LEFT JOIN workers_in_orders wio ON oh.order_id = wio.order_id
 	                             AND wio.status_changed_at = oh.status_changed_at
   LEFT JOIN workers w             ON w.id = wio.worker_id
-  LEFT JOIN posts p               ON p.id = w.post
+  LEFT JOIN posts p               ON p.id = w.post_id
 
   
   ;
