@@ -4,7 +4,7 @@ WITH child_categories AS (
 	SELECT c.id,
 		   c.parent_category_id
 	  FROM categories c
-	 WHERE c.id = @id
+	 WHERE c.id = @id OR @id IS NULL
 
 	 UNION ALL
 

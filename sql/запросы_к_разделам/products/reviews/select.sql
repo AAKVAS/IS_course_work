@@ -1,6 +1,6 @@
 USE ISWildberries;
 
-SELECT 
+SELECT r.order_id,
 	   p.id as product_id,
        p.title as product_name, 
 	   u.id as user_id,
