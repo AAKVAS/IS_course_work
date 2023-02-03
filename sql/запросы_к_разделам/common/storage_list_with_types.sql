@@ -1,13 +1,11 @@
 USE ISWildberries;
 
 SELECT s.id,
-       st.title,
-	   s.country,
+       s.country,
 	   s.federal_subject,
 	   s.locality,
 	   s.street,
-	   s.house_number
+	   s.house_number,
+	   ss.title
   FROM storages s
-  JOIN storage_types st ON st.id = s.storage_type;
-
-
+  JOIN storage_types ss ON ss.id = s.storage_type

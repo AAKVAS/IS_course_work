@@ -1,6 +1,7 @@
 USE ISWildberries;
 
-SELECT dp.user_id,
+SELECT dp.id,
+       dp.user_id,
        u.firstname, 
        u.lastname, 
        u.patronymic,

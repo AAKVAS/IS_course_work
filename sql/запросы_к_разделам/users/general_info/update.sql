@@ -8,7 +8,7 @@ UPDATE users
 	   phone_number = @phone_number,
 	   birthday = @birthday,
 	   email = @email,
-	   sex = @sex,
-	   country = @country 
-WHERE  id = @id
+	   is_male = @is_male,
+	   country_id = @country_id 
+ WHERE id = @id
 ;

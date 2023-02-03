@@ -7,8 +7,8 @@ INSERT INTO users (
 	   phone_number,
 	   birthday,
 	   email,
-	   sex,
-	   country)
+	   is_male,
+	   country_id)
 VALUES (
 	   @lastname,
 	   @firstname,
@@ -16,7 +16,7 @@ VALUES (
 	   @phone_number,
 	   @birthday,
 	   @email,
-	   @sex,
-	   @country
+	   @is_male,
+	   @country_id
 )
 ;

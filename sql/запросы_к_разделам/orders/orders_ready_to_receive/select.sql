@@ -18,9 +18,11 @@ SELECT
 	   o.created_at,
        o.price
   FROM orders o
-	   INNER JOIN users u    ON u.id  = o.user_id
-	   INNER JOIN products p ON p.id  = o.product_id
-	   INNER JOIN storages s ON s.id = o.pick_up_point_id
-
+  JOIN users u          ON u.id  = o.user_id
+  JOIN products p       ON p.id  = o.product_id
+  JOIN storages s       ON s.id = o.pick_up_point_id
+  JOIN order_history oh ON o.id = oh.order_id
+ WHERE oh.is_last_status = 1 
+   AND oh.status_id = 11
 
 ;

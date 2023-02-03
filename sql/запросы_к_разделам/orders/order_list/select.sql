@@ -7,9 +7,20 @@ SELECT o.id as order_id,
        u.patronymic,
        p.id as product_id,
        p.title,
+	   o.product_count,
        o.price,
-       o.created_at
+	   o.pick_up_point_id,
+	   s.country,
+	   s.federal_subject,
+	   s.locality,
+	   s.street,
+	   s.house_number,	
+       o.created_at,
+	   o.estimated_delivery_at
   FROM users u
-	   INNER JOIN orders o   ON o.user_id = u.id
-	   INNER JOIN products p ON o.product_id = p.id
+  JOIN orders o   ON o.user_id          = u.id
+  JOIN products p ON o.product_id       = p.id
+  JOIN storages s ON o.pick_up_point_id = s.id
+
+
 ;
