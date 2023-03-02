@@ -1,0 +1,141 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "ISWildberriesContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "WpfApp1",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[cards]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[categories]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[countries]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[deferred_products]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[files]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[order_history]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[order_statuses]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[orders]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[posts]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[price_history]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[products]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[products_on_storages]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[products_parameters]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[receipt_of_products_to_storages]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[reviews]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[rights]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[section_rights]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[sections]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[storage_types]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[storage_worker_shifts]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[storages]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[suppliers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[table_files]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[users]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[workers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[workers_in_orders]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "LAPTOP-LJNAL6S6.ISWildberries",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
