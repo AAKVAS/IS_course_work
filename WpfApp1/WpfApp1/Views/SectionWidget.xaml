@@ -3,26 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfApp1"
-             mc:Ignorable="d" Height="410" Width="800">
+             xmlns:local="clr-namespace:WpfApp1.Views"
+             mc:Ignorable="d" Height="410" Width="800" Initialized="UserControl_Initialized">
     <UserControl.Resources>
         <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
     </UserControl.Resources>
-    
+
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="88*"></RowDefinition>
             <RowDefinition Height="12*"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0"></DataGrid>
+        <DataGrid x:Name="dataGrid" Grid.Row="0"></DataGrid>
         <DockPanel Grid.Row="1"  Margin="10">
-            <Button Width="90" Template="{StaticResource btn_1}">В PDF</Button>
+            <Button x:Name="toPDFButton" Width="90" Template="{StaticResource btn_1}">В PDF</Button>
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" FlowDirection="RightToLeft">
-                <Button Width="90" Margin="10, 0" Template="{StaticResource btn_1}">Закрыть</Button>
-                <Button Width="90" Margin="10, 0" Template="{StaticResource btn_1}">Просмотр</Button>
-                <Button Width="90" Margin="10, 0" Template="{StaticResource btn_1}">Удалить</Button>
-                <Button Width="90" Margin="10, 0" Template="{StaticResource btn_1}">Изменить</Button>
-                <Button Width="90" Margin="10, 0" Template="{StaticResource btn_1}">Сохранить</Button>
+                <Button x:Name="closeButton" Width="90" Margin="10, 0" Template="{StaticResource btn_1}" Command="{Binding CloseCommand}">Закрыть</Button>
+                <Button x:Name="readButton"  Width="90" Margin="10, 0" Template="{StaticResource btn_1}" Command="{Binding ReadCommand}">Просмотр</Button>
+                <Button x:Name="deleteButton" Width="90" Margin="10, 0" Template="{StaticResource btn_1}" Command="{Binding DeleteCommand}">Удалить</Button>
+                <Button x:Name="updateButton" Width="90" Margin="10, 0" Template="{StaticResource btn_1}" Command="{Binding UpdateCommand}">Изменить</Button>
+                <Button x:Name="insertButton" Width="90" Margin="10, 0" Template="{StaticResource btn_1}" Command="{Binding InsertCommand}">Вставить</Button>
             </StackPanel>
         </DockPanel>
 

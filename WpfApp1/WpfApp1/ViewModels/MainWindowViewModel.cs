@@ -13,12 +13,12 @@ namespace WpfApp1.ViewModels
 {
     internal class MainWindowViewModel
     {
-        AccessService _accessService;
-        SectionFactory _sectionFactory;
-        List<Sections> _sections;
+        private AccessService _accessService;
+        private SectionFactory _sectionFactory;
+        private List<Sections> _sections;
 
-        RelayCommand? _sectionChoosedCommand;
-        MainWindow _mainWindow;
+        private RelayCommand? _sectionChoosedCommand;
+        private MainWindow _mainWindow;
 
         public RelayCommand SectionChoosedCommand
         {

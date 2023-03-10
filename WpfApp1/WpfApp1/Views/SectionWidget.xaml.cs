@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
@@ -20,9 +21,48 @@ namespace WpfApp1.Views
     /// </summary>
     public partial class SectionWidget : UserControl
     {
-        public SectionWidget()
+        public string SectionKey { get; set; }
+        private SectionWidgetViewModel _viewModel;
+
+        public SectionWidget(string sectionKey)
         {
+            SectionKey = sectionKey;
+        }
+
+        public void SetViewModelAndInitialize(SectionWidgetViewModel viewModel)
+        {
+            _viewModel = viewModel;
             InitializeComponent();
+        }
+
+        private void UserControl_Initialized(object sender, EventArgs e)
+        {
+            DataContext = _viewModel;
+        }
+
+        public void CollapseInsertButton()
+        {
+            insertButton.Visibility = Visibility.Collapsed;
+        }
+
+        public void CollapseUpdateButton()
+        {
+            updateButton.Visibility = Visibility.Collapsed;
+        }
+
+        public void CollapseDeleteButton()
+        {
+            deleteButton.Visibility = Visibility.Collapsed;
+        }
+
+        public void CollapseReadButton()
+        {
+            readButton.Visibility = Visibility.Collapsed;
+        }
+
+        public DataGrid GetDataGrid()
+        {
+            return dataGrid;
         }
     }
 }

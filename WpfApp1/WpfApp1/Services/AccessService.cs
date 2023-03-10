@@ -9,7 +9,7 @@ using WpfApp1.Models;
 
 namespace WpfApp1.Services
 {
-    internal class AccessService
+    public class AccessService
     {
         public Workers? LoginedWorker { get; set; }
 
@@ -48,7 +48,7 @@ namespace WpfApp1.Services
                                      where worker.Id == LoginedWorker.Id
                                      select section
                                      )
-                                     .Include(s => s.SectionRights)
+                                     .Include(s => s.SectionRights.Where(sr => sr.PostId == LoginedWorker.PostId))
                                         .ThenInclude(sr => sr.Right)
                                      .ToList();
 
@@ -70,7 +70,34 @@ namespace WpfApp1.Services
             return LoginedWorkerSections.Where(i => i.SectionKey == sectionKey).Any();
         }
 
+        public bool HasWorkerRightToInsert(string sectionKey)
+        {
+            return HasWorkerRightToSectionAction(sectionKey, "Вставка");
+        }
 
+        public bool HasWorkerRightToDelete(string sectionKey)
+        {
+            return HasWorkerRightToSectionAction(sectionKey, "Удаление");
+        }
 
+        public bool HasWorkerRightToUpdate(string sectionKey)
+        {
+            return HasWorkerRightToSectionAction(sectionKey, "Изменение");
+        }
+
+        public bool HasWorkerRightToRead(string sectionKey)
+        {
+            return HasWorkerRightToSectionAction(sectionKey, "Просмотр");
+        }
+
+        private bool HasWorkerRightToSectionAction(string sectionKey, string actionName)
+        {
+            return LoginedWorkerSections
+                    .Where(i => i.SectionKey == sectionKey)
+                    .FirstOrDefault()
+                    .SectionRights
+                    .Where(i => i.Right.Title == actionName)
+                    .Any();
+        }
     }
 }

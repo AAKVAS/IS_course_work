@@ -11,15 +11,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp1.Views;
 
-namespace WpfApp1.Views
+namespace WpfApp1.Views.Users.GeneralInfo
 {
     /// <summary>
-    /// Логика взаимодействия для ItemForm.xaml
+    /// Логика взаимодействия для UserGeneralInfoItem.xaml
     /// </summary>
-    public partial class ItemForm : Window
+    public partial class UserGeneralInfoItem : ItemForm
     {
-        public ItemForm()
+        public UserGeneralInfoItem()
         {
             InitializeComponent();
         }
