@@ -649,6 +649,11 @@ namespace WpfApp1.Models
                     .HasMaxLength(255)
                     .HasColumnName("lastname");
 
+                entity.Property(e => e.Sex)
+                    .HasMaxLength(255)
+                    .HasColumnName("sex");
+
+
                 entity.Property(e => e.OrderCode).HasColumnName("order_code");
 
                 entity.Property(e => e.Patronymic)

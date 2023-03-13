@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WpfApp1.Models
 {
@@ -21,8 +22,14 @@ namespace WpfApp1.Models
         public string PhoneNumber { get; set; }
         public DateTime Birthday { get; set; }
         public string Email { get; set; }
+
+        [NotMapped]
         public int? OrderCode { get; set; }
+        [NotMapped]
         public bool? IsMale { get; set; }
+
+        [NotMapped]
+        public string? Sex { get; set; }
         public int? CountryId { get; set; }
 
         public virtual Countries Country { get; set; }

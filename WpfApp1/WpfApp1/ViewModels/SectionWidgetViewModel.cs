@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace WpfApp1.ViewModels
     {
         protected SectionWidget _sectionWidget;
         protected abstract ItemForm ItemForm { get; }
+        public abstract ObservableCollection<dynamic> SectionData { get; }
 
         protected RelayCommand? _insertCommand;
         protected RelayCommand? _deleteCommand;

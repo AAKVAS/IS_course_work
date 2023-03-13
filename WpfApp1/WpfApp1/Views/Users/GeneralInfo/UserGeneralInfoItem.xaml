@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
-        Title="UserGeneralInfoItem" Height="450" Width="800">
+        Title="Пользователи / Общие сведения" Height="450" Width="800">
     <Window.Resources>
         <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
     </Window.Resources>
@@ -17,7 +17,7 @@
         <StackPanel Grid.Row="0"></StackPanel>
         <DockPanel Grid.Row="1"  Margin="10">
             <Button Margin="10, 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource btn_1}">Сохранить</Button>
-            <Button Margin="10, 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource btn_1}">Закрыть</Button>
+            <Button Margin="10, 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource btn_1}" Click="Button_Click">Закрыть</Button>
         </DockPanel>
     </Grid>
 </local:ItemForm>

@@ -14,7 +14,8 @@
             <RowDefinition Height="88*"></RowDefinition>
             <RowDefinition Height="12*"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="dataGrid" Grid.Row="0"></DataGrid>
+        <DataGrid x:Name="dataGrid" Grid.Row="0" ItemsSource="{Binding SectionData}">
+        </DataGrid>
         <DockPanel Grid.Row="1"  Margin="10">
             <Button x:Name="toPDFButton" Width="90" Template="{StaticResource btn_1}">В PDF</Button>
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" FlowDirection="RightToLeft">

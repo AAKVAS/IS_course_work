@@ -47,6 +47,8 @@ namespace WpfApp1
             Resources.Add("AccessService", accessService);
             SectionFactory sectionFactory = host.Services.GetService<SectionFactory>();
             Resources.Add("SectionFactory", sectionFactory);
+            UserService userService = host.Services.GetService<UserService>();
+            Resources.Add("UserService", userService);
         }
 
         bool IsEnableDB()
