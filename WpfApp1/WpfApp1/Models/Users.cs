@@ -22,10 +22,7 @@ namespace WpfApp1.Models
         public string PhoneNumber { get; set; }
         public DateTime Birthday { get; set; }
         public string Email { get; set; }
-
-        [NotMapped]
         public int? OrderCode { get; set; }
-        [NotMapped]
         public bool? IsMale { get; set; }
 
         [NotMapped]

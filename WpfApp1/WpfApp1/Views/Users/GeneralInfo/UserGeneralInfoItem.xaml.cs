@@ -29,5 +29,23 @@ namespace WpfApp1.Views.Users.GeneralInfo
         {
             Close();
         }
+
+        protected override void SetFormModeToInsert()
+        {
+            dataActionButton.Visibility = Visibility.Visible;
+            dataActionButton.Content = "Сохранить";
+        }
+
+        protected override void SetFormModeToUpdate()
+        {
+            dataActionButton.Visibility = Visibility.Visible;
+            dataActionButton.Content = "Изменить";
+        }
+
+        protected override void SetFormModeToRead()
+        {
+            dataActionButton.Visibility = Visibility.Collapsed;
+        }
+
     }
 }

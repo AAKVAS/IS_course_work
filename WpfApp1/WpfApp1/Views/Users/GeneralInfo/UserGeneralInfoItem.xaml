@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0"></StackPanel>
         <DockPanel Grid.Row="1"  Margin="10">
-            <Button Margin="10, 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource btn_1}">Сохранить</Button>
+            <Button x:Name="dataActionButton" Margin="10, 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource btn_1}">Сохранить</Button>
             <Button Margin="10, 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource btn_1}" Click="Button_Click">Закрыть</Button>
         </DockPanel>
     </Grid>

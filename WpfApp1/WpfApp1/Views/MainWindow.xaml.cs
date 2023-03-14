@@ -26,22 +26,27 @@ namespace WpfApp1.Views
             InitializeComponent();
         }
 
-        private void Window_Initialized(object sender, EventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = new MainWindowViewModel(this);
         }
 
         public Menu GetMainMenu()
         {
-            return (Menu)FindName("mainMenu"); 
+            return mainMenu; 
         }
 
         public TabControl GetMainTabControl()
         {
-            return (TabControl)FindName("mainTabControl");
+            return mainTabControl;
         }
 
+        public void CloseCurrentSection()
+        {
+            if (!mainTabControl.HasItems || mainTabControl.SelectedItem == null) return;
 
+            mainTabControl.Items.RemoveAt(mainTabControl.SelectedIndex);
+        }
 
     }
 }

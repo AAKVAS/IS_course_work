@@ -17,7 +17,7 @@ namespace WpfApp1.Views
     /// <summary>
     /// Логика взаимодействия для ItemWithImages.xaml
     /// </summary>
-    public partial class ItemWithImages : ItemForm
+    public abstract partial class ItemWithImages : ItemForm
     {
         public ItemWithImages()
         {

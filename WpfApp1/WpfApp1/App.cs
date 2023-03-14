@@ -23,7 +23,8 @@ namespace WpfApp1
             base.OnStartup(e);
 
             AddResourceDictionaries();
-            AddServices();
+            AddServicesToResources();
+            AddMainWindowToResources();
 
             if (IsEnableDB())
             {
@@ -35,13 +36,13 @@ namespace WpfApp1
             }
         }
 
-        void AddResourceDictionaries()
+        private void AddResourceDictionaries()
         {
             ResourceDictionary dict = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Resources/ButtonTheme.xaml") };
             Resources.MergedDictionaries.Add(dict);
         }
 
-        void AddServices()
+        private void AddServicesToResources()
         {
             AccessService accessService = host.Services.GetService<AccessService>();
             Resources.Add("AccessService", accessService);
@@ -51,7 +52,13 @@ namespace WpfApp1
             Resources.Add("UserService", userService);
         }
 
-        bool IsEnableDB()
+        private void AddMainWindowToResources()
+        {
+            MainWindow mainWindow = host.Services.GetService<MainWindow>();
+            Resources.Add("MainWindow", mainWindow);
+        }
+
+        private bool IsEnableDB()
         {
             var context = host.Services.GetService<ISWildberriesContext>();
             return context.Database.CanConnect();

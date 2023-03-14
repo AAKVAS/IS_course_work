@@ -17,7 +17,8 @@ namespace WpfApp1.ViewModels.Users.GeneralInfo
         private UserGeneralInfoItem _itemForm;
         protected override ItemForm ItemForm
         {
-            get => (_itemForm ?? new UserGeneralInfoItem()) as object as ItemForm;
+            get => _itemForm as object as ItemForm;
+            set => _itemForm = value as UserGeneralInfoItem;
         }
 
         private ObservableCollection<dynamic> _sectionData;
@@ -25,6 +26,28 @@ namespace WpfApp1.ViewModels.Users.GeneralInfo
         {
             get => _sectionData;
         }
+
+        protected override void CreateNewItemForm()
+        {
+            _itemForm = new UserGeneralInfoItem();
+        }
+
+        private Dictionary<string, string> _sectionTableHeaders = new Dictionary<string, string>()
+        {
+            { "Firstname", "Имя" },
+            { "Lastname", "Фамилия" },
+            { "Patronymic", "Отчество" },
+            { "PhoneNumber", "Номер телефона" },
+            { "Birthday", "Дата рождения" },
+            { "Title", "Страна" },
+            { "Sex", "Пол" }
+
+        };
+
+        protected override Dictionary<string, string> SectionTableHeaders {
+            get => _sectionTableHeaders;
+        }
+
 
         private UserService _userService;
 

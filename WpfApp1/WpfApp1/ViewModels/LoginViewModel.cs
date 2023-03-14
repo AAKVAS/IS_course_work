@@ -68,7 +68,7 @@ namespace WpfApp1.ViewModels
 
             if (_accessService.IsLogin(_userLogin, _password))
             {
-                MainWindow mainWindow = new MainWindow();
+                MainWindow mainWindow = (MainWindow)Application.Current.Resources["MainWindow"]; ;
                 mainWindow.Show();
                 _loginForm.Close();
             }

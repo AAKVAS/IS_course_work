@@ -14,8 +14,9 @@ namespace WpfApp1.ViewModels
     public abstract class SectionWidgetViewModel
     {
         protected SectionWidget _sectionWidget;
-        protected abstract ItemForm ItemForm { get; }
+        protected abstract ItemForm ItemForm { get; set; }
         public abstract ObservableCollection<dynamic> SectionData { get; }
+        protected abstract Dictionary<string, string> SectionTableHeaders { get; }
 
         protected RelayCommand? _insertCommand;
         protected RelayCommand? _deleteCommand;
@@ -111,13 +112,27 @@ namespace WpfApp1.ViewModels
             }
         }
 
+        public string GetTableHeaderName(string columnName)
+        {
+            string header;
+            if (SectionTableHeaders.TryGetValue(columnName, out header))
+            {
+                return header;
+            };
+            return columnName;
+        }
+
         protected void Insert()
         {
+            CreateNewItemForm();
+            ItemForm.Mode = ItemFormMode.Insert;
             ItemForm.Show();
         }
 
         protected void Update()
         {
+            CreateNewItemForm();
+            ItemForm.Mode = ItemFormMode.Update;
             ItemForm.Show();
         }
 
@@ -128,8 +143,12 @@ namespace WpfApp1.ViewModels
 
         protected void Read()
         {
+            CreateNewItemForm();
+            ItemForm.Mode = ItemFormMode.Read;
             ItemForm.Show();
         }
+
+        protected abstract void CreateNewItemForm();
 
         protected void ToPDF()
         {
@@ -138,7 +157,8 @@ namespace WpfApp1.ViewModels
 
         protected void Close()
         {
-
+            MainWindow mainWindow = (MainWindow)Application.Current.Resources["MainWindow"];
+            mainWindow.CloseCurrentSection();
         }
     }
 }

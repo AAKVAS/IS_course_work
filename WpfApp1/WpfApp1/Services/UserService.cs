@@ -44,7 +44,6 @@ namespace WpfApp1.Services
                                 u.PhoneNumber,
                                 u.Birthday,
                                 u.Email,
-                                u.CountryId,
                                 u.Country.Title,
                                 u.Sex
                             })

@@ -64,5 +64,11 @@ namespace WpfApp1.Views
         {
             return dataGrid;
         }
+
+        private void dataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            string column_name = e.Column.Header.ToString();
+            e.Column.Header = _viewModel.GetTableHeaderName(column_name);
+        }
     }
 }
