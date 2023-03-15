@@ -28,27 +28,15 @@ namespace WpfApp1.Services
 	                                u.phone_number,
 	                                u.birthday,
 	                                u.email,
+                                    u.order_code,
+                                    u.is_male,
                                     u.country_id,
 	                                IIF(u.is_male = 1, 'мужчина', 'женщина') as sex
                                 FROM users u";
-            var users = _context.Users
+            return new ObservableCollection<dynamic>(_context.Users
                     .FromSql(query)
                     .Include(u => u.Country)
-                    .Select(u =>
-                            new
-                            {
-                                u.Id,
-                                u.Firstname,
-                                u.Lastname,
-                                u.Patronymic,
-                                u.PhoneNumber,
-                                u.Birthday,
-                                u.Email,
-                                u.Country.Title,
-                                u.Sex
-                            })
-                    .ToList();
-            return new ObservableCollection<dynamic>(users); 
+                    .ToList());
         }
     }
 }

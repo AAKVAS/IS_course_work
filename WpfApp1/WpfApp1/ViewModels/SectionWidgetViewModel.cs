@@ -16,6 +16,7 @@ namespace WpfApp1.ViewModels
         protected SectionWidget _sectionWidget;
         protected abstract ItemForm ItemForm { get; set; }
         public abstract ObservableCollection<dynamic> SectionData { get; }
+        public abstract dynamic? CurrentItem { get; set; }
         protected abstract Dictionary<string, string> SectionTableHeaders { get; }
 
         protected RelayCommand? _insertCommand;
@@ -124,6 +125,8 @@ namespace WpfApp1.ViewModels
 
         protected void Insert()
         {
+            CurrentItem = null;
+
             CreateNewItemForm();
             ItemForm.Mode = ItemFormMode.Insert;
             ItemForm.Show();
@@ -131,9 +134,19 @@ namespace WpfApp1.ViewModels
 
         protected void Update()
         {
-            CreateNewItemForm();
-            ItemForm.Mode = ItemFormMode.Update;
-            ItemForm.Show();
+            if (_sectionWidget.dataGrid.SelectedIndex == -1)
+            {
+                MessageBox.Show("Выберите запись!");
+            }
+            else
+            {
+                CurrentItem = _sectionWidget.dataGrid.SelectedItem;
+
+                CreateNewItemForm();
+                ItemForm.Mode = ItemFormMode.Update;
+                ItemForm.Show();
+            }
+
         }
 
         protected void Delete()

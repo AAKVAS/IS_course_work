@@ -60,11 +60,6 @@ namespace WpfApp1.Views
             readButton.Visibility = Visibility.Collapsed;
         }
 
-        public DataGrid GetDataGrid()
-        {
-            return dataGrid;
-        }
-
         private void dataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             string column_name = e.Column.Header.ToString();

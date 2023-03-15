@@ -1,5 +1,6 @@
 ﻿
 using System.Windows;
+using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
@@ -10,8 +11,10 @@ namespace WpfApp1.Views
         Read
     }
 
+
     public abstract class ItemForm : Window
     {
+        protected SectionWidgetViewModel _sectionWidgetViewModel;
         private ItemFormMode _mode = ItemFormMode.Read;
         public ItemFormMode Mode { 
             get
@@ -25,7 +28,9 @@ namespace WpfApp1.Views
             }
         }
 
-        public ItemForm() {}
+        public ItemForm(SectionWidgetViewModel sectionWidgetViewModel) {
+            _sectionWidgetViewModel = sectionWidgetViewModel;
+        }
 
         private void UpdateForm()
         {

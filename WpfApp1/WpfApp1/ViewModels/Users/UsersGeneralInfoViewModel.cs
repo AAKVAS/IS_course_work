@@ -27,9 +27,16 @@ namespace WpfApp1.ViewModels.Users.GeneralInfo
             get => _sectionData;
         }
 
+        private dynamic _currentItem;
+        public override dynamic? CurrentItem
+        {
+            get => _currentItem;
+            set => _currentItem = value;
+        }
+
         protected override void CreateNewItemForm()
         {
-            _itemForm = new UserGeneralInfoItem();
+            _itemForm = new UserGeneralInfoItem(this);
         }
 
         private Dictionary<string, string> _sectionTableHeaders = new Dictionary<string, string>()

@@ -45,7 +45,7 @@ namespace WpfApp1.ViewModels
         {
             _sections = _accessService.LoginedWorkerSections;
 
-            Menu mainMenu = _mainWindow.GetMainMenu();
+            Menu mainMenu = _mainWindow.mainMenu;
 
             CollapseMenuItems(mainMenu);
 
@@ -76,7 +76,7 @@ namespace WpfApp1.ViewModels
 
             SectionWidget sectionWidget = _sectionFactory.GetSectionWidget(sectionKey);
 
-            TabControl tabControl = _mainWindow.GetMainTabControl();
+            TabControl tabControl = _mainWindow.mainTabControl;
 
             tabControl.Items.Add(new TabItem
             {

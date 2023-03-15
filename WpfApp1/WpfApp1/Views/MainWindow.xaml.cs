@@ -31,16 +31,6 @@ namespace WpfApp1.Views
             DataContext = new MainWindowViewModel(this);
         }
 
-        public Menu GetMainMenu()
-        {
-            return mainMenu; 
-        }
-
-        public TabControl GetMainTabControl()
-        {
-            return mainTabControl;
-        }
-
         public void CloseCurrentSection()
         {
             if (!mainTabControl.HasItems || mainTabControl.SelectedItem == null) return;

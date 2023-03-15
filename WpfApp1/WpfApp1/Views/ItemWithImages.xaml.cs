@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
@@ -19,7 +20,7 @@ namespace WpfApp1.Views
     /// </summary>
     public abstract partial class ItemWithImages : ItemForm
     {
-        public ItemWithImages()
+        public ItemWithImages(SectionWidgetViewModel sectionWidgetViewModel) : base(sectionWidgetViewModel)
         {
             InitializeComponent();
         }
