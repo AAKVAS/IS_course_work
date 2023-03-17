@@ -18,9 +18,13 @@ namespace WpfApp1
             this.host = host;
         }
 
+        public static ISWildberriesContext Context;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            Context = host.Services.GetService<ISWildberriesContext>();
 
             AddResourceDictionaries();
             AddServicesToResources();

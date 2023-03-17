@@ -19,11 +19,14 @@ namespace WpfApp1.ViewModels
         public abstract dynamic? CurrentItem { get; set; }
         protected abstract Dictionary<string, string> SectionTableHeaders { get; }
 
+        protected ItemFormMode _itemFormMode = ItemFormMode.Read;
+
         protected RelayCommand? _insertCommand;
         protected RelayCommand? _deleteCommand;
         protected RelayCommand? _updateCommand;
         protected RelayCommand? _readCommand;
         protected RelayCommand? _closeCommand;
+        protected RelayCommand? _saveCommand;
 
         public RelayCommand InsertCommand
         {
@@ -31,7 +34,7 @@ namespace WpfApp1.ViewModels
             {
                 return _insertCommand ??
                         (_insertCommand = new RelayCommand((object obj) => {
-                            Insert();
+                            TryInsert();
                         },
                         (obj) => _accessService.HasWorkerRightToInsert(_sectionWidget.SectionKey)));
             }
@@ -55,7 +58,7 @@ namespace WpfApp1.ViewModels
             {
                 return _updateCommand ??
                         (_updateCommand = new RelayCommand((object obj) => {
-                            Update();
+                            TryUpdate();
                         },
                         (obj) => _accessService.HasWorkerRightToUpdate(_sectionWidget.SectionKey)));
             }
@@ -81,6 +84,19 @@ namespace WpfApp1.ViewModels
                         (_closeCommand = new RelayCommand((object obj) => {
                             Close();
                         }));
+            }
+        }
+
+        public RelayCommand SaveCommand
+        {
+            get
+            {
+                return _saveCommand ??
+                    (_saveCommand = new RelayCommand((object obj) =>
+                    {
+                        Save();
+                    },
+                    (obj) => _itemFormMode == ItemFormMode.Insert || _itemFormMode == ItemFormMode.Update));
             }
         }
 
@@ -123,16 +139,18 @@ namespace WpfApp1.ViewModels
             return columnName;
         }
 
-        protected void Insert()
-        {
-            CurrentItem = null;
+        protected abstract void CreateNewItemForm();
 
+        protected void TryInsert()
+        {
+            MakeCurrentItemEmpty();
             CreateNewItemForm();
-            ItemForm.Mode = ItemFormMode.Insert;
-            ItemForm.Show();
+            _itemFormMode = ItemFormMode.Insert;
+            ItemForm.Mode = _itemFormMode;
+            ItemForm.Show();      
         }
 
-        protected void Update()
+        protected void TryUpdate()
         {
             if (_sectionWidget.dataGrid.SelectedIndex == -1)
             {
@@ -143,25 +161,48 @@ namespace WpfApp1.ViewModels
                 CurrentItem = _sectionWidget.dataGrid.SelectedItem;
 
                 CreateNewItemForm();
-                ItemForm.Mode = ItemFormMode.Update;
-                ItemForm.Show();
+                _itemFormMode = ItemFormMode.Update;
+                ItemForm.Mode = _itemFormMode;
+                ItemForm.Show(); 
             }
-
         }
 
         protected void Delete()
         {
-            MessageBox.Show("Delete...");
+            if (MessageBox.Show("Вы уверены, что хотите удалить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                CurrentItem = _sectionWidget.dataGrid.SelectedItem;
+                App.Context.Users.Remove(CurrentItem);
+                App.Context.SaveChanges();
+                UpdateItems();
+            }
         }
 
         protected void Read()
         {
             CreateNewItemForm();
-            ItemForm.Mode = ItemFormMode.Read;
+            _itemFormMode = ItemFormMode.Read;
+            ItemForm.Mode = _itemFormMode;
             ItemForm.Show();
         }
 
-        protected abstract void CreateNewItemForm();
+        public void Save()
+        {
+            if (_itemFormMode == ItemFormMode.Insert)
+            {
+                AddCurrentItem();
+            }
+            App.Context.SaveChanges();
+            UpdateItems();
+        }
+
+        protected abstract void AddCurrentItem();
+        protected abstract void MakeCurrentItemEmpty();
+
+        private void UpdateItems()
+        {
+            _sectionWidget.dataGrid.ItemsSource = SectionData;
+        }
 
         protected void ToPDF()
         {

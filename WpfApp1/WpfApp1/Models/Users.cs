@@ -13,6 +13,7 @@ namespace WpfApp1.Models
             Cards = new HashSet<Cards>();
             DeferredProducts = new HashSet<DeferredProducts>();
             Orders = new HashSet<Orders>();
+
         }
 
         public int Id { get; set; }
@@ -21,13 +22,24 @@ namespace WpfApp1.Models
         public string Patronymic { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime Birthday { get; set; }
+
         public string Email { get; set; }
         public int? OrderCode { get; set; }
-        public bool? IsMale { get; set; }
+        public bool IsMale { get; set; }
+        public int? CountryId { get; set; }
 
         [NotMapped]
-        public string? Sex { get; set; }
-        public int? CountryId { get; set; }
+        public string Sex
+        {
+            get
+            {
+                return IsMale ? "мужчина" : "женщина";
+            }
+            set
+            {
+                IsMale = value == "мужчина";
+            }
+        }
 
         public virtual Countries Country { get; set; }
         public virtual ICollection<Cards> Cards { get; set; }

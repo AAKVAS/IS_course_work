@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfApp1.ViewModels;
-using WpfApp1.Views;
+using WpfApp1.ViewModels.Users.GeneralInfo;
 
 namespace WpfApp1.Views.Users.GeneralInfo
 {
@@ -24,7 +24,8 @@ namespace WpfApp1.Views.Users.GeneralInfo
         public UserGeneralInfoItem(SectionWidgetViewModel sectionWidgetViewModel) : base(sectionWidgetViewModel)
         {
             InitializeComponent();
-            DataContext = _sectionWidgetViewModel;
+            DataContext = (UsersGeneralInfoViewModel)_sectionWidgetViewModel;
+            cb_country.ItemsSource = ((UsersGeneralInfoViewModel)_sectionWidgetViewModel).Countries;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -56,11 +57,12 @@ namespace WpfApp1.Views.Users.GeneralInfo
             tb_firstname.IsReadOnly = true;
             tb_patronymic.IsReadOnly = true;
             tb_phone_number.IsReadOnly = true;
-            tb_birthday.IsReadOnly = true;
-            tb_sex.IsReadOnly = true;
+            calendar_birthday.IsEnabled = false;
+            cb_sex.IsReadOnly = true;
             tb_email.IsReadOnly = true;
-            tb_country.IsReadOnly = true;
+            cb_country.IsReadOnly = true;
         }
+
 
     }
 }

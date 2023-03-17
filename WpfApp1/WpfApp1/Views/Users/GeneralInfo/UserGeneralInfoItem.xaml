@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Пользователи / Общие сведения" Height="450" Width="800">
     <Window.Resources>
@@ -33,25 +34,52 @@
             <Label x:Name="lbl_id" Grid.Column="0" Grid.Row="0" Content="Id"/>
             <TextBox x:Name="tb_id" Grid.Column="1" Grid.Row="0" Text="{Binding CurrentItem.Id, Mode=OneWay}" IsReadOnly="True"></TextBox>
             <Label x:Name="lbl_lastname" Grid.Column="0" Grid.Row="1" Content="Фамилия"/>
-            <TextBox x:Name="tb_lastname" Grid.Column="1" Grid.Row="1" Text="{Binding CurrentItem.Lastname}"></TextBox>
+            <TextBox x:Name="tb_lastname" Grid.Column="1" Grid.Row="1" Text="{Binding CurrentItem.Lastname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label x:Name="lbl_fistname" Grid.Column="0" Grid.Row="2" Content="Имя"/>
-            <TextBox x:Name="tb_firstname" Grid.Column="1" Grid.Row="2" Text="{Binding CurrentItem.Firstname}"></TextBox>
+            <TextBox x:Name="tb_firstname" Grid.Column="1" Grid.Row="2" Text="{Binding CurrentItem.Firstname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label x:Name="lbl_patronymic" Grid.Column="0" Grid.Row="3" Content="Отчество"/>
-            <TextBox x:Name="tb_patronymic" Grid.Column="1" Grid.Row="3" Text="{Binding CurrentItem.Patronymic}"></TextBox>
+            <TextBox x:Name="tb_patronymic" Grid.Column="1" Grid.Row="3" Text="{Binding CurrentItem.Patronymic, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label x:Name="lbl_phone_number" Grid.Column="0" Grid.Row="4" Content="Номер телефона"/>
-            <TextBox x:Name="tb_phone_number" Grid.Column="1" Grid.Row="4" Text="{Binding CurrentItem.PhoneNumber}"></TextBox>
+            <TextBox x:Name="tb_phone_number" Grid.Column="1" Grid.Row="4" Text="{Binding CurrentItem.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
             <Label x:Name="lbl_birthday" Grid.Column="0" Grid.Row="5" Content="Дата рождения"/>
-            <TextBox x:Name="tb_birthday" Grid.Column="1" Grid.Row="5" Text="{Binding CurrentItem.Birthday}"></TextBox>
+            <DatePicker x:Name="calendar_birthday" 
+                        Grid.Column="1"
+                        Grid.Row="5" 
+                        SelectedDate="{x:Static sys:DateTime.Now}" 
+                        Width="200"
+                        HorizontalAlignment="Left"/>
+
             <Label x:Name="lbl_email" Grid.Column="0" Grid.Row="6" Content="Почта"/>
-            <TextBox x:Name="tb_email" Grid.Column="1" Grid.Row="6" Text="{Binding CurrentItem.Email}"></TextBox>
+            <TextBox x:Name="tb_email" Grid.Column="1" Grid.Row="6" Text="{Binding CurrentItem.Email, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label x:Name="lbl_sex" Grid.Column="0" Grid.Row="7" Content="Пол"/>
-            <TextBox x:Name="tb_sex" Grid.Column="1" Grid.Row="7" Text="{Binding CurrentItem.Sex}"></TextBox>
+            
+            <ComboBox x:Name="cb_sex" 
+                      Grid.Column="1"
+                      Grid.Row="7"
+                      Width="200"
+                      HorizontalAlignment="Left">
+                <ComboBoxItem Content="Мужской"/>
+                <ComboBoxItem Content="Женский"/>
+            </ComboBox>
+            
             <Label x:Name="lbl_country" Grid.Column="0" Grid.Row="8" Content="Страна"/>
-            <TextBox x:Name="tb_country" Grid.Column="1" Grid.Row="8" Text="{Binding CurrentItem.Country.Title}"></TextBox>
+            
+            <ComboBox x:Name="cb_country" 
+                      Grid.Column="1"
+                      Grid.Row="8"
+                      Width="200"
+                      HorizontalAlignment="Left">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
         </Grid>
         <DockPanel Grid.Row="1"  Margin="10">
-            <Button x:Name="dataActionButton" Margin="10, 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource btn_1}">Сохранить</Button>
+            <Button x:Name="dataActionButton" Margin="10, 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource btn_1}" Command="{Binding SaveCommand}">Сохранить</Button>
             <Button Margin="10, 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource btn_1}" Click="Button_Click">Закрыть</Button>
         </DockPanel>
     </Grid>

@@ -30,8 +30,7 @@ namespace WpfApp1.Services
 	                                u.email,
                                     u.order_code,
                                     u.is_male,
-                                    u.country_id,
-	                                IIF(u.is_male = 1, 'мужчина', 'женщина') as sex
+                                    u.country_id
                                 FROM users u";
             return new ObservableCollection<dynamic>(_context.Users
                     .FromSql(query)

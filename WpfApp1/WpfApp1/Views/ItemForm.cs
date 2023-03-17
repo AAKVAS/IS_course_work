@@ -11,7 +11,6 @@ namespace WpfApp1.Views
         Read
     }
 
-
     public abstract class ItemForm : Window
     {
         protected SectionWidgetViewModel _sectionWidgetViewModel;
