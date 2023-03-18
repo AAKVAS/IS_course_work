@@ -50,7 +50,14 @@
             </MenuItem>
         </Menu>
 
-        <TabControl x:Name="mainTabControl"  Grid.Row="1" HorizontalAlignment="Left" Height="auto" Margin="10,10,0,0" VerticalAlignment="Top" Width="819" Grid.ColumnSpan="2">
+        <TabControl x:Name="mainTabControl" 
+                    Grid.Row="1" 
+                    HorizontalAlignment="Left" 
+                    Height="auto" 
+                    Margin="10,10,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="819" 
+                    Grid.ColumnSpan="2">
         </TabControl>
     </Grid>
 </Window>

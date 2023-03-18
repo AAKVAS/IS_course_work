@@ -19,16 +19,22 @@ namespace WpfApp1
         }
 
         public static ISWildberriesContext Context;
+        public static AccessService AccessService;
+        public static SectionFactory SectionFactory;
+        public static UserService UserService;
+        public static MainWindow MainWindow;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
             Context = host.Services.GetService<ISWildberriesContext>();
+            AccessService = host.Services.GetService<AccessService>();
+            SectionFactory = host.Services.GetService<SectionFactory>();
+            UserService = host.Services.GetService<UserService>();
+            MainWindow = host.Services.GetService<MainWindow>();
 
             AddResourceDictionaries();
-            AddServicesToResources();
-            AddMainWindowToResources();
 
             if (IsEnableDB())
             {
@@ -44,22 +50,6 @@ namespace WpfApp1
         {
             ResourceDictionary dict = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Resources/ButtonTheme.xaml") };
             Resources.MergedDictionaries.Add(dict);
-        }
-
-        private void AddServicesToResources()
-        {
-            AccessService accessService = host.Services.GetService<AccessService>();
-            Resources.Add("AccessService", accessService);
-            SectionFactory sectionFactory = host.Services.GetService<SectionFactory>();
-            Resources.Add("SectionFactory", sectionFactory);
-            UserService userService = host.Services.GetService<UserService>();
-            Resources.Add("UserService", userService);
-        }
-
-        private void AddMainWindowToResources()
-        {
-            MainWindow mainWindow = host.Services.GetService<MainWindow>();
-            Resources.Add("MainWindow", mainWindow);
         }
 
         private bool IsEnableDB()

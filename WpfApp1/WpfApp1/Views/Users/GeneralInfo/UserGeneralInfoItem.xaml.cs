@@ -58,9 +58,10 @@ namespace WpfApp1.Views.Users.GeneralInfo
             tb_patronymic.IsReadOnly = true;
             tb_phone_number.IsReadOnly = true;
             calendar_birthday.IsEnabled = false;
-            cb_sex.IsReadOnly = true;
+            rb_male.IsEnabled = false;
+            rb_female.IsEnabled = false;
             tb_email.IsReadOnly = true;
-            cb_country.IsReadOnly = true;
+            cb_country.IsEnabled = false;
         }
 
 

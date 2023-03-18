@@ -8,12 +8,12 @@ namespace WpfApp1.Models
 {
     public partial class Users
     {
+
         public Users()
         {
             Cards = new HashSet<Cards>();
             DeferredProducts = new HashSet<DeferredProducts>();
             Orders = new HashSet<Orders>();
-
         }
 
         public int Id { get; set; }
@@ -21,15 +21,28 @@ namespace WpfApp1.Models
         public string Lastname { get; set; }
         public string Patronymic { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime Birthday { get; set; }
+
+        private DateTime? _birthday;
+        public DateTime Birthday { get
+            {
+                return _birthday ?? DateTime.Now;
+            }
+            set
+            {
+                _birthday = value;
+            }
+
+        }
 
         public string Email { get; set; }
         public int? OrderCode { get; set; }
-        public bool IsMale { get; set; }
+        public bool IsMale { get;
+            set; 
+        }
         public int? CountryId { get; set; }
 
         [NotMapped]
-        public string Sex
+        public string Gender
         {
             get
             {
@@ -38,6 +51,15 @@ namespace WpfApp1.Models
             set
             {
                 IsMale = value == "мужчина";
+            }
+        }
+
+        [NotMapped]
+        public bool IsFemale
+        {
+            get
+            {
+                return !IsMale;
             }
         }
 

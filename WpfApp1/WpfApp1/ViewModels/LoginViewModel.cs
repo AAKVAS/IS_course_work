@@ -59,7 +59,7 @@ namespace WpfApp1.ViewModels
         public LoginViewModel(Login loginForm)
         {
             _userLogin = "";
-            _accessService = (AccessService)Application.Current.Resources["AccessService"];
+            _accessService =App.AccessService;
             _loginForm = loginForm;
         }
 
@@ -68,7 +68,7 @@ namespace WpfApp1.ViewModels
 
             if (_accessService.IsLogin(_userLogin, _password))
             {
-                MainWindow mainWindow = (MainWindow)Application.Current.Resources["MainWindow"]; ;
+                MainWindow mainWindow = App.MainWindow;
                 mainWindow.Show();
                 _loginForm.Close();
             }

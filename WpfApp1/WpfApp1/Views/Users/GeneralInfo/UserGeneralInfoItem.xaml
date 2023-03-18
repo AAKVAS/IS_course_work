@@ -46,22 +46,18 @@
             <DatePicker x:Name="calendar_birthday" 
                         Grid.Column="1"
                         Grid.Row="5" 
-                        SelectedDate="{x:Static sys:DateTime.Now}" 
+                        SelectedDate="{Binding CurrentItem.Birthday}" 
                         Width="200"
                         HorizontalAlignment="Left"/>
 
             <Label x:Name="lbl_email" Grid.Column="0" Grid.Row="6" Content="Почта"/>
             <TextBox x:Name="tb_email" Grid.Column="1" Grid.Row="6" Text="{Binding CurrentItem.Email, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Label x:Name="lbl_sex" Grid.Column="0" Grid.Row="7" Content="Пол"/>
-            
-            <ComboBox x:Name="cb_sex" 
-                      Grid.Column="1"
-                      Grid.Row="7"
-                      Width="200"
-                      HorizontalAlignment="Left">
-                <ComboBoxItem Content="Мужской"/>
-                <ComboBoxItem Content="Женский"/>
-            </ComboBox>
+
+            <StackPanel Grid.Row="7" Grid.Column="1">
+                <RadioButton x:Name="rb_male" GroupName="Gender" Content="Мужчина" IsChecked="{Binding CurrentItem.IsMale, Mode=OneWay}"/>
+                <RadioButton x:Name="rb_female" GroupName="Gender" Content="Женщина" IsChecked="{Binding CurrentItem.IsFemale, Mode=OneWay}"/>
+            </StackPanel>
             
             <Label x:Name="lbl_country" Grid.Column="0" Grid.Row="8" Content="Страна"/>
             
@@ -69,7 +65,8 @@
                       Grid.Column="1"
                       Grid.Row="8"
                       Width="200"
-                      HorizontalAlignment="Left">
+                      HorizontalAlignment="Left"
+                      SelectedValue="{Binding CurrentItem.Country}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Title}"/>

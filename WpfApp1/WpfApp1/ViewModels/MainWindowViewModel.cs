@@ -35,8 +35,8 @@ namespace WpfApp1.ViewModels
 
         public MainWindowViewModel(MainWindow mainWindow)
         {
-            _accessService = (AccessService)Application.Current.Resources["AccessService"];
-            _sectionFactory = (SectionFactory)Application.Current.Resources["SectionFactory"];
+            _accessService = App.AccessService;
+            _sectionFactory = App.SectionFactory;
             _mainWindow = mainWindow;
             HideMenuItemsWithoutRights();
         }
@@ -75,7 +75,6 @@ namespace WpfApp1.ViewModels
             string sectionName = _accessService.GetSectionBySectionKey(sectionKey).Title;
 
             SectionWidget sectionWidget = _sectionFactory.GetSectionWidget(sectionKey);
-
             TabControl tabControl = _mainWindow.mainTabControl;
 
             tabControl.Items.Add(new TabItem
