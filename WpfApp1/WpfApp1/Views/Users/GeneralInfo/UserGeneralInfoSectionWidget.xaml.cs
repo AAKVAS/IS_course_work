@@ -12,15 +12,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Models;
 using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
     public partial class UserGeneralInfoSectionWidget : SectionWidget
     {
-        public string SectionKey { get; set; }
-        private SectionWidgetViewModel _viewModel;
-
         protected override Button InsertButton { 
             get => insertButton;
         }
@@ -36,6 +34,11 @@ namespace WpfApp1.Views
         {
             get => deleteButton;
         }
+        protected override Button PDFButton
+        {
+            get => toPDFButton;
+        }
+
 
         public override DataGrid DataGrid
         {
@@ -48,17 +51,17 @@ namespace WpfApp1.Views
 
         protected override SectionWidgetViewModel ViewModel { get; set; }
 
-        public UserGeneralInfoSectionWidget(string sectionKey) : base(sectionKey)
+        public UserGeneralInfoSectionWidget(Sections section) : base(section)
         {
             InitializeComponent();
             ViewModel = new ViewModels.Users.GeneralInfo.UsersGeneralInfoViewModel(this);
             DataContext = ViewModel;
-            DataGrid.ItemsSource = ViewModel.SectionData;
+            DataGrid.ItemsSource = ViewModel.SectionData;            
         }
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
-            DataContext = _viewModel;
+            DataContext = ViewModel;
         }
     }
 }

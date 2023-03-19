@@ -90,6 +90,11 @@ namespace WpfApp1.Services
             return HasWorkerRightToSectionAction(sectionKey, "Просмотр");
         }
 
+        public bool HasWorkerRightToPDF(string sectionKey)
+        {
+            return HasWorkerRightToSectionAction(sectionKey, "PDF");
+        }
+
         private bool HasWorkerRightToSectionAction(string sectionKey, string actionName)
         {
             return LoginedWorkerSections

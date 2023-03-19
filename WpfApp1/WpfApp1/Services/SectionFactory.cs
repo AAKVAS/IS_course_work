@@ -20,13 +20,13 @@ namespace WpfApp1.Services
             _accessService = accessService;
         }
 
-        public SectionWidget GetSectionWidget(string sectionKey)
+        public SectionWidget GetSectionWidget(Sections section)
         {
             SectionWidget sectionWidget = null;
-            switch (sectionKey)
+            switch (section.SectionKey)
             {
                 case "users_general_info":
-                    sectionWidget = new UserGeneralInfoSectionWidget(sectionKey);
+                    sectionWidget = new UserGeneralInfoSectionWidget(section);
                     break;
                     /*
                   case "users_general_info":

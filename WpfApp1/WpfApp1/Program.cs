@@ -26,8 +26,10 @@ namespace WpfApp1
 
                     services.AddSingleton<ISWildberriesContext>();
                     services.AddSingleton<AccessService>();
+                    services.AddSingleton<PDFGenerateService>();
                     services.AddSingleton<SectionFactory>();
                     services.AddSingleton<UserService>();
+
                 })
                 .Build();
 

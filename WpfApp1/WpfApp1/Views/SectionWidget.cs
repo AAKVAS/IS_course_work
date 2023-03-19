@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using WpfApp1.Models;
 using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
@@ -7,19 +8,21 @@ namespace WpfApp1.Views
 
     public abstract class SectionWidget : UserControl
     {
-        public string SectionKey { get; set; }
+        public Sections Section;
+
         protected abstract SectionWidgetViewModel ViewModel { get; set; }
 
         protected abstract Button InsertButton { get; }
         protected abstract Button DeleteButton { get; }
         protected abstract Button UpdateButton { get; }
         protected abstract Button ReadButton { get; }
+        protected abstract Button PDFButton { get; }
 
         public abstract DataGrid DataGrid { get; set; }
 
-        public SectionWidget(string sectionKey)
+        public SectionWidget(Sections section)
         {
-            SectionKey = sectionKey;
+            Section = section;
         }
 
         public void CollapseInsertButton()
@@ -40,6 +43,11 @@ namespace WpfApp1.Views
         public void CollapseReadButton()
         {
             ReadButton.Visibility = Visibility.Collapsed;
+        }
+
+        public void CollapsePDFButton()
+        {
+            PDFButton.Visibility = Visibility.Collapsed;
         }
 
     }

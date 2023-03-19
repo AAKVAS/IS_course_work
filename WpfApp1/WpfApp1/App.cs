@@ -23,6 +23,7 @@ namespace WpfApp1
         public static SectionFactory SectionFactory;
         public static UserService UserService;
         public static MainWindow MainWindow;
+        public static PDFGenerateService PDFGenerateService;
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -33,6 +34,7 @@ namespace WpfApp1
             SectionFactory = host.Services.GetService<SectionFactory>();
             UserService = host.Services.GetService<UserService>();
             MainWindow = host.Services.GetService<MainWindow>();
+            PDFGenerateService = host.Services.GetService<PDFGenerateService>();
 
             AddResourceDictionaries();
 

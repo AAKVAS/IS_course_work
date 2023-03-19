@@ -72,14 +72,14 @@ namespace WpfApp1.ViewModels
 
         private void AddSectionToMainTabControl(string sectionKey)
         {
-            string sectionName = _accessService.GetSectionBySectionKey(sectionKey).Title;
+            Sections section = _accessService.GetSectionBySectionKey(sectionKey);
 
-            SectionWidget sectionWidget = _sectionFactory.GetSectionWidget(sectionKey);
+            SectionWidget sectionWidget = _sectionFactory.GetSectionWidget(section);
             TabControl tabControl = _mainWindow.mainTabControl;
 
             tabControl.Items.Add(new TabItem
             {
-                Header = sectionName,
+                Header = section.Title,
                 Content = sectionWidget
             });
         }

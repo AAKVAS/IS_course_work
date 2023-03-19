@@ -27,7 +27,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1"  Margin="10">
-            <Button x:Name="toPDFButton" Width="90" Template="{StaticResource btn_1}">В PDF</Button>
+            <Button x:Name="toPDFButton" Width="90" Template="{StaticResource btn_1}" Command="{Binding PDFCommand}">В PDF</Button>
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" FlowDirection="RightToLeft">
                 <Button x:Name="closeButton" Width="90" Margin="10, 0" Template="{StaticResource btn_1}" Command="{Binding CloseCommand}">Закрыть</Button>
                 <Button x:Name="readButton"  Width="90" Margin="10, 0" Template="{StaticResource btn_1}" Command="{Binding ReadCommand}">Просмотр</Button>
