@@ -6,11 +6,13 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Пользователи / Общие сведения" Height="450" Width="368">
+        Title="Пользователи / Общие сведения" Height="450" Width="368"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/ComboBoxTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/Resources/TextBoxTheme.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -125,7 +127,9 @@
                       Width="200"
                       Margin="0 5 0 5"
                       HorizontalAlignment="Left"
-                      SelectedValue="{Binding CurrentItem.Country}">
+                      BorderThickness="2"
+                      SelectedValue="{Binding CurrentItem.Country}"
+                      Style="{StaticResource CommonComboBox}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Title}"/>

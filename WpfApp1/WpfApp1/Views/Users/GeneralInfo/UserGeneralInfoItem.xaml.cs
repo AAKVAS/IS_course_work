@@ -64,6 +64,5 @@ namespace WpfApp1.Views.Users.GeneralInfo
             cbCountry.IsEnabled = false;
         }
 
-
     }
 }

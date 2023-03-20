@@ -35,8 +35,6 @@ namespace WpfApp1
             MainWindow = host.Services.GetService<MainWindow>();
             PDFGenerateService = host.Services.GetService<PDFGenerateService>();
 
-            AddResourceDictionaries();
-
             if (IsEnableDB())
             {
                 var startWindow = host.Services.GetService<Login>();
@@ -45,14 +43,6 @@ namespace WpfApp1
             else {
                 MessageBox.Show("Не удалось подключиться к базе данных!");
             }
-        }
-
-        private void AddResourceDictionaries()
-        {
-            ResourceDictionary buttonDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Resources/ButtonTheme.xaml") };
-            Resources.MergedDictionaries.Add(buttonDictionary);
-            ResourceDictionary textBoxDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Resources/TextBoxTheme.xaml") };
-            Resources.MergedDictionaries.Add(textBoxDictionary);
         }
 
         private bool IsEnableDB()

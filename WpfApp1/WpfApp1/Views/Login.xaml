@@ -7,6 +7,14 @@
         xmlns:vm="clr-namespace:WpfApp1.ViewModels"
         mc:Ignorable="d"
         Title="Вход" Height="224" Width="627" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/TextBoxTheme.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
     <Grid Margin="0,0,0,0" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
@@ -18,10 +26,47 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Content="Логин" Grid.Column="0" Grid.Row="0" FontSize="16" HorizontalAlignment="Left" Height="31" Margin="10,10,10,0" VerticalAlignment="Top" Width="72" Grid.ColumnSpan="2"/>
-        <TextBox Text="{Binding UserLogin, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0" FontSize="16" Height="31" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="496"/>
-        <Label Content="Пароль" Grid.Column="0" Grid.Row="1" FontSize="16" HorizontalAlignment="Left" Height="31" Margin="10,10,10,0" VerticalAlignment="Top" Width="72" Grid.ColumnSpan="2"/>
-        <PasswordBox x:Name="tbPassword" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" FontSize="16" Height="31" Margin="10,10,0,0" VerticalAlignment="Top" Width="496"/>
+        <Label Content="Логин" 
+               Grid.Column="0" 
+               Grid.Row="0" 
+               FontSize="16" 
+               HorizontalAlignment="Left" 
+               Height="31" 
+               Margin="10 10 10 0" 
+               VerticalAlignment="Top" 
+               Width="72" 
+               Grid.ColumnSpan="2"/>
+        <TextBox Text="{Binding UserLogin, UpdateSourceTrigger=PropertyChanged}" 
+                 HorizontalAlignment="Left" 
+                 Grid.Column="1" 
+                 Grid.Row="0" 
+                 FontSize="16" 
+                 Height="31" 
+                 Margin="10 10 0 0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top" 
+                 Width="496"
+                 Style="{StaticResource CommonTextBox}"/>
+        <Label Content="Пароль" 
+               Grid.Column="0" 
+               Grid.Row="1" 
+               FontSize="16" 
+               HorizontalAlignment="Left" 
+               Height="31" 
+               Margin="10 10 10 0" 
+               VerticalAlignment="Top" 
+               Width="72" 
+               Grid.ColumnSpan="2"/>
+        <PasswordBox x:Name="tbPassword" 
+                     HorizontalAlignment="Left" 
+                     Grid.Column="1" 
+                     Grid.Row="1" 
+                     FontSize="16" 
+                     Height="31" 
+                     Margin="10 10 0 0" 
+                     VerticalAlignment="Top" 
+                     Width="496"
+                     Style="{StaticResource CommonPasswordBox}"/>
         <Button Template="{StaticResource commonButton}" Command="{Binding AuthenticationCommand}" CommandParameter="{Binding ElementName = tbPassword}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" Width="117">Войти</Button>
 
     </Grid>
