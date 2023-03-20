@@ -8,7 +8,6 @@ using WpfApp1.Views;
 
 namespace WpfApp1
 {
-
     public partial class App : Application
     {
         readonly IHost host;
@@ -50,8 +49,10 @@ namespace WpfApp1
 
         private void AddResourceDictionaries()
         {
-            ResourceDictionary dict = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Resources/ButtonTheme.xaml") };
-            Resources.MergedDictionaries.Add(dict);
+            ResourceDictionary buttonDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Resources/ButtonTheme.xaml") };
+            Resources.MergedDictionaries.Add(buttonDictionary);
+            ResourceDictionary textBoxDictionary = new ResourceDictionary() { Source = new Uri("pack://application:,,,/Resources/TextBoxTheme.xaml") };
+            Resources.MergedDictionaries.Add(textBoxDictionary);
         }
 
         private bool IsEnableDB()

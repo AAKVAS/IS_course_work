@@ -25,7 +25,7 @@ namespace WpfApp1.Views.Users.GeneralInfo
         {
             InitializeComponent();
             DataContext = (UsersGeneralInfoViewModel)_sectionWidgetViewModel;
-            cb_country.ItemsSource = ((UsersGeneralInfoViewModel)_sectionWidgetViewModel).Countries;
+            cbCountry.ItemsSource = ((UsersGeneralInfoViewModel)_sectionWidgetViewModel).Countries;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,33 +35,33 @@ namespace WpfApp1.Views.Users.GeneralInfo
 
         protected override void SetFormModeToInsert()
         {
-            dataActionButton.Visibility = Visibility.Visible;
-            dataActionButton.Content = "Сохранить";
+            btnDataAction.Visibility = Visibility.Visible;
+            btnDataAction.Content = "Сохранить";
         }
 
         protected override void SetFormModeToUpdate()
         {
-            dataActionButton.Visibility = Visibility.Visible;
-            dataActionButton.Content = "Изменить";
+            btnDataAction.Visibility = Visibility.Visible;
+            btnDataAction.Content = "Изменить";
         }
 
         protected override void SetFormModeToRead()
         {
-            dataActionButton.Visibility = Visibility.Collapsed;
+            btnDataAction.Visibility = Visibility.Collapsed;
             DisableAllInputs();
         }
 
         private void DisableAllInputs()
         {
-            tb_lastname.IsReadOnly = true;
-            tb_firstname.IsReadOnly = true;
-            tb_patronymic.IsReadOnly = true;
-            tb_phone_number.IsReadOnly = true;
-            calendar_birthday.IsEnabled = false;
-            rb_male.IsEnabled = false;
-            rb_female.IsEnabled = false;
-            tb_email.IsReadOnly = true;
-            cb_country.IsEnabled = false;
+            tbLastname.IsReadOnly = true;
+            tbFirstname.IsReadOnly = true;
+            tbPatronymic.IsReadOnly = true;
+            tbPhoneNumber.IsReadOnly = true;
+            calendarBirthday.IsEnabled = false;
+            rbMale.IsEnabled = false;
+            rbFemale.IsEnabled = false;
+            tbEmail.IsReadOnly = true;
+            cbCountry.IsEnabled = false;
         }
 
 

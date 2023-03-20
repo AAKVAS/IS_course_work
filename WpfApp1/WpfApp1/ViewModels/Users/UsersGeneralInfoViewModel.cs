@@ -67,7 +67,7 @@ namespace WpfApp1.ViewModels.Users.GeneralInfo
 
         protected override void FillItem()
         {
-            CurrentItem.IsMale = _itemForm.rb_male.IsChecked ?? false;
+            CurrentItem.IsMale = _itemForm.rbMale.IsChecked ?? false;
         }
 
     }

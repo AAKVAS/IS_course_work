@@ -6,16 +6,26 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Пользователи / Общие сведения" Height="450" Width="800">
+        Title="Пользователи / Общие сведения" Height="450" Width="368">
     <Window.Resources>
-        <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/TextBoxTheme.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="46*"/>
+            <ColumnDefinition Width="259*"/>
+            <ColumnDefinition Width="28*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
@@ -31,40 +41,89 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="lbl_id" Grid.Column="0" Grid.Row="0" Content="Id"/>
-            <TextBox x:Name="tb_id" Grid.Column="1" Grid.Row="0" Text="{Binding CurrentItem.Id, Mode=OneWay}" IsReadOnly="True"></TextBox>
-            <Label x:Name="lbl_lastname" Grid.Column="0" Grid.Row="1" Content="Фамилия"/>
-            <TextBox x:Name="tb_lastname" Grid.Column="1" Grid.Row="1" Text="{Binding CurrentItem.Lastname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Label x:Name="lbl_fistname" Grid.Column="0" Grid.Row="2" Content="Имя"/>
-            <TextBox x:Name="tb_firstname" Grid.Column="1" Grid.Row="2" Text="{Binding CurrentItem.Firstname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Label x:Name="lbl_patronymic" Grid.Column="0" Grid.Row="3" Content="Отчество"/>
-            <TextBox x:Name="tb_patronymic" Grid.Column="1" Grid.Row="3" Text="{Binding CurrentItem.Patronymic, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Label x:Name="lbl_phone_number" Grid.Column="0" Grid.Row="4" Content="Номер телефона"/>
-            <TextBox x:Name="tb_phone_number" Grid.Column="1" Grid.Row="4" Text="{Binding CurrentItem.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id"/>
+            <TextBox x:Name="tbId" 
+                     Width="200"
+                     Grid.Column="1"
+                     Grid.Row="0"
+                     HorizontalAlignment="Left"
+                     Margin="0 5 0 5" 
+                     Text="{Binding CurrentItem.Id, Mode=OneWay}" 
+                     IsReadOnly="True" 
+                     Style="{StaticResource CommonTextBox}">
+            </TextBox>
 
-            <Label x:Name="lbl_birthday" Grid.Column="0" Grid.Row="5" Content="Дата рождения"/>
-            <DatePicker x:Name="calendar_birthday" 
+            <Label x:Name="lblLastname" Grid.Column="0" Grid.Row="1" Content="Фамилия"/>
+            <TextBox x:Name="tbLastname" 
+                     Grid.Column="1" 
+                     Grid.Row="1" 
+                     Margin="0 5 0 5"
+                     Width="200"
+                     HorizontalAlignment="Left"
+                     Text="{Binding CurrentItem.Lastname, UpdateSourceTrigger=PropertyChanged}" 
+                     Style="{StaticResource CommonTextBox}"/>
+
+            <Label x:Name="lblFistname" Grid.Column="0" Grid.Row="2" Content="Имя"/>
+            <TextBox x:Name="tbFirstname" 
+                     Grid.Column="1" 
+                     Grid.Row="2" 
+                     Margin="0 5 0 5"
+                     Width="200"
+                     HorizontalAlignment="Left"
+                     Style="{StaticResource CommonTextBox}" 
+                     Text="{Binding CurrentItem.Firstname, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label x:Name="lblPatronymic" Grid.Column="0" Grid.Row="3" Content="Отчество"/>
+            <TextBox x:Name="tbPatronymic"
+                     Grid.Column="1" 
+                     Grid.Row="3" 
+                     Margin="0 5 0 5"
+                     Width="200"
+                     HorizontalAlignment="Left"
+                     Style="{StaticResource CommonTextBox}" 
+                     Text="{Binding CurrentItem.Patronymic, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label x:Name="lblPhoneNumber" Grid.Column="0" Grid.Row="4" Content="Номер телефона"/>
+            <TextBox x:Name="tbPhoneNumber" 
+                     Grid.Column="1" 
+                     Grid.Row="4" 
+                     Margin="0 5 0 5"
+                     Width="200"
+                     HorizontalAlignment="Left"
+                     Style="{StaticResource CommonTextBox}" 
+                     Text="{Binding CurrentItem.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label x:Name="lblBirthday" Grid.Column="0" Grid.Row="5" Content="Дата рождения"/>
+            <DatePicker x:Name="calendarBirthday" 
                         Grid.Column="1"
                         Grid.Row="5" 
                         SelectedDate="{Binding CurrentItem.Birthday}" 
                         Width="200"
+                        Margin="0 5 0 5"
                         HorizontalAlignment="Left"/>
 
-            <Label x:Name="lbl_email" Grid.Column="0" Grid.Row="6" Content="Почта"/>
-            <TextBox x:Name="tb_email" Grid.Column="1" Grid.Row="6" Text="{Binding CurrentItem.Email, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Label x:Name="lbl_sex" Grid.Column="0" Grid.Row="7" Content="Пол"/>
+            <Label x:Name="lblEmail" Grid.Column="0" Grid.Row="6" Content="Почта"/>
+            <TextBox x:Name="tbEmail" 
+                     Grid.Column="1"
+                     Grid.Row="6" 
+                     Margin="0 5 0 5"
+                     Width="200"
+                     HorizontalAlignment="Left"
+                     Style="{StaticResource CommonTextBox}" 
+                     Text="{Binding CurrentItem.Email, UpdateSourceTrigger=PropertyChanged}" />
 
+            <Label x:Name="lblSex" Grid.Column="0" Grid.Row="7" Content="Пол"/>
             <StackPanel Grid.Row="7" Grid.Column="1">
-                <RadioButton x:Name="rb_male" GroupName="Gender" Content="Мужчина" IsChecked="{Binding CurrentItem.IsMale, Mode=OneWay}"/>
-                <RadioButton x:Name="rb_female" GroupName="Gender" Content="Женщина" IsChecked="{Binding CurrentItem.IsFemale, Mode=OneWay}"/>
+                <RadioButton x:Name="rbMale" GroupName="Gender" Content="Мужчина" IsChecked="{Binding CurrentItem.IsMale, Mode=OneWay}"/>
+                <RadioButton x:Name="rbFemale" GroupName="Gender" Content="Женщина" IsChecked="{Binding CurrentItem.IsFemale, Mode=OneWay}"/>
             </StackPanel>
-            
-            <Label x:Name="lbl_country" Grid.Column="0" Grid.Row="8" Content="Страна"/>
-            
-            <ComboBox x:Name="cb_country" 
+
+            <Label x:Name="lblCountry" Grid.Column="0" Grid.Row="8" Content="Страна"/>
+            <ComboBox x:Name="cbCountry" 
                       Grid.Column="1"
                       Grid.Row="8"
                       Width="200"
+                      Margin="0 5 0 5"
                       HorizontalAlignment="Left"
                       SelectedValue="{Binding CurrentItem.Country}">
                 <ComboBox.ItemTemplate>
@@ -73,11 +132,11 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            
+
         </Grid>
-        <DockPanel Grid.Row="1"  Margin="10">
-            <Button x:Name="dataActionButton" Margin="10, 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource btn_1}" Command="{Binding SaveCommand}">Сохранить</Button>
-            <Button Margin="10, 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource btn_1}" Click="Button_Click">Закрыть</Button>
+        <DockPanel Grid.Row="1"  Margin="10,10,10,10" Grid.ColumnSpan="3">
+            <Button x:Name="btnDataAction" Margin="10, 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
+            <Button x:Name="btnClose" Margin="10, 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
         </DockPanel>
     </Grid>
 </local:ItemForm>

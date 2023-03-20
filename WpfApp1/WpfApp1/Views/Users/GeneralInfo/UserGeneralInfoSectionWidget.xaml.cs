@@ -20,25 +20,24 @@ namespace WpfApp1.Views
     public partial class UserGeneralInfoSectionWidget : SectionWidget
     {
         protected override Button InsertButton { 
-            get => insertButton;
+            get => btnInsert;
         }
         protected override Button UpdateButton
         {
-            get => updateButton;
+            get => btnUpdate;
         }
         protected override Button ReadButton
         {
-            get => readButton;
+            get => btnRead;
         }
         protected override Button DeleteButton
         {
-            get => deleteButton;
+            get => btnDelete;
         }
         protected override Button PDFButton
         {
-            get => toPDFButton;
+            get => btnPDF;
         }
-
 
         public override DataGrid DataGrid
         {
