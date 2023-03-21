@@ -30,6 +30,7 @@ namespace WpfApp1.Views
                     {"Отчество", "Patronymic" },
                     {"Номер телефона", "PhoneNumber" },
                     {"Дата рождения", "Birthday" },
+                    {"Email", "Email" },
                     {"Страна", "Title" },
                     {"Пол", "Gender" }
                 };

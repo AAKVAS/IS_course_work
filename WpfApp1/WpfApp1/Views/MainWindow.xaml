@@ -6,19 +6,19 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="529" Width="877" Loaded="Window_Loaded">
-
-    <Grid Margin="0,0,0,-16">
+    <Window.Resources>
+        <ResourceDictionary Source="/Resources/MenuTheme.xaml"/>
+    </Window.Resources>
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="49*"/>
-            <ColumnDefinition Width="828*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition  Height="21"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="21"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-
-        <Menu HorizontalAlignment="Left"  VerticalAlignment="Top" Grid.Row="0" x:Name="mainMenu" Grid.ColumnSpan="2">
+        <Menu HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0" x:Name="mainMenu" Grid.ColumnSpan="2" Style="{StaticResource CommonMenu}">
             <MenuItem x:Name="users" Header="Пользователи" Command="{Binding SectionChoosedCommand}" CommandParameter="users">
                 <MenuItem x:Name="users_general_info" Header="Общие сведения" Command="{Binding SectionChoosedCommand}" CommandParameter="users_general_info"></MenuItem>
                 <MenuItem x:Name="users_avg_cost" Header="Средние затраты пользователей" Command="{Binding SectionChoosedCommand}" CommandParameter="users_avg_cost"></MenuItem>
@@ -52,12 +52,9 @@
 
         <TabControl x:Name="mainTabControl" 
                     Grid.Row="1" 
-                    HorizontalAlignment="Left" 
-                    Height="auto" 
-                    Margin="10,10,0,0" 
-                    VerticalAlignment="Top" 
-                    Width="819" 
-                    Grid.ColumnSpan="2">
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch"
+                    Margin="10" >
         </TabControl>
     </Grid>
 </Window>

@@ -22,8 +22,10 @@ namespace WpfApp1.Models
         public string Patronymic { get; set; }
         public string PhoneNumber { get; set; }
 
-        private DateTime? _birthday;
-        public DateTime Birthday { get
+        private DateTime? _birthday { get; set; }
+        public DateTime Birthday 
+        { 
+            get
             {
                 return _birthday ?? DateTime.Now;
             }
@@ -31,7 +33,6 @@ namespace WpfApp1.Models
             {
                 _birthday = value;
             }
-
         }
 
         public string Email { get; set; }

@@ -187,7 +187,12 @@ namespace WpfApp1.ViewModels
         public void Save()
         {
             FillItem();
-            if (_itemFormMode == ItemFormMode.Insert)
+            string errors = GetErrors();
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (_itemFormMode == ItemFormMode.Insert)
             {
                 AddCurrentItem();
                 App.Context.SaveChanges();
@@ -200,12 +205,12 @@ namespace WpfApp1.ViewModels
                 ItemForm.Close();
                 UpdateItems();
             }
-            
         }
 
         protected abstract void AddCurrentItem();
         protected abstract void MakeCurrentItemEmpty();
         protected abstract void FillItem();
+        protected abstract string GetErrors();
 
         private void UpdateItems()
         {

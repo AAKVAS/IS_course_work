@@ -71,5 +71,41 @@ namespace WpfApp1.ViewModels.Users.GeneralInfo
             CurrentItem.IsMale = _itemForm.rbMale.IsChecked ?? false;
         }
 
+        protected override string GetErrors()
+        {
+            StringBuilder errorBuilder = new StringBuilder();
+
+            if (string.IsNullOrWhiteSpace(CurrentItem.Lastname))
+            {
+                errorBuilder.AppendLine("Поле \"Фамилия\" обязательно для заполнения;");
+            }
+            if (string.IsNullOrWhiteSpace(CurrentItem.Firstname))
+            {
+                errorBuilder.AppendLine("Поле \"Имя\" обязательно для заполнения;");
+            }
+            if (string.IsNullOrWhiteSpace(CurrentItem.Patronymic))
+            {
+                errorBuilder.AppendLine("Поле \"Отчество\" обязательно для заполнения;");
+            }
+            if (string.IsNullOrWhiteSpace(CurrentItem.PhoneNumber))
+            {
+                errorBuilder.AppendLine("Поле \"Номер телефона\" обязательно для заполнения;");
+            }
+            if (string.IsNullOrWhiteSpace(CurrentItem.Email))
+            {
+                errorBuilder.AppendLine("Поле \"Email\" обязательно для заполнения;");
+            }
+            if (CurrentItem.Country == null)
+            {
+                errorBuilder.AppendLine("Свойство \"Страна\" обязательно для заполнения;");
+            }
+            if (CurrentItem.Birthday == null || CurrentItem.Birthday < new DateTime(1900, 1, 1) || CurrentItem.Birthday > new DateTime(3000, 12, 31))
+            {
+                errorBuilder.AppendLine("Свойство \"Дата рождения\" обязательно для заполнения, допустимые значения от 1900.01.01 до 3000.12.31;");
+            }
+
+            return errorBuilder.ToString();
+        }
+
     }
 }
