@@ -13,12 +13,29 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.Models;
+using WpfApp1.Services;
 using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
     public partial class UserGeneralInfoSectionWidget : SectionWidget
     {
+        public override Dictionary<string, string> HeadersProperties {
+            get 
+            {
+                return new Dictionary<string, string> {
+                    {"Id", "Id" },
+                    {"Фамилия", "Firstname" },
+                    {"Имя", "Lastname" },
+                    {"Отчество", "Patronymic" },
+                    {"Номер телефона", "PhoneNumber" },
+                    {"Дата рождения", "Birthday" },
+                    {"Страна", "Title" },
+                    {"Пол", "Gender" }
+                };
+            }
+        }
+
         protected override Button InsertButton { 
             get => btnInsert;
         }
@@ -48,19 +65,24 @@ namespace WpfApp1.Views
             }
         }
 
-        protected override SectionWidgetViewModel ViewModel { get; set; }
+        public override SectionWidgetViewModel ViewModel { get; set; }
 
         public UserGeneralInfoSectionWidget(Sections section) : base(section)
         {
             InitializeComponent();
             ViewModel = new ViewModels.Users.GeneralInfo.UsersGeneralInfoViewModel(this);
             DataContext = ViewModel;
-            DataGrid.ItemsSource = ViewModel.SectionData;            
+            DataGrid.ItemsSource = ViewModel.SectionData;
         }
 
         private void UserControl_Initialized(object sender, EventArgs e)
         {
             DataContext = ViewModel;
+        }
+
+        private void DataGridColumnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            base.ShowFilterWindow(sender, e);
         }
     }
 }

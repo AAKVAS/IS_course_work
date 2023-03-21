@@ -1,0 +1,50 @@
+﻿<Window x:Class="WpfApp1.Views.Components.FilterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views.Components"
+        mc:Ignorable="d"
+        Title="Фильтр" Height="155" Width="470">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/ComboBoxTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/TextBoxTheme.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="219*"/>
+            <ColumnDefinition Width="170*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.3*"/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="lblSearch" Content="Тип поиска" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right" Margin="0,0,0,34" Grid.RowSpan="2"></Label>
+        <ComboBox Name="cbFilterType" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5" Style="{StaticResource CommonComboBox}" SelectedIndex="0" Grid.ColumnSpan="2">
+            <ComboBoxItem Name="cbiAll" Content="Все" />
+            <ComboBoxItem Name="cbiEquals" Content="Равно" />
+            <ComboBoxItem Name="cbiNotEquals" Content="Не равно" />
+            <ComboBoxItem Name="cbiMore" Content="Больше" />
+            <ComboBoxItem Name="cbiLess" Content="Меньше" />
+            <ComboBoxItem Name="cbiContain" Content="Содержит" />
+        </ComboBox>
+
+        <Label x:Name="lblParameter" Content="Значение" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"></Label>
+        <TextBox x:Name="tbParam" Margin="5,5,5,5" Grid.Column="1" Grid.Row="1" Style="{StaticResource CommonTextBox}" Grid.ColumnSpan="2"/>
+
+        <StackPanel Margin="30,5,0,0" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Orientation="Horizontal">
+            <Button x:Name="btnFilter" Width="110" Margin="5" Template="{StaticResource commonButton}" Content="Отфильтровать" Click="btnFilter_Click"/>
+            <Button x:Name="btnCancel" Width="110" Margin="5" Template="{StaticResource commonButton}" Content="Отмена" Click="btnCancel_Click" />
+        </StackPanel>
+
+    </Grid>
+</Window>

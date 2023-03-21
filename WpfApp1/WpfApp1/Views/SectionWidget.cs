@@ -1,7 +1,11 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using WpfApp1.Models;
+using WpfApp1.Services;
 using WpfApp1.ViewModels;
+using WpfApp1.Views.Components;
 
 namespace WpfApp1.Views
 {
@@ -10,13 +14,14 @@ namespace WpfApp1.Views
     {
         public Sections Section;
 
-        protected abstract SectionWidgetViewModel ViewModel { get; set; }
+        public abstract SectionWidgetViewModel ViewModel { get; set; }
 
         protected abstract Button InsertButton { get; }
         protected abstract Button DeleteButton { get; }
         protected abstract Button UpdateButton { get; }
         protected abstract Button ReadButton { get; }
         protected abstract Button PDFButton { get; }
+        public abstract Dictionary<string, string> HeadersProperties { get; }
 
         public abstract DataGrid DataGrid { get; set; }
 
@@ -48,6 +53,16 @@ namespace WpfApp1.Views
         public void CollapsePDFButton()
         {
             PDFButton.Visibility = Visibility.Collapsed;
+        }
+
+        public void ShowFilterWindow(object sender, RoutedEventArgs e)
+        {
+            var columnHeader = sender as DataGridColumnHeader;
+            if (columnHeader != null)
+            {
+                FilterWindow filterWindow = new FilterWindow(ViewModel.FilterService, columnHeader);
+                filterWindow.Show();
+            }
         }
 
     }

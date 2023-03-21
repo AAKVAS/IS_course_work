@@ -25,6 +25,7 @@ namespace WpfApp1.ViewModels.Users.GeneralInfo
         public override ObservableCollection<dynamic> SectionData
         {
             get => _sectionData;
+            set => _sectionData = value;
         }
 
         private dynamic _currentItem;
@@ -60,7 +61,7 @@ namespace WpfApp1.ViewModels.Users.GeneralInfo
             App.Context.Users.Add(CurrentItem);
         }
 
-        protected override void UpdateSectionData()
+        public override void UpdateSectionData()
         {
             _sectionData = _userService.GetUserGeneralInfo();
         }
