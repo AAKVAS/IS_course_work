@@ -55,15 +55,5 @@ namespace WpfApp1.Views
             PDFButton.Visibility = Visibility.Collapsed;
         }
 
-        public void ShowFilterWindow(object sender, RoutedEventArgs e)
-        {
-            var columnHeader = sender as DataGridColumnHeader;
-            if (columnHeader != null)
-            {
-                FilterWindow filterWindow = new FilterWindow(ViewModel.FilterService, columnHeader);
-                filterWindow.Show();
-            }
-        }
-
     }
 }

@@ -28,7 +28,7 @@ namespace WpfApp1.Services
 
     public class FilterService
     {
-        private struct FilterCondition
+        private class FilterCondition
         {
             public FilterCondition(FilterTypes type, string value)
             {
@@ -75,21 +75,8 @@ namespace WpfApp1.Services
             foreach (var filterCondition in _filterConditions)
             {
                 DataGridColumnHeader columnHeader = filterCondition.Key;
-
-                var column = _dataGrid.Columns.Single(c => c.Header.ToString() == columnHeader.Content.ToString());
-                if (column != null)
-                {
-                    string columnName = column.Header.ToString();
-                    if (_viewModel.SectionWidget.HeadersProperties.ContainsKey(columnName))
-                    {
-                        string propertyName = _viewModel.SectionWidget.HeadersProperties[columnName];
-                        items = new ObservableCollection<dynamic>(items.Where(item => Condition(item, propertyName, filterCondition.Value)));
-                    }
-                    else
-                    {
-                        throw new Exception("Столбец для фильтрации не найден!");
-                    }
-                }
+                string propertyName = GetPropertyNameByHeader(columnHeader);
+                items = new ObservableCollection<dynamic>(items.Where(item => Condition(item, propertyName, filterCondition.Value)));
             }
             _viewModel.SectionData = items;
             _dataGrid.ItemsSource = _viewModel.SectionData;
@@ -102,19 +89,143 @@ namespace WpfApp1.Services
             switch (filterCondition.Type)
             {
                 case FilterTypes.Equals:
-                    return property?.GetValue(item).ToString() == filterCondition.Value.ToString();
+                    return Equals(item, property, filterCondition.Value);
                 case FilterTypes.NotEquals:
-                    return property?.GetValue(item).ToString() != filterCondition.Value.ToString();
+                    return NotEquals(item, property, filterCondition.Value);
                 case FilterTypes.LessThan:
-                    return String.Compare(property?.GetValue(item).ToString(), filterCondition.Value.ToString()) < 0;
+                    return LessThan(item, property, filterCondition.Value);
                 case FilterTypes.MoreThan:
-                    return String.Compare(property?.GetValue(item).ToString(), filterCondition.Value.ToString()) > 0;
+                    return MoreThan(item, property, filterCondition.Value);
                 case FilterTypes.Contains:
                     return property?.GetValue(item).ToString().Contains(filterCondition.Value.ToString()) ?? false;
                 default:
                     return true;
             }
-            
+        }
+
+        public PropertyInfo GetPropertyInfo(DataGridColumnHeader columnHeader)
+        {
+            string propertyName = GetPropertyNameByHeader(columnHeader);
+            Type itemType = _viewModel.CurrentItem.GetType();
+            return itemType.GetProperty(propertyName);      
+        }
+
+        private string GetPropertyNameByHeader(DataGridColumnHeader columnHeader)
+        {
+            var column = _dataGrid.Columns.Single(c => c.Header.ToString() == columnHeader.Content.ToString());
+
+            if (column != null)
+            {
+                string columnName = column.Header.ToString();
+                if (_viewModel.SectionWidget.HeadersProperties.ContainsKey(columnName))
+                {
+                    return _viewModel.SectionWidget.HeadersProperties[columnName];
+                }
+            }
+            throw new Exception("Столбец для фильтрации не найден!");
+        }
+
+        private bool Equals(object item, PropertyInfo property, object value)
+        {
+            if (IsDate(property))
+            {
+                DateTime temp = Convert.ToDateTime(value);
+                return Convert.ToDateTime(property?.GetValue(item)) == temp;
+            }
+            return property?.GetValue(item).ToString() == value.ToString();
+        }
+        private bool NotEquals(object item, PropertyInfo property, object value)
+        {
+            if (IsDate(property))
+            {
+                DateTime temp = Convert.ToDateTime(value);
+                return Convert.ToDateTime(property?.GetValue(item)) != temp;
+            }
+            return property?.GetValue(item).ToString() != value.ToString();
+        }
+        private bool LessThan(object item, PropertyInfo property, object value)
+        {
+            if (IsNumeric(property))
+            {
+                return Convert.ToDouble(property?.GetValue(item)) < Convert.ToDouble(value);
+            }
+            if (IsDate(property))
+            {
+                return Convert.ToDateTime(property?.GetValue(item)) < Convert.ToDateTime(value);
+            }
+            return String.Compare(property?.GetValue(item).ToString(), value.ToString()) < 0;
+        }
+        private bool MoreThan(object item, PropertyInfo property, object value)
+        {
+            if (IsNumeric(property))
+            {
+                return Convert.ToDouble(property?.GetValue(item)) > Convert.ToDouble(value);
+            }
+            if (IsDate(property))
+            {
+                return Convert.ToDateTime(property?.GetValue(item)) > Convert.ToDateTime(value);
+            }
+            return String.Compare(property?.GetValue(item).ToString(), value.ToString()) > 0;
+        }
+
+        public void ShowFilterWindow(DataGridColumnHeader columnHeader)
+        {
+            if (IsDate(GetPropertyInfo(columnHeader)))
+            {
+                FilterWindow filterWindow = new DataFilterWindow(this, columnHeader);
+                filterWindow.Show();
+            }
+            else
+            {
+                FilterWindow filterWindow = new StringFilterWindow(this, columnHeader);
+                filterWindow.Show();
+            }
+        }
+
+        public bool IsNumeric(PropertyInfo? property)
+        {
+            TypeCode typeCode = Type.GetTypeCode(property.PropertyType);
+            switch (typeCode)
+            {
+                case TypeCode.Byte:
+                case TypeCode.SByte:
+                case TypeCode.UInt16:
+                case TypeCode.UInt32:
+                case TypeCode.UInt64:
+                case TypeCode.Int16:
+                case TypeCode.Int32:
+                case TypeCode.Int64:
+                case TypeCode.Decimal:
+                case TypeCode.Double:
+                case TypeCode.Single:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        public bool IsDate(PropertyInfo? property)
+        {
+            TypeCode typeCode = Type.GetTypeCode(property.PropertyType);
+            return typeCode == TypeCode.DateTime;
+        }
+
+        public string GetFilterValueByColumn(DataGridColumnHeader columnHeader)
+        {
+            FilterCondition filterCondition = GetFilterConditionByColumn(columnHeader);
+            return filterCondition != null ? filterCondition.Value : "";
+        }
+
+        public FilterTypes GetFilterTypeByColumn(DataGridColumnHeader columnHeader)
+        {
+            FilterCondition filterCondition = GetFilterConditionByColumn(columnHeader);
+            return filterCondition != null ? filterCondition.Type : FilterTypes.All;
+        }
+
+        private FilterCondition GetFilterConditionByColumn(DataGridColumnHeader columnHeader)
+        {
+            FilterCondition filterCondition;
+            _filterConditions.TryGetValue(columnHeader, out filterCondition);
+            return filterCondition;
         }
     }
 }

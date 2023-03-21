@@ -80,9 +80,9 @@ namespace WpfApp1.Views
             DataContext = ViewModel;
         }
 
-        private void DataGridColumnHeader_Click(object sender, RoutedEventArgs e)
+        private void DataGridColumnHeader_DoubleClick(object sender, RoutedEventArgs e)
         {
-            base.ShowFilterWindow(sender, e);
+            ViewModel.ShowFilterWindow(sender, e);
         }
     }
 }

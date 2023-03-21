@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using WpfApp1.Services;
 using WpfApp1.Views;
+using WpfApp1.Views.Components;
 
 namespace WpfApp1.ViewModels
 {
@@ -113,6 +115,7 @@ namespace WpfApp1.ViewModels
             _pdfGenerateService = App.PDFGenerateService;
             CollapseButtonsWithoutRights();
             FilterService = new FilterService(this);
+            MakeCurrentItemEmpty();
         }
 
         protected void CollapseButtonsWithoutRights() {
@@ -214,6 +217,15 @@ namespace WpfApp1.ViewModels
         protected void ToPDF()
         {
             _pdfGenerateService.TryCreatePDF(SectionWidget.Section.Title, SectionWidget.DataGrid);
+        }
+
+        public void ShowFilterWindow(object sender, RoutedEventArgs e)
+        {
+            var columnHeader = sender as DataGridColumnHeader;
+            if (columnHeader != null)
+            {
+                FilterService.ShowFilterWindow(columnHeader);
+            }
         }
 
         protected void Close()

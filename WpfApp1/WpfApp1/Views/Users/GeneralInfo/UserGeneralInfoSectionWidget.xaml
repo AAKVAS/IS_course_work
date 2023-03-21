@@ -22,7 +22,7 @@
         <DataGrid x:Name="dataGrid" Grid.Row="0" AutoGenerateColumns="False">
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
-                    <EventSetter Event="Click" Handler="DataGridColumnHeader_Click" />
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridColumnHeader_DoubleClick" />
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
