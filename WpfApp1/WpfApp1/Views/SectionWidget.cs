@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using WpfApp1.Models;
-using WpfApp1.Services;
 using WpfApp1.ViewModels;
-using WpfApp1.Views.Components;
+
 
 namespace WpfApp1.Views
 {

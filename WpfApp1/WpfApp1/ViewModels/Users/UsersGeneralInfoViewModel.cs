@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using WpfApp1.Views;
 using WpfApp1.Views.Users.GeneralInfo;
 using WpfApp1.Models;
 using WpfApp1.Services;
-using System.Windows;
 
-namespace WpfApp1.ViewModels.Users.GeneralInfo
+namespace WpfApp1.ViewModels.Users
 {
     internal class UsersGeneralInfoViewModel : SectionWidgetViewModel
     {

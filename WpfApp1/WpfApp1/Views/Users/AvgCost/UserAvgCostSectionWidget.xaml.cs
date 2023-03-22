@@ -7,7 +7,7 @@ using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
-    public partial class UserGeneralInfoSectionWidget : SectionWidget
+    public partial class UserAvgCostSectionWidget : SectionWidget
     {
         public override Dictionary<string, string> HeadersProperties {
             get 
@@ -17,11 +17,7 @@ namespace WpfApp1.Views
                     {"Фамилия", "Firstname" },
                     {"Имя", "Lastname" },
                     {"Отчество", "Patronymic" },
-                    {"Номер телефона", "PhoneNumber" },
-                    {"Дата рождения", "Birthday" },
-                    {"Email", "Email" },
-                    {"Страна", "Title" },
-                    {"Пол", "Gender" }
+                    {"Средние затраты", "AvgCost" }
                 };
             }
         }
@@ -57,10 +53,10 @@ namespace WpfApp1.Views
 
         public override SectionWidgetViewModel ViewModel { get; set; }
 
-        public UserGeneralInfoSectionWidget(Sections section) : base(section)
+        public UserAvgCostSectionWidget(Sections section) : base(section)
         {
             InitializeComponent();
-            ViewModel = new ViewModels.Users.UsersGeneralInfoViewModel(this);
+            ViewModel = new ViewModels.Users.UsersAvgCostViewModel(this);
             DataContext = ViewModel;
             DataGrid.ItemsSource = ViewModel.SectionData;
         }

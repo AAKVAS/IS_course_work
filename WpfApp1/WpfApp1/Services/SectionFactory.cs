@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using WpfApp1.Models;
-using WpfApp1.ViewModels;
+﻿using WpfApp1.Models;
 using WpfApp1.Views;
 
 
@@ -13,12 +6,6 @@ namespace WpfApp1.Services
 {
     public class SectionFactory
     {
-        AccessService _accessService;
-
-        public SectionFactory(AccessService accessService)
-        {
-            _accessService = accessService;
-        }
 
         public SectionWidget GetSectionWidget(Sections section)
         {
@@ -26,13 +13,10 @@ namespace WpfApp1.Services
             switch (section.SectionKey)
             {
                 case "users_general_info":
-                    sectionWidget = new UserGeneralInfoSectionWidget(section);
-                    break;
+                    return new UserGeneralInfoSectionWidget(section);
+                case "users_avg_cost": 
+                    return new UserAvgCostSectionWidget(section);
                     /*
-                  case "users_general_info":
-                      return new SectionWidgetViewModel();
-                  case "users_avg_cost": 
-                      return new SectionWidgetViewModel();
                   case "users_deffered_products": 
                       return new SectionWidgetViewModel();
                   case "order_list":

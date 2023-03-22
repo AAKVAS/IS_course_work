@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using WpfApp1.Services;
 using WpfApp1.Views;
-using WpfApp1.Views.Components;
 
 namespace WpfApp1.ViewModels
 {
@@ -177,11 +176,18 @@ namespace WpfApp1.ViewModels
 
         protected void Read()
         {
-            CurrentItem = SectionWidget.DataGrid.SelectedItem;
-            CreateNewItemForm();
-            _itemFormMode = ItemFormMode.Read;
-            ItemForm.Mode = _itemFormMode;
-            ItemForm.Show();
+            if (SectionWidget.DataGrid.SelectedIndex == -1)
+            {
+                MessageBox.Show("Выберите запись!");
+            }
+            else
+            {
+                CurrentItem = SectionWidget.DataGrid.SelectedItem;
+                CreateNewItemForm();
+                _itemFormMode = ItemFormMode.Read;
+                ItemForm.Mode = _itemFormMode;
+                ItemForm.Show();
+            }
         }
 
         public void Save()

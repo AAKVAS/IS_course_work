@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views;
 
@@ -17,7 +16,6 @@ namespace WpfApp1.ViewModels
         }
 
         string _userLogin;
-
         public string UserLogin
         {
             get { return _userLogin; }
@@ -29,7 +27,6 @@ namespace WpfApp1.ViewModels
         }
 
         byte[] _password;
-
         public byte[] Password
         {
             get { return _password; }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using WpfApp1.Models.DTO;
 
 namespace WpfApp1.Models
 {
@@ -42,6 +43,7 @@ namespace WpfApp1.Models
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<TableFiles> TableFiles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UserAverageCostDTO> UserAverageCostDTO { get; set; }
         public virtual DbSet<Workers> Workers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
