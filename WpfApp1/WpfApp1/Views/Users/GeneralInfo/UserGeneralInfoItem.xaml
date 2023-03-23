@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Пользователи / Общие сведения" Height="450" Width="368"
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+        Title="Пользователи / Общие сведения" Height="419" Width="344">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -24,8 +23,8 @@
             <ColumnDefinition Width="28*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
@@ -43,7 +42,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id"/>
+            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id" VerticalAlignment="Center"/>
             <TextBox x:Name="tbId" 
                      Width="200"
                      Grid.Column="1"
@@ -55,7 +54,7 @@
                      Style="{StaticResource CommonTextBox}">
             </TextBox>
 
-            <Label x:Name="lblLastname" Grid.Column="0" Grid.Row="1" Content="Фамилия"/>
+            <Label x:Name="lblLastname" Grid.Column="0" Grid.Row="1" Content="Фамилия" VerticalAlignment="Center"/>
             <TextBox x:Name="tbLastname" 
                      Grid.Column="1" 
                      Grid.Row="1" 
@@ -65,7 +64,7 @@
                      Text="{Binding CurrentItem.Lastname, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}"/>
 
-            <Label x:Name="lblFistname" Grid.Column="0" Grid.Row="2" Content="Имя"/>
+            <Label x:Name="lblFistname" Grid.Column="0" Grid.Row="2" Content="Имя" VerticalAlignment="Center"/>
             <TextBox x:Name="tbFirstname" 
                      Grid.Column="1" 
                      Grid.Row="2" 
@@ -75,7 +74,7 @@
                      Style="{StaticResource CommonTextBox}" 
                      Text="{Binding CurrentItem.Firstname, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label x:Name="lblPatronymic" Grid.Column="0" Grid.Row="3" Content="Отчество"/>
+            <Label x:Name="lblPatronymic" Grid.Column="0" Grid.Row="3" Content="Отчество" VerticalAlignment="Center"/>
             <TextBox x:Name="tbPatronymic"
                      Grid.Column="1" 
                      Grid.Row="3" 
@@ -85,7 +84,7 @@
                      Style="{StaticResource CommonTextBox}" 
                      Text="{Binding CurrentItem.Patronymic, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label x:Name="lblPhoneNumber" Grid.Column="0" Grid.Row="4" Content="Номер телефона"/>
+            <Label x:Name="lblPhoneNumber" Grid.Column="0" Grid.Row="4" Content="Номер телефона" VerticalAlignment="Center"/>
             <TextBox x:Name="tbPhoneNumber" 
                      Grid.Column="1" 
                      Grid.Row="4" 
@@ -95,7 +94,7 @@
                      Style="{StaticResource CommonTextBox}" 
                      Text="{Binding CurrentItem.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label x:Name="lblBirthday" Grid.Column="0" Grid.Row="5" Content="Дата рождения"/>
+            <Label x:Name="lblBirthday" Grid.Column="0" Grid.Row="5" Content="Дата рождения" VerticalAlignment="Center"/>
             <DatePicker x:Name="calendarBirthday" 
                         Grid.Column="1"
                         Grid.Row="5" 
@@ -104,7 +103,7 @@
                         Margin="0 5 0 5"
                         HorizontalAlignment="Left"/>
 
-            <Label x:Name="lblEmail" Grid.Column="0" Grid.Row="6" Content="Почта"/>
+            <Label x:Name="lblEmail" Grid.Column="0" Grid.Row="6" Content="Почта" VerticalAlignment="Center"/>
             <TextBox x:Name="tbEmail" 
                      Grid.Column="1"
                      Grid.Row="6" 
@@ -114,20 +113,18 @@
                      Style="{StaticResource CommonTextBox}" 
                      Text="{Binding CurrentItem.Email, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label x:Name="lblSex" Grid.Column="0" Grid.Row="7" Content="Пол"/>
+            <Label x:Name="lblSex" Grid.Column="0" Grid.Row="7" Content="Пол" VerticalAlignment="Center"/>
             <StackPanel Grid.Row="7" Grid.Column="1">
                 <RadioButton x:Name="rbMale" GroupName="Gender" Content="Мужчина" IsChecked="{Binding CurrentItem.IsMale, Mode=OneWay}"/>
                 <RadioButton x:Name="rbFemale" GroupName="Gender" Content="Женщина" IsChecked="{Binding CurrentItem.IsFemale, Mode=OneWay}"/>
             </StackPanel>
 
-            <Label x:Name="lblCountry" Grid.Column="0" Grid.Row="8" Content="Страна"/>
+            <Label x:Name="lblCountry" Grid.Column="0" Grid.Row="8" Content="Страна" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbCountry" 
                       Grid.Column="1"
                       Grid.Row="8"
                       Width="200"
-                      Margin="0 5 0 5"
                       HorizontalAlignment="Left"
-                      BorderThickness="2"
                       SelectedValue="{Binding CurrentItem.Country}"
                       Style="{StaticResource CommonComboBox}">
                 <ComboBox.ItemTemplate>

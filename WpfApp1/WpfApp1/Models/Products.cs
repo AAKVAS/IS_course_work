@@ -15,6 +15,7 @@ namespace WpfApp1.Models
             ProductsOnStorages = new HashSet<ProductsOnStorages>();
             ProductsParameters = new HashSet<ProductsParameters>();
             ReceiptOfProductsToStorages = new HashSet<ReceiptOfProductsToStorages>();
+            Images = new HashSet<ProductImage>();
         }
 
         public int Id { get; set; }
@@ -23,7 +24,7 @@ namespace WpfApp1.Models
         public int SupplierId { get; set; }
         public int CategoryId { get; set; }
         public string Description { get; set; }
-        public double? SupplierPercent { get; set; }
+        public double SupplierPercent { get; set; }
 
         public virtual Categories Category { get; set; }
         public virtual Suppliers Supplier { get; set; }
@@ -33,5 +34,7 @@ namespace WpfApp1.Models
         public virtual ICollection<ProductsOnStorages> ProductsOnStorages { get; set; }
         public virtual ICollection<ProductsParameters> ProductsParameters { get; set; }
         public virtual ICollection<ReceiptOfProductsToStorages> ReceiptOfProductsToStorages { get; set; }
+        public virtual ICollection<PriceHistory> PriceHistories { get; set; }
+        public virtual ICollection<ProductImage> Images { get; set; }
     }
 }

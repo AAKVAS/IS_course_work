@@ -7,21 +7,21 @@ using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
-    public partial class UserGeneralInfoSectionWidget : SectionWidget
+    public partial class ProductsGeneralInfoSectionWidget : SectionWidget
     {
         public override Dictionary<string, string> HeadersProperties {
             get 
             {
                 return new Dictionary<string, string> {
-                    {"Id", "Id" },
-                    {"Фамилия", "Lastname" },
-                    {"Имя", "Firstname" },
-                    {"Отчество", "Patronymic" },
-                    {"Номер телефона", "PhoneNumber" },
-                    {"Дата рождения", "Birthday" },
-                    {"Email", "Email" },
-                    {"Страна", "Country.Title" },
-                    {"Пол", "Gender" }
+                    { "Id", "Id" },
+                    { "Название", "Title"  },
+                    { "Описание", "Description" },
+                    { "Цена", "Price" },
+                    { "Id поставщика", "SupplierId" },
+                    { "Поставщик", "Supplier.Title" },
+                    { "Id категории", "CategoryId" },
+                    { "Категория", "Category.Title" },
+                    { "Процент поставщика с продажи", "SupplierPercent" }
                 };
             }
         }
@@ -57,10 +57,10 @@ namespace WpfApp1.Views
 
         public override SectionWidgetViewModel ViewModel { get; set; }
 
-        public UserGeneralInfoSectionWidget(Sections section) : base(section)
+        public ProductsGeneralInfoSectionWidget(Sections section) : base(section)
         {
             InitializeComponent();
-            ViewModel = new ViewModels.Users.UsersGeneralInfoViewModel(this);
+            ViewModel = new ViewModels.Products.ProductsGeneralInfoViewModel(this);
             DataContext = ViewModel;
             DataGrid.ItemsSource = ViewModel.SectionData;
         }

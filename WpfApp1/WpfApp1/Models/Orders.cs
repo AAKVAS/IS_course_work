@@ -25,6 +25,6 @@ namespace WpfApp1.Models
         public virtual Products Product { get; set; }
         public virtual Users User { get; set; }
         public virtual Reviews Reviews { get; set; }
-        public virtual ICollection<OrderHistory> OrderHistory { get; set; }
+        public virtual ICollection<OrderHistory> OrderHistory { get; set; } 
     }
 }

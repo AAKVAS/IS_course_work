@@ -12,7 +12,7 @@ namespace WpfApp1.Services
 {
     public enum FilterTypes
     {
-        All,
+        WithoutFilter,
         Equals,
         NotEquals,
         LessThan,
@@ -47,7 +47,7 @@ namespace WpfApp1.Services
 
         public void Filter(FilterTypes filterType, DataGridColumnHeader columnHeader, string value)
         {
-            if (filterType == FilterTypes.All)
+            if (filterType == FilterTypes.WithoutFilter)
             {
                 if (_filterConditions.ContainsKey(columnHeader))
                 {
@@ -70,7 +70,15 @@ namespace WpfApp1.Services
             {
                 DataGridColumnHeader columnHeader = filterCondition.Key;
                 string propertyName = GetPropertyNameByHeader(columnHeader);
-                items = new ObservableCollection<dynamic>(items.Where(item => Condition(item, propertyName, filterCondition.Value)));
+                if (IsPropertComposite(propertyName))
+                {
+                    string finalPropertyName = propertyName.Split('.').Last();
+                    items = new ObservableCollection<dynamic>(items.Where(item => Condition(GetCompositePropertyValue(item, propertyName), finalPropertyName, filterCondition.Value)));
+                }
+                else
+                {
+                    items = new ObservableCollection<dynamic>(items.Where(item => Condition(item, propertyName, filterCondition.Value)));
+                }
             }
             _viewModel.SectionData = items;
             _dataGrid.ItemsSource = _viewModel.SectionData;
@@ -97,11 +105,23 @@ namespace WpfApp1.Services
             }
         }
 
+        private bool IsPropertComposite(string propertyName)
+        {
+            return propertyName.Contains('.');
+        }
+
         public PropertyInfo GetPropertyInfo(DataGridColumnHeader columnHeader)
         {
             string propertyName = GetPropertyNameByHeader(columnHeader);
-            Type itemType = _viewModel.CurrentItem.GetType();
-            return itemType.GetProperty(propertyName);      
+            if (IsPropertComposite(propertyName))
+            {
+                return GetPropertyInfoForCompositeProperty(propertyName);
+            }
+            else
+            {
+                Type itemType = _viewModel.CurrentItem.GetType();
+                return itemType.GetProperty(propertyName);
+            }
         }
 
         private string GetPropertyNameByHeader(DataGridColumnHeader columnHeader)
@@ -117,6 +137,36 @@ namespace WpfApp1.Services
                 }
             }
             throw new Exception("Столбец для фильтрации не найден!");
+        }
+
+        private PropertyInfo GetPropertyInfoForCompositeProperty(string propertyName)
+        {
+            string[] properties = propertyName.Split('.');
+            Type itemType = _viewModel.CurrentItem.GetType();
+            PropertyInfo? property = itemType.GetProperty(properties[0]);
+
+            for (int i = 1; i < properties.Length; i++)
+            {
+                itemType = property?.PropertyType;
+                property = itemType.GetProperty(properties[i]);
+            }
+            return property;
+        }
+
+        private object GetCompositePropertyValue(object item, string propertyName)
+        {
+            string[] properties = propertyName.Split('.');
+            Type itemType = _viewModel.CurrentItem.GetType();
+            PropertyInfo? property = itemType.GetProperty(properties[0]);
+            object obj = item;
+
+            for (int i = 1; i < properties.Length; i++)
+            {
+                obj = property?.GetValue(obj);
+                itemType = property?.PropertyType;
+                property = itemType.GetProperty(properties[i]);
+            }
+            return obj;
         }
 
         private bool Equals(object item, PropertyInfo property, object value)
@@ -212,7 +262,7 @@ namespace WpfApp1.Services
         public FilterTypes GetFilterTypeByColumn(DataGridColumnHeader columnHeader)
         {
             FilterCondition filterCondition = GetFilterConditionByColumn(columnHeader);
-            return filterCondition != null ? filterCondition.Type : FilterTypes.All;
+            return filterCondition != null ? filterCondition.Type : FilterTypes.WithoutFilter;
         }
 
         private FilterCondition GetFilterConditionByColumn(DataGridColumnHeader columnHeader)

@@ -33,15 +33,11 @@ namespace WpfApp1.ViewModels.Users
             set => _currentItem = value;
         }
 
-
         private UserService _userService;
-
-        public List<Countries> Countries;
 
         public UsersAvgCostViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _userService = App.UserService;
             _sectionData = _userService.GetUserAvgCost();
-            Countries = App.Context.Countries.ToList();
         }
 
         protected override void MakeCurrentItemEmpty()
@@ -61,7 +57,7 @@ namespace WpfApp1.ViewModels.Users
 
         public override void UpdateSectionData()
         {
-            _sectionData = _userService.GetUserGeneralInfo();
+            _sectionData = _userService.GetUserAvgCost();
         }
 
         protected override void FillItem() {}

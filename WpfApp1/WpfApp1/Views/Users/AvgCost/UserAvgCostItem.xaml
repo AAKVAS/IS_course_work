@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Пользователи / Общие сведения" Height="258" Width="368"
+        Title="Пользователи / Общие сведения" Height="258" Width="339"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
         <ResourceDictionary>
@@ -39,7 +39,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id"/>
+            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbId" 
                      Width="200"
                      Grid.Column="1"
@@ -51,7 +51,7 @@
                      Style="{StaticResource CommonTextBox}">
             </TextBox>
 
-            <Label x:Name="lblLastname" Grid.Column="0" Grid.Row="1" Content="Фамилия"/>
+            <Label x:Name="lblLastname" Grid.Column="0" Grid.Row="1" Content="Фамилия"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbLastname" 
                      Grid.Column="1" 
                      Grid.Row="1" 
@@ -61,7 +61,7 @@
                      Text="{Binding CurrentItem.Lastname, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}"/>
 
-            <Label x:Name="lblFistname" Grid.Column="0" Grid.Row="2" Content="Имя"/>
+            <Label x:Name="lblFistname" Grid.Column="0" Grid.Row="2" Content="Имя"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbFirstname" 
                      Grid.Column="1" 
                      Grid.Row="2" 
@@ -71,7 +71,7 @@
                      Style="{StaticResource CommonTextBox}" 
                      Text="{Binding CurrentItem.Firstname, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label x:Name="lblPatronymic" Grid.Column="0" Grid.Row="3" Content="Отчество"/>
+            <Label x:Name="lblPatronymic" Grid.Column="0" Grid.Row="3" Content="Отчество"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbPatronymic"
                      Grid.Column="1" 
                      Grid.Row="3" 
@@ -81,7 +81,7 @@
                      Style="{StaticResource CommonTextBox}" 
                      Text="{Binding CurrentItem.Patronymic, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Label x:Name="lblAvgCost" Grid.Column="0" Grid.Row="4" Content="Средние затраты"/>
+            <Label x:Name="lblAvgCost" Grid.Column="0" Grid.Row="4" Content="Средние затраты"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbAvgCost" 
                      Grid.Column="1" 
                      Grid.Row="4" 

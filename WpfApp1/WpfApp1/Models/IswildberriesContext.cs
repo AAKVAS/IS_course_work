@@ -30,10 +30,12 @@ namespace WpfApp1.Models
         public virtual DbSet<Posts> Posts { get; set; }
         public virtual DbSet<PriceHistory> PriceHistory { get; set; }
         public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<ProductImage> ProductImages { get; set; }
         public virtual DbSet<ProductsOnStorages> ProductsOnStorages { get; set; }
         public virtual DbSet<ProductsParameters> ProductsParameters { get; set; }
         public virtual DbSet<ReceiptOfProductsToStorages> ReceiptOfProductsToStorages { get; set; }
         public virtual DbSet<Reviews> Reviews { get; set; }
+        public virtual DbSet<ReviewImage> ReviewImages { get; set; }
         public virtual DbSet<Rights> Rights { get; set; }
         public virtual DbSet<SectionRights> SectionRights { get; set; }
         public virtual DbSet<Sections> Sections { get; set; }
@@ -137,21 +139,28 @@ namespace WpfApp1.Models
                     .HasConstraintName("FK_deferred_products_users");
             });
 
-            modelBuilder.Entity<Files>(entity =>
+            modelBuilder.Entity<ProductImage>(entity =>
             {
-                entity.ToTable("files");
-
+                entity.HasKey(e => e.Id).HasName("PK__product___3213E83F60EBE42D");
+                entity.ToTable("product_images");
                 entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.ProductId).HasColumnName("product_id");
+                entity.Property(e => e.ProductImage1).HasColumnName("product_image");
+                entity.HasOne(d => d.Product).WithMany(p => p.Images)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK__product_i__produ__67DE6983");
+            });
 
-                entity.Property(e => e.FilePath)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("file_path");
-
-                entity.Property(e => e.FileTitle)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("file_title");
+            modelBuilder.Entity<ReviewImage>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK__review_i__3213E83F630EB357");
+                entity.ToTable("review_images");
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.OrderId).HasColumnName("order_id");
+                entity.Property(e => e.ReviewImage1).HasColumnName("review_image");
+                entity.HasOne(d => d.Review).WithMany(p => p.Images)
+                    .HasForeignKey(d => d.OrderId)
+                    .HasConstraintName("FK__review_im__order__6ABAD62E");
             });
 
             modelBuilder.Entity<OrderHistory>(entity =>
@@ -596,33 +605,6 @@ namespace WpfApp1.Models
                     .HasColumnName("title");
             });
 
-            modelBuilder.Entity<TableFiles>(entity =>
-            {
-                entity.ToTable("table_files");
-
-                entity.HasIndex(e => new { e.TableName, e.RecordId, e.FId }, "UQ__table_fi__95FD4F3929D12456")
-                    .IsUnique();
-
-                entity.HasIndex(e => new { e.TableName, e.RecordId, e.FId }, "UQ__table_fi__95FD4F392C75CBB1")
-                    .IsUnique();
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.FId).HasColumnName("f_id");
-
-                entity.Property(e => e.RecordId).HasColumnName("record_id");
-
-                entity.Property(e => e.TableName)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("table_name");
-
-                entity.HasOne(d => d.FIdNavigation)
-                    .WithMany(p => p.TableFiles)
-                    .HasForeignKey(d => d.FId)
-                    .HasConstraintName("FK__table_file__f_id__05D8E0BE");
-            });
-
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.ToTable("users");
@@ -720,3 +702,4 @@ namespace WpfApp1.Models
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
+

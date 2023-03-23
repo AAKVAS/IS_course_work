@@ -15,6 +15,7 @@ namespace WpfApp1.ViewModels
         public abstract dynamic? CurrentItem { get; set; }
 
         protected ItemFormMode _itemFormMode = ItemFormMode.Read;
+        public string SectionTitle { get; set; }
 
         public FilterService FilterService { get; set; }
 
@@ -141,7 +142,9 @@ namespace WpfApp1.ViewModels
         protected void TryInsert()
         {
             MakeCurrentItemEmpty();
+
             CreateNewItemForm();
+            ItemForm.Title = SectionTitle;
             _itemFormMode = ItemFormMode.Insert;
             ItemForm.Mode = _itemFormMode;
             ItemForm.Show();      
@@ -157,6 +160,7 @@ namespace WpfApp1.ViewModels
                 CurrentItem = SectionWidget.DataGrid.SelectedItem;
 
                 CreateNewItemForm();
+                ItemForm.Title = SectionTitle;
                 _itemFormMode = ItemFormMode.Update;
                 ItemForm.Mode = _itemFormMode;
                 ItemForm.Show();
@@ -183,7 +187,9 @@ namespace WpfApp1.ViewModels
             else
             {
                 CurrentItem = SectionWidget.DataGrid.SelectedItem;
+
                 CreateNewItemForm();
+                ItemForm.Title = SectionTitle;
                 _itemFormMode = ItemFormMode.Read;
                 ItemForm.Mode = _itemFormMode;
                 ItemForm.Show();

@@ -19,7 +19,7 @@ namespace WpfApp1.Views.Components
 
         protected override void Filter()
         {
-            FilterTypes filterTypes = FilterTypes.All;
+            FilterTypes filterTypes = FilterTypes.WithoutFilter;
 
             switch (cbFilterType.SelectedIndex)
             {
@@ -46,7 +46,7 @@ namespace WpfApp1.Views.Components
         {
             switch (_filterService.GetFilterTypeByColumn(_columnHeader))
             {
-                case FilterTypes.All:
+                case FilterTypes.WithoutFilter:
                     cbFilterType.SelectedIndex = 0;
                     break;
                 case FilterTypes.Equals:

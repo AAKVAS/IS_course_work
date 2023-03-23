@@ -31,8 +31,10 @@ namespace WpfApp1.Services
                       return new SectionWidgetViewModel();
                   case "storages_product_amount":
                       return new SectionWidgetViewModel();
+                    */
                   case "products_general_info": 
-                      return new SectionWidgetViewModel();
+                      return new ProductsGeneralInfoSectionWidget(section);
+                    /*
                   case "products_reviews":
                       return new SectionWidgetViewModel();
                   case "products_categories": 

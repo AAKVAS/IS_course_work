@@ -26,27 +26,26 @@
             <RowDefinition Height="1.3*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="lblSearch" Content="Тип поиска" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right" Margin="0,0,0,34" Grid.RowSpan="2"></Label>
+        <Label x:Name="lblSearch" Content="Тип поиска" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
         <ComboBox Name="cbFilterType" 
                   Grid.Column="1" 
                   Grid.Row="0" 
-                  Margin="5,5,5,5" 
                   Width="250"
                   HorizontalAlignment="Left"
                   Style="{StaticResource CommonComboBox}" 
                   SelectedIndex="0" >
-            <ComboBoxItem Name="cbiAll" Content="Все" />
+            <ComboBoxItem Name="cbiAll" Content="Без фильтра" />
             <ComboBoxItem Name="cbiEquals" Content="Равно" />
             <ComboBoxItem Name="cbiNotEquals" Content="Не равно" />
             <ComboBoxItem Name="cbiMore" Content="Больше" />
             <ComboBoxItem Name="cbiLess" Content="Меньше" />
         </ComboBox>
 
-        <Label x:Name="lblParameter" Content="Значение" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"></Label>
+        <Label x:Name="lblParameter" Content="Значение" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
         <DatePicker x:Name="dpParam" 
                     Grid.Column="1"
                     Grid.Row="1"
-                    Margin="5,5,5,5"
+                    Margin="0 5 0 0"
                     Width="250"
                     HorizontalAlignment="Left"/>
 

@@ -1,0 +1,139 @@
+﻿<local:ItemWithImages x:Class="WpfApp1.Views.Products.GeneralInfo.ProductsGeneralInfoItemWithImages"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        mc:Ignorable="d"
+        Title="ItemForm" Height="497" Width="372">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/ComboBoxTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/TextBoxTheme.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"></StackPanel>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id"  VerticalAlignment="Center"/>
+            <TextBox x:Name="tbId" 
+                     Width="200"
+                     Grid.Column="1"
+                     Grid.Row="0"
+                     HorizontalAlignment="Left"
+                     Margin="0 5 0 5" 
+                     Text="{Binding CurrentItem.Id, Mode=OneWay}" 
+                     IsReadOnly="True" 
+                     Style="{StaticResource CommonTextBox}" />
+
+            <Label x:Name="lblTitle" Grid.Column="0" Grid.Row="1" Content="Название"  VerticalAlignment="Center"/>
+            <TextBox x:Name="tbTitle" 
+                     Width="200"
+                     Grid.Column="1"
+                     Grid.Row="1"
+                     HorizontalAlignment="Left"
+                     Margin="0 5 0 5" 
+                     Text="{Binding CurrentItem.Title, UpdateSourceTrigger=PropertyChanged}" 
+                     Style="{StaticResource CommonTextBox}" />
+
+            <Label x:Name="lblDescription" Grid.Column="0" Grid.Row="2" Content="Описание"  VerticalAlignment="Center"/>
+            <TextBox x:Name="tbDescription" 
+                     Width="200"
+                     Grid.Column="1"
+                     Grid.Row="2"
+                     HorizontalAlignment="Left"
+                     Margin="0 5 0 5" 
+                     Text="{Binding CurrentItem.Description, UpdateSourceTrigger=PropertyChanged}" 
+                     Style="{StaticResource CommonTextBox}" />
+
+            <Label x:Name="lblPrice" Grid.Column="0" Grid.Row="3" Content="Цена"  VerticalAlignment="Center"/>
+            <TextBox x:Name="tbPrice" 
+                     Width="200"
+                     Grid.Column="1"
+                     Grid.Row="3"
+                     HorizontalAlignment="Left"
+                     Margin="0 5 0 5" 
+                     Text="{Binding CurrentItem.Price, UpdateSourceTrigger=PropertyChanged}" 
+                     Style="{StaticResource CommonTextBox}" />
+
+            <Label x:Name="lbl" Grid.Column="0" Grid.Row="4" Content="Поставщик" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cbSupplier"
+                      Grid.Row="4"
+                      Grid.Column="1" 
+                      Style="{StaticResource CommonComboBox}"
+                      Width="200" 
+                      HorizontalAlignment="Left"
+                      SelectedValue="{Binding CurrentItem.Supplier}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Grid.Column="0" Content="{Binding Id}"/>
+                            <Label Grid.Column="1" Content="{Binding Title}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Label x:Name="lblCategory" Grid.Column="0" Grid.Row="5" Content="Категория" VerticalAlignment="Center" />
+            <ComboBox x:Name="cbCategory"
+                      Grid.Row="5"
+                      Grid.Column="1" 
+                      Style="{StaticResource CommonComboBox}" 
+                      Width="200" 
+                      HorizontalAlignment="Left"
+                      SelectedValue="{Binding CurrentItem.Category}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Grid.Column="0" Content="{Binding Id}" />
+                            <Label Grid.Column="1" Content="{Binding Title}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock x:Name="lblPercent" Margin="5 0" Grid.Column="0" Grid.Row="7" Text="Процент поставщика с продажи" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <TextBox x:Name="tbPercent" 
+                     Width="200"
+                     Grid.Column="1"
+                     Grid.Row="7"
+                     HorizontalAlignment="Left"
+                     Margin="0 5 0 5" 
+                     Text="{Binding CurrentItem.SupplierPercent, UpdateSourceTrigger=PropertyChanged}" 
+                     Style="{StaticResource CommonTextBox}" />
+        </Grid>
+        
+        <StackPanel Grid.Row="1" Margin="10">
+            <ListBox Height="100"></ListBox>
+            <Button HorizontalAlignment="Right" Margin="10, 5" Width="90" Template="{StaticResource commonButton}">Добавить</Button>
+        </StackPanel>
+
+        <DockPanel Grid.Row="2" Margin="10">
+            <Button x:Name="btnDataAction" Margin="10, 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
+            <Button Margin="10, 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
+        </DockPanel>
+    </Grid>
+</local:ItemWithImages>

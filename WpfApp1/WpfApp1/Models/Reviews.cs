@@ -7,11 +7,17 @@ namespace WpfApp1.Models
 {
     public partial class Reviews
     {
+        public Reviews()
+        {
+            Images = new HashSet<ReviewImage>();
+        }
+
         public int OrderId { get; set; }
         public string ReviewText { get; set; }
         public int? Stars { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public virtual Orders Order { get; set; }
+        public virtual ICollection<ReviewImage> Images { get; set; }
     }
 }

@@ -16,12 +16,16 @@ namespace WpfApp1
             this.host = host;
         }
 
-        public static ISWildberriesContext Context;
-        public static AccessService AccessService;
-        public static SectionFactory SectionFactory;
-        public static UserService UserService;
-        public static MainWindow MainWindow;
-        public static PDFGenerateService PDFGenerateService;
+        public static ISWildberriesContext Context { get; set; }
+        public static AccessService AccessService { get; set; }
+        public static MainWindow MainWindow { get; set; }
+        public static PDFGenerateService PDFGenerateService { get; set; }
+        public static ProductService ProductService { get; set; }
+        public static SectionFactory SectionFactory { get; set; }
+        public static SectionService SectionService { get; set; }
+        public static UserService UserService { get; set; }
+
+
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -29,10 +33,12 @@ namespace WpfApp1
 
             Context = host.Services.GetService<ISWildberriesContext>();
             AccessService = host.Services.GetService<AccessService>();
-            SectionFactory = host.Services.GetService<SectionFactory>();
-            UserService = host.Services.GetService<UserService>();
             MainWindow = host.Services.GetService<MainWindow>();
             PDFGenerateService = host.Services.GetService<PDFGenerateService>();
+            ProductService = host.Services.GetService<ProductService>();
+            SectionFactory = host.Services.GetService<SectionFactory>();
+            SectionService = host.Services.GetService<SectionService>();
+            UserService = host.Services.GetService<UserService>();
 
             if (IsEnableDB())
             {

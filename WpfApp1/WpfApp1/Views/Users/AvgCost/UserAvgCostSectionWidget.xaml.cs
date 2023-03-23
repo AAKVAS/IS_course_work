@@ -14,8 +14,8 @@ namespace WpfApp1.Views
             {
                 return new Dictionary<string, string> {
                     {"Id", "Id" },
-                    {"Фамилия", "Firstname" },
-                    {"Имя", "Lastname" },
+                    {"Фамилия", "Lastname" },
+                    {"Имя", "Firstname" },
                     {"Отчество", "Patronymic" },
                     {"Средние затраты", "AvgCost" }
                 };
