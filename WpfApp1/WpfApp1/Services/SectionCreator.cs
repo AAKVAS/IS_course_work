@@ -4,7 +4,7 @@ using WpfApp1.Views;
 
 namespace WpfApp1.Services
 {
-    public class SectionFactory
+    public class SectionCreator
     {
 
         public SectionWidget GetSectionWidget(Sections section)

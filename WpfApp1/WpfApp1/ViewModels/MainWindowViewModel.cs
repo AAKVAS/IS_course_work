@@ -10,7 +10,7 @@ namespace WpfApp1.ViewModels
     internal class MainWindowViewModel
     {
         private AccessService _accessService;
-        private SectionFactory _sectionFactory;
+        private SectionCreator _sectionCreator;
         private SectionService _sectionService;
         private List<Sections> _sections;
 
@@ -33,7 +33,7 @@ namespace WpfApp1.ViewModels
         public MainWindowViewModel(MainWindow mainWindow)
         {
             _accessService = App.AccessService;
-            _sectionFactory = App.SectionFactory;
+            _sectionCreator = App.SectionCreator;
             _sectionService = App.SectionService;
             _mainWindow = mainWindow;
             HideMenuItemsWithoutRights();
@@ -72,7 +72,7 @@ namespace WpfApp1.ViewModels
         {
             Sections section = _sectionService.GetSectionBySectionKey(sectionKey);
 
-            SectionWidget sectionWidget = _sectionFactory.GetSectionWidget(section);
+            SectionWidget sectionWidget = _sectionCreator.GetSectionWidget(section);
 
             if (sectionWidget != null)
             {

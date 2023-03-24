@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfApp1.Views.Components.ImageForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views.Components"
+        mc:Ignorable="d"
+        Title="Работа с изображением" Height="450" Width="553">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="41"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="image" Grid.Row="0" Margin="10"/>
+        <DockPanel Grid.Row="2" Margin="10 0 10 10">
+            <Button x:Name="btnDelete" Margin="10 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding DeleteImageCommand}" >Удалить</Button>
+            <Button x:Name="btnClose" Margin="10 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="btnClose_Click">Закрыть</Button>
+        </DockPanel>
+    </Grid>
+</Window>

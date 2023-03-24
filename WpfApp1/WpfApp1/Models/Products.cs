@@ -2,11 +2,19 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace WpfApp1.Models
 {
-    public partial class Products
+    public partial class Products : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
         public Products()
         {
             DeferredProducts = new HashSet<DeferredProducts>();
@@ -35,6 +43,15 @@ namespace WpfApp1.Models
         public virtual ICollection<ProductsParameters> ProductsParameters { get; set; }
         public virtual ICollection<ReceiptOfProductsToStorages> ReceiptOfProductsToStorages { get; set; }
         public virtual ICollection<PriceHistory> PriceHistories { get; set; }
-        public virtual ICollection<ProductImage> Images { get; set; }
+
+        private ICollection<ProductImage> _images; 
+        public virtual ICollection<ProductImage> Images {
+            get => _images;
+            set
+            {
+                _images = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

@@ -70,7 +70,7 @@ namespace WpfApp1.Services
             {
                 DataGridColumnHeader columnHeader = filterCondition.Key;
                 string propertyName = GetPropertyNameByHeader(columnHeader);
-                if (IsPropertComposite(propertyName))
+                if (IsPropertyComposite(propertyName))
                 {
                     string finalPropertyName = propertyName.Split('.').Last();
                     items = new ObservableCollection<dynamic>(items.Where(item => Condition(GetCompositePropertyValue(item, propertyName), finalPropertyName, filterCondition.Value)));
@@ -105,7 +105,7 @@ namespace WpfApp1.Services
             }
         }
 
-        private bool IsPropertComposite(string propertyName)
+        private bool IsPropertyComposite(string propertyName)
         {
             return propertyName.Contains('.');
         }
@@ -113,7 +113,7 @@ namespace WpfApp1.Services
         public PropertyInfo GetPropertyInfo(DataGridColumnHeader columnHeader)
         {
             string propertyName = GetPropertyNameByHeader(columnHeader);
-            if (IsPropertComposite(propertyName))
+            if (IsPropertyComposite(propertyName))
             {
                 return GetPropertyInfoForCompositeProperty(propertyName);
             }

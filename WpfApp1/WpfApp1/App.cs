@@ -21,7 +21,7 @@ namespace WpfApp1
         public static MainWindow MainWindow { get; set; }
         public static PDFGenerateService PDFGenerateService { get; set; }
         public static ProductService ProductService { get; set; }
-        public static SectionFactory SectionFactory { get; set; }
+        public static SectionCreator SectionCreator { get; set; }
         public static SectionService SectionService { get; set; }
         public static UserService UserService { get; set; }
 
@@ -36,7 +36,7 @@ namespace WpfApp1
             MainWindow = host.Services.GetService<MainWindow>();
             PDFGenerateService = host.Services.GetService<PDFGenerateService>();
             ProductService = host.Services.GetService<ProductService>();
-            SectionFactory = host.Services.GetService<SectionFactory>();
+            SectionCreator = host.Services.GetService<SectionCreator>();
             SectionService = host.Services.GetService<SectionService>();
             UserService = host.Services.GetService<UserService>();
 

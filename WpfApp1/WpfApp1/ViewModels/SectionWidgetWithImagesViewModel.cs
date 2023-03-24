@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using WpfApp1.Services;
 using WpfApp1.Views;
+using WpfApp1.Views.Components;
 
 namespace WpfApp1.ViewModels
 {
@@ -36,11 +37,14 @@ namespace WpfApp1.ViewModels
             }
         }
 
+        public abstract dynamic CurrentImage { get; set; }
+        public ObservableCollection<dynamic> CurrentItemImages { get; set; }
+
         public SectionWidgetWithImagesViewModel(SectionWidget sectionWidget) : base(sectionWidget) {}
 
         private void InsertImage()
         {
-            if (CurrentItem.Images.Length = 10)
+            if (CurrentItem.Images.Count == 10)
             {
                 MessageBox.Show("Нельзя прикрепить больше 10 файлов!", "Предупреждение!");
             }
@@ -58,14 +62,43 @@ namespace WpfApp1.ViewModels
                     else
                     {
                         image = File.ReadAllBytes(fileDialog.FileName);
+                        CurrentItem.Images.Add(CreateNewImage(image));
+                        App.Context.SaveChanges();
+                        LoadCurrentItemImages();
+                        ((ItemWithImages)ItemForm).ListBox.ItemsSource = CurrentItemImages;
+                        ((ItemWithImages)ItemForm).ListBox.Items.Refresh();
                     }
                 }
             }
         }
 
+        protected abstract dynamic CreateNewImage(byte[] image);
+        public abstract void LoadCurrentItemImages();
+
         private void DeleteImage()
         {
-            
+            if (MessageBox.Show("Вы уверены, что хотите удалить изображение?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                if (CurrentImage != null)
+                {
+                    CurrentItem.Images.Remove(CurrentImage);
+                    App.Context.SaveChanges();
+                    LoadCurrentItemImages();
+                    ((ItemWithImages)ItemForm).ListBox.ItemsSource = CurrentItemImages;
+                    ((ItemWithImages)ItemForm).ListBox.Items.Refresh();
+                    ImageFormService.TryCloseImageForm(CurrentImage);
+                }
+            }
+        }
+
+        public void TryShowImageForm(object selectedItem)
+        {
+            CurrentImage = selectedItem;
+            if (!ImageFormService.IsExistImageForm(CurrentImage))
+            {
+                ImageForm imageForm = ImageFormService.TryCreateItemForm(this);
+                imageForm.Show();
+            }
         }
 
     }

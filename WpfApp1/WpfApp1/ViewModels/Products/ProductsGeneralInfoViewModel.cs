@@ -10,7 +10,7 @@ using WpfApp1.Views.Products.GeneralInfo;
 
 namespace WpfApp1.ViewModels.Products
 {
-    internal class ProductsGeneralInfoViewModel : SectionWidgetViewModel
+    internal class ProductsGeneralInfoViewModel : SectionWidgetWithImagesViewModel
     {
         private ProductsGeneralInfoItemWithImages _itemForm;
         protected override ItemForm ItemForm
@@ -33,15 +33,21 @@ namespace WpfApp1.ViewModels.Products
             set => _currentItem = value;
         }
 
+        private ProductImage _image;
+        public override dynamic CurrentImage 
+        {
+            get => _image;
+            set => _image = value;
+        }
 
-        private ProductService _ProductsGeneralInfoService;
+        private ProductService _productService;
 
         public List<Suppliers> Suppliers;
         public List<Categories> Categories;
 
         public ProductsGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _ProductsGeneralInfoService = App.ProductService;
-            _sectionData = _ProductsGeneralInfoService.GetProductsGeneralInfo();
+            _productService = App.ProductService;
+            _sectionData = _productService.GetProductsGeneralInfo();
             Suppliers = App.Context.Suppliers.ToList();
             Categories = App.Context.Categories.ToList();
         }
@@ -63,7 +69,7 @@ namespace WpfApp1.ViewModels.Products
 
         public override void UpdateSectionData()
         {
-            _sectionData = _ProductsGeneralInfoService.GetProductsGeneralInfo();
+            _sectionData = _productService.GetProductsGeneralInfo();
         }
 
         protected override void FillItem()
@@ -100,6 +106,19 @@ namespace WpfApp1.ViewModels.Products
             }
 
             return errorBuilder.ToString();
+        }
+
+        protected override dynamic CreateNewImage(byte[] image)
+        { 
+            ProductImage productImage = new ProductImage();
+            productImage.ProductImage1 = image;
+            return productImage;
+        }
+
+        public override void LoadCurrentItemImages()
+        {
+            CurrentItem = _productService.GetProductWithImages(CurrentItem);
+            CurrentItemImages = _productService.GetProductImages(CurrentItem);
         }
 
     }

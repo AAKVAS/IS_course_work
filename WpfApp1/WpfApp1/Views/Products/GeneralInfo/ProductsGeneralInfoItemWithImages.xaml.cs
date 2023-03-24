@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using WpfApp1.ViewModels;
 using WpfApp1.ViewModels.Products;
 
@@ -9,9 +10,18 @@ namespace WpfApp1.Views.Products.GeneralInfo
         public ProductsGeneralInfoItemWithImages(SectionWidgetViewModel sectionWidgetViewModel) : base(sectionWidgetViewModel)
         {
             InitializeComponent();
-            DataContext = (ProductsGeneralInfoViewModel)_sectionWidgetViewModel;
-            cbSupplier.ItemsSource = ((ProductsGeneralInfoViewModel)_sectionWidgetViewModel).Suppliers;
-            cbCategory.ItemsSource = ((ProductsGeneralInfoViewModel)_sectionWidgetViewModel).Categories;
+            ProductsGeneralInfoViewModel viewModel = (ProductsGeneralInfoViewModel)_sectionWidgetViewModel;
+            DataContext = viewModel;
+            cbSupplier.ItemsSource = viewModel.Suppliers;
+            cbCategory.ItemsSource = viewModel.Categories;
+            viewModel.LoadCurrentItemImages();
+            lbImages.ItemsSource = viewModel.CurrentItemImages;
+        }
+
+        public override ListBox ListBox 
+        { 
+            get => lbImages;
+            set => lbImages = value; 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -48,5 +58,9 @@ namespace WpfApp1.Views.Products.GeneralInfo
             cbSupplier.IsEnabled = false;
         }
 
+        private void lbImages_PreviewMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ((SectionWidgetWithImagesViewModel)_sectionWidgetViewModel).TryShowImageForm(lbImages.SelectedItem);
+        }
     }
 }
