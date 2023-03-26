@@ -33,7 +33,6 @@ namespace WpfApp1.ViewModels.Users
             set => _currentItem = value;
         }
 
-
         private UserService _userService;
 
         public List<Countries> Countries;
@@ -57,6 +56,11 @@ namespace WpfApp1.ViewModels.Users
         protected override void AddCurrentItem()
         {
             App.Context.Users.Add(CurrentItem);
+        }
+
+        protected override void DeleteCurrentItem()
+        {
+            App.Context.Users.Remove(CurrentItem);
         }
 
         public override void UpdateSectionData()

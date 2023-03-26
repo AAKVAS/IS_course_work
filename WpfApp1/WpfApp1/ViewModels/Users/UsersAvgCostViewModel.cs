@@ -6,7 +6,7 @@ using WpfApp1.Views;
 using WpfApp1.Views.Users.GeneralInfo;
 using WpfApp1.Models;
 using WpfApp1.Services;
-
+using System;
 
 namespace WpfApp1.ViewModels.Users
 {
@@ -52,7 +52,12 @@ namespace WpfApp1.ViewModels.Users
 
         protected override void AddCurrentItem()
         {
-            App.Context.Users.Add(CurrentItem);
+            throw new Exception("Добавление данных в этом разделе не предусмотрено");
+        }
+
+        protected override void DeleteCurrentItem()
+        {
+            throw new Exception("Удаление данных в этом разделе не предусмотрено");
         }
 
         public override void UpdateSectionData()

@@ -8,16 +8,22 @@ using WpfApp1.Views.Components;
 
 namespace WpfApp1.Services
 {
+    public enum ImageFormMode
+    {
+        Read,
+        Delete
+    }
+
     public class ImageFormService
     {
         private static Dictionary<dynamic, ImageForm> _imageForms = new Dictionary<dynamic, ImageForm>();
 
-        public static ImageForm TryCreateItemForm(SectionWidgetWithImagesViewModel viewModel)
+        public static ImageForm TryCreateItemForm(SectionWidgetWithImagesViewModel viewModel, ImageFormMode imageFormMode)
         {
             dynamic image = viewModel.CurrentImage;
             if (!IsExistImageForm(image))
             {
-                ImageForm imageForm = new ImageForm(viewModel);
+                ImageForm imageForm = new ImageForm(viewModel, imageFormMode);
                 imageForm.image.Source = ImageConverter.ByteArrayToImage(image.Image);
                 _imageForms[image] = imageForm;
                 return imageForm;

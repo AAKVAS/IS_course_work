@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -52,6 +53,34 @@ namespace WpfApp1.Services
             return new ObservableCollection<dynamic>(_context.UserAverageCostDTO
                 .FromSql(query)
                 .ToList());
+        }
+
+        public ObservableCollection<dynamic> GetUserDeferredProducts()
+        {
+            return new ObservableCollection<dynamic>(_context.DeferredProducts
+                .Include(dp => dp.User)
+                .Include(dp => dp.Product)
+                .ToList());
+        }
+
+        public ObservableCollection<dynamic> GetUserDeferredProductsImages(DeferredProducts deferredProducts)
+        {
+            string query = $@"SELECT pri.id,
+                                     pri.product_id,
+	                                 pri.product_image
+                                FROM product_images pri
+                               WHERE product_id = @product_id";
+            if (deferredProducts.Product != null)
+            {
+                return new ObservableCollection<dynamic>(_context.ProductImages
+                    .FromSqlRaw(query, new SqlParameter("@product_id", deferredProducts.Product.Id))
+                    .ToList());
+            }
+            else
+            {
+                return new ObservableCollection<dynamic> { };
+            }
+
         }
 
     }

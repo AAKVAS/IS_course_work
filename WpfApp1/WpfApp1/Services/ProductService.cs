@@ -23,17 +23,10 @@ namespace WpfApp1.Services
                     .ToList());
         }
 
-        public Products GetProductWithImages(Products product)
-        {
-            return _context.Products.Where(p => p.Equals(product)).Include(p => p.Images).ToList().FirstOrDefault();
-        }
-
         public ObservableCollection<dynamic> GetProductImages(Products product)
         {
             return new ObservableCollection<dynamic>(_context.ProductImages.Where(p => p.Product.Equals(product)).Include(p => p.Product).ToList());
         }
-
-
 
     }
 }

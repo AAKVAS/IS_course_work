@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using WpfApp1.Services;
@@ -172,9 +174,23 @@ namespace WpfApp1.ViewModels
             if (MessageBox.Show("Вы уверены, что хотите удалить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 CurrentItem = SectionWidget.DataGrid.SelectedItem;
-                App.Context.Users.Remove(CurrentItem);
+                TryDelete();
+            }
+        }
+
+        private void TryDelete()
+        {
+            try
+            {
+                DeleteCurrentItem();
                 App.Context.SaveChanges();
                 UpdateItems();
+            }
+            catch (DbUpdateException ex)
+            {
+                var entry = App.Context.Entry(CurrentItem);
+                entry.Reload();
+                MessageBox.Show("Вы не можете удалить эту запись, так как она используется в другом разделе");
             }
         }
 
@@ -220,6 +236,7 @@ namespace WpfApp1.ViewModels
         }
 
         protected abstract void AddCurrentItem();
+        protected abstract void DeleteCurrentItem();
         protected abstract void MakeCurrentItemEmpty();
         protected abstract void FillItem();
         protected abstract string GetErrors();

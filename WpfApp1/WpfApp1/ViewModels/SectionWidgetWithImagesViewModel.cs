@@ -9,6 +9,7 @@ using WpfApp1.Views.Components;
 
 namespace WpfApp1.ViewModels
 {
+
     public abstract class SectionWidgetWithImagesViewModel : SectionWidgetViewModel
     {
         protected RelayCommand? _insertImageCommand;
@@ -64,7 +65,10 @@ namespace WpfApp1.ViewModels
                         image = File.ReadAllBytes(fileDialog.FileName);
                         CurrentItem.Images.Add(CreateNewImage(image));
                         App.Context.SaveChanges();
-                        LoadCurrentItemImages();
+                        if (CurrentItem != null)
+                        {
+                            LoadCurrentItemImages();
+                        }
                         ((ItemWithImages)ItemForm).ListBox.ItemsSource = CurrentItemImages;
                         ((ItemWithImages)ItemForm).ListBox.Items.Refresh();
                     }
@@ -91,12 +95,12 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        public void TryShowImageForm(object selectedItem)
+        public void TryShowImageForm(object selectedItem, ImageFormMode imageFormMode = ImageFormMode.Delete)
         {
             CurrentImage = selectedItem;
-            if (!ImageFormService.IsExistImageForm(CurrentImage))
+            if (CurrentImage != null && !ImageFormService.IsExistImageForm(CurrentImage))
             {
-                ImageForm imageForm = ImageFormService.TryCreateItemForm(this);
+                ImageForm imageForm = ImageFormService.TryCreateItemForm(this, imageFormMode);
                 imageForm.Show();
             }
         }

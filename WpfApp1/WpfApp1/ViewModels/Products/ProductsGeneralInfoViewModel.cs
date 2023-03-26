@@ -67,6 +67,11 @@ namespace WpfApp1.ViewModels.Products
             App.Context.Products.Add(CurrentItem);
         }
 
+        protected override void DeleteCurrentItem()
+        {
+            App.Context.Products.Remove(CurrentItem);
+        }
+
         public override void UpdateSectionData()
         {
             _sectionData = _productService.GetProductsGeneralInfo();
@@ -117,7 +122,6 @@ namespace WpfApp1.ViewModels.Products
 
         public override void LoadCurrentItemImages()
         {
-            CurrentItem = _productService.GetProductWithImages(CurrentItem);
             CurrentItemImages = _productService.GetProductImages(CurrentItem);
         }
 

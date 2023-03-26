@@ -23,13 +23,25 @@ namespace WpfApp1.Views.Components
     public partial class ImageForm : Window
     {
         private dynamic _image;
+        private ImageFormMode _imageFormMode;
 
-        public ImageForm(SectionWidgetWithImagesViewModel viewModel)
+        public ImageForm(SectionWidgetWithImagesViewModel viewModel, ImageFormMode imageFormMode)
         {
             InitializeComponent();
             DataContext = viewModel;
             _image = viewModel.CurrentImage;
             image.Source = ImageConverter.ByteArrayToImage(_image.Image);
+            _imageFormMode = imageFormMode;
+            DisableDeleteButtonIfNeeded();
+        }
+
+        private void DisableDeleteButtonIfNeeded()
+        {
+            if (_imageFormMode == ImageFormMode.Read)
+            {
+                btnDelete.IsEnabled = false;
+                btnDelete.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
