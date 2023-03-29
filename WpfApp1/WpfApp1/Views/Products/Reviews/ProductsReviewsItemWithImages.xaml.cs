@@ -3,21 +3,22 @@ using System.Windows.Controls;
 using WpfApp1.ViewModels;
 using WpfApp1.ViewModels.Products;
 
-namespace WpfApp1.Views.Products.GeneralInfo
+namespace WpfApp1.Views.Products.Reviews 
 {
-    public partial class ProductsGeneralInfoItemWithImages : ItemWithImages
-    {
-        private ProductsGeneralInfoViewModel _viewModel;
 
-        public ProductsGeneralInfoItemWithImages(SectionWidgetViewModel sectionWidgetViewModel) : base(sectionWidgetViewModel)
+    public partial class ProductsReviewsItemWithImages : ItemWithImages
+    {
+        private ProductsReviewsViewModel _viewModel;
+
+        public ProductsReviewsItemWithImages(SectionWidgetViewModel sectionWidgetViewModel) : base(sectionWidgetViewModel)
         {
             InitializeComponent();
-            _viewModel = (ProductsGeneralInfoViewModel)_sectionWidgetViewModel;
+            _viewModel = (ProductsReviewsViewModel)_sectionWidgetViewModel;
             DataContext = _viewModel;
-            cbSupplier.ItemsSource = _viewModel.Suppliers;
-            cbCategory.ItemsSource = _viewModel.Categories;
             _viewModel.LoadCurrentItemImages();
             lbImages.ItemsSource = _viewModel.CurrentItemFromContext.Images;
+            cbProduct.ItemsSource = _viewModel.Products;
+            cbUser.ItemsSource = _viewModel.Users;
         }
 
         public override ListBox ListBox 
@@ -39,6 +40,7 @@ namespace WpfApp1.Views.Products.GeneralInfo
 
         protected override void SetFormModeToUpdate()
         {
+            tbId.IsReadOnly = true;
             btnDataAction.Visibility = Visibility.Visible;
             btnDataAction.Content = "Изменить";
         }
@@ -52,12 +54,10 @@ namespace WpfApp1.Views.Products.GeneralInfo
         private void DisableAllInputs()
         {
             tbId.IsReadOnly = true;
-            tbTitle.IsReadOnly = true;
-            tbDescription.IsReadOnly = true;
-            tbPrice.IsReadOnly = true;
-            tbPercent.IsReadOnly = true;
-            cbCategory.IsEnabled = false;
-            cbSupplier.IsEnabled = false;
+            tbReview.IsReadOnly = true;
+            tbStars.IsReadOnly = true;
+            cbProduct.IsEnabled = false;
+            cbUser.IsEnabled = false;
             btnAddImage.IsEnabled = false;
             btnAddImage.Visibility = Visibility.Collapsed;
         }
@@ -68,3 +68,4 @@ namespace WpfApp1.Views.Products.GeneralInfo
         }
     }
 }
+

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
+        Icon="\Resources\wb.ico"
         Title="ItemForm" Height="555" Width="372">
     <Window.Resources>
         <ResourceDictionary>
@@ -138,7 +139,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button HorizontalAlignment="Right" Margin="10 5" Width="110" Grid.Row="1" Template="{StaticResource commonButton}" Command="{Binding InsertImageCommand}">Добавить</Button>
+            <Button x:Name="btnAddImage" HorizontalAlignment="Right" Margin="10 5" Width="110" Grid.Row="1" Template="{StaticResource commonButton}" Command="{Binding InsertImageCommand}">Добавить</Button>
         </Grid>
 
         <DockPanel Grid.Row="2">

@@ -13,7 +13,7 @@ namespace WpfApp1.ViewModels.Users
     internal class UserDefferedProductsViewModel : SectionWidgetWithImagesViewModel
     {
         private UserDefferedProductsItemWithImages _itemForm;
-        protected override ItemForm ItemForm
+        public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as UserDefferedProductsItemWithImages;
@@ -42,12 +42,14 @@ namespace WpfApp1.ViewModels.Users
 
 
         private UserService _userService;
+        private ProductService _productService;
 
         public List<Models.Users> Users;
         public List<Models.Products> Products;
 
         public UserDefferedProductsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _userService = App.UserService;
+            _productService = App.ProductService;
             UpdateSectionData();
             Users = App.Context.Users.ToList();
             Products = App.Context.Products.ToList();
@@ -70,7 +72,7 @@ namespace WpfApp1.ViewModels.Users
 
         protected override void DeleteCurrentItem()
         {
-            App.Context.DeferredProducts.Remove(CurrentItem);
+            App.Context.DeferredProducts.Remove(CurrentItemFromContext);
         }
 
         public override void UpdateSectionData()
@@ -85,7 +87,6 @@ namespace WpfApp1.ViewModels.Users
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();
-
             if (CurrentItem.User == null)
             {
                 errorBuilder.AppendLine("Свойство \"Пользователь\" обязательно для заполнения;");
@@ -94,8 +95,6 @@ namespace WpfApp1.ViewModels.Users
             {
                 errorBuilder.AppendLine("Свойство \"Товар\" обязательно для заполнения;");
             }
-
-            
             return errorBuilder.ToString();
         }
 
@@ -106,7 +105,13 @@ namespace WpfApp1.ViewModels.Users
 
         public override void LoadCurrentItemImages()
         {
-            CurrentItemImages = _userService.GetUserDeferredProductsImages(CurrentItem);
+            CurrentItemFromContext = _userService.GetDeferredProductsWithProductImages(CurrentItem as DeferredProducts);
+            CurrentItem = CurrentItemFromContext.Clone();
+        }
+
+        public void LoadDefferedProductImages()
+        {
+            CurrentItem.Product = _productService.GetProductWithImages(CurrentItem.Product);
         }
 
 

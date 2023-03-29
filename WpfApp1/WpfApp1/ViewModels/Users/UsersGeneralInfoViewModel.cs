@@ -13,7 +13,7 @@ namespace WpfApp1.ViewModels.Users
     internal class UsersGeneralInfoViewModel : SectionWidgetViewModel
     {
         private UserGeneralInfoItem _itemForm;
-        protected override ItemForm ItemForm
+        public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as UserGeneralInfoItem;
@@ -60,7 +60,7 @@ namespace WpfApp1.ViewModels.Users
 
         protected override void DeleteCurrentItem()
         {
-            App.Context.Users.Remove(CurrentItem);
+            App.Context.Users.Remove(CurrentItemFromContext);
         }
 
         public override void UpdateSectionData()

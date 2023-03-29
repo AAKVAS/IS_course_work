@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views.Components"
         mc:Ignorable="d"
-        Title="Работа с изображением" Height="450" Width="553">
+        Icon="\Resources\wb.ico"
+        Title="Работа с изображением" Height="450" Width="553" Closed="Window_Closed">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

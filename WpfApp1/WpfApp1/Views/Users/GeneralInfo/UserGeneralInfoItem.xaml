@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
+        Icon="\Resources\wb.ico"
         Title="Пользователи / Общие сведения" Height="419" Width="344">
     <Window.Resources>
         <ResourceDictionary>

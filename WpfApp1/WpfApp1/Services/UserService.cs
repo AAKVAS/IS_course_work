@@ -70,17 +70,22 @@ namespace WpfApp1.Services
 	                                 pri.product_image
                                 FROM product_images pri
                                WHERE product_id = @product_id";
-            if (deferredProducts.Product != null)
+            if (deferredProducts.ProductId != null)
             {
                 return new ObservableCollection<dynamic>(_context.ProductImages
-                    .FromSqlRaw(query, new SqlParameter("@product_id", deferredProducts.Product.Id))
+                    .FromSqlRaw(query, new SqlParameter("@product_id", deferredProducts.ProductId))
                     .ToList());
             }
             else
             {
                 return new ObservableCollection<dynamic> { };
             }
+        }
 
+        public DeferredProducts GetDeferredProductsWithProductImages(DeferredProducts deferredProduct)
+        {
+            return _context.DeferredProducts.Where(dp => dp.Id == deferredProduct.Id).Include(dp => dp.Product).ThenInclude(p => p.Images).FirstOrDefault()
+                ?? new DeferredProducts();
         }
 
     }

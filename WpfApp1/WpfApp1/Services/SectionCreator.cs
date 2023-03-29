@@ -34,9 +34,9 @@ namespace WpfApp1.Services
                     */
                   case "products_general_info": 
                       return new ProductsGeneralInfoSectionWidget(section);
-                    /*
                   case "products_reviews":
-                      return new SectionWidgetViewModel();
+                      return new ProductsReviewsSectionWidget(section);
+                    /*
                   case "products_categories": 
                       return new SectionWidgetViewModel();
                   case "products_price_history": 

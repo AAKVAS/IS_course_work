@@ -13,7 +13,7 @@ namespace WpfApp1.ViewModels.Users
     internal class UsersAvgCostViewModel : SectionWidgetViewModel
     {
         private UserAvgCostItem _itemForm;
-        protected override ItemForm ItemForm
+        public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as UserAvgCostItem;

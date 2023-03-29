@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:vm="clr-namespace:WpfApp1.ViewModels"
         mc:Ignorable="d"
-        Title="Вход" Height="224" Width="627" ResizeMode="NoResize">
+        Title="Вход" 
+        Height="224" 
+        Width="627" 
+        Icon="\Resources\wb.ico"
+        ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

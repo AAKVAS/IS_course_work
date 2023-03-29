@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using WpfApp1.Services;
 using WpfApp1.ViewModels;
 using WpfApp1.ViewModels.Users;
 
@@ -17,7 +18,10 @@ namespace WpfApp1.Views.Users.DefferedProducts
             cbUser.ItemsSource = _viewModel.Users;
             cbProduct.ItemsSource = _viewModel.Products;
             _viewModel.LoadCurrentItemImages();
-            lbImages.ItemsSource = _viewModel.CurrentItemImages;
+            if (_viewModel.CurrentItem.Product != null)
+            {
+                lbImages.ItemsSource = _viewModel.CurrentItem.Product.Images;
+            }
         }
 
         public override ListBox ListBox 
@@ -57,13 +61,16 @@ namespace WpfApp1.Views.Users.DefferedProducts
 
         private void lbImages_PreviewMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ((SectionWidgetWithImagesViewModel)_sectionWidgetViewModel).TryShowImageForm(lbImages.SelectedItem, Services.ImageFormMode.Read);
+            _viewModel.TryShowImageForm(ImageFormMode.Read);
         }
 
         private void cbProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _viewModel.LoadCurrentItemImages();
-            lbImages.ItemsSource = _viewModel.CurrentItemImages;
+            _viewModel.LoadDefferedProductImages();
+            if (_viewModel.CurrentItem.Product != null)
+            {
+                lbImages.ItemsSource = _viewModel.CurrentItem.Product.Images;
+            }
         }
     }
 }

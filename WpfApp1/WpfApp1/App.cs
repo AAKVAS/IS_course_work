@@ -24,7 +24,7 @@ namespace WpfApp1
         public static SectionCreator SectionCreator { get; set; }
         public static SectionService SectionService { get; set; }
         public static UserService UserService { get; set; }
-
+        public static OrderService OrderService { get; set; }
 
 
         protected override void OnStartup(StartupEventArgs e)
@@ -39,6 +39,7 @@ namespace WpfApp1
             SectionCreator = host.Services.GetService<SectionCreator>();
             SectionService = host.Services.GetService<SectionService>();
             UserService = host.Services.GetService<UserService>();
+            OrderService = host.Services.GetService<OrderService>();
 
             if (IsEnableDB())
             {

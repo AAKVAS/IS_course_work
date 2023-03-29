@@ -33,6 +33,7 @@ namespace WpfApp1.Views.Components
             image.Source = ImageConverter.ByteArrayToImage(_image.Image);
             _imageFormMode = imageFormMode;
             DisableDeleteButtonIfNeeded();
+            Owner = viewModel.ItemForm;
         }
 
         private void DisableDeleteButtonIfNeeded()
@@ -47,6 +48,11 @@ namespace WpfApp1.Views.Components
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             ImageFormService.TryCloseImageForm(_image);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            ImageFormService.RemoveImageForm(_image);
         }
     }
 }

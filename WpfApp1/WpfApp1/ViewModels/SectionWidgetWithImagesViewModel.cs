@@ -1,8 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls.Primitives;
 using WpfApp1.Services;
 using WpfApp1.Views;
 using WpfApp1.Views.Components;
@@ -64,13 +64,7 @@ namespace WpfApp1.ViewModels
                     {
                         image = File.ReadAllBytes(fileDialog.FileName);
                         CurrentItem.Images.Add(CreateNewImage(image));
-                        App.Context.SaveChanges();
-                        if (CurrentItem != null)
-                        {
-                            LoadCurrentItemImages();
-                        }
-                        ((ItemWithImages)ItemForm).ListBox.ItemsSource = CurrentItemImages;
-                        ((ItemWithImages)ItemForm).ListBox.Items.Refresh();
+                        ((ItemWithImages)ItemForm).ListBox.ItemsSource = CurrentItem.Images;
                     }
                 }
             }
@@ -86,18 +80,19 @@ namespace WpfApp1.ViewModels
                 if (CurrentImage != null)
                 {
                     CurrentItem.Images.Remove(CurrentImage);
-                    App.Context.SaveChanges();
-                    LoadCurrentItemImages();
-                    ((ItemWithImages)ItemForm).ListBox.ItemsSource = CurrentItemImages;
-                    ((ItemWithImages)ItemForm).ListBox.Items.Refresh();
+                    ((ItemWithImages)ItemForm).ListBox.ItemsSource = CurrentItem.Images;
                     ImageFormService.TryCloseImageForm(CurrentImage);
                 }
             }
         }
 
-        public void TryShowImageForm(object selectedItem, ImageFormMode imageFormMode = ImageFormMode.Delete)
+        public void TryShowImageForm(ImageFormMode imageFormMode = ImageFormMode.Delete)
         {
-            CurrentImage = selectedItem;
+            CurrentImage = ((ItemWithImages)ItemForm).ListBox.SelectedItem;
+            if (_itemFormMode == ItemFormMode.Read)
+            {
+                imageFormMode = ImageFormMode.Read;
+            }
             if (CurrentImage != null && !ImageFormService.IsExistImageForm(CurrentImage))
             {
                 ImageForm imageForm = ImageFormService.TryCreateItemForm(this, imageFormMode);

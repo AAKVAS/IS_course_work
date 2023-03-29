@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="529" Width="877" Loaded="Window_Loaded">
+        Title="Информационная система"
+        Height="529"
+        Width="877"
+        Loaded="Window_Loaded"
+        Icon="\Resources\wb.ico">
     <Window.Resources>
         <ResourceDictionary Source="/Resources/MenuTheme.xaml"/>
     </Window.Resources>

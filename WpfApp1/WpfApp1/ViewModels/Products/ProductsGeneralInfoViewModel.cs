@@ -13,7 +13,7 @@ namespace WpfApp1.ViewModels.Products
     internal class ProductsGeneralInfoViewModel : SectionWidgetWithImagesViewModel
     {
         private ProductsGeneralInfoItemWithImages _itemForm;
-        protected override ItemForm ItemForm
+        public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as ProductsGeneralInfoItemWithImages;
@@ -69,7 +69,7 @@ namespace WpfApp1.ViewModels.Products
 
         protected override void DeleteCurrentItem()
         {
-            App.Context.Products.Remove(CurrentItem);
+            App.Context.Products.Remove(CurrentItemFromContext);
         }
 
         public override void UpdateSectionData()
@@ -116,13 +116,14 @@ namespace WpfApp1.ViewModels.Products
         protected override dynamic CreateNewImage(byte[] image)
         { 
             ProductImage productImage = new ProductImage();
-            productImage.ProductImage1 = image;
+            productImage.Image = image;
             return productImage;
         }
 
         public override void LoadCurrentItemImages()
         {
-            CurrentItemImages = _productService.GetProductImages(CurrentItem);
+            CurrentItemFromContext = _productService.GetProductWithImages(CurrentItem);
+            CurrentItem = CurrentItemFromContext.Clone();
         }
 
     }

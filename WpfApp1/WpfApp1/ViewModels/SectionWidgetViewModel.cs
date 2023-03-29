@@ -11,9 +11,10 @@ namespace WpfApp1.ViewModels
     public abstract class SectionWidgetViewModel
     {
         public SectionWidget SectionWidget;
-        protected abstract ItemForm ItemForm { get; set; }
+        public abstract ItemForm ItemForm { get; set; }
         private PDFGenerateService _pdfGenerateService;
         public abstract ObservableCollection<dynamic> SectionData { get; set; }
+        public dynamic? CurrentItemFromContext { get; set; }
         public abstract dynamic? CurrentItem { get; set; }
 
         protected ItemFormMode _itemFormMode = ItemFormMode.Read;
@@ -35,7 +36,7 @@ namespace WpfApp1.ViewModels
             {
                 return _insertCommand ??
                         (_insertCommand = new RelayCommand((object obj) => {
-                            TryInsert();
+                            Insert();
                         },
                         (obj) => _accessService.HasWorkerRightToInsert(SectionWidget.Section.SectionKey)));
             }
@@ -141,7 +142,7 @@ namespace WpfApp1.ViewModels
 
         protected abstract void CreateNewItemForm();
 
-        protected void TryInsert()
+        protected void Insert()
         {
             MakeCurrentItemEmpty();
 
@@ -159,7 +160,8 @@ namespace WpfApp1.ViewModels
                 MessageBox.Show("Выберите запись!");
             }
             else {
-                CurrentItem = SectionWidget.DataGrid.SelectedItem;
+                CurrentItemFromContext = SectionWidget.DataGrid.SelectedItem;
+                CurrentItem = CurrentItemFromContext.Clone();
 
                 CreateNewItemForm();
                 ItemForm.Title = SectionTitle;
@@ -173,13 +175,14 @@ namespace WpfApp1.ViewModels
         {
             if (MessageBox.Show("Вы уверены, что хотите удалить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                CurrentItem = SectionWidget.DataGrid.SelectedItem;
+                CurrentItemFromContext = SectionWidget.DataGrid.SelectedItem;
                 TryDelete();
             }
         }
 
         private void TryDelete()
         {
+            var entry = App.Context.Entry(CurrentItemFromContext);
             try
             {
                 DeleteCurrentItem();
@@ -188,8 +191,8 @@ namespace WpfApp1.ViewModels
             }
             catch (DbUpdateException ex)
             {
-                var entry = App.Context.Entry(CurrentItem);
                 entry.Reload();
+                MakeCurrentItemEmpty();
                 MessageBox.Show("Вы не можете удалить эту запись, так как она используется в другом разделе");
             }
         }
@@ -222,16 +225,32 @@ namespace WpfApp1.ViewModels
             }
             else if (_itemFormMode == ItemFormMode.Insert)
             {
+                TryInsert();
+            }
+            else if (MessageBox.Show("Вы уверены, что хотите изменить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                CurrentItemFromContext.Copy(CurrentItem);
+                App.Context.SaveChanges();
+                ItemForm.Close();
+                UpdateItems();
+            }
+        }
+
+        private void TryInsert()
+        {
+            var entry = App.Context.Entry(CurrentItem);
+            try
+            {
                 AddCurrentItem();
                 App.Context.SaveChanges();
                 ItemForm.Close();
                 UpdateItems();
             }
-            else if (MessageBox.Show("Вы уверены, что хотите изменить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            catch (Exception ex)
             {
-                App.Context.SaveChanges();
+                entry.Reload();
+                MessageBox.Show("Вы не можете вставить запись, так как её ключ уже используется");
                 ItemForm.Close();
-                UpdateItems();
             }
         }
 

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WpfApp1.Models
 {
-    public partial class Users
+    public partial class Users : ICopied<Users>
     {
 
         public Users()
@@ -68,5 +68,43 @@ namespace WpfApp1.Models
         public virtual ICollection<Cards> Cards { get; set; }
         public virtual ICollection<DeferredProducts> DeferredProducts { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
+
+        public object Clone()
+        {
+            Users user = new Users();
+            user.Id = Id;
+            user.Firstname = Firstname;
+            user.Lastname = Lastname;
+            user.Patronymic = Patronymic;
+            user.PhoneNumber = PhoneNumber;
+            user.Birthday = Birthday;
+            user.Email = Email;
+            user.OrderCode = OrderCode;
+            user.IsMale = IsMale;
+            user.CountryId = CountryId;
+            user.Country = Country;
+            user.Cards = new List<Cards>(Cards);
+            user.DeferredProducts = new List<DeferredProducts>(DeferredProducts);
+            user.Orders = new List<Orders>(Orders);
+            return user;
+        }
+
+        public void Copy(Users user)
+        {
+            Id = Id;
+            Firstname = user.Firstname;
+            Lastname = user.Lastname;
+            Patronymic = user.Patronymic;
+            PhoneNumber = user.PhoneNumber;
+            Birthday = user.Birthday;
+            Email = user.Email;
+            OrderCode = user.OrderCode;
+            IsMale = user.IsMale;
+            CountryId = user.CountryId;
+            Country = user.Country;
+            Cards = user.Cards;
+            DeferredProducts = user.DeferredProducts;
+            Orders = user.Orders;
+        }
     }
 }

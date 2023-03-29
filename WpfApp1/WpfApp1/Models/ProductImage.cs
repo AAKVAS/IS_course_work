@@ -1,4 +1,6 @@
-﻿namespace WpfApp1.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WpfApp1.Models;
 
 public partial class ProductImage
 {
@@ -7,8 +9,10 @@ public partial class ProductImage
     public byte[]? ProductImage1 { get; set; }
     public virtual Products Product { get; set; }
 
+    [NotMapped]
     public byte[]? Image
     {
         get { return ProductImage1; }
+        set { ProductImage1 = value; }
     }
 }

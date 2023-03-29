@@ -48,5 +48,14 @@ namespace WpfApp1.Services
                 _imageForms.Remove(image);
             }
         }
+
+        public static void RemoveImageForm(dynamic image)
+        {
+            ImageForm imageForm;
+            if (_imageForms.TryGetValue(image, out imageForm))
+            {
+                _imageForms.Remove(image);
+            }
+        }
     }
 }
