@@ -2,15 +2,16 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace WpfApp1.Models
 {
-    public partial class Categories
+    public partial class Categories : ICopied<Categories>
     {
         public Categories()
         {
-            InverseParentCategory = new HashSet<Categories>();
-            Products = new HashSet<Products>();
+            InverseParentCategory = new ObservableCollection<Categories>();
+            Products = new ObservableCollection<Products>();
         }
 
         public int Id { get; set; }
@@ -18,7 +19,29 @@ namespace WpfApp1.Models
         public int? ParentCategoryId { get; set; }
 
         public virtual Categories ParentCategory { get; set; }
-        public virtual ICollection<Categories> InverseParentCategory { get; set; }
-        public virtual ICollection<Products> Products { get; set; }
+        public virtual ObservableCollection<Categories> InverseParentCategory { get; set; }
+        public virtual ObservableCollection<Products> Products { get; set; }
+
+        public object Clone()
+        {
+            Categories category = new Categories();
+            category.Id = Id;
+            category.Title = Title;
+            category.ParentCategoryId = ParentCategoryId;
+            category.ParentCategory = ParentCategory;
+            category.Products = new ObservableCollection<Products>();
+            category.InverseParentCategory = new ObservableCollection<Categories>(InverseParentCategory);
+            return category;
+        }
+
+        public void Copy(Categories category)
+        {
+            Id = category.Id;
+            Title = category.Title;
+            ParentCategoryId = category.ParentCategoryId;
+            ParentCategory = category.ParentCategory;
+            Products = category.Products;
+            InverseParentCategory = category.InverseParentCategory;
+        }
     }
 }

@@ -7,8 +7,8 @@
         xmlns:vm="clr-namespace:WpfApp1.ViewModels"
         mc:Ignorable="d"
         Title="Вход" 
-        Height="224" 
-        Width="627" 
+        Height="185" 
+        Width="471" 
         Icon="\Resources\wb.ico"
         ResizeMode="NoResize">
     <Window.Resources>
@@ -22,7 +22,7 @@
 
     <Grid Margin="0,0,0,0" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="0,8*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -49,7 +49,7 @@
                  Margin="10 10 0 0" 
                  TextWrapping="Wrap" 
                  VerticalAlignment="Top" 
-                 Width="496"
+                 Width="348"
                  Style="{StaticResource CommonTextBox}"/>
         <Label Content="Пароль" 
                Grid.Column="0" 
@@ -69,9 +69,17 @@
                      Height="31" 
                      Margin="10 10 0 0" 
                      VerticalAlignment="Top" 
-                     Width="496"
+                     Width="348"
                      Style="{StaticResource CommonPasswordBox}"/>
-        <Button Template="{StaticResource commonButton}" Command="{Binding AuthenticationCommand}" CommandParameter="{Binding ElementName = tbPassword}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5" Width="117">Войти</Button>
+        <Button Template="{StaticResource commonButton}"
+                Command="{Binding AuthenticationCommand}" 
+                CommandParameter="{Binding ElementName = tbPassword}" 
+                Grid.Column="0" 
+                Grid.Row="2" 
+                Grid.ColumnSpan="2" 
+                FontSize="16" HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="5" Width="117">Войти</Button>
 
     </Grid>
 </Window>

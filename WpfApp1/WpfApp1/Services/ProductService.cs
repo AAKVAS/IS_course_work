@@ -44,9 +44,9 @@ namespace WpfApp1.Services
             return _context.Products.Where(p => p.Equals(product)).Include(p => p.Images).ToList().FirstOrDefault() ?? new Products();
         }
 
-        public Reviews GetReviewByOrderId(int OrderId)
+        public Reviews GetReviewByOrderId(int orderId)
         {
-            return _context.Reviews.Where(r => r.OrderId == OrderId).Include(r => r.Order).ThenInclude(o => o.User).Include(r => r.Order).ThenInclude(o => o.Product).FirstOrDefault();
+            return _context.Reviews.Where(r => r.OrderId == orderId).Include(r => r.Order).ThenInclude(o => o.User).Include(r => r.Order).ThenInclude(o => o.Product).FirstOrDefault();
         }
 
         public Reviews GetReviewsWithImages(Reviews review)
@@ -60,6 +60,16 @@ namespace WpfApp1.Services
                 .Include(r => r.Images)
                 .ToList()
                 .FirstOrDefault() ?? new Reviews();
+        }
+
+        public ObservableCollection<dynamic> GetCategories()
+        {
+            return new ObservableCollection<dynamic>(_context.Categories.ToList());
+        }
+
+        public bool IsExistCategory(int id)
+        {
+            return _context.Categories.Where(c => c.Id == id).Any();
         }
 
     }

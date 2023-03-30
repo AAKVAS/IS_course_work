@@ -25,5 +25,15 @@ namespace WpfApp1.Views
             mainTabControl.Items.RemoveAt(mainTabControl.SelectedIndex);
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window != this)
+                {
+                    window.Close();
+                }
+            }
+        }
     }
 }

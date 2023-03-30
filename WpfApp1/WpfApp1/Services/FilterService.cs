@@ -99,7 +99,7 @@ namespace WpfApp1.Services
                 case FilterTypes.MoreThan:
                     return MoreThan(item, property, filterCondition.Value);
                 case FilterTypes.Contains:
-                    return property?.GetValue(item).ToString().Contains(filterCondition.Value.ToString()) ?? false;
+                    return property?.GetValue(item)?.ToString()?.Contains(filterCondition.Value.ToString()) ?? (filterCondition.Value.ToString() == "");
                 default:
                     return true;
             }
@@ -176,7 +176,7 @@ namespace WpfApp1.Services
                 DateTime temp = Convert.ToDateTime(value);
                 return Convert.ToDateTime(property?.GetValue(item)) == temp;
             }
-            return property?.GetValue(item).ToString() == value.ToString();
+            return (property?.GetValue(item)?.ToString() ?? "") == value.ToString();
         }
         private bool NotEquals(object item, PropertyInfo property, object value)
         {
@@ -185,7 +185,7 @@ namespace WpfApp1.Services
                 DateTime temp = Convert.ToDateTime(value);
                 return Convert.ToDateTime(property?.GetValue(item)) != temp;
             }
-            return property?.GetValue(item).ToString() != value.ToString();
+            return (property?.GetValue(item)?.ToString() ?? "") != value.ToString();
         }
         private bool LessThan(object item, PropertyInfo property, object value)
         {
@@ -197,7 +197,7 @@ namespace WpfApp1.Services
             {
                 return Convert.ToDateTime(property?.GetValue(item)) < Convert.ToDateTime(value);
             }
-            return String.Compare(property?.GetValue(item).ToString(), value.ToString()) < 0;
+            return String.Compare((property?.GetValue(item)?.ToString() ?? ""), value.ToString()) < 0;
         }
         private bool MoreThan(object item, PropertyInfo property, object value)
         {
@@ -209,7 +209,7 @@ namespace WpfApp1.Services
             {
                 return Convert.ToDateTime(property?.GetValue(item)) > Convert.ToDateTime(value);
             }
-            return String.Compare(property?.GetValue(item).ToString(), value.ToString()) > 0;
+            return String.Compare((property?.GetValue(item)?.ToString() ?? ""), value.ToString()) > 0;
         }
 
         public void ShowFilterWindow(DataGridColumnHeader columnHeader)
