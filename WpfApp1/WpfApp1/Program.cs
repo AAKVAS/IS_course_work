@@ -24,6 +24,7 @@ namespace WpfApp1
                     services.AddSingleton<SectionCreator>();
                     services.AddSingleton<SectionService>();
                     services.AddSingleton<UserService>();
+                    services.AddSingleton<WorkerService>();
                     services.AddSingleton<OrderService>();
                     services.AddSingleton<ProductService>();
                 })

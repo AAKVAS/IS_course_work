@@ -2,10 +2,11 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WpfApp1.Models
 {
-    public partial class Workers
+    public partial class Workers : ICopied<Workers>
     {
         public Workers()
         {
@@ -18,15 +19,86 @@ namespace WpfApp1.Models
         public string Firstname { get; set; }
         public string Patronymic { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime? DateOfBirthday { get; set; }
+
+        private DateTime? _birthday { get; set; }
+        public DateTime DateOfBirthday
+        {
+            get
+            {
+                return _birthday ?? DateTime.Now;
+            }
+            set
+            {
+                _birthday = value;
+            }
+        }
+
         public int? PostId { get; set; }
         public byte[] WorkerPassword { get; set; }
-        public bool? IsMale { get; set; }
+        public bool IsMale { get; set; }
         public string WorkerLogin { get; set; }
 
         public virtual Posts Post { get; set; }
         public virtual ICollection<StorageWorkerShifts> StorageWorkerShifts { get; set; }
 
         public virtual ICollection<OrderHistory> OrderHistory { get; set; }
+
+        [NotMapped]
+        public string Gender
+        {
+            get
+            {
+                return IsMale ? "мужчина" : "женщина";
+            }
+            set
+            {
+                IsMale = value == "мужчина";
+            }
+        }
+
+        [NotMapped]
+        public bool IsFemale
+        {
+            get
+            {
+                return !IsMale;
+            }
+        }
+
+        public void Copy(Workers worker)
+        {
+            Id = worker.Id;
+            Lastname = worker.Lastname;
+            Firstname = worker.Firstname;
+            Patronymic = worker.Patronymic;
+            PhoneNumber = worker.PhoneNumber;
+            DateOfBirthday = worker.DateOfBirthday;
+            PostId = worker.PostId;
+            WorkerPassword = worker.WorkerPassword;
+            IsMale = worker.IsMale;
+            WorkerLogin = worker.WorkerLogin;
+            Post = worker.Post;
+            StorageWorkerShifts = worker.StorageWorkerShifts;
+            OrderHistory = worker.OrderHistory;
+        }
+
+        public object Clone()
+        {
+            Workers worker = new Workers();
+            worker.Id = Id;
+            worker.Lastname = Lastname;
+            worker.Firstname = Firstname;
+            worker.Patronymic = Patronymic;
+            worker.PhoneNumber = PhoneNumber;
+            worker.DateOfBirthday = DateOfBirthday;
+            worker.PostId = PostId;
+            worker.WorkerPassword = WorkerPassword;
+            worker.IsMale = IsMale;
+            worker.WorkerLogin = WorkerLogin;
+            worker.Post = Post;
+            worker.StorageWorkerShifts = new List<StorageWorkerShifts>(StorageWorkerShifts);
+            worker.OrderHistory = new List<OrderHistory>(OrderHistory);
+            return worker;
+        }
     }
 }

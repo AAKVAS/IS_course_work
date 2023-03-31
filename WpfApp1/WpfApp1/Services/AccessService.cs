@@ -96,5 +96,10 @@ namespace WpfApp1.Services
                     .Where(i => i.Right.Title == actionName)
                     .Any();
         }
+
+        public bool IsAdmin()
+        {
+            return LoginedWorker.PostId == 4;
+        }
     }
 }

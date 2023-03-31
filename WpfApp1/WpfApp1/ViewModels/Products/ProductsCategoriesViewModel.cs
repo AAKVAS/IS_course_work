@@ -35,12 +35,9 @@ namespace WpfApp1.ViewModels.Products
 
         private ProductService _productService;
 
-        public List<Countries> Countries;
-
         public ProductsCategoriesViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _productService = App.ProductService;
             UpdateSectionData();
-            Countries = App.Context.Countries.ToList();
         }
 
         protected override void MakeCurrentItemEmpty()

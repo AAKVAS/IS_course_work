@@ -56,7 +56,7 @@ namespace WpfApp1.ViewModels
         public LoginViewModel(Login loginForm)
         {
             _userLogin = "";
-            _accessService =App.AccessService;
+            _accessService = App.AccessService;
             _loginForm = loginForm;
         }
 

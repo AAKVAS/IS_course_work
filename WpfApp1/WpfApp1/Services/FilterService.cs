@@ -217,12 +217,12 @@ namespace WpfApp1.Services
             if (IsDate(GetPropertyInfo(columnHeader)))
             {
                 FilterWindow filterWindow = new DataFilterWindow(this, columnHeader);
-                filterWindow.Show();
+                filterWindow.ShowDialog();
             }
             else
             {
                 FilterWindow filterWindow = new StringFilterWindow(this, columnHeader);
-                filterWindow.Show();
+                filterWindow.ShowDialog();
             }
         }
 
