@@ -10,12 +10,7 @@ namespace WpfApp1.Services
 {
     public class StorageService
     {
-        private readonly ISWildberriesContext _context;
-
-        public StorageService(ISWildberriesContext context)
-        {
-            _context = context;
-        }
+        private static readonly ISWildberriesContext _context = App.Context;
 
         public ObservableCollection<Storages> GetPickUpPoints()
         {

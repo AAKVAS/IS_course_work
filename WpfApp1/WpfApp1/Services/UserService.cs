@@ -9,12 +9,7 @@ namespace WpfApp1.Services
 {
     public class UserService
     {
-        private readonly ISWildberriesContext _context;
-
-        public UserService(ISWildberriesContext context)
-        {
-            _context = context;
-        }
+        private static readonly ISWildberriesContext _context = App.Context;
 
         public ObservableCollection<dynamic> GetUserGeneralInfo()
         {

@@ -11,12 +11,7 @@ namespace WpfApp1.Services
 {
     public class SectionService
     {
-        private readonly ISWildberriesContext _context;
-
-        public SectionService(ISWildberriesContext context)
-        {
-            _context = context;
-        }
+        private static readonly ISWildberriesContext _context = App.Context;
 
         public Sections GetSectionParent(Sections sections)
         {

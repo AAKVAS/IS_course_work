@@ -18,9 +18,9 @@ namespace WpfApp1.Services
 
         private readonly ISWildberriesContext _context;
 
-        public AccessService(ISWildberriesContext context)
+        public AccessService()
         {
-            _context = context;
+            _context = App.Context;
         }
 
         public bool IsLogin(string workerLogin, byte[] password)

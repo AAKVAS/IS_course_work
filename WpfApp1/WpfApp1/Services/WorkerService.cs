@@ -9,12 +9,7 @@ namespace WpfApp1.Services
 {
     public class WorkerService
     {
-        private readonly ISWildberriesContext _context;
-
-        public WorkerService(ISWildberriesContext context)
-        {
-            _context = context;
-        }
+        private readonly ISWildberriesContext _context = App.Context;
 
         public ObservableCollection<dynamic> GetWorkers()
         {

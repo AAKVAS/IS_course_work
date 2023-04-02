@@ -7,12 +7,7 @@ namespace WpfApp1.Services
 {
     public class ProductService
     {
-        private readonly ISWildberriesContext _context;
-
-        public ProductService(ISWildberriesContext context)
-        {
-            _context = context;
-        }
+        private static readonly ISWildberriesContext _context = App.Context;
 
         public ObservableCollection<dynamic> GetProductsGeneralInfo()
         {
