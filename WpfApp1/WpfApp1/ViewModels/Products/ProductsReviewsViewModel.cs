@@ -47,7 +47,7 @@ namespace WpfApp1.ViewModels.Products
 
         public ProductsReviewsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _productService = App.ProductService;
-            _sectionData = _productService.GetProductsReviews();
+            UpdateSectionData();
             Products = App.Context.Products.ToList();
             Users = App.Context.Users.ToList();
         }

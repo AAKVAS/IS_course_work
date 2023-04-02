@@ -37,7 +37,7 @@ namespace WpfApp1.ViewModels.Users
 
         public UsersAvgCostViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _userService = App.UserService;
-            _sectionData = _userService.GetUserAvgCost();
+            UpdateSectionData();
         }
 
         protected override void MakeCurrentItemEmpty()

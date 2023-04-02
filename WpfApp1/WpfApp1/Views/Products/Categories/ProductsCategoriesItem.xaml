@@ -37,7 +37,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id"/>
+            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id" VerticalAlignment="Center"/>
             <TextBox x:Name="tbId" 
                      Width="200"
                      Grid.Column="1"
@@ -49,7 +49,7 @@
                      Style="{StaticResource CommonTextBox}">
             </TextBox>
 
-            <Label x:Name="lblTitle" Grid.Column="0" Grid.Row="1" Content="Название категории"/>
+            <Label x:Name="lblTitle" Grid.Column="0" Grid.Row="1" Content="Название категории" VerticalAlignment="Center"/>
             <TextBox x:Name="tbTitle" 
                      Grid.Column="1" 
                      Grid.Row="1" 
@@ -59,7 +59,7 @@
                      Text="{Binding CurrentItem.Title, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}"/>
 
-            <Label x:Name="lblParentCategoryId" Grid.Column="0" Grid.Row="2" Content="Id родительской категории"/>
+            <Label x:Name="lblParentCategoryId" Grid.Column="0" Grid.Row="2" Content="Id родительской категории" VerticalAlignment="Center"/>
             <TextBox x:Name="tbParentCategoryId" 
                      Grid.Column="1" 
                      Grid.Row="2" 

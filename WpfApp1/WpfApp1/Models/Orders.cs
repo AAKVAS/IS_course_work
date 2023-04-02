@@ -2,11 +2,19 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace WpfApp1.Models
 {
-    public partial class Orders
+    public partial class Orders : INotifyPropertyChanged, ICopied<Orders>
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
         public Orders()
         {
             OrderHistory = new HashSet<OrderHistory>();
@@ -15,16 +23,123 @@ namespace WpfApp1.Models
         public int Id { get; set; }
         public int UserId { get; set; }
         public int ProductId { get; set; }
-        public int? ProductCount { get; set; }
+
+        private int? _productCount;
+        public int? ProductCount
+        {
+            get
+            {
+                return _productCount ?? 1;
+            }
+            set
+            {
+                _productCount = value;
+                if (Product != null)
+                {
+                    Price = Product.Price * _productCount;
+                }
+            }
+        }
+
         public int PickUpPointId { get; set; }
-        public double? Price { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? EstimatedDeliveryAt { get; set; }
+
+        private double? _price;
+        public double? Price
+        {
+            get
+            {
+                return _price;
+            }
+            set
+            {
+                _price = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime? _createdAt { get; set; }
+        public DateTime CreatedAt
+        {
+            get
+            {
+                return _createdAt ?? DateTime.Now;
+            }
+            set
+            {
+                _createdAt = value;
+                EstimatedDeliveryAt = CreatedAt.AddDays(14);
+            }
+        }
+
+        private DateTime? _estimatedDeliveryTime { get; set; }  
+        public DateTime? EstimatedDeliveryAt
+        {
+            get
+            {
+                return _estimatedDeliveryTime ?? CreatedAt.AddDays(14);
+            }
+            set
+            {
+                _estimatedDeliveryTime = value;
+                OnPropertyChanged();
+            }
+        }
 
         public virtual Storages PickUpPoint { get; set; }
-        public virtual Products Product { get; set; }
+
+        private Products _product;
+        public virtual Products Product
+        {
+            get
+            {
+                return _product;
+            }
+            set
+            {
+                _product = value;
+                Price = Product.Price * ProductCount;
+                OnPropertyChanged();
+            }
+        }
+
         public virtual Users User { get; set; }
         public virtual Reviews Reviews { get; set; }
-        public virtual ICollection<OrderHistory> OrderHistory { get; set; } 
+        public virtual ICollection<OrderHistory> OrderHistory { get; set; }
+
+        public object Clone()
+        {
+            Orders order = new Orders();
+            order.Id = Id;
+            order.UserId = UserId;
+            order.ProductId = ProductId;
+            order.ProductCount = ProductCount;
+            order.PickUpPointId = PickUpPointId;
+            order.Price = Price;
+            order.CreatedAt = CreatedAt;
+            order.EstimatedDeliveryAt = EstimatedDeliveryAt;
+            order.PickUpPoint = PickUpPoint;
+            order.Product = Product;
+            order.User = User;
+            order.Reviews = Reviews;
+            order.OrderHistory = new List<OrderHistory>(OrderHistory);
+            return order;
+        }
+
+        public void Copy(Orders order)
+        {
+            Id = order.Id;
+            UserId = order.UserId;
+            ProductId = order.ProductId;
+            ProductCount = order.ProductCount;
+            PickUpPointId = order.PickUpPointId;
+            Price = order.Price;
+            CreatedAt = order.CreatedAt;
+            EstimatedDeliveryAt = order.EstimatedDeliveryAt;
+            PickUpPoint = order.PickUpPoint;
+            Product = order.Product;
+            User = order.User;
+            Reviews = order.Reviews;
+            OrderHistory = order.OrderHistory;
+        }
     }
 }

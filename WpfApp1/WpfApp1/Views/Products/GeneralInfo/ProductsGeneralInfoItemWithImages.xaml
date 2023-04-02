@@ -70,7 +70,7 @@
                      Text="{Binding CurrentItem.Description, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}" />
 
-            <Label x:Name="lblPrice" Grid.Column="0" Grid.Row="3" Content="Цена"  VerticalAlignment="Center"/>
+            <Label x:Name="lblPrice" Grid.Column="0" Grid.Row="3" Content="Цена" VerticalAlignment="Center"/>
             <TextBox x:Name="tbPrice" 
                      Width="200"
                      Grid.Column="1"

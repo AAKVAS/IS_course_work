@@ -23,6 +23,7 @@ namespace WpfApp1
                     services.AddSingleton<PDFGenerateService>();
                     services.AddSingleton<SectionCreator>();
                     services.AddSingleton<SectionService>();
+                    services.AddSingleton<StorageService>();
                     services.AddSingleton<UserService>();
                     services.AddSingleton<WorkerService>();
                     services.AddSingleton<OrderService>();

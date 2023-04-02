@@ -36,7 +36,7 @@ namespace WpfApp1.ViewModels
             {
                 return _insertCommand ??
                         (_insertCommand = new RelayCommand((object obj) => {
-                            Insert();
+                            TryInsert();
                         },
                         (obj) => _accessService.HasWorkerRightToInsert(SectionWidget.Section.SectionKey)));
             }
@@ -47,7 +47,7 @@ namespace WpfApp1.ViewModels
             {
                 return _deleteCommand ??
                         (_deleteCommand = new RelayCommand((object obj) => {
-                            Delete();
+                            TryDelete();
                         },
                         (obj) => _accessService.HasWorkerRightToDelete(SectionWidget.Section.SectionKey)));
             }
@@ -142,7 +142,7 @@ namespace WpfApp1.ViewModels
 
         protected abstract void CreateNewItemForm();
 
-        protected void Insert()
+        protected void TryInsert()
         {
             MakeCurrentItemEmpty();
 
@@ -171,16 +171,16 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        protected void Delete()
+        protected void TryDelete()
         {
             if (MessageBox.Show("Вы уверены, что хотите удалить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 CurrentItemFromContext = SectionWidget.DataGrid.SelectedItem;
-                TryDelete();
+                Delete();
             }
         }
 
-        private void TryDelete()
+        protected void Delete()
         {
             var entry = App.Context.Entry(CurrentItemFromContext);
             try
@@ -225,7 +225,7 @@ namespace WpfApp1.ViewModels
             }
             else if (_itemFormMode == ItemFormMode.Insert)
             {
-                TryInsert();
+                Insert();
             }
             else if (MessageBox.Show("Вы уверены, что хотите изменить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
@@ -236,7 +236,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private void TryInsert()
+        protected virtual void Insert()
         {
             var entry = App.Context.Entry(CurrentItem);
             try
@@ -260,7 +260,7 @@ namespace WpfApp1.ViewModels
         protected abstract void FillItem();
         protected abstract string GetErrors();
 
-        private void UpdateItems()
+        protected void UpdateItems()
         {
             FilterService.UseFilters();
         }

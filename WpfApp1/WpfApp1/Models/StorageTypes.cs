@@ -7,6 +7,8 @@ namespace WpfApp1.Models
 {
     public partial class StorageTypes
     {
+        public const int PickUpPointId = 1;
+
         public StorageTypes()
         {
             Storages = new HashSet<Storages>();
@@ -16,5 +18,6 @@ namespace WpfApp1.Models
         public string Title { get; set; }
 
         public virtual ICollection<Storages> Storages { get; set; }
+
     }
 }

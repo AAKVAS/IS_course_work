@@ -18,9 +18,9 @@ namespace WpfApp1.Services
                     return new UserAvgCostSectionWidget(section);
                 case "users_deffered_products": 
                     return new UserDefferedProductsSectionWidget(section);
-                /*
-              case "order_list":
-                  return new SectionWidgetViewModel();
+                case "order_list":
+                    return new OrdersListSectionWidget(section);
+                    /*
               case "orders_ready_to_receive":
                   return new SectionWidgetViewModel();
               case "order_history":

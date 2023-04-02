@@ -23,6 +23,7 @@ namespace WpfApp1
         public static ProductService ProductService { get; set; }
         public static SectionCreator SectionCreator { get; set; }
         public static SectionService SectionService { get; set; }
+        public static StorageService StorageService { get; set; }
         public static UserService UserService { get; set; }
         public static WorkerService WorkerService { get; set; }
         public static OrderService OrderService { get; set; }
@@ -38,6 +39,7 @@ namespace WpfApp1
             ProductService = host.Services.GetService<ProductService>();
             SectionCreator = host.Services.GetService<SectionCreator>();
             SectionService = host.Services.GetService<SectionService>();
+            StorageService = host.Services.GetService<StorageService>();
             UserService = host.Services.GetService<UserService>();
             WorkerService = host.Services.GetService<WorkerService>();
             OrderService = host.Services.GetService<OrderService>();

@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using WpfApp1.Views;
+using WpfApp1.Models;
+using WpfApp1.Services;
+using WpfApp1.Views.Orders.OrdersList;
+using Microsoft.EntityFrameworkCore;
+using System.Windows;
+
+namespace WpfApp1.ViewModels.Orders
+{
+    internal class OrdersListViewModel : SectionWidgetViewModel
+    {
+        private OrdersListItem _itemForm;
+        public override ItemForm ItemForm
+        {
+            get => _itemForm as object as ItemForm;
+            set => _itemForm = value as OrdersListItem;
+        }
+
+        private ObservableCollection<dynamic> _sectionData;
+        public override ObservableCollection<dynamic> SectionData
+        {
+            get => _sectionData;
+            set => _sectionData = value;
+        }
+
+        private dynamic _currentItem;
+        public override dynamic? CurrentItem
+        {
+            get => _currentItem;
+            set => _currentItem = value;
+        }
+
+        private OrderService _orderService;
+
+        public List<Models.Users> Users;
+        public ObservableCollection<Storages> PickUpPoints;
+        public List<Models.Products> Products;
+
+        public OrdersListViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
+            _orderService = App.OrderService;
+            _sectionData = _orderService.GetOrdersList();
+            Users = App.Context.Users.ToList();
+            PickUpPoints = App.StorageService.GetPickUpPoints();
+            Products = App.Context.Products.ToList();
+        }
+
+        protected override void MakeCurrentItemEmpty()
+        {
+            _currentItem = new Models.Orders();
+        }
+
+        protected override void CreateNewItemForm()
+        {
+            _itemForm = new OrdersListItem(this);
+        }
+
+        protected override void AddCurrentItem()
+        {
+            App.Context.Orders.Add(CurrentItem);
+        }
+
+        protected override void DeleteCurrentItem()
+        {
+            App.Context.Orders.Remove(CurrentItemFromContext);
+        }
+
+        public override void UpdateSectionData()
+        {
+            _sectionData = _orderService.GetOrdersList();
+        }
+
+        protected override void FillItem()
+        {
+        }
+
+        protected override string GetErrors()
+        {
+            StringBuilder errorBuilder = new StringBuilder();
+
+            if (CurrentItem.User == null)
+            {
+                errorBuilder.AppendLine("Свойство \"Пользователь\" обязательно для заполнения;");
+            }
+            if (CurrentItem.Product == null)
+            {
+                errorBuilder.AppendLine("Свойство \"Товар\" обязательно для заполнения;");
+            }
+            if (CurrentItem.PickUpPoint == null)
+            {
+                errorBuilder.AppendLine("Свойство \"Пункт выдачи\" обязательно для заполнения;");
+            }
+            if (CurrentItem.ProductCount <= 0)
+            {
+                errorBuilder.AppendLine("\"Количество товаров\" представляет из себя положительное число;");
+            }
+            if (CurrentItem.CreatedAt == null || CurrentItem.CreatedAt < new DateTime(1900, 1, 1) || CurrentItem.CreatedAt > new DateTime(3000, 12, 31))
+            {
+                errorBuilder.AppendLine("Свойство \"Дата формирования заказа\" обязательно для заполнения, допустимые значения от 1900.01.01 до 3000.12.31;");
+            }
+            if (CurrentItem.EstimatedDeliveryAt == null || CurrentItem.EstimatedDeliveryAt < new DateTime(1900, 1, 1) || CurrentItem.EstimatedDeliveryAt > new DateTime(3000, 12, 31))
+            {
+                errorBuilder.AppendLine("Свойство \"Ориентировочная дата выдачи\" обязательно для заполнения, допустимые значения от 1900.01.01 до 3000.12.31;");
+            }
+
+            return errorBuilder.ToString();
+        }
+
+        protected override void Insert()
+        {
+            var entry = App.Context.Entry(CurrentItem);
+            try
+            {
+                _orderService.InsertOrder(CurrentItem);
+                ItemForm.Close();
+                UpdateItems();
+            }
+            catch (Exception ex)
+            {
+                entry.Reload();
+                MessageBox.Show("Добавление записи завершилось ошибкой");
+                ItemForm.Close();
+            }
+        }
+
+    }
+}

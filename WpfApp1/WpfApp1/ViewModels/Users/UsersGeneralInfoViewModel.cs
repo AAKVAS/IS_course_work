@@ -39,7 +39,7 @@ namespace WpfApp1.ViewModels.Users
 
         public UsersGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _userService = App.UserService;
-            _sectionData = _userService.GetUserGeneralInfo();
+            UpdateSectionData();
             Countries = App.Context.Countries.ToList();
         }
 
