@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Windows;
+﻿using System.Windows;
 using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views;
