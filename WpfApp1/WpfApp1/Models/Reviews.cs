@@ -12,13 +12,13 @@ namespace WpfApp1.Models
     {
         private static OrderService _orderService = App.OrderService;
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-        public object Clone()
+        public Reviews Clone()
         {
             Reviews review = new Reviews();
             review.OrderId = OrderId;

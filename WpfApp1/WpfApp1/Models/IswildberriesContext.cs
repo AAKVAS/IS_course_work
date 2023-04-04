@@ -24,6 +24,7 @@ namespace WpfApp1.Models
         public virtual DbSet<Countries> Countries { get; set; }
         public virtual DbSet<DeferredProducts> DeferredProducts { get; set; }
         public virtual DbSet<Files> Files { get; set; }
+        public virtual DbSet<LoginedWorkerRights> LoginedWorkerRights { get; set; }
         public virtual DbSet<OrderHistory> OrderHistory { get; set; }
         public virtual DbSet<OrderStatuses> OrderStatuses { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }

@@ -20,9 +20,9 @@ namespace WpfApp1.Services
                     return new UserDefferedProductsSectionWidget(section);
                 case "order_list":
                     return new OrdersListSectionWidget(section);
+                case "orders_ready_to_receive":
+                    return new OrdersReadyToReceiveSectionWidget(section);
                     /*
-              case "orders_ready_to_receive":
-                  return new SectionWidgetViewModel();
               case "order_history":
                   return new SectionWidgetViewModel();
               case "storages_general_info":

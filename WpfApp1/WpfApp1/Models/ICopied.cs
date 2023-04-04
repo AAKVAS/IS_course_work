@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
-    public interface ICopied<T> : ICloneable
+    public interface ICopied<T>
     {
         public void Copy(T t);
+
+        public T Clone();
     }
 }

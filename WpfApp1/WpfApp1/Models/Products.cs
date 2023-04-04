@@ -13,9 +13,9 @@ namespace WpfApp1.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-        public object Clone()
+        public Products Clone()
         {
-            Products product = new Products();
+            Products product = new();
             product.Id = Id;
             product.Title = Title;
             product.Price = Price;
@@ -70,15 +70,15 @@ namespace WpfApp1.Models
         }
 
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Title { get; set; } = null!;
         public double Price { get; set; }
         public int SupplierId { get; set; }
         public int CategoryId { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
         public double SupplierPercent { get; set; }
 
-        public virtual Categories Category { get; set; }
-        public virtual Suppliers Supplier { get; set; }
+        public virtual Categories Category { get; set; } = null!;
+        public virtual Suppliers Supplier { get; set; } = null!;
         public virtual ICollection<DeferredProducts> DeferredProducts { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
         public virtual ICollection<PriceHistory> PriceHistory { get; set; }

@@ -13,7 +13,7 @@ namespace WpfApp1.Models
         }
 
         public int Id { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
 
         public virtual ICollection<OrderHistory> OrderHistory { get; set; }
     }

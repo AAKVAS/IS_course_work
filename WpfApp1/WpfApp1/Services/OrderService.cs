@@ -60,5 +60,21 @@ namespace WpfApp1.Services
             _context.SaveChanges();
 
         }
+
+        public ObservableCollection<dynamic> GetOrdersReadyToReceive()
+        {
+            const int readyToReceiveStatus = 11;
+            return new ObservableCollection<dynamic>(
+                _context.OrderHistory
+                    .Where(oh => oh.IsLastStatus ?? false && oh.StatusId == readyToReceiveStatus)
+                    .Include(oh => oh.Order)
+                        .ThenInclude(o => o.User)
+                    .Include(oh => oh.Order)
+                        .ThenInclude(o => o.Product)
+                    .Include(oh => oh.Order)
+                        .ThenInclude(o => o.PickUpPoint)
+                    .Include(oh => oh.Status)
+                        .ToList());
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
-    public partial class OrderHistory
+    public partial class OrderHistory : ICopied<OrderHistory>
     {
         public OrderHistory()
         {
@@ -23,5 +23,33 @@ namespace WpfApp1.Models
         public virtual OrderStatuses Status { get; set; }
 
         public virtual ICollection<Workers> Worker { get; set; }
+
+        public OrderHistory Clone()
+        {
+            OrderHistory orderHistory = new();
+            orderHistory.OrderId = OrderId;
+            orderHistory.StatusChangedAt = StatusChangedAt;
+            orderHistory.StatusId = StatusId;
+            orderHistory.CurrentStorageId = CurrentStorageId;
+            orderHistory.IsLastStatus = IsLastStatus;
+            orderHistory.CurrentStorage = CurrentStorage;
+            orderHistory.Order = Order;
+            orderHistory.Status = Status;
+            orderHistory.Worker = new List<Workers>(Worker);
+            return orderHistory;
+        }
+
+        public void Copy(OrderHistory orderHistory)
+        {
+            OrderId = orderHistory.OrderId;
+            StatusChangedAt = orderHistory.StatusChangedAt;
+            StatusId = orderHistory.StatusId;
+            CurrentStorageId = orderHistory.CurrentStorageId;
+            IsLastStatus = orderHistory.IsLastStatus;
+            CurrentStorage = orderHistory.CurrentStorage;
+            Order = orderHistory.Order;
+            Status = orderHistory.Status;
+            Worker = new List<Workers>(orderHistory.Worker);
+        }
     }
 }

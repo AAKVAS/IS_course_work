@@ -7,7 +7,7 @@ public partial class ProductImage
     public int Id { get; set; }
     public int? ProductId { get; set; }
     public byte[]? ProductImage1 { get; set; }
-    public virtual Products Product { get; set; }
+    public virtual Products Product { get; set; } = null!;
 
     [NotMapped]
     public byte[]? Image

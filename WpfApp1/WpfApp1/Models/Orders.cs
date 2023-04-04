@@ -106,7 +106,7 @@ namespace WpfApp1.Models
         public virtual Reviews Reviews { get; set; }
         public virtual ICollection<OrderHistory> OrderHistory { get; set; }
 
-        public object Clone()
+        public Orders Clone()
         {
             Orders order = new Orders();
             order.Id = Id;

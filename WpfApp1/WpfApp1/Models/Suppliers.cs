@@ -13,7 +13,7 @@ namespace WpfApp1.Models
         }
 
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Title { get; set; } = null!;
 
         public virtual ICollection<Products> Products { get; set; }
     }

@@ -8,8 +8,8 @@ namespace WpfApp1.Models
     public partial class ProductsParameters
     {
         public int ProductId { get; set; }
-        public string ParameterTitle { get; set; }
-        public string ParameterValue { get; set; }
+        public string ParameterTitle { get; set; } = null!;
+        public string ParameterValue { get; set; } = null!;
 
         public virtual Products Product { get; set; }
     }

@@ -15,10 +15,10 @@ namespace WpfApp1.Models
         }
 
         public int Id { get; set; }
-        public string Lastname { get; set; }
-        public string Firstname { get; set; }
-        public string Patronymic { get; set; }
-        public string PhoneNumber { get; set; }
+        public string Lastname { get; set; } = null!;
+        public string Firstname { get; set; } = null!;
+        public string Patronymic { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
 
         private DateTime? _birthday { get; set; }
         public DateTime DateOfBirthday
@@ -36,7 +36,7 @@ namespace WpfApp1.Models
         public int? PostId { get; set; }
         public byte[] WorkerPassword { get; set; }
         public bool IsMale { get; set; }
-        public string WorkerLogin { get; set; }
+        public string WorkerLogin { get; set; } = null!;
 
         public virtual Posts Post { get; set; }
         public virtual ICollection<StorageWorkerShifts> StorageWorkerShifts { get; set; }
@@ -82,7 +82,7 @@ namespace WpfApp1.Models
             OrderHistory = worker.OrderHistory;
         }
 
-        public object Clone()
+        public Workers Clone()
         {
             Workers worker = new Workers();
             worker.Id = Id;

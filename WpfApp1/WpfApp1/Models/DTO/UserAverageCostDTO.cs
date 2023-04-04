@@ -8,7 +8,7 @@
         public string Patronymic { get; set; }
         public double AvgCost { get; set; }
 
-        public object Clone()
+        public UserAverageCostDTO Clone()
         {
             throw new System.NotImplementedException();
         }

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using WpfApp1.Models;
+using WpfApp1.Models.DTO;
 using WpfApp1.Services;
 using WpfApp1.Views;
 
@@ -12,7 +13,7 @@ namespace WpfApp1.ViewModels
         private AccessService _accessService;
         private SectionCreator _sectionCreator;
         private SectionService _sectionService;
-        private List<Sections> _sections;
+        private List<LoginedWorkerRights> _sections = null!;
 
         private RelayCommand? _sectionChoosedCommand;
         private MainWindow _mainWindow;

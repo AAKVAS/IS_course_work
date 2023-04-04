@@ -13,8 +13,8 @@ namespace WpfApp1.Models
         }
 
         public int Id { get; set; }
-        public string FileTitle { get; set; }
-        public string FilePath { get; set; }
+        public string FileTitle { get; set; } = null!;
+        public string FilePath { get; set; } = null!;
 
         public virtual ICollection<TableFiles> TableFiles { get; set; }
     }

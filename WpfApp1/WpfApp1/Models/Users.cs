@@ -17,10 +17,10 @@ namespace WpfApp1.Models
         }
 
         public int Id { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public string Patronymic { get; set; }
-        public string PhoneNumber { get; set; }
+        public string Firstname { get; set; } = null!;
+        public string Lastname { get; set; } = null!;
+        public string Patronymic { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
 
         private DateTime? _birthday { get; set; }
         public DateTime Birthday 
@@ -35,7 +35,7 @@ namespace WpfApp1.Models
             }
         }
 
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
         public int? OrderCode { get; set; }
         public bool IsMale { get;
             set; 
@@ -69,7 +69,7 @@ namespace WpfApp1.Models
         public virtual ICollection<DeferredProducts> DeferredProducts { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
 
-        public object Clone()
+        public Users Clone()
         {
             Users user = new Users();
             user.Id = Id;

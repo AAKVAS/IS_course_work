@@ -15,7 +15,7 @@ namespace WpfApp1.Models
         public int ProductId { get; set; }
         public int Id { get; set; }
 
-        private Products _products;
+        private Products _products = null!;
         public virtual Products Product 
         {
             get => _products; 
@@ -26,9 +26,9 @@ namespace WpfApp1.Models
             }
         }
 
-        public virtual Users User { get; set; }
+        public virtual Users User { get; set; } = null!;
 
-        public object Clone()
+        public DeferredProducts Clone()
         {
             DeferredProducts deferredProducts = new DeferredProducts();
             deferredProducts.UserId = UserId;

@@ -1,8 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using WpfApp1.Models;
+using WpfApp1.Models.DTO;
 
 namespace WpfApp1.Services
 {
@@ -10,8 +13,8 @@ namespace WpfApp1.Services
     {
         public Workers? LoginedWorker { get; set; }
 
-        private List<Sections> _loginedWorkerSections;
-        public List<Sections> LoginedWorkerSections
+        private List<LoginedWorkerRights> _loginedWorkerSections;
+        public List<LoginedWorkerRights> LoginedWorkerSections
         {
             get { return _loginedWorkerSections ?? GetLoginedWorkerSections(); }
         }
@@ -36,18 +39,30 @@ namespace WpfApp1.Services
             return LoginedWorker != null;
         }
 
-        private List<Sections> GetLoginedWorkerSections()
+        private List<LoginedWorkerRights> GetLoginedWorkerSections()
         {
-            _loginedWorkerSections = (from section     in _context.Sections
-                                     join sectionRight in _context.SectionRights on section.Id          equals sectionRight.SectionId
-                                     join post         in _context.Posts         on sectionRight.PostId equals post.Id
-                                     join worker       in _context.Workers       on post.Id             equals worker.PostId
-                                     where worker.Id == LoginedWorker.Id
-                                     select section
-                                     )
-                                     .Include(s => s.SectionRights.Where(sr => sr.PostId == LoginedWorker.PostId))
-                                        .ThenInclude(sr => sr.Right)
-                                     .ToList();
+            string query = @"SELECT 
+                                    sr.id,
+                                    sr.right_id as RightId,
+	                                r.title as RightTitle,
+	                                sr.section_id as SectionId,
+	                                s.title as SectionTitle,
+	                                s.parent_id as SectionParentId,
+	                                sr.post_id as PostId,
+	                                s.section_key as SectionKey
+                               FROM 
+                                     rights r
+                                JOIN section_rights sr  ON sr.right_id   = r.id
+                                JOIN sections s         ON sr.section_id = s.id
+                                JOIN posts p            ON sr.post_id    = p.id
+                                JOIN workers w          ON w.post_id     = p.id
+                               WHERE 
+                                     w.id = @worker_id";
+
+            _loginedWorkerSections = _context.LoginedWorkerRights
+                .FromSqlRaw(query, new SqlParameter("@worker_id", LoginedWorker.Id))
+                .ToList();
+
 
             return _loginedWorkerSections;
         }
@@ -90,10 +105,7 @@ namespace WpfApp1.Services
         private bool HasWorkerRightToSectionAction(string sectionKey, string actionName)
         {
             return LoginedWorkerSections
-                    .Where(i => i.SectionKey == sectionKey)
-                    .FirstOrDefault()
-                    .SectionRights
-                    .Where(i => i.Right.Title == actionName)
+                    .Where(s => s.SectionKey == sectionKey && s.RightTitle == actionName)
                     .Any();
         }
 

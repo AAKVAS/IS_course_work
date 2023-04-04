@@ -15,14 +15,14 @@ namespace WpfApp1.Models
         }
 
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Title { get; set; } = null!;
         public int? ParentCategoryId { get; set; }
 
         public virtual Categories ParentCategory { get; set; }
         public virtual ObservableCollection<Categories> InverseParentCategory { get; set; }
         public virtual ObservableCollection<Products> Products { get; set; }
 
-        public object Clone()
+        public Categories Clone()
         {
             Categories category = new Categories();
             category.Id = Id;

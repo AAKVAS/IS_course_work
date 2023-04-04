@@ -8,7 +8,7 @@ namespace WpfApp1.Models
     public partial class TableFiles
     {
         public int Id { get; set; }
-        public string TableName { get; set; }
+        public string TableName { get; set; } = null!;
         public int? RecordId { get; set; }
         public int? FId { get; set; }
 

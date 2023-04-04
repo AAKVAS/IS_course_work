@@ -13,9 +13,9 @@ namespace WpfApp1.Models
         }
 
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Title { get; set; } = null!;
         public int? ParentId { get; set; }
-        public string SectionKey { get; set; }
+        public string SectionKey { get; set; } = null!;
 
         public virtual ICollection<SectionRights> SectionRights { get; set; }
     }

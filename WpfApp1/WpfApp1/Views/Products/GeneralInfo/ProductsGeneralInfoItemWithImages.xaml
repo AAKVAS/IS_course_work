@@ -80,7 +80,7 @@
                      Text="{Binding CurrentItem.Price, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}" />
 
-            <Label x:Name="lbl" Grid.Column="0" Grid.Row="4" Content="Поставщик" VerticalAlignment="Center"/>
+            <Label x:Name="lblSupplier" Grid.Column="0" Grid.Row="4" Content="Поставщик" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbSupplier"
                       Grid.Row="4"
                       Grid.Column="1" 

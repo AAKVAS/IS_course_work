@@ -17,11 +17,11 @@ namespace WpfApp1.Models
         }
 
         public int Id { get; set; }
-        public string Country { get; set; }
-        public string FederalSubject { get; set; }
-        public string Locality { get; set; }
-        public string Street { get; set; }
-        public string HouseNumber { get; set; }
+        public string Country { get; set; } = null!;
+        public string FederalSubject { get; set; } = null!;
+        public string Locality { get; set; } = null!;
+        public string Street { get; set; } = null!;
+        public string HouseNumber { get; set; } = null!;
         public int? StorageType { get; set; }
 
         public virtual StorageTypes StorageTypeNavigation { get; set; }

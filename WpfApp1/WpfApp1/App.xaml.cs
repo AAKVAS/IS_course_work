@@ -7,7 +7,6 @@ namespace WpfApp1
 {
     public partial class App : Application
     {
-
         public static ISWildberriesContext Context = new ISWildberriesContext();
         public static AccessService AccessService = new AccessService();
         public static MainWindow MainWindow = new MainWindow();
@@ -26,8 +25,8 @@ namespace WpfApp1
 
             if (IsEnableDB())
             {
-                var startWindow = new Login();
-                startWindow?.Show();
+                Current.MainWindow = new Login();
+                Current.MainWindow.Show();
             }
             else
             {
