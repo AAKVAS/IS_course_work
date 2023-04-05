@@ -66,12 +66,32 @@ namespace WpfApp1.Services
             _context.Database.ExecuteSqlRaw(query, new SqlParameter("@id", order.Id));
         }
 
+        public void ChangeOrderStatus(OrderHistory orderHistory)
+        {
+            string query = @"INSERT INTO order_history (
+	                                order_id,
+	                                status_id, 
+	                                current_storage_id)
+                                VALUES (
+	                                @order_id, 
+	                                @status_id, 
+	                                @current_storage_id)";
+
+            SqlParameter[] parameters = new[]
+            {
+                new SqlParameter("@order_id", orderHistory.OrderId),
+                new SqlParameter("@status_id", orderHistory.Status.Id),
+                new SqlParameter("@current_storage_id", orderHistory.CurrentStorageId),
+            };
+            _context.Database.ExecuteSqlRaw(query, parameters);
+        }
+
         public ObservableCollection<dynamic> GetOrdersReadyToReceive()
         {
             const int readyToReceiveStatus = 11;
             return new ObservableCollection<dynamic>(
                 _context.OrderHistory
-                    .Where(oh => oh.IsLastStatus ?? false && oh.StatusId == readyToReceiveStatus)
+                    .Where(oh => (oh.IsLastStatus ?? false) && oh.StatusId == readyToReceiveStatus)
                     .Include(oh => oh.Order)
                         .ThenInclude(o => o.User)
                     .Include(oh => oh.Order)
@@ -81,5 +101,30 @@ namespace WpfApp1.Services
                     .Include(oh => oh.Status)
                         .ToList());
         }
+
+        public OrderHistory GetOrderHistoryWithProductImages(OrderHistory orderHistory)
+        {
+            return _context.OrderHistory.Where(oh => oh.Equals(orderHistory))
+                    .Include(oh => oh.Order)
+                        .ThenInclude(o => o.User)
+                    .Include(oh => oh.Order)
+                        .ThenInclude(o => o.Product)
+                            .ThenInclude(p => p.Images)
+                    .Include(oh => oh.Order)
+                        .ThenInclude(o => o.PickUpPoint)
+                    .Include(oh => oh.Status)
+                        .FirstOrDefault() ?? new OrderHistory();
+        }
+
+        public List<OrderStatuses> GetStatusesForReadyToRecieveOrder()
+        {
+            string query = @"SELECT os.id,
+                                    os.description
+                                FROM order_statuses os
+                                WHERE os.id IN (11, 12, 13)";
+
+            return _context.OrderStatuses.FromSqlRaw(query).ToList();
+        }
+
     }
 }

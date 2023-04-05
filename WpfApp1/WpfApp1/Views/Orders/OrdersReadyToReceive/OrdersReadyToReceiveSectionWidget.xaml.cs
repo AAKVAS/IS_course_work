@@ -13,7 +13,22 @@ namespace WpfApp1.Views
             get 
             {
                 return new Dictionary<string, string> {
-                    
+                    { "Id пункта выдачи", "Order.PickUpPoint.Id" },
+                    { "Страна", "Order.PickUpPoint.Country" },
+                    { "Субъект", "Order.PickUpPoint.FederalSubject" },
+                    { "Город", "Order.PickUpPoint.Locality" },
+                    { "Улица", "Order.PickUpPoint.Street" },
+                    { "Дом", "Order.PickUpPoint.HouseNumber" },
+                    { "Id заказа", "Order.Id" },
+                    { "Id пользователя", "Order.User.Id" },
+                    { "Фамилия", "Order.User.Lastname" },
+                    { "Имя", "Order.User.Firstname" },
+                    { "Отчество", "Order.User.Patronymic" },
+                    { "Код для получения заказа", "Order.User.OrderCode" },
+                    { "Id товара", "Order.Product.Id" },
+                    { "Товар", "Order.Product.Title" },
+                    { "Количество товара", "Order.ProductCount" },
+                    { "Стоимость заказа", "Order.Price" }
                 };
             }
         }

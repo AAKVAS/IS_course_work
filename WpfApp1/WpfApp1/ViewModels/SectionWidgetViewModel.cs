@@ -233,10 +233,7 @@ namespace WpfApp1.ViewModels
             }
             else if (MessageBox.Show("Вы уверены, что хотите изменить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                CurrentItemFromContext.Copy(CurrentItem);
-                App.Context.SaveChanges();
-                ItemForm.Close();
-                UpdateItems();
+                Update();
             }
         }
 
@@ -256,6 +253,14 @@ namespace WpfApp1.ViewModels
                 MessageBox.Show("Вы не можете вставить запись, так как её ключ уже используется");
                 ItemForm.Close();
             }
+        }
+
+        protected virtual void Update()
+        {
+            CurrentItemFromContext.Copy(CurrentItem);
+            App.Context.SaveChanges();
+            ItemForm.Close();
+            UpdateItems();
         }
 
         protected abstract void AddCurrentItem();

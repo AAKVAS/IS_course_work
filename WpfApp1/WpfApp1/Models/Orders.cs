@@ -141,5 +141,14 @@ namespace WpfApp1.Models
             Reviews = order.Reviews;
             OrderHistory = order.OrderHistory;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not Orders)
+            {
+                return false;
+            }
+            return (obj as Orders).Id == Id;
+        }
     }
 }

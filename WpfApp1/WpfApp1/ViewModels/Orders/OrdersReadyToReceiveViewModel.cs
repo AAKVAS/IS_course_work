@@ -7,6 +7,7 @@ using WpfApp1.Views;
 using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Orders.OrdersReadyToReceive;
+using System.Windows;
 
 namespace WpfApp1.ViewModels.Orders
 {
@@ -46,6 +47,7 @@ namespace WpfApp1.ViewModels.Orders
         public List<Models.Users> Users;
         public List<Models.Products> Products;
         public ObservableCollection<Storages> PickUpPoints;
+        public List<OrderStatuses> Statuses;
 
         public OrdersReadyToReceiveViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _orderService = App.OrderService;
@@ -53,6 +55,7 @@ namespace WpfApp1.ViewModels.Orders
             Users = App.Context.Users.ToList();
             Products = App.Context.Products.ToList();
             PickUpPoints = App.StorageService.GetPickUpPoints();
+            Statuses = _orderService.GetStatusesForReadyToRecieveOrder();
             UpdateSectionData();
         }
 
@@ -81,55 +84,48 @@ namespace WpfApp1.ViewModels.Orders
             _sectionData = _orderService.GetOrdersReadyToReceive();
         }
 
-        protected override void FillItem()
-        {
-        }
+        protected override void FillItem() {}
 
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();
-
-            /*
-            if (string.IsNullOrWhiteSpace(CurrentItem.Title))
-            {
-                errorBuilder.AppendLine("Поле \"Название\" обязательно для заполнения;");
-            }
-            if (CurrentItem.Price <= 0)
-            {
-                errorBuilder.AppendLine("\"Цена\" представляет из себя положительное число;");
-            }
-            if (string.IsNullOrWhiteSpace(CurrentItem.Description))
-            {
-                errorBuilder.AppendLine("Поле \"Описание\" обязательно для заполнения;");
-            }
-            if (CurrentItem.Category == null)
-            {
-                errorBuilder.AppendLine("Свойство \"Категория\" обязательно для заполнения;");
-            }
-            if (CurrentItem.Supplier == null)
-            {
-                errorBuilder.AppendLine("Свойство \"Поставщик\" обязательно для заполнения;");
-            }
-            if (CurrentItem.SupplierPercent <= 0 || CurrentItem.SupplierPercent >= 100)
-            {
-                errorBuilder.AppendLine("\"Процент поставщика с продажи\" представляет из себя положительное число в диапазоне от 0 до 100;");
-            }
-            */
 
             return errorBuilder.ToString();
         }
 
         protected override dynamic CreateNewImage(byte[] image)
         { 
-            ProductImage productImage = new ProductImage();
+            ProductImage productImage = new();
             productImage.ProductImage1 = image;
             return productImage;
         }
 
         public override void LoadCurrentItemImages()
         {
-            CurrentItemFromContext = _productService.GetProductWithImages(CurrentItem.Order.Product);
+            CurrentItemFromContext = _orderService.GetOrderHistoryWithProductImages(CurrentItem);
             CurrentItem = CurrentItemFromContext.Clone();
+        }
+
+        protected override void Update()
+        {
+            CurrentItemFromContext.Copy(CurrentItem);
+            var entry = App.Context.Entry(CurrentItemFromContext);
+            try
+            {
+                _orderService.ChangeOrderStatus(CurrentItemFromContext);
+                ItemForm.Close();
+                UpdateItems();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Изменение записи завершилось ошибкой");
+            }
+            finally
+            {
+                entry.Reload();
+                MakeCurrentItemEmpty();
+            }
+            UpdateItems();
         }
 
     }

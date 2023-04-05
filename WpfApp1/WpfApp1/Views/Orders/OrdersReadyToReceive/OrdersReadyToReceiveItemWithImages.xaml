@@ -142,12 +142,11 @@
                       Style="{StaticResource CommonComboBox}"
                       Width="200" 
                       HorizontalAlignment="Left"
-                      IsEnabled="False"
                       SelectedValue="{Binding CurrentItem.Status}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding Title}"/>
+                            <Label Content="{Binding Description}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>

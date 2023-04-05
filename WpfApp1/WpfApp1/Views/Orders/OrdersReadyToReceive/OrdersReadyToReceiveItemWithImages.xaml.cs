@@ -19,10 +19,10 @@ namespace WpfApp1.Views.Orders.OrdersReadyToReceive {
             _viewModel = (OrdersReadyToReceiveViewModel)_sectionWidgetViewModel;
             DataContext = _viewModel;
             _viewModel.LoadCurrentItemImages();
-            lbImages.ItemsSource = _viewModel.CurrentItemFromContext.Images;
+            lbImages.ItemsSource = _viewModel.CurrentItemFromContext.Order.Product.Images;
             cbPickUpPoint.ItemsSource = _viewModel.PickUpPoints;
             cbProduct.ItemsSource = _viewModel.Products;
-            //cbStatus.ItemsSource = _viewModel.
+            cbStatus.ItemsSource = _viewModel.Statuses;
             cbUser.ItemsSource = _viewModel.Users;
         }
 
@@ -53,6 +53,7 @@ namespace WpfApp1.Views.Orders.OrdersReadyToReceive {
         {
             btnDataAction.Visibility = Visibility.Collapsed;
             DisableAllInputs();
+            cbStatus.IsEnabled = false;
         }
 
         private void DisableAllInputs() {}
