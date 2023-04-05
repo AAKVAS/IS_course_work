@@ -74,9 +74,7 @@ namespace WpfApp1.ViewModels.Orders
             _sectionData = _orderService.GetOrdersList();
         }
 
-        protected override void FillItem()
-        {
-        }
+        protected override void FillItem() {}
 
         protected override string GetErrors()
         {
@@ -126,6 +124,30 @@ namespace WpfApp1.ViewModels.Orders
                 ItemForm.Close();
             }
         }
+
+        protected override void Delete()
+        {
+            var entry = App.Context.Entry(CurrentItemFromContext);
+            try
+            {
+                _orderService.DeleteOrder(CurrentItemFromContext);
+                UpdateItems();
+            }
+            catch (DbUpdateException ex)
+            {
+                MessageBox.Show("Вы не можете удалить эту запись, так как она используется в другом разделе");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Удаление записи завершилось ошибкой");
+            }
+            finally
+            {
+                entry.Reload();
+                MakeCurrentItemEmpty();
+            }
+        }
+
 
     }
 }

@@ -173,14 +173,18 @@ namespace WpfApp1.ViewModels
 
         protected void TryDelete()
         {
-            if (MessageBox.Show("Вы уверены, что хотите удалить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (SectionWidget.DataGrid.SelectedIndex == -1)
+            {
+                MessageBox.Show("Выберите запись!");
+            }
+            else if (MessageBox.Show("Вы уверены, что хотите удалить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 CurrentItemFromContext = SectionWidget.DataGrid.SelectedItem;
                 Delete();
             }
         }
 
-        protected void Delete()
+        protected virtual void Delete()
         {
             var entry = App.Context.Entry(CurrentItemFromContext);
             try
