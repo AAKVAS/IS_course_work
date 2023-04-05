@@ -60,7 +60,7 @@
                       Style="{StaticResource CommonComboBox}"
                       Width="200" 
                       HorizontalAlignment="Left"
-                      SelectedValue="{Binding CurrentItem.User}">
+                      SelectedValue="{Binding CurrentItem.User, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

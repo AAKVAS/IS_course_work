@@ -30,5 +30,14 @@ namespace WpfApp1.Models
         public virtual ICollection<ProductsOnStorages> ProductsOnStorages { get; set; }
         public virtual ICollection<ReceiptOfProductsToStorages> ReceiptOfProductsToStorages { get; set; }
         public virtual ICollection<StorageWorkerShifts> StorageWorkerShifts { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not Storages)
+            {
+                return false;
+            }
+            return (obj as Storages).Id == Id;
+        }
     }
 }

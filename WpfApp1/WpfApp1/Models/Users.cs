@@ -106,5 +106,16 @@ namespace WpfApp1.Models
             DeferredProducts = user.DeferredProducts;
             Orders = user.Orders;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj is not Users)
+            {
+                return false;
+            }
+            return (obj as Users).Id == Id;
+        }
+
+
     }
 }

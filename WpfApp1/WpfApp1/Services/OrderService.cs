@@ -57,8 +57,13 @@ namespace WpfApp1.Services
             };
 
             _context.Database.ExecuteSqlRaw(query, parameters);
-            _context.SaveChanges();
+        }
 
+        public void DeleteOrder(Orders order)
+        {
+            string query = @"DELETE FROM orders
+                              WHERE id = @id;";
+            _context.Database.ExecuteSqlRaw(query, new SqlParameter("@id", order.Id));
         }
 
         public ObservableCollection<dynamic> GetOrdersReadyToReceive()

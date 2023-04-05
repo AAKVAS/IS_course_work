@@ -96,5 +96,14 @@ namespace WpfApp1.Models
                 OnPropertyChanged();
             }
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || obj is not Products)
+            {
+                return false;
+            }
+            return (obj as Products).Id == Id;
+        }
     }
 }

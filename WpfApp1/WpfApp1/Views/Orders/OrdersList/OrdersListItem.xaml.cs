@@ -7,13 +7,16 @@ namespace WpfApp1.Views.Orders.OrdersList
 {
     public partial class OrdersListItem: ItemForm
     {
+        private OrdersListViewModel _ordersListViewModel;
+
         public OrdersListItem(SectionWidgetViewModel sectionWidgetViewModel) : base(sectionWidgetViewModel)
         {
             InitializeComponent();
-            DataContext = (OrdersListViewModel)_sectionWidgetViewModel;
-            cbUser.ItemsSource = ((OrdersListViewModel)_sectionWidgetViewModel).Users;
-            cbPickUpPoint.ItemsSource = ((OrdersListViewModel)_sectionWidgetViewModel).PickUpPoints;
-            cbProduct.ItemsSource = ((OrdersListViewModel)_sectionWidgetViewModel).Products;
+            _ordersListViewModel = (OrdersListViewModel)_sectionWidgetViewModel;
+            DataContext = _ordersListViewModel;
+            cbUser.ItemsSource = _ordersListViewModel.Users;
+            cbPickUpPoint.ItemsSource = _ordersListViewModel.PickUpPoints;
+            cbProduct.ItemsSource = _ordersListViewModel.Products;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

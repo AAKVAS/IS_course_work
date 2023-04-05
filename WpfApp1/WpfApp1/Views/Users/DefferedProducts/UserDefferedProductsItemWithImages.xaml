@@ -58,10 +58,10 @@
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Grid.Column="0" Content="{Binding Id}"/>
-                            <Label Grid.Column="1" Content="{Binding Lastname}"/>
-                            <Label Grid.Column="1" Content="{Binding Firstname}"/>
-                            <Label Grid.Column="1" Content="{Binding Patronymic}"/>
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding Lastname}"/>
+                            <Label Content="{Binding Firstname}"/>
+                            <Label Content="{Binding Patronymic}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
