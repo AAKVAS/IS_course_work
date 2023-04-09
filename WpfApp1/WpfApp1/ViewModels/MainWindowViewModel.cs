@@ -51,7 +51,10 @@ namespace WpfApp1.ViewModels
             foreach (var section in _sections)
             {
                 MenuItem menuItem = mainMenu.FindName(section.SectionKey) as MenuItem;
-                menuItem.Visibility = Visibility.Visible;
+                if (menuItem != null)
+                {
+                    menuItem.Visibility = Visibility.Visible;
+                }
             }
 
         }

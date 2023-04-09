@@ -26,6 +26,7 @@ namespace WpfApp1.Models
         public virtual DbSet<Files> Files { get; set; }
         public virtual DbSet<LoginedWorkerRights> LoginedWorkerRights { get; set; }
         public virtual DbSet<OrderHistory> OrderHistory { get; set; }
+        public virtual DbSet<OrderHistoryDTO> OrderHistoryDTO { get; set; }
         public virtual DbSet<OrderStatuses> OrderStatuses { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Posts> Posts { get; set; }
@@ -48,6 +49,7 @@ namespace WpfApp1.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserAverageCostDTO> UserAverageCostDTO { get; set; }
         public virtual DbSet<Workers> Workers { get; set; }
+        public virtual DbSet<WorkersInOrdersDTO> WorkersInOrdersDTO { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
        => optionsBuilder.UseSqlServer("Data Source = LAPTOP-LJNAL6S6; Initial Catalog = ISWildberries; Integrated Security = True; Encrypt = False");

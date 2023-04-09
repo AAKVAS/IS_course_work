@@ -142,13 +142,13 @@ namespace WpfApp1.ViewModels
 
         protected abstract void CreateNewItemForm();
 
-        protected void TryInsert()
+        protected virtual void TryInsert()
         {
             MakeCurrentItemEmpty();
 
+            _itemFormMode = ItemFormMode.Insert;
             CreateNewItemForm();
             ItemForm.Title = SectionTitle;
-            _itemFormMode = ItemFormMode.Insert;
             ItemForm.Mode = _itemFormMode;
             ItemForm.Show();      
         }
@@ -163,9 +163,9 @@ namespace WpfApp1.ViewModels
                 CurrentItemFromContext = SectionWidget.DataGrid.SelectedItem;
                 CurrentItem = CurrentItemFromContext.Clone();
 
+                _itemFormMode = ItemFormMode.Update;
                 CreateNewItemForm();
                 ItemForm.Title = SectionTitle;
-                _itemFormMode = ItemFormMode.Update;
                 ItemForm.Mode = _itemFormMode;
                 ItemForm.Show();
             }
@@ -211,9 +211,9 @@ namespace WpfApp1.ViewModels
             {
                 CurrentItem = SectionWidget.DataGrid.SelectedItem;
 
+                _itemFormMode = ItemFormMode.Read;
                 CreateNewItemForm();
                 ItemForm.Title = SectionTitle;
-                _itemFormMode = ItemFormMode.Read;
                 ItemForm.Mode = _itemFormMode;
                 ItemForm.Show();
             }
@@ -270,6 +270,12 @@ namespace WpfApp1.ViewModels
         protected abstract string GetErrors();
 
         protected void UpdateItems()
+        {
+            UpdateSectionData();
+            FilterItems();
+        }
+
+        protected void FilterItems()
         {
             FilterService.UseFilters();
         }

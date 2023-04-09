@@ -7,7 +7,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Icon="\Resources\wb.ico"
-        Title="Пользователи / Общие сведения" Height="351" Width="423"
+        Height="351" Width="423"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>
         <ResourceDictionary>

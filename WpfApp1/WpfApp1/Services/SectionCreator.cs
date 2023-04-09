@@ -22,9 +22,9 @@ namespace WpfApp1.Services
                     return new OrdersListSectionWidget(section);
                 case "orders_ready_to_receive":
                     return new OrdersReadyToReceiveSectionWidget(section);
+                case "order_history":
+                      return new OrderHistorySectionWidget(section);
                     /*
-              case "order_history":
-                  return new SectionWidgetViewModel();
               case "storages_general_info":
                   return new SectionWidgetViewModel();
               case "storages_receipts":

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp1.Models;
+using WpfApp1.Models.DTO;
 
 namespace WpfApp1.Services
 {
@@ -126,5 +127,166 @@ namespace WpfApp1.Services
             return _context.OrderStatuses.FromSqlRaw(query).ToList();
         }
 
+        public ObservableCollection<dynamic> GetOrderHistory()
+        {
+            string query = @"
+                            SELECT 
+                                    o.id as OrderId,
+                                    pr.id as ProductId,
+                                    pr.title as ProductTitle,
+                                    os.id as StatusId,
+                                    os.description as StatusDescription,
+                                    s.id as StorageId,
+                                    s.storage_type as StorageType,
+                                    st.title as StorageTitle,
+                                    s.country as Country,
+                                    s.federal_subject as FederalSubject,
+                                    s.locality as Locality,
+                                    s.street as Street,
+                                    s.house_number as HouseNumber,
+                                    oh.status_changed_at as StatusChangedAt,
+                                    oh.is_last_status as IsLastStatus,
+                                    ISNULL(w.id, 0) as WorkerIdNotNullable,
+                                    w.firstname as WorkerFirstname,
+                                    w.lastname as WorkerLastname,
+                                    w.patronymic as WorkerPatronymic,
+                                    p.title as WorkerPost
+                                FROM 
+                                     order_history oh 
+                                JOIN orders o                   ON oh.order_id = o.id
+                                JOIN products pr                ON pr.id = o.product_id
+                                JOIN order_statuses os          ON os.id = oh.status_id
+                                JOIN storages s                 ON s.id = oh.current_storage_id
+                                JOIN storage_types st           ON st.id = s.storage_type
+                                LEFT JOIN workers_in_orders wio ON oh.order_id = wio.order_id
+                                                            AND wio.status_changed_at = oh.status_changed_at
+                                LEFT JOIN workers w             ON w.id = wio.worker_id
+                                LEFT JOIN posts p               ON p.id = w.post_id";
+
+            return new ObservableCollection<dynamic>(_context.OrderHistoryDTO.FromSqlRaw(query).AsNoTracking().ToList());
+        }
+
+        public ObservableCollection<dynamic> GetWorkersInOrder(OrderHistoryDTO orderHistoryDTO)
+        {
+            string query = @"SELECT 
+                                   oh.order_id as OrderId,
+                                   oh.status_changed_at as StatusChangedAt,
+                                   wio.worker_id as WorkerId,
+	                               w.firstname as WorkerFirstname,
+	                               w.lastname as WorkerLastname,
+                                   w.patronymic as WorkerPatronymic,
+	                               p.title as WorkerPost
+                              FROM order_history oh 
+                              JOIN workers_in_orders wio ON oh.order_id = wio.order_id
+                                                        AND wio.status_changed_at = oh.status_changed_at
+                              JOIN workers w             ON w.id = wio.worker_id
+                              JOIN posts   p             ON p.id = w.post_id
+                             WHERE oh.order_id = @id
+                               AND oh.status_changed_at = @status_changed_at";
+
+            SqlParameter[] parameters = new[]
+            {
+                new SqlParameter("@id", orderHistoryDTO.OrderId),
+                new SqlParameter("@status_changed_at", orderHistoryDTO.StatusChangedAt)
+            };
+
+            return new ObservableCollection<dynamic>(_context.WorkersInOrdersDTO.FromSqlRaw(query, parameters).ToList());
+        }
+
+        public QueryWithParameters GetInsertOrderHistoryQuery(OrderHistoryDTO orderHistoryDTO)
+        {
+            string query = @"INSERT INTO order_history (
+                                    order_id,
+	                                status_changed_at,
+	                                status_id,
+	                                current_storage_id
+                                )
+                                VALUES (
+                                    @order_id,
+	                                @status_changed_at,
+	                                @status_id,
+	                                @current_storage_id
+                                )";
+
+            SqlParameter[] parameters = new[]
+            {
+                new SqlParameter("@order_id", orderHistoryDTO.OrderId),
+                new SqlParameter("@status_changed_at", orderHistoryDTO.StatusChangedAt),
+                new SqlParameter("@status_id", orderHistoryDTO.StatusId),
+                new SqlParameter("@current_storage_id", orderHistoryDTO.StorageId)
+
+            };
+            return new QueryWithParameters(query, parameters);
+        }
+
+        public QueryWithParameters GetUpdateOrderHistoryQuery(OrderHistoryDTO orderHistoryDTO)
+        {
+            string query = @"UPDATE oh
+                               SET 
+                                   oh.status_id          = @status_id,
+	                               oh.current_storage_id = @current_storage_id
+                              FROM 
+                                   order_history oh 
+                              JOIN orders o ON oh.order_id = o.id
+                              WHERE oh.order_id            = @order_id
+                                AND oh.status_changed_at   = @status_changed_at";
+
+            SqlParameter[] parameters = new[]
+            {
+                new SqlParameter("@order_id", orderHistoryDTO.OrderId),
+                new SqlParameter("@status_changed_at", orderHistoryDTO.StatusChangedAt),
+                new SqlParameter("@status_id", orderHistoryDTO.StatusId),
+                new SqlParameter("@current_storage_id", orderHistoryDTO.StorageId)
+            };
+            return new QueryWithParameters(query, parameters);
+        }
+
+        public void DeleteOrderHistory(OrderHistoryDTO orderHistoryDTO)
+        {
+            string query = @"DELETE FROM order_history
+                              WHERE order_id            = @order_id
+                                    AND status_changed_at   = @status_changed_at";
+
+            SqlParameter[] parameters = new[]
+            {
+                new SqlParameter("@order_id", orderHistoryDTO.OrderId),
+                new SqlParameter("@status_changed_at", orderHistoryDTO.StatusChangedAt)
+            };
+            _context.Database.ExecuteSqlRaw(query, parameters);
+        }
+
+        public QueryWithParameters GetInsertWorkerInOrderHistoryQuery(WorkersInOrdersDTO workersInOrdersDTO)
+        {
+            string query = @"INSERT INTO workers_in_orders (
+                                    order_id,
+	                                status_changed_at,
+	                                worker_id
+                                )
+                                VALUES (
+                                    @order_id,
+	                                @status_changed_at,
+	                                @worker_id
+                                )";
+
+            SqlParameter[] parameters = new[]
+            {
+                new SqlParameter("@worker_id", workersInOrdersDTO.WorkerId)
+            };
+            return new QueryWithParameters(query, parameters);
+        }
+
+        public QueryWithParameters GetDeleteWorkerInOrderHistoryQuery(WorkersInOrdersDTO workersInOrdersDTO)
+        {
+            string query = @"DELETE FROM workers_in_orders
+                              WHERE order_id          = @order_id
+                                AND status_changed_at = @status_changed_at 
+	                            AND worker_id         = @worker_id";
+
+            SqlParameter[] parameters = new[]
+            {
+                new SqlParameter("@worker_id", workersInOrdersDTO.WorkerId)
+            };
+            return new QueryWithParameters(query, parameters);
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Пользователи / Общие сведения" Height="258" Width="339"
+        Height="258" Width="339"
         Icon="\Resources\wb.ico"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Window.Resources>

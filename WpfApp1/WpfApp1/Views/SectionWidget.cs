@@ -53,5 +53,13 @@ namespace WpfApp1.Views
             PDFButton.Visibility = Visibility.Collapsed;
         }
 
+        public void CollapseAllButtonsExceptReadButton()
+        {
+            CollapseInsertButton();
+            CollapseUpdateButton();
+            CollapseDeleteButton();
+            CollapsePDFButton();
+        }
+
     }
 }
