@@ -24,6 +24,7 @@ namespace WpfApp1.Views.Orders.OrderHistory
 
         protected override void SetFormModeToInsert()
         {
+            tbId.IsReadOnly = false;
             btnDataAction.Visibility = Visibility.Visible;
             btnDataAction.Content = "Сохранить";
         }
@@ -42,7 +43,6 @@ namespace WpfApp1.Views.Orders.OrderHistory
 
         private void DisableAllInputs()
         {
-            tbId.IsReadOnly = true;
             cbProduct.IsEnabled = false;
             cbStatus.IsEnabled = false;
             cbStorage.IsEnabled = false;

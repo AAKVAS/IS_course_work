@@ -153,6 +153,8 @@ namespace WpfApp1.ViewModels.Orders
             {
                 CurrentItemFromContext.Copy(CurrentItem);
                 DefferedQueries.PushQueryToFront(_orderService.GetUpdateOrderHistoryQuery(CurrentItem));
+                DefferedQueries.CommonParameters.Add(new SqlParameter("@order_id", CurrentItem.OrderId));
+                DefferedQueries.CommonParameters.Add(new SqlParameter("@status_changed_at", CurrentItem.StatusChangedAt));
                 DefferedQueries.ExecuteQueries();
 
                 RefreshDataGrid();
@@ -174,7 +176,7 @@ namespace WpfApp1.ViewModels.Orders
                 RefreshDataGrid();
                 UpdateItems();
             }
-            catch (Microsoft.Data.SqlClient.SqlException ex)
+            catch (SqlException ex)
             {
                 MessageBox.Show("Вы не можете удалить эту запись, пока не очистите список сотрудников, участвоваших в изменении заказа");
             }

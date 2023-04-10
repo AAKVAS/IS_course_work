@@ -65,6 +65,7 @@ namespace WpfApp1.Services
         public void ClearQueries()
         {
             _queries.Clear();
+            CommonParameters.Clear();
         }
     }
 }
