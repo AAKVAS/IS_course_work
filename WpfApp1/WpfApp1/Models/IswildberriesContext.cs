@@ -291,23 +291,21 @@ namespace WpfApp1.Models
 
             modelBuilder.Entity<PriceHistory>(entity =>
             {
-                entity.HasKey(e => new { e.ProductId, e.PriceDate });
-
                 entity.ToTable("price_history");
 
-                entity.Property(e => e.ProductId).HasColumnName("product_id");
+                entity.HasIndex(e => new { e.ProductId, e.PriceDate }, "u_price_history_product_id_price_date").IsUnique();
 
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Price).HasColumnName("price");
                 entity.Property(e => e.PriceDate)
                     .HasColumnType("datetime")
                     .HasColumnName("price_date");
+                entity.Property(e => e.ProductId).HasColumnName("product_id");
 
-                entity.Property(e => e.Price).HasColumnName("price");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.PriceHistory)
+                entity.HasOne(d => d.Product).WithMany(p => p.PriceHistory)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_price_history_products");
+                    .HasConstraintName("fk_price_history_products");
             });
 
             modelBuilder.Entity<Products>(entity =>

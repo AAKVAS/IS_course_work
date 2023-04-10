@@ -85,7 +85,6 @@ namespace WpfApp1.Models
         public virtual ICollection<ProductsOnStorages> ProductsOnStorages { get; set; }
         public virtual ICollection<ProductsParameters> ProductsParameters { get; set; }
         public virtual ICollection<ReceiptOfProductsToStorages> ReceiptOfProductsToStorages { get; set; }
-        public virtual ICollection<PriceHistory> PriceHistories { get; set; }
 
         private ObservableCollection<ProductImage> _images; 
         public virtual ObservableCollection<ProductImage> Images {

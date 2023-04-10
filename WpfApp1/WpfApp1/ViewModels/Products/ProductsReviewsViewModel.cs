@@ -77,9 +77,7 @@ namespace WpfApp1.ViewModels.Products
             _sectionData = _productService.GetProductsReviews();
         }
 
-        protected override void FillItem()
-        {
-        }
+        protected override void FillItem() {}
 
         protected override string GetErrors()
         {

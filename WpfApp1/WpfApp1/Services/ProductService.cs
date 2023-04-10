@@ -67,5 +67,10 @@ namespace WpfApp1.Services
             return _context.Categories.Where(c => c.Id == id).Any();
         }
 
+        public ObservableCollection<dynamic> GetPriceHistory()
+        {
+            return new ObservableCollection<dynamic>(_context.PriceHistory.Include(ph => ph.Product).ToList());
+        }
+
     }
 }

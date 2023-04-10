@@ -7,17 +7,17 @@ namespace WpfApp1
 {
     public partial class App : Application
     {
-        public static ISWildberriesContext Context = new ISWildberriesContext();
-        public static AccessService AccessService = new AccessService();
-        public static MainWindow MainWindow = new MainWindow();
-        public static PDFGenerateService PDFGenerateService = new PDFGenerateService();
-        public static ProductService ProductService = new ProductService();
-        public static SectionCreator SectionCreator = new SectionCreator();
-        public static SectionService SectionService = new SectionService();
-        public static StorageService StorageService = new StorageService();
-        public static UserService UserService = new UserService();
-        public static WorkerService WorkerService = new WorkerService();
-        public static OrderService OrderService = new OrderService();
+        public static ISWildberriesContext Context = new();
+        public readonly static AccessService AccessService = new();
+        public readonly static MainWindow MainWindow = new();
+        public readonly static PDFGenerateService PDFGenerateService = new();
+        public readonly static ProductService ProductService = new();
+        public readonly static SectionCreator SectionCreator = new();
+        public readonly static SectionService SectionService = new();
+        public readonly static StorageService StorageService = new();
+        public readonly static UserService UserService = new();
+        public readonly static WorkerService WorkerService = new();
+        public readonly static OrderService OrderService = new();
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -39,5 +39,10 @@ namespace WpfApp1
             return Context.Database.CanConnect();
         }
 
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show($"Возникла непредвиденная ошибка: {e.Exception.Message}");
+            e.Handled = true;
+        }
     }
 }
