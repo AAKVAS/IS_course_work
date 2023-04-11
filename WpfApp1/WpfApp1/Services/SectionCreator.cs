@@ -24,9 +24,9 @@ namespace WpfApp1.Services
                     return new OrdersReadyToReceiveSectionWidget(section);
                 case "order_history":
                       return new OrderHistorySectionWidget(section);
+                case "storages_general_info":
+                      return new StoragesGeneralInfoSectionWidget(section);
                     /*
-              case "storages_general_info":
-                  return new SectionWidgetViewModel();
               case "storages_receipts":
                   return new SectionWidgetViewModel();
               case "storages_worker_shifts":
@@ -34,7 +34,7 @@ namespace WpfApp1.Services
               case "storages_product_amount":
                   return new SectionWidgetViewModel();
                 */
-                case "products_general_info": 
+                  case "products_general_info": 
                       return new ProductsGeneralInfoSectionWidget(section);
                   case "products_reviews":
                       return new ProductsReviewsSectionWidget(section);

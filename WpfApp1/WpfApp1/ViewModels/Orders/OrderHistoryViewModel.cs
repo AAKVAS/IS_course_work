@@ -44,7 +44,7 @@ namespace WpfApp1.ViewModels.Orders
 
         public List<Models.Products> Products { get; set; }
         public List<OrderStatuses> Statuses { get; set; }
-        public List<Storages> Storages { get; set; }
+        public List<Models.Storages> Storages { get; set; }
 
         public OrderHistoryViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _orderService = App.OrderService;
@@ -105,7 +105,7 @@ namespace WpfApp1.ViewModels.Orders
             OrderHistoryItem orderHistoryItem = ItemForm as OrderHistoryItem;
             CurrentItem.StatusId = (orderHistoryItem.cbStatus.SelectedValue as OrderStatuses)?.Id ?? 0;
             CurrentItem.ProductId = (orderHistoryItem.cbProduct.SelectedValue as Models.Products)?.Id ?? 0;
-            CurrentItem.StorageId = (orderHistoryItem.cbStorage.SelectedValue as Storages)?.Id ?? 0;
+            CurrentItem.StorageId = (orderHistoryItem.cbStorage.SelectedValue as Models.Storages)?.Id ?? 0;
         }
 
         protected override string GetErrors()

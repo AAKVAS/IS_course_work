@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using WpfApp1.Views;
-using WpfApp1.Views.Users.GeneralInfo;
-using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Orders.OrderHistory;
 using WpfApp1.Models.DTO;
 using System.Windows;
-using Microsoft.EntityFrameworkCore;
 
 namespace WpfApp1.ViewModels.Orders
 {

@@ -38,7 +38,7 @@ namespace WpfApp1.ViewModels.Orders
         private OrderService _orderService;
 
         public List<Models.Users> Users;
-        public ObservableCollection<Storages> PickUpPoints;
+        public ObservableCollection<Models.Storages> PickUpPoints;
         public List<Models.Products> Products;
 
         public OrdersListViewModel(SectionWidget sectionWidget) : base(sectionWidget) {

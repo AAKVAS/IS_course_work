@@ -46,7 +46,7 @@ namespace WpfApp1.ViewModels.Orders
 
         public List<Models.Users> Users;
         public List<Models.Products> Products;
-        public ObservableCollection<Storages> PickUpPoints;
+        public ObservableCollection<Models.Storages> PickUpPoints;
         public List<OrderStatuses> Statuses;
 
         public OrdersReadyToReceiveViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
