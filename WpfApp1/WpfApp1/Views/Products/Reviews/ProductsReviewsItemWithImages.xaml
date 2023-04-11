@@ -37,17 +37,17 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id заказа"  VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="0" Content="Id заказа" VerticalAlignment="Center"/>
             <TextBox x:Name="tbId" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="0"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.OrderId, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource CommonTextBox}" />
 
-            <Label x:Name="lblProduct" Grid.Column="0" Grid.Row="1" Content="Товар" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="Товар" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbProduct"
                       Grid.Row="1"
                       Grid.Column="1" 
@@ -59,14 +59,14 @@
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Grid.Column="0" Content="{Binding Id}"/>
-                            <Label Grid.Column="1" Content="{Binding Title}"/>
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding Title}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Label x:Name="lblUser" Grid.Column="0" Grid.Row="2" Content="Пользователь" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="Пользователь" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbUser"
                       Grid.Row="2"
                       Grid.Column="1" 
@@ -78,32 +78,32 @@
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Grid.Column="0" Content="{Binding Id}"/>
-                            <Label Grid.Column="1" Content="{Binding Lastname}"/>
-                            <Label Grid.Column="1" Content="{Binding Firstname}"/>
-                            <Label Grid.Column="1" Content="{Binding Patronymic}"/>
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding Lastname}"/>
+                            <Label Content="{Binding Firstname}"/>
+                            <Label Content="{Binding Patronymic}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
             
-            <Label x:Name="lblReview" Grid.Column="0" Grid.Row="3" Content="Отзыв"  VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="Отзыв"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbReview" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="3"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.ReviewText, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}" />
 
-            <TextBlock x:Name="lblStars" Margin="5 0" Grid.Column="0" Grid.Row="4" Text="Оценка" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 0" Grid.Column="0" Grid.Row="4" Text="Оценка" TextWrapping="Wrap" VerticalAlignment="Center"/>
             <TextBox x:Name="tbStars" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="4"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.Stars, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}" />
         </Grid>

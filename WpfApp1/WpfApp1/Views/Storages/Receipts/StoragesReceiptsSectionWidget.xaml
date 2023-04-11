@@ -1,4 +1,4 @@
-﻿<local:SectionWidget x:Class="WpfApp1.Views.StoragesGeneralInfoSectionWidget"
+﻿<local:SectionWidget x:Class="WpfApp1.Views.StoragesReceiptsSectionWidget"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,12 +27,16 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="40" />
-                <DataGridTextColumn Header="Тип склада" Binding="{Binding Path=StorageTypeNavigation.Title}" Width="90" />
-                <DataGridTextColumn Header="Страна" Binding="{Binding Path=Country}" Width="90" />
-                <DataGridTextColumn Header="Субъект" Binding="{Binding Path=FederalSubject}" Width="80" />
-                <DataGridTextColumn Header="Город" Binding="{Binding Path=Locality}" Width="90" />
-                <DataGridTextColumn Header="Улица" Binding="{Binding Path=Street}" Width="90" />
-                <DataGridTextColumn Header="Дом" Binding="{Binding Path=HouseNumber}" Width="90" />
+                <DataGridTextColumn Header="Тип склада" Binding="{Binding Path=Storage.StorageTypeNavigation.Title}" Width="90" />
+                <DataGridTextColumn Header="Страна" Binding="{Binding Path=Storage.Country}" Width="90" />
+                <DataGridTextColumn Header="Субъект" Binding="{Binding Path=Storage.FederalSubject}" Width="80" />
+                <DataGridTextColumn Header="Город" Binding="{Binding Path=Storage.Locality}" Width="90" />
+                <DataGridTextColumn Header="Улица" Binding="{Binding Path=Storage.Street}" Width="90" />
+                <DataGridTextColumn Header="Дом" Binding="{Binding Path=Storage.HouseNumber}" Width="90" />
+                <DataGridTextColumn Header="Id товара" Binding="{Binding Path=ProductId}" Width="40" />
+                <DataGridTextColumn Header="Товар" Binding="{Binding Path=Product.Title}" Width="120" />
+                <DataGridTextColumn Header="Количество товара" Binding="{Binding Path=Amount}" Width="120" />
+                <DataGridTextColumn Header="Дата поступления" Binding="{Binding Path=ReceivedAt}" Width="120" />
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1" Margin="10" Height="32">

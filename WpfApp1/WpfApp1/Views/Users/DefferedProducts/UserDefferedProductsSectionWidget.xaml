@@ -39,11 +39,11 @@
         <DockPanel Grid.Row="1" Margin="10" Height="32">
             <Button x:Name="btnPDF" Width="90" Template="{StaticResource commonButton}" Command="{Binding PDFCommand}">В PDF</Button>
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" FlowDirection="RightToLeft">
-                <Button x:Name="btnClose" Width="90" Margin="10, 0" Template="{StaticResource commonButton}" Command="{Binding CloseCommand}">Закрыть</Button>
-                <Button x:Name="btnRead"  Width="90" Margin="10, 0" Template="{StaticResource commonButton}" Command="{Binding ReadCommand}">Просмотр</Button>
-                <Button x:Name="btnDelete" Width="90" Margin="10, 0" Template="{StaticResource commonButton}" Command="{Binding DeleteCommand}">Удалить</Button>
-                <Button x:Name="btnUpdate" Width="90" Margin="10, 0" Template="{StaticResource commonButton}" Command="{Binding UpdateCommand}">Изменить</Button>
-                <Button x:Name="btnInsert" Width="90" Margin="10, 0" Template="{StaticResource commonButton}" Command="{Binding InsertCommand}">Вставить</Button>
+                <Button x:Name="btnClose" Width="90" Margin="10 0" Template="{StaticResource commonButton}" Command="{Binding CloseCommand}">Закрыть</Button>
+                <Button x:Name="btnRead"  Width="90" Margin="10 0" Template="{StaticResource commonButton}" Command="{Binding ReadCommand}">Просмотр</Button>
+                <Button x:Name="btnDelete" Width="90" Margin="10 0" Template="{StaticResource commonButton}" Command="{Binding DeleteCommand}">Удалить</Button>
+                <Button x:Name="btnUpdate" Width="90" Margin="10 0" Template="{StaticResource commonButton}" Command="{Binding UpdateCommand}">Изменить</Button>
+                <Button x:Name="btnInsert" Width="90" Margin="10 0" Template="{StaticResource commonButton}" Command="{Binding InsertCommand}">Вставить</Button>
             </StackPanel>
         </DockPanel>
 

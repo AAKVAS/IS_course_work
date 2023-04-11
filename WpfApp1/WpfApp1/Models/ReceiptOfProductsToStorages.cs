@@ -5,14 +5,52 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
-    public partial class ReceiptOfProductsToStorages
+    public partial class ReceiptOfProductsToStorages : ICopied<ReceiptOfProductsToStorages>
     {
+        public int Id { get; set; }
         public int ProductId { get; set; }
         public int StorageId { get; set; }
-        public DateTime ReceivedAt { get; set; }
+
+        private DateTime? _receivedAt;
+        public DateTime ReceivedAt 
+        { 
+            get
+            {
+                return _receivedAt ?? DateTime.Now;
+            }
+            set
+            {
+                _receivedAt = value;
+            }
+        }
+
         public int Amount { get; set; }
 
         public virtual Products Product { get; set; }
         public virtual Storages Storage { get; set; }
+
+        public ReceiptOfProductsToStorages Clone()
+        {
+            ReceiptOfProductsToStorages receiptOfProductsToStorages = new ReceiptOfProductsToStorages();
+            receiptOfProductsToStorages.Id = Id;
+            receiptOfProductsToStorages.ProductId = ProductId;
+            receiptOfProductsToStorages.StorageId = StorageId;
+            receiptOfProductsToStorages.ReceivedAt = ReceivedAt;
+            receiptOfProductsToStorages.Amount = Amount;
+            receiptOfProductsToStorages.Product = Product;
+            receiptOfProductsToStorages.Storage = Storage; 
+            return receiptOfProductsToStorages;
+        }
+
+        public void Copy(ReceiptOfProductsToStorages receiptOfProductsToStorages)
+        {
+            Id = receiptOfProductsToStorages.Id;
+            ProductId = receiptOfProductsToStorages.ProductId;
+            StorageId = receiptOfProductsToStorages.StorageId;
+            ReceivedAt = receiptOfProductsToStorages.ReceivedAt;
+            Amount = receiptOfProductsToStorages.Amount;
+            Product = receiptOfProductsToStorages.Product;
+            Storage = receiptOfProductsToStorages.Storage;
+        }
     }
 }

@@ -39,7 +39,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Label x:Name="lblPickUpPoint" Grid.Column="0" Grid.Row="0" Content="Пункт выдачи" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="0" Content="Пункт выдачи" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbPickUpPoint"
                       Grid.Row="0"
                       Grid.Column="1" 
@@ -62,18 +62,18 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Label x:Name="lblOrderId" Grid.Column="0" Grid.Row="1" Content="Id заказа"  VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="Id заказа"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbOrderId" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="1"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.Order.Id, Mode=OneWay}" 
                      IsReadOnly="True" 
                      Style="{StaticResource CommonTextBox}" />
 
-            <Label x:Name="lblUser" Grid.Column="0" Grid.Row="2" Content="Пользователь" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="Пользователь" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbUser"
                       Grid.Row="2"
                       Grid.Column="1" 
@@ -94,7 +94,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Label x:Name="lblProduct" Grid.Column="0" Grid.Row="3" Content="Товар" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="Товар" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbProduct"
                       Grid.Row="3"
                       Grid.Column="1" 
@@ -113,29 +113,29 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Label x:Name="lblPrice" Grid.Column="0" Grid.Row="4" Content="Цена"  VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="4" Content="Цена"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbPrice" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="4"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      IsReadOnly="True"
                      Text="{Binding CurrentItem.Order.Price, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}" />
 
-            <Label x:Name="lblProductCount" Grid.Column="0" Grid.Row="5" Content="Количество товаров" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="5" Content="Количество товаров" VerticalAlignment="Center"/>
             <TextBox x:Name="tbProductCount"
                      Grid.Column="1" 
                      Grid.Row="5" 
-                     Margin="0 5 0 5"
+                     Margin="0 5" 
                      Width="200"
                      IsReadOnly="True"
                      HorizontalAlignment="Left"
                      Style="{StaticResource CommonTextBox}" 
                      Text="{Binding CurrentItem.Order.ProductCount, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBlock x:Name="lblStatus" Margin="5 0" Grid.Column="0" Grid.Row="7" Text="Статус заказа" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 0" Grid.Column="0" Grid.Row="7" Text="Статус заказа" TextWrapping="Wrap" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbStatus"
                       Grid.Row="6"
                       Grid.Column="1" 

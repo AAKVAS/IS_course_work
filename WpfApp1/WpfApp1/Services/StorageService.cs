@@ -22,5 +22,15 @@ namespace WpfApp1.Services
         {
             return new ObservableCollection<dynamic>(_context.Storages.Include(s => s.StorageTypeNavigation).ToList());
         }
+
+        public ObservableCollection<dynamic> GetStorageReceipts()
+        {
+            return new ObservableCollection<dynamic>(
+                _context.ReceiptOfProductsToStorages
+                    .Include(r => r.Product)
+                    .Include(r => r.Storage)
+                        .ThenInclude(s => s.StorageTypeNavigation)
+                    .ToList());
+        }
     }
 }

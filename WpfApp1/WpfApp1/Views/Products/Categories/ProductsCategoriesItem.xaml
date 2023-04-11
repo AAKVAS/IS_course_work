@@ -4,10 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Height="200" Width="397"
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+        Height="200" Width="397">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -37,33 +35,33 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="0" Content="Id" VerticalAlignment="Center"/>
             <TextBox x:Name="tbId" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="0"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.Id, Mode=OneWay}" 
                      IsReadOnly="True" 
                      Style="{StaticResource CommonTextBox}">
             </TextBox>
 
-            <Label x:Name="lblTitle" Grid.Column="0" Grid.Row="1" Content="Название категории" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="Название категории" VerticalAlignment="Center"/>
             <TextBox x:Name="tbTitle" 
                      Grid.Column="1" 
                      Grid.Row="1" 
-                     Margin="0 5 0 5"
+                     Margin="0 5" 
                      Width="200"
                      HorizontalAlignment="Left"
                      Text="{Binding CurrentItem.Title, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}"/>
 
-            <Label x:Name="lblParentCategoryId" Grid.Column="0" Grid.Row="2" Content="Id родительской категории" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="Id родительской категории" VerticalAlignment="Center"/>
             <TextBox x:Name="tbParentCategoryId" 
                      Grid.Column="1" 
                      Grid.Row="2" 
-                     Margin="0 5 0 5"
+                     Margin="0 5" 
                      Width="200"
                      HorizontalAlignment="Left"
                      Style="{StaticResource CommonTextBox}" 
@@ -71,9 +69,9 @@
             <StackPanel Grid.Row="7" Grid.Column="1"/>
 
         </Grid>
-        <DockPanel Grid.Row="1"  Margin="10,10,10,10" Grid.ColumnSpan="3">
-            <Button x:Name="btnDataAction" Margin="10, 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
-            <Button x:Name="btnClose" Margin="10, 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
+        <DockPanel Grid.Row="1"  Margin="10" Grid.ColumnSpan="3">
+            <Button x:Name="btnDataAction" Margin="10 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
+            <Button x:Name="btnClose" Margin="10 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
         </DockPanel>
     </Grid>
 </local:ItemForm>

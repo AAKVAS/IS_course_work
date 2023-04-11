@@ -39,48 +39,48 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id"  VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="0" Content="Id"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbId" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="0"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.Id, Mode=OneWay}" 
                      IsReadOnly="True" 
                      Style="{StaticResource CommonTextBox}" />
 
-            <Label x:Name="lblTitle" Grid.Column="0" Grid.Row="1" Content="Название"  VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="Название"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbTitle" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="1"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.Title, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}" />
 
-            <Label x:Name="lblDescription" Grid.Column="0" Grid.Row="2" Content="Описание"  VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="Описание"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbDescription" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="2"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.Description, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}" />
 
-            <Label x:Name="lblPrice" Grid.Column="0" Grid.Row="3" Content="Цена" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="Цена" VerticalAlignment="Center"/>
             <TextBox x:Name="tbPrice" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="3"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.Price, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}" />
 
-            <Label x:Name="lblSupplier" Grid.Column="0" Grid.Row="4" Content="Поставщик" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="4" Content="Поставщик" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbSupplier"
                       Grid.Row="4"
                       Grid.Column="1" 
@@ -91,14 +91,14 @@
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Grid.Column="0" Content="{Binding Id}"/>
-                            <Label Grid.Column="1" Content="{Binding Title}"/>
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding Title}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Label x:Name="lblCategory" Grid.Column="0" Grid.Row="5" Content="Категория" VerticalAlignment="Center" />
+            <Label Grid.Column="0" Grid.Row="5" Content="Категория" VerticalAlignment="Center" />
             <ComboBox x:Name="cbCategory"
                       Grid.Row="5"
                       Grid.Column="1" 
@@ -109,20 +109,20 @@
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Grid.Column="0" Content="{Binding Id}" />
-                            <Label Grid.Column="1" Content="{Binding Title}" />
+                            <Label Content="{Binding Id}" />
+                            <Label Content="{Binding Title}" />
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <TextBlock x:Name="lblPercent" Margin="5 0" Grid.Column="0" Grid.Row="7" Text="Процент поставщика с продажи" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <TextBlock Margin="5 0" Grid.Column="0" Grid.Row="7" Text="Процент поставщика с продажи" TextWrapping="Wrap" VerticalAlignment="Center"/>
             <TextBox x:Name="tbPercent" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="7"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.SupplierPercent, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource CommonTextBox}" />
         </Grid>

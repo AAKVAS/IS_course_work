@@ -35,19 +35,19 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Label x:Name="lblId" Grid.Column="0" Grid.Row="0" Content="Id"  VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="0" Content="Id"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbId" 
                      Width="200"
                      Grid.Column="1"
                      Grid.Row="0"
                      HorizontalAlignment="Left"
-                     Margin="0 5 0 5" 
+                     Margin="0 5" 
                      Text="{Binding CurrentItem.Id, Mode=OneWay}" 
                      IsReadOnly="True" 
                      Style="{StaticResource CommonTextBox}">
             </TextBox>
 
-            <Label x:Name="lblUser" Grid.Column="0" Grid.Row="1" Content="Пользователь" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="Пользователь" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbUser"
                       Grid.Row="1"
                       Grid.Column="1" 
@@ -67,7 +67,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <Label x:Name="lblProduct" Grid.Column="0" Grid.Row="2" Content="Товар" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="2" Content="Товар" VerticalAlignment="Center"/>
             <ComboBox x:Name="cbProduct"
                       Grid.Row="2"
                       Grid.Column="1" 
@@ -79,8 +79,8 @@
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Grid.Column="0" Content="{Binding Id}"/>
-                            <Label Grid.Column="1" Content="{Binding Title}"/>
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding Title}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>

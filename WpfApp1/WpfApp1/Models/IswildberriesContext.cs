@@ -399,7 +399,7 @@ namespace WpfApp1.Models
 
             modelBuilder.Entity<ReceiptOfProductsToStorages>(entity =>
             {
-                entity.HasKey(e => new { e.ProductId, e.StorageId, e.ReceivedAt });
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.ToTable("receipt_of_products_to_storages");
 

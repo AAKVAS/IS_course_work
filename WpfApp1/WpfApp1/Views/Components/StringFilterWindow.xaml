@@ -29,7 +29,7 @@
             <RowDefinition Height="1.3*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="lblSearch" 
+        <Label
                Content="Тип поиска"
                Grid.Column="0" 
                Grid.Row="0" 
@@ -51,7 +51,7 @@
             <ComboBoxItem Name="cbiContain" Content="Содержит" />
         </ComboBox>
 
-        <Label x:Name="lblParameter" 
+        <Label
                Content="Значение"
                Grid.Column="0" 
                Grid.Row="1" 
