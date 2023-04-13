@@ -4,20 +4,24 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Logging;
 using WpfApp1.Models.DTO;
 
 namespace WpfApp1.Models
 {
     public partial class ISWildberriesContext : DbContext
     {
-        public ISWildberriesContext()
-        {
-        }
+        #if DEBUG
+            public static readonly Microsoft.Extensions.Logging.LoggerFactory _myLoggerFactory =
+                new LoggerFactory(new[] {
+                    new Microsoft.Extensions.Logging.Debug.DebugLoggerProvider()
+                });
+        #endif
+
+        public ISWildberriesContext() { }
 
         public ISWildberriesContext(DbContextOptions<ISWildberriesContext> options)
-            : base(options)
-        {
-        }
+            : base(options) { }
 
         public virtual DbSet<Cards> Cards { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
@@ -52,7 +56,13 @@ namespace WpfApp1.Models
         public virtual DbSet<WorkersInOrdersDTO> WorkersInOrdersDTO { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-       => optionsBuilder.UseSqlServer("Data Source = LAPTOP-LJNAL6S6; Initial Catalog = ISWildberries; Integrated Security = True; Encrypt = False");
+        {
+            optionsBuilder.UseSqlServer("Data Source = LAPTOP-LJNAL6S6; Initial Catalog = ISWildberries; Integrated Security = True; Encrypt = False");
+
+            #if DEBUG
+                optionsBuilder.UseLoggerFactory(_myLoggerFactory);
+            #endif
+        }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -531,8 +541,7 @@ namespace WpfApp1.Models
 
             modelBuilder.Entity<StorageWorkerShifts>(entity =>
             {
-                entity.HasKey(e => new { e.WorkerId, e.StorageId, e.StartedShiftAt })
-                    .HasName("PK_w_a_s_id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.ToTable("storage_worker_shifts");
 

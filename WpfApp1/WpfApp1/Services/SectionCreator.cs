@@ -28,9 +28,9 @@ namespace WpfApp1.Services
                       return new StoragesGeneralInfoSectionWidget(section);
                 case "storages_receipts":
                     return new StoragesReceiptsSectionWidget(section);
+                case "storages_worker_shifts":
+                    return new StoragesWorkerShiftsSectionWidget(section);
                     /*
-              case "storages_worker_shifts":
-                  return new SectionWidgetViewModel();
               case "storages_product_amount":
                   return new SectionWidgetViewModel();
                 */

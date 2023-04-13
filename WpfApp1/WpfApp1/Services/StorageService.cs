@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,6 +32,42 @@ namespace WpfApp1.Services
                     .Include(r => r.Storage)
                         .ThenInclude(s => s.StorageTypeNavigation)
                     .ToList());
+        }
+
+        public ObservableCollection<dynamic> GetStorageWorkerShifts()
+        {
+            return new ObservableCollection<dynamic>(
+                _context.StorageWorkerShifts
+                    .Include(s => s.Worker)
+                        .ThenInclude(w => w.Post)
+                    .Include(s => s.Storage)
+                        .ThenInclude(s => s.StorageTypeNavigation)
+                    .ToList());
+        }
+
+        public void InsertStorageWorkerShift(StorageWorkerShifts storageWorkerShifts)
+        {
+            string query = @"INSERT INTO storage_worker_shifts (
+                                        storage_id,
+	                                    started_shift_at, 
+	                                    finished_shift_at,
+	                                    worker_id
+                                )
+                                VALUES (
+                                        @storage_id,
+	                                    @started_shift_at, 
+	                                    @finished_shift_at,
+	                                    @worker_id
+                                )";
+
+            SqlParameter[] parameters = new[]
+            {
+                new SqlParameter("@storage_id", storageWorkerShifts.Storage.Id),
+                new SqlParameter("@started_shift_at", storageWorkerShifts.StartedShiftAt),
+                new SqlParameter("@finished_shift_at", storageWorkerShifts.FinishedShiftAt),
+                new SqlParameter("@worker_id", storageWorkerShifts.Worker.Id)
+            };
+            _context.Database.ExecuteSqlRaw(query, parameters);
         }
     }
 }

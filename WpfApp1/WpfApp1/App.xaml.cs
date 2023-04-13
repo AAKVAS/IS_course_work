@@ -31,6 +31,7 @@ namespace WpfApp1
             else
             {
                 MessageBox.Show("Не удалось подключиться к базе данных!");
+                Current.Shutdown();
             }
         }
 
