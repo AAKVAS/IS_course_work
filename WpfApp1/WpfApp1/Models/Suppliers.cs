@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
-    public partial class Suppliers
+    public partial class Suppliers : ICopied<Suppliers>
     {
         public Suppliers()
         {
@@ -16,5 +16,21 @@ namespace WpfApp1.Models
         public string Title { get; set; } = null!;
 
         public virtual ICollection<Products> Products { get; set; }
+
+        public Suppliers Clone()
+        {
+            Suppliers suppliers = new();
+            suppliers.Id = Id;
+            suppliers.Title = Title;
+            suppliers.Products = Products;
+            return suppliers;
+        }
+
+        public void Copy(Suppliers suppliers)
+        {
+            Id = suppliers.Id;
+            Title = suppliers.Title;
+            Products = suppliers.Products;
+        }
     }
 }

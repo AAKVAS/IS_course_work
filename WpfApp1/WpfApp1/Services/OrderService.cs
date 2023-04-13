@@ -13,7 +13,7 @@ namespace WpfApp1.Services
 {
     public class OrderService
     {
-        private static readonly ISWildberriesContext _context = new ISWildberriesContext();
+        private static readonly ISWildberriesContext _context = App.Context;
 
         public dynamic GetOrderByOrderId(int OrderId)
         {

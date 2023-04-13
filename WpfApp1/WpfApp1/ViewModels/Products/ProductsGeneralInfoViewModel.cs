@@ -42,7 +42,7 @@ namespace WpfApp1.ViewModels.Products
 
         private ProductService _productService;
 
-        public List<Suppliers> Suppliers;
+        public List<Models.Suppliers> Suppliers;
         public List<Categories> Categories;
 
         public ProductsGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
@@ -77,9 +77,7 @@ namespace WpfApp1.ViewModels.Products
             _sectionData = _productService.GetProductsGeneralInfo();
         }
 
-        protected override void FillItem()
-        {
-        }
+        protected override void FillItem() {}
 
         protected override string GetErrors()
         {

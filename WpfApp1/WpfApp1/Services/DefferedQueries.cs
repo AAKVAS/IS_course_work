@@ -24,7 +24,7 @@ namespace WpfApp1.Services
 
     public class DefferedQueries
     {
-        private static readonly ISWildberriesContext _context = new ISWildberriesContext();
+        private static readonly ISWildberriesContext _context = App.Context;
 
         private List<QueryWithParameters> _queries = new List<QueryWithParameters>();
         public static List<SqlParameter> CommonParameters { get; set; } = new();

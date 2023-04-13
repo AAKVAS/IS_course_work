@@ -1,4 +1,4 @@
-﻿<local:SectionWidget x:Class="WpfApp1.Views.StoragesWorkerShiftsSectionWidget"
+﻿<local:SectionWidget x:Class="WpfApp1.Views.SuppliersGeneralInfoSectionWidget"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,20 +27,7 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="40" />
-                <DataGridTextColumn Header="Id склада" Binding="{Binding Path=Storage.Id}" Width="40" />
-                <DataGridTextColumn Header="Тип склада" Binding="{Binding Path=Storage.StorageTypeNavigation.Title}" Width="90" />
-                <DataGridTextColumn Header="Страна" Binding="{Binding Path=Storage.Country}" Width="90" />
-                <DataGridTextColumn Header="Субъект" Binding="{Binding Path=Storage.FederalSubject}" Width="80" />
-                <DataGridTextColumn Header="Город" Binding="{Binding Path=Storage.Locality}" Width="90" />
-                <DataGridTextColumn Header="Улица" Binding="{Binding Path=Storage.Street}" Width="90" />
-                <DataGridTextColumn Header="Дом" Binding="{Binding Path=Storage.HouseNumber}" Width="90" />
-                <DataGridTextColumn Header="Id сотрудника" Binding="{Binding Path=Worker.Id}" Width="40" />
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=Worker.Lastname}" Width="90" />
-                <DataGridTextColumn Header="Имя" Binding="{Binding Path=Worker.Firstname}" Width="90" />
-                <DataGridTextColumn Header="Отчество" Binding="{Binding Path=Worker.Patronymic}" Width="90" />
-                <DataGridTextColumn Header="Должность" Binding="{Binding Path=Worker.Post.Title}" Width="90" />
-                <DataGridTextColumn Header="Начало смены" Binding="{Binding Path=StartedShiftAt}" Width="110" />
-                <DataGridTextColumn Header="Конец смены" Binding="{Binding Path=FinishedShiftAt}" Width="110" />
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Title}" Width="140" />
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1" Margin="10" Height="32">

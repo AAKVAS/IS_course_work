@@ -16,6 +16,7 @@ namespace WpfApp1
         public readonly static SectionService SectionService = new();
         public readonly static StorageService StorageService = new();
         public readonly static UserService UserService = new();
+        public readonly static SupplierService SupplierService = new();
         public readonly static WorkerService WorkerService = new();
         public readonly static OrderService OrderService = new();
 
