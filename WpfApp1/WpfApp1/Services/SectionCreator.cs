@@ -42,8 +42,8 @@ namespace WpfApp1.Services
                       return new ProductsPriceHistorySectionWidget(section);
                   case "suppliers_general_info":
                       return new SuppliersGeneralInfoSectionWidget(section);
-                 /* case "suppliers_profit": 
-                      return new SectionWidgetViewModel();*/
+                  case "suppliers_profit": 
+                      return new SuppliersProfitSectionWidget(section);
                   case "workers_list": 
                       return new WorkersListSectionWidget(section);
             }

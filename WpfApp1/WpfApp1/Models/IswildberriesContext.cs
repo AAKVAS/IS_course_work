@@ -49,6 +49,7 @@ namespace WpfApp1.Models
         public virtual DbSet<StorageWorkerShifts> StorageWorkerShifts { get; set; }
         public virtual DbSet<Storages> Storages { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
+        public virtual DbSet<SuppliersProfitDTO> SuppliersProfitDTO { get; set; }
         public virtual DbSet<TableFiles> TableFiles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserAverageCostDTO> UserAverageCostDTO { get; set; }
