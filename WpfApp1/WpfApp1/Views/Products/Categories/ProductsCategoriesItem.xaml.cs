@@ -38,7 +38,7 @@ namespace WpfApp1.Views.Products.Categories
         private void DisableAllInputs()
         {
             tbTitle.IsReadOnly = true;
-            tbParentCategoryId.IsReadOnly = true;
+            cbParentCategory.IsEnabled =  false;
         }
 
     }

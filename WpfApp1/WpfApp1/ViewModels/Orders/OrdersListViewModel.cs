@@ -88,13 +88,13 @@ namespace WpfApp1.ViewModels.Orders
             {
                 errorBuilder.AppendLine("Свойство \"Товар\" обязательно для заполнения;");
             }
-            if (CurrentItem.PickUpPoint == null)
-            {
-                errorBuilder.AppendLine("Свойство \"Пункт выдачи\" обязательно для заполнения;");
-            }
             if (CurrentItem.ProductCount <= 0)
             {
                 errorBuilder.AppendLine("\"Количество товаров\" представляет из себя положительное число;");
+            }
+            if (CurrentItem.PickUpPoint == null)
+            {
+                errorBuilder.AppendLine("Свойство \"Пункт выдачи\" обязательно для заполнения;");
             }
             if (CurrentItem.CreatedAt == null || CurrentItem.CreatedAt < new DateTime(1900, 1, 1) || CurrentItem.CreatedAt > new DateTime(3000, 12, 31))
             {
@@ -103,6 +103,10 @@ namespace WpfApp1.ViewModels.Orders
             if (CurrentItem.EstimatedDeliveryAt == null || CurrentItem.EstimatedDeliveryAt < new DateTime(1900, 1, 1) || CurrentItem.EstimatedDeliveryAt > new DateTime(3000, 12, 31))
             {
                 errorBuilder.AppendLine("Свойство \"Ориентировочная дата выдачи\" обязательно для заполнения, допустимые значения от 1900.01.01 до 3000.12.31;");
+            }
+            if (CurrentItem.CreatedAt != null && CurrentItem.EstimatedDeliveryAt != null && CurrentItem.CreatedAt >= CurrentItem.EstimatedDeliveryAt)
+            {
+                errorBuilder.AppendLine("Значние свойства \"Дата формирования заказа\" должно быть меньше свойства\"Ориентировочная дата выдачи\";");
             }
 
             return errorBuilder.ToString();

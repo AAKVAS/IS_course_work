@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WpfApp1.Models
 {
@@ -21,6 +22,12 @@ namespace WpfApp1.Models
         public virtual Categories ParentCategory { get; set; }
         public virtual ObservableCollection<Categories> InverseParentCategory { get; set; }
         public virtual ObservableCollection<Products> Products { get; set; }
+
+        [NotMapped]
+        public string? ParentCategoryTitle
+        {
+            get => ParentCategory?.Title;
+        }
 
         public Categories Clone()
         {

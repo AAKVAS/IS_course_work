@@ -34,6 +34,7 @@ namespace WpfApp1.ViewModels.Products
         }
 
         private ProductService _productService;
+        public ObservableCollection<Categories> Categories { get; set; }
 
         public ProductsCategoriesViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _productService = App.ProductService;
@@ -42,11 +43,12 @@ namespace WpfApp1.ViewModels.Products
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new Models.Categories();
+            _currentItem = new Categories();
         }
 
         protected override void CreateNewItemForm()
         {
+            Categories = new ObservableCollection<Categories>(_productService.GetCategories());
             _itemForm = new ProductsCategoriesItem(this);
         }
 
@@ -62,12 +64,10 @@ namespace WpfApp1.ViewModels.Products
 
         public override void UpdateSectionData()
         {
-            _sectionData = _productService.GetCategories();
+            _sectionData = new ObservableCollection<dynamic>(_productService.GetCategories());
         }
 
-        protected override void FillItem()
-        {
-        }
+        protected override void FillItem() {}
 
         protected override string GetErrors()
         {
@@ -77,9 +77,9 @@ namespace WpfApp1.ViewModels.Products
             {
                 errorBuilder.AppendLine("Поле \"Название\" обязательно для заполнения;");
             }
-            if (!_productService.IsExistCategory(CurrentItem.ParentCategoryId))
+            if (CurrentItem.ParentCategory != null && CurrentItem.ParentCategory.Id == CurrentItem.Id)
             {
-                errorBuilder.AppendLine("Родительская категория с таким Id не найдена!");
+                errorBuilder.AppendLine("Свойство \"Родительская категория\" не может быть текущей категорией;");
             }
             return errorBuilder.ToString();
         }

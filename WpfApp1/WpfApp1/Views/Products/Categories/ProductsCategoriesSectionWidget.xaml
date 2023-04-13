@@ -29,6 +29,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="40" />
                 <DataGridTextColumn Header="Название категории" Binding="{Binding Path=Title}" Width="150" />
                 <DataGridTextColumn Header="Id родительской категории" Binding="{Binding Path=ParentCategoryId}" Width="170" />
+                <DataGridTextColumn Header="Название родительской категории" Binding="{Binding Path=ParentCategoryTitle}" Width="170" />
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1" Margin="10" Height="32">

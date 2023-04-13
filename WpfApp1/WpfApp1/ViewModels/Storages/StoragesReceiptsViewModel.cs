@@ -75,10 +75,6 @@ namespace WpfApp1.ViewModels.Storages
         {
             StringBuilder errorBuilder = new StringBuilder();
 
-            if (CurrentItem.Amount <= 0)
-            {
-                errorBuilder.AppendLine("Поле \"Количество\" - положительное число;");
-            }
             if (CurrentItem.Storage == null)
             {
                 errorBuilder.AppendLine("Поле \"Склад\" обязательно для заполнения;");
@@ -86,6 +82,10 @@ namespace WpfApp1.ViewModels.Storages
             if (CurrentItem.Product == null)
             {
                 errorBuilder.AppendLine("Свойство \"Товар\" обязательно для заполнения;");
+            }
+            if (CurrentItem.Amount <= 0)
+            {
+                errorBuilder.AppendLine("Поле \"Количество\" - положительное число;");
             }
             if (CurrentItem.ReceivedAt == null || CurrentItem.ReceivedAt < new DateTime(1900, 1, 1) || CurrentItem.ReceivedAt > new DateTime(3000, 12, 31))
             {

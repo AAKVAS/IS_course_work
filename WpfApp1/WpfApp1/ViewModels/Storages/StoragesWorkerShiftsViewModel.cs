@@ -93,9 +93,9 @@ namespace WpfApp1.ViewModels.Storages
             {
                 errorBuilder.AppendLine("Свойство \"Окончание смены\" обязательно для заполнения, допустимые значения от 1900.01.01 до 3000.12.31;");
             }
-            if (CurrentItem.StartedShiftAt >= CurrentItem.FinishedShiftAt)
+            if (CurrentItem.StartedShiftAt != null && CurrentItem.FinishedShiftAt != null && CurrentItem.StartedShiftAt >= CurrentItem.FinishedShiftAt)
             {
-                errorBuilder.AppendLine("Значние свойства \"Начало смены\" должно быть меньше свойства\"Окончание смены\"");
+                errorBuilder.AppendLine("Значние свойства \"Начало смены\" должно быть меньше свойства\"Окончание смены\";");
             }
 
             return errorBuilder.ToString();

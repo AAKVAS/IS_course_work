@@ -89,21 +89,21 @@ namespace WpfApp1.ViewModels.Products
             {
                 errorBuilder.AppendLine("Поле \"Название\" обязательно для заполнения;");
             }
-            if (CurrentItem.Price <= 0)
-            {
-                errorBuilder.AppendLine("\"Цена\" представляет из себя положительное число;");
-            }
             if (string.IsNullOrWhiteSpace(CurrentItem.Description))
             {
                 errorBuilder.AppendLine("Поле \"Описание\" обязательно для заполнения;");
             }
-            if (CurrentItem.Category == null)
+            if (CurrentItem.Price <= 0)
             {
-                errorBuilder.AppendLine("Свойство \"Категория\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Цена\" - положительное число;");
             }
             if (CurrentItem.Supplier == null)
             {
                 errorBuilder.AppendLine("Свойство \"Поставщик\" обязательно для заполнения;");
+            }
+            if (CurrentItem.Category == null)
+            {
+                errorBuilder.AppendLine("Свойство \"Категория\" обязательно для заполнения;");
             }
             if (CurrentItem.SupplierPercent <= 0 || CurrentItem.SupplierPercent >= 100)
             {

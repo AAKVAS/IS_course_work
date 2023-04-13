@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using WpfApp1.Models;
@@ -57,9 +58,9 @@ namespace WpfApp1.Services
                 .FirstOrDefault() ?? new Reviews();
         }
 
-        public ObservableCollection<dynamic> GetCategories()
+        public List<Categories> GetCategories()
         {
-            return new ObservableCollection<dynamic>(_context.Categories.ToList());
+            return _context.Categories.Include(c => c.ParentCategory).ToList();
         }
 
         public bool IsExistCategory(int id)

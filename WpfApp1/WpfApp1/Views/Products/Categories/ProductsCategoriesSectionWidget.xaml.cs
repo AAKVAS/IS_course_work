@@ -15,7 +15,8 @@ namespace WpfApp1.Views
                 return new Dictionary<string, string> {
                     { "Id", "Id" },
                     { "Название категории", "Title" },
-                    { "Id родительской категории", "ParentCategoryId" }
+                    { "Id родительской категории", "ParentCategory.Id" },
+                    { "Название родительской категории", "ParentCategoryTitle" }
                 };
             }
         }

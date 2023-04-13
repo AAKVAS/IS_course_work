@@ -104,6 +104,10 @@ namespace WpfApp1.ViewModels.Workers
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();
+            if (string.IsNullOrWhiteSpace(CurrentItem.WorkerLogin))
+            {
+                errorBuilder.AppendLine("Поле \"Логин\" обязательно для заполнения;");
+            }
             if (string.IsNullOrWhiteSpace(CurrentItem.Lastname))
             {
                 errorBuilder.AppendLine("Поле \"Фамилия\" обязательно для заполнения;");
