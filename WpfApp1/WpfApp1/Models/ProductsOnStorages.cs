@@ -5,13 +5,36 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
-    public partial class ProductsOnStorages
+    public partial class ProductsOnStorages : ICopied<ProductsOnStorages>
     {
+        public int Id { get; set; }
         public int StorageId { get; set; }
         public int ProductId { get; set; }
-        public int? ProductAmount { get; set; }
+        public int ProductAmount { get; set; }
 
         public virtual Products Product { get; set; }
         public virtual Storages Storage { get; set; }
+
+        public ProductsOnStorages Clone()
+        {
+            ProductsOnStorages productsOnStorages = new ProductsOnStorages();
+            productsOnStorages.Id = Id;
+            productsOnStorages.StorageId = StorageId;
+            productsOnStorages.ProductId = ProductId;
+            productsOnStorages.ProductAmount = ProductAmount;
+            productsOnStorages.Product = Product;
+            productsOnStorages.Storage = Storage;
+            return productsOnStorages;
+        }
+
+        public void Copy(ProductsOnStorages productsOnStorages)
+        {
+            Id = productsOnStorages.Id;
+            StorageId = productsOnStorages.StorageId;
+            ProductId = productsOnStorages.ProductId;
+            ProductAmount = productsOnStorages.ProductAmount;
+            Product = productsOnStorages.Product;
+            Storage = productsOnStorages.Storage;
+        }
     }
 }

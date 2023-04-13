@@ -69,5 +69,15 @@ namespace WpfApp1.Services
             };
             _context.Database.ExecuteSqlRaw(query, parameters);
         }
+
+        public ObservableCollection<dynamic> GetStoragesProductAmount()
+        {
+            return new ObservableCollection<dynamic>(
+                _context.ProductsOnStorages
+                    .Include(p => p.Product)
+                    .Include(p => p.Storage)
+                        .ThenInclude(s => s.StorageTypeNavigation)
+                    .ToList());
+        }
     }
 }

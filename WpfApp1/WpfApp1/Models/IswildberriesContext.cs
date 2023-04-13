@@ -359,8 +359,7 @@ namespace WpfApp1.Models
 
             modelBuilder.Entity<ProductsOnStorages>(entity =>
             {
-                entity.HasKey(e => new { e.StorageId, e.ProductId })
-                    .HasName("PK_pos_id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.ToTable("products_on_storages");
 

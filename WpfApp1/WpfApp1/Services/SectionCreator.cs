@@ -30,10 +30,8 @@ namespace WpfApp1.Services
                     return new StoragesReceiptsSectionWidget(section);
                 case "storages_worker_shifts":
                     return new StoragesWorkerShiftsSectionWidget(section);
-                    /*
-              case "storages_product_amount":
-                  return new SectionWidgetViewModel();
-                */
+                case "storages_product_amount":
+                    return new StorageProductAmountSectionWidget(section);
                   case "products_general_info": 
                       return new ProductsGeneralInfoSectionWidget(section);
                   case "products_reviews":

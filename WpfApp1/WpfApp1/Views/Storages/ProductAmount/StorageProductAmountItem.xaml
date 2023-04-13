@@ -1,0 +1,111 @@
+﻿<local:ItemForm x:Class="WpfApp1.Views.Storages.ProductAmount.StorageProductAmountItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        mc:Ignorable="d"
+        Icon="\Resources\wb.ico"
+        Height="255" Width="392">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/ComboBoxTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Resources/TextBoxTheme.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="46*"/>
+            <ColumnDefinition Width="259*"/>
+            <ColumnDefinition Width="28*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="Id" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="tbId" 
+                     Width="280"
+                     Grid.Column="1"
+                     Grid.Row="0"
+                     HorizontalAlignment="Left"
+                     Margin="0 5" 
+                     Text="{Binding CurrentItem.Id, Mode=OneWay}" 
+                     IsReadOnly="True" 
+                     Style="{StaticResource CommonTextBox}">
+            </TextBox>
+
+            <Label Grid.Column="0" Grid.Row="1" Content="Склад" VerticalContentAlignment="Center"/>
+            <ComboBox x:Name="cbStorage"
+                      Grid.Row="1"
+                      Grid.Column="1" 
+                      Style="{StaticResource CommonComboBox}"
+                      ItemsSource="{Binding Storages}"
+                      Width="280" 
+                      HorizontalAlignment="Left"
+                      SelectedValue="{Binding CurrentItem.Storage}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding StorageTypeNavigation.Title}"/>
+                            <Label Content="{Binding Country}"/>
+                            <Label Content="{Binding FederalSubject}"/>
+                            <Label Content="{Binding Locality}"/>
+                            <Label Content="{Binding Street}"/>
+                            <Label Content="{Binding HouseNumber}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Label Grid.Column="0" Grid.Row="2" Content="Товар" VerticalAlignment="Center"/>
+            <ComboBox x:Name="cbProduct"
+                      Grid.Row="2"
+                      Grid.Column="1" 
+                      Style="{StaticResource CommonComboBox}"
+                      Width="280" 
+                      HorizontalAlignment="Left"
+                      ItemsSource="{Binding Products}"
+                      SelectedValue="{Binding CurrentItem.Product}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Id}"/>
+                            <Label Content="{Binding Title}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Label Grid.Column="0" Grid.Row="3" Content="Количество" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="tbAmount" 
+                     Width="280"
+                     Grid.Column="1"
+                     Grid.Row="3"
+                     HorizontalAlignment="Left"
+                     Margin="0 5" 
+                     Text="{Binding CurrentItem.ProductAmount}" 
+                     Style="{StaticResource CommonTextBox}">
+            </TextBox>
+        </Grid>
+        <DockPanel Grid.Row="1"  Margin="10" Grid.ColumnSpan="3">
+            <Button x:Name="btnDataAction" Margin="10 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
+            <Button x:Name="btnClose" Margin="10 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
+        </DockPanel>
+    </Grid>
+</local:ItemForm>
