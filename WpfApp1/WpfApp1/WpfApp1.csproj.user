@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="App.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControl1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Components\DataFilterWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Components\ImageForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Components\StringFilterWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SectionWidget.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ItemWithImages.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Users\GeneralInfo\UserGeneralInfoItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Workers\WorkersList\ChangePasswordForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="App.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\ButtonTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\ComboBoxTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\DataGridTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\MenuTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\TextBoxTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControl1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Components\DataFilterWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Components\ImageForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Components\StringFilterWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Orders\OrderHistory\OrderHistoryItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Orders\OrderHistory\OrderHistorySectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Orders\OrderHistory\OrderHistoryWorkersItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Orders\OrderHistory\OrderHistoryWorkersSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Orders\OrdersList\OrdersListItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Orders\OrdersList\OrdersListSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Products\Categories\ProductsCategoriesItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Products\Categories\ProductsCategoriesSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Products\GeneralInfo\ProductsGeneralInfoItemWithImages.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Products\GeneralInfo\ProductsGeneralInfoSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Products\PriceHistory\ProductsPriceHistoryItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Products\PriceHistory\ProductsPriceHistorySectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Products\Reviews\ProductsReviewsItemWithImages.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Products\Reviews\ProductsReviewsSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Storages\GeneralInfo\StoragesGeneralInfoItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Storages\GeneralInfo\StoragesGeneralInfoSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Storages\ProductAmount\StorageProductAmountItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Storages\ProductAmount\StorageProductAmountSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Storages\Receipts\StoragesReceiptsItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Storages\Receipts\StoragesReceiptsSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Storages\WorkerShifts\StoragesWorkerShiftsItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Storages\WorkerShifts\StoragesWorkerShiftsSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Suppliers\GeneralInfo\SuppliersGeneralInfoItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Suppliers\GeneralInfo\SuppliersGeneralInfoSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Suppliers\Profit\SuppliersProfitItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Suppliers\Profit\SuppliersProfitSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Users\AvgCost\UserAvgCostItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Users\AvgCost\UserAvgCostSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Users\DefferedProducts\UserDefferedProductsItemWithImages.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Users\DefferedProducts\UserDefferedProductsSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Users\GeneralInfo\UserGeneralInfoSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Users\GeneralInfo\UserGeneralInfoItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Workers\WorkersList\ChangePasswordForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Workers\WorkersList\WorkersListItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Workers\WorkersList\WorkersListSectionWidget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

@@ -1,6 +1,8 @@
 WpfApp1/.vs/
 WpfApp1/WpfApp1/bin/
 WpfApp1/WpfApp1/obj/
-WpfApp1/WpfApp1/WpfApp1.csproj
-WpfApp1/WpfApp1/WpfApp1.csproj.user
-
+WpfApp1/PasswordEvaluatorTests/bin/
+WpfApp1/PasswordEvaluatorTests/obj/
+WpfApp1/PasswordEvaluatorLib/bin/
+WpfApp1/PasswordEvaluatorLib/obj/
+WpfApp1/PasswordEvaluatorLib/.vs/

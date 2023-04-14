@@ -20,15 +20,23 @@ namespace WpfApp1.Views.Workers.WorkersList
     /// </summary>
     public partial class ChangePasswordForm : Window
     {
+        private WorkersListViewModel _workersListSectionWidget;
+
         public ChangePasswordForm(WorkersListViewModel workersListSectionWidget)
         {
             InitializeComponent();
-            DataContext = workersListSectionWidget;
+            _workersListSectionWidget = workersListSectionWidget;
+            DataContext = _workersListSectionWidget;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            tbPasswordComplexity.Text = _workersListSectionWidget.RusPasswordComplexity;
         }
     }
 }

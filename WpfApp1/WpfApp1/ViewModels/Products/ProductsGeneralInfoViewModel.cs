@@ -48,8 +48,6 @@ namespace WpfApp1.ViewModels.Products
         public ProductsGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _productService = App.ProductService;
             UpdateSectionData();
-            Suppliers = App.Context.Suppliers.ToList();
-            Categories = App.Context.Categories.ToList();
         }
 
         protected override void MakeCurrentItemEmpty()
@@ -59,6 +57,8 @@ namespace WpfApp1.ViewModels.Products
 
         protected override void CreateNewItemForm()
         {
+            Suppliers = App.Context.Suppliers.ToList();
+            Categories = App.Context.Categories.ToList();
             _itemForm = new ProductsGeneralInfoItemWithImages(this);
         }
 

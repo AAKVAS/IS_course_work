@@ -8,6 +8,8 @@ using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Workers.WorkersList;
 using System.Windows.Controls;
+using PasswordEvaluatorLib;
+using System.Windows;
 
 namespace WpfApp1.ViewModels.Workers
 {
@@ -65,10 +67,27 @@ namespace WpfApp1.ViewModels.Workers
 
         public List<Posts> Posts;
 
+        private PasswordEvaluator _passwordEvaluator;
+        private PasswordComplexity _passwordComplexity;
+        public string RusPasswordComplexity
+        {
+            get
+            {
+                EvaluatePassword();
+                return PasswordEvaluator.PasswordComplexityToRus(_passwordComplexity);
+            }
+        }
+
         public WorkersListViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _workerService = App.WorkerService;
+            _passwordEvaluator = new();
             UpdateSectionData();
             Posts = App.Context.Posts.ToList();
+        }
+
+        private void EvaluatePassword()
+        {
+            _passwordComplexity = _passwordEvaluator.EvaluatePassword(_changePasswordForm.passwordBox.Password);
         }
 
         protected override void MakeCurrentItemEmpty()
@@ -143,8 +162,16 @@ namespace WpfApp1.ViewModels.Workers
 
         public void ChangePassword()
         {
-            CurrentItem.WorkerPassword = CryptionService.hashSHA255(_changePasswordForm.passwordBox.Password);
-            _changePasswordForm.Close();
+            EvaluatePassword();
+            if (_passwordComplexity == PasswordComplexity.Weak)
+            {
+                MessageBox.Show("Ваш пароль - слабый");
+            }
+            else
+            {
+                CurrentItem.WorkerPassword = CryptionService.hashSHA255(_changePasswordForm.passwordBox.Password);
+                _changePasswordForm.Close();
+            }
         }
 
     }
