@@ -193,7 +193,7 @@ namespace WpfApp1.ViewModels
                 App.Context.SaveChanges();
                 UpdateItems();
             }
-            catch (DbUpdateException ex)
+            catch (Exception ex)
             {
                 entry.Reload();
                 MakeCurrentItemEmpty();

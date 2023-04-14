@@ -13,7 +13,6 @@ namespace WpfApp1.Views.Products.PriceHistory
             InitializeComponent();
             _viewModel = (ProductsPriceHistoryViewModel)_sectionWidgetViewModel;
             DataContext = _viewModel;
-            cbProduct.ItemsSource = _viewModel.Products;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

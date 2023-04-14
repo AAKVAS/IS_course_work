@@ -14,9 +14,6 @@ namespace WpfApp1.Views.Orders.OrdersList
             InitializeComponent();
             _ordersListViewModel = (OrdersListViewModel)_sectionWidgetViewModel;
             DataContext = _ordersListViewModel;
-            cbUser.ItemsSource = _ordersListViewModel.Users;
-            cbPickUpPoint.ItemsSource = _ordersListViewModel.PickUpPoints;
-            cbProduct.ItemsSource = _ordersListViewModel.Products;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

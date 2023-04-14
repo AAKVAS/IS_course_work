@@ -14,8 +14,6 @@ namespace WpfApp1.Views.Products.GeneralInfo
             InitializeComponent();
             _viewModel = (ProductsGeneralInfoViewModel)_sectionWidgetViewModel;
             DataContext = _viewModel;
-            cbSupplier.ItemsSource = _viewModel.Suppliers;
-            cbCategory.ItemsSource = _viewModel.Categories;
             _viewModel.LoadCurrentItemImages();
             lbImages.ItemsSource = _viewModel.CurrentItemFromContext.Images;
         }

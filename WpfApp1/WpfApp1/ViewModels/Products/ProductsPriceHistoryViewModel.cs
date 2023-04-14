@@ -7,6 +7,7 @@ using WpfApp1.Views;
 using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Products.PriceHistory;
+using System.Windows.Controls;
 
 namespace WpfApp1.ViewModels.Products
 {
@@ -38,7 +39,6 @@ namespace WpfApp1.ViewModels.Products
 
         public ProductsPriceHistoryViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _productService = App.ProductService;
-            Products = App.Context.Products.ToList();
             UpdateSectionData();
         }
 
@@ -49,6 +49,7 @@ namespace WpfApp1.ViewModels.Products
 
         protected override void CreateNewItemForm()
         {
+            Products = App.Context.Products.ToList();
             _itemForm = new ProductsPriceHistoryItem(this);
         }
 
@@ -77,7 +78,7 @@ namespace WpfApp1.ViewModels.Products
             {
                 errorBuilder.AppendLine("Свойство \"Товар\" обязательно для заполнения;");
             }
-            if (CurrentItem.Price <= 0)
+            if (Validation.GetHasError((ItemForm as ProductsPriceHistoryItem).tbPrice) || CurrentItem.Price <= 0)
             {
                 errorBuilder.AppendLine("Поле \"Цена\" - положительное число;");
             }

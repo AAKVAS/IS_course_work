@@ -86,6 +86,7 @@
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
                       Width="200" 
+                      ItemsSource="{Binding Suppliers}"
                       HorizontalAlignment="Left"
                       SelectedValue="{Binding CurrentItem.Supplier}">
                 <ComboBox.ItemTemplate>
@@ -104,6 +105,7 @@
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}" 
                       Width="200" 
+                      ItemsSource="{Binding Categories}"
                       HorizontalAlignment="Left"
                       SelectedValue="{Binding CurrentItem.Category}">
                 <ComboBox.ItemTemplate>

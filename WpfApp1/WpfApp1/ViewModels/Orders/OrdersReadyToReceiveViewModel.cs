@@ -44,18 +44,14 @@ namespace WpfApp1.ViewModels.Orders
         private OrderService _orderService;
         private ProductService _productService;
 
-        public List<Models.Users> Users;
-        public List<Models.Products> Products;
-        public ObservableCollection<Models.Storages> PickUpPoints;
-        public List<OrderStatuses> Statuses;
+        public List<Models.Users> Users { get; set; }
+        public List<Models.Products> Products { get; set; }
+        public List<Models.Storages> PickUpPoints { get; set; }
+        public List<OrderStatuses> Statuses { get; set; }
 
         public OrdersReadyToReceiveViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _orderService = App.OrderService;
             _productService = App.ProductService;
-            Users = App.Context.Users.ToList();
-            Products = App.Context.Products.ToList();
-            PickUpPoints = App.StorageService.GetPickUpPoints();
-            Statuses = _orderService.GetStatusesForReadyToRecieveOrder();
             UpdateSectionData();
         }
 
@@ -66,6 +62,10 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override void CreateNewItemForm()
         {
+            Users = App.Context.Users.ToList();
+            Products = App.Context.Products.ToList();
+            PickUpPoints = App.StorageService.GetPickUpPoints();
+            Statuses = _orderService.GetStatusesForReadyToRecieveOrder();
             _itemForm = new OrdersReadyToReceiveItemWithImages(this);
         }
 

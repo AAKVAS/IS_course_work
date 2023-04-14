@@ -7,6 +7,7 @@ using WpfApp1.Views;
 using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Products.GeneralInfo;
+using System.Windows.Controls;
 
 namespace WpfApp1.ViewModels.Products
 {
@@ -42,8 +43,8 @@ namespace WpfApp1.ViewModels.Products
 
         private ProductService _productService;
 
-        public List<Models.Suppliers> Suppliers;
-        public List<Categories> Categories;
+        public List<Models.Suppliers> Suppliers { get; set; }
+        public List<Categories> Categories { get; set; }
 
         public ProductsGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _productService = App.ProductService;
@@ -91,7 +92,7 @@ namespace WpfApp1.ViewModels.Products
             {
                 errorBuilder.AppendLine("Поле \"Описание\" обязательно для заполнения;");
             }
-            if (CurrentItem.Price <= 0)
+            if (Validation.GetHasError((ItemForm as ProductsGeneralInfoItemWithImages).tbPrice) || CurrentItem.Price <= 0)
             {
                 errorBuilder.AppendLine("Поле \"Цена\" - положительное число;");
             }
@@ -103,7 +104,7 @@ namespace WpfApp1.ViewModels.Products
             {
                 errorBuilder.AppendLine("Свойство \"Категория\" обязательно для заполнения;");
             }
-            if (CurrentItem.SupplierPercent <= 0 || CurrentItem.SupplierPercent >= 100)
+            if (Validation.GetHasError((ItemForm as ProductsGeneralInfoItemWithImages).tbPercent) || CurrentItem.SupplierPercent <= 0 || CurrentItem.SupplierPercent >= 100)
             {
                 errorBuilder.AppendLine("\"Процент поставщика с продажи\" представляет из себя положительное число в диапазоне от 0 до 100;");
             }

@@ -20,10 +20,6 @@ namespace WpfApp1.Views.Orders.OrdersReadyToReceive {
             DataContext = _viewModel;
             _viewModel.LoadCurrentItemImages();
             lbImages.ItemsSource = _viewModel.CurrentItemFromContext.Order.Product.Images;
-            cbPickUpPoint.ItemsSource = _viewModel.PickUpPoints;
-            cbProduct.ItemsSource = _viewModel.Products;
-            cbStatus.ItemsSource = _viewModel.Statuses;
-            cbUser.ItemsSource = _viewModel.Users;
         }
 
         public override ListBox ListBox 

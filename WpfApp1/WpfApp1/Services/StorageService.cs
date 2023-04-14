@@ -14,9 +14,9 @@ namespace WpfApp1.Services
     {
         private static readonly ISWildberriesContext _context = App.Context;
 
-        public ObservableCollection<Storages> GetPickUpPoints()
+        public List<Storages> GetPickUpPoints()
         {
-            return new ObservableCollection<Storages>(_context.Storages.Where(s => (s.StorageType ?? 0) == StorageTypes.PickUpPointId).ToList());
+            return _context.Storages.Where(s => (s.StorageType ?? 0) == StorageTypes.PickUpPointId).ToList();
         }
 
         public ObservableCollection<dynamic> GetStoragesGenerealInfo()

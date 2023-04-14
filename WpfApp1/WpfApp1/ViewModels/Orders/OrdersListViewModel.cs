@@ -9,6 +9,7 @@ using WpfApp1.Services;
 using WpfApp1.Views.Orders.OrdersList;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace WpfApp1.ViewModels.Orders
 {
@@ -37,16 +38,13 @@ namespace WpfApp1.ViewModels.Orders
 
         private OrderService _orderService;
 
-        public List<Models.Users> Users;
-        public ObservableCollection<Models.Storages> PickUpPoints;
-        public List<Models.Products> Products;
+        public List<Models.Users> Users { get; set; }
+        public List<Models.Storages> PickUpPoints { get; set; }
+        public List<Models.Products> Products { get; set; }
 
         public OrdersListViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _orderService = App.OrderService;
             _sectionData = _orderService.GetOrdersList();
-            Users = App.Context.Users.ToList();
-            PickUpPoints = App.StorageService.GetPickUpPoints();
-            Products = App.Context.Products.ToList();
         }
 
         protected override void MakeCurrentItemEmpty()
@@ -56,6 +54,9 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override void CreateNewItemForm()
         {
+            Users = App.Context.Users.ToList();
+            PickUpPoints = App.StorageService.GetPickUpPoints();
+            Products = App.Context.Products.ToList();
             _itemForm = new OrdersListItem(this);
         }
 
@@ -88,7 +89,7 @@ namespace WpfApp1.ViewModels.Orders
             {
                 errorBuilder.AppendLine("Свойство \"Товар\" обязательно для заполнения;");
             }
-            if (CurrentItem.ProductCount <= 0)
+            if (Validation.GetHasError((ItemForm as OrdersListItem).tbProductCount)  || CurrentItem.ProductCount <= 0)
             {
                 errorBuilder.AppendLine("\"Количество товаров\" представляет из себя положительное число;");
             }

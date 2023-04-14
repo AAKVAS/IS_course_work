@@ -55,6 +55,7 @@
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
                       Width="200" 
+                      ItemsSource="{Binding Products}"
                       HorizontalAlignment="Left"
                       SelectedValue="{Binding CurrentItem.Product, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
