@@ -5,15 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1.Views"
              mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Initialized="UserControl_Initialized">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="/Resources/DataGridTheme.xaml"></ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="88*"></RowDefinition>

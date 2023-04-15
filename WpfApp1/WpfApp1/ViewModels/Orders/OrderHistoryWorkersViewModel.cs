@@ -116,7 +116,7 @@ namespace WpfApp1.ViewModels.Orders
                 CreateNewItemForm();
                 ItemForm.Title = SectionTitle;
                 ItemForm.Mode = _itemFormMode;
-                ItemForm.Show();
+                ItemForm.ShowDialog();
             }
         }
 

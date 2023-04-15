@@ -59,10 +59,7 @@ namespace WpfApp1.Views.Orders.OrderHistory
             cbStatus.ItemsSource = _viewModel.Statuses;
             cbStorage.ItemsSource = _viewModel.Storages;
             Models.Products currentProduct = _viewModel.Products.Find(p => p.Id == _viewModel.CurrentItem.ProductId);
-            if (currentProduct != null)
-            {
-                cbProduct.SelectedItem = currentProduct;
-            }
+            cbProduct.SelectedItem = currentProduct;
 
             Models.Storages currentStorage = _viewModel.Storages.Find(s => s.Id == _viewModel.CurrentItem.StorageId);
             if (currentStorage != null)

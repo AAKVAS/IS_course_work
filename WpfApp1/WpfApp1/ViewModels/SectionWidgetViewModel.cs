@@ -150,7 +150,7 @@ namespace WpfApp1.ViewModels
             CreateNewItemForm();
             ItemForm.Title = SectionTitle;
             ItemForm.Mode = _itemFormMode;
-            ItemForm.Show();      
+            ItemForm.ShowDialog();      
         }
 
         protected void TryUpdate()
@@ -167,7 +167,7 @@ namespace WpfApp1.ViewModels
                 CreateNewItemForm();
                 ItemForm.Title = SectionTitle;
                 ItemForm.Mode = _itemFormMode;
-                ItemForm.Show();
+                ItemForm.ShowDialog();
             }
         }
 
@@ -215,7 +215,7 @@ namespace WpfApp1.ViewModels
                 CreateNewItemForm();
                 ItemForm.Title = SectionTitle;
                 ItemForm.Mode = _itemFormMode;
-                ItemForm.Show();
+                ItemForm.ShowDialog();
             }
         }
 

@@ -7,15 +7,6 @@
         mc:Ignorable="d"
         Icon="\Resources\wb.ico"
         Height="351" Width="423">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/ButtonTheme.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="/Resources/ComboBoxTheme.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="/Resources/TextBoxTheme.xaml"></ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

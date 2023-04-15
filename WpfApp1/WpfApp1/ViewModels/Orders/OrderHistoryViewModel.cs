@@ -51,9 +51,6 @@ namespace WpfApp1.ViewModels.Orders
             _sectionCreator = App.SectionCreator;
             _sectionService = App.SectionService;
             UpdateSectionData();
-            Products = App.Context.Products.ToList();
-            Statuses = App.Context.OrderStatuses.ToList();
-            Storages = App.Context.Storages.ToList();
             DefferedQueries = new();
         }
 
@@ -83,6 +80,9 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override void CreateNewItemForm()
         {
+            Products = App.Context.Products.ToList();
+            Statuses = App.Context.OrderStatuses.ToList();
+            Storages = App.Context.Storages.ToList();
             _itemForm = new OrderHistoryItem(this);
         }
 
