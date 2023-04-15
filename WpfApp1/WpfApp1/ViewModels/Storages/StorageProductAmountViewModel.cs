@@ -7,6 +7,7 @@ using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Storages.ProductAmount;
 using Microsoft.EntityFrameworkCore;
+using System.Windows.Controls;
 
 namespace WpfApp1.ViewModels.Storages
 {
@@ -39,8 +40,6 @@ namespace WpfApp1.ViewModels.Storages
 
         public StorageProductAmountViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _storageService = App.StorageService;
-            Products = App.Context.Products.ToList();
-            Storages = App.Context.Storages.Include(s => s.StorageTypeNavigation).ToList();
 	        UpdateSectionData();
         }
 
@@ -51,6 +50,8 @@ namespace WpfApp1.ViewModels.Storages
 
         protected override void CreateNewItemForm()
         {
+            Products = App.Context.Products.ToList();
+            Storages = App.Context.Storages.Include(s => s.StorageTypeNavigation).ToList();
             _itemForm = new StorageProductAmountItem(this);
         }
 
@@ -83,7 +84,7 @@ namespace WpfApp1.ViewModels.Storages
             {
                 errorBuilder.AppendLine("Свойство \"Товар\" обязательно для заполнения;");
             }
-            if (CurrentItem.ProductAmount <= 0)
+            if (Validation.GetHasError((ItemForm as StorageProductAmountItem).tbAmount) || CurrentItem.ProductAmount <= 0)
             {
                 errorBuilder.AppendLine("Поле \"Количество\" - положительное число;");
             }

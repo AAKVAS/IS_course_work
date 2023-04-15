@@ -7,6 +7,7 @@ using WpfApp1.Views;
 using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Products.Reviews;
+using System.Windows.Controls;
 
 namespace WpfApp1.ViewModels.Products
 {
@@ -42,23 +43,23 @@ namespace WpfApp1.ViewModels.Products
 
         private ProductService _productService;
 
-        public List<Models.Products> Products;
-        public List<Models.Users> Users;
+        public List<Models.Products> Products { get; set; }
+        public List<Models.Users> Users { get; set; }
 
         public ProductsReviewsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _productService = App.ProductService;
             UpdateSectionData();
-            Products = App.Context.Products.ToList();
-            Users = App.Context.Users.ToList();
         }
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new Models.Reviews();
+            _currentItem = new Reviews();
         }
 
         protected override void CreateNewItemForm()
         {
+            Products = App.Context.Products.ToList();
+            Users = App.Context.Users.ToList();
             _itemForm = new ProductsReviewsItemWithImages(this);
         }
 
@@ -82,20 +83,25 @@ namespace WpfApp1.ViewModels.Products
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();
+            int orderId = CurrentItem.OrderId;
 
-            if (CurrentItem.OrderId == 0)
+            if (Validation.GetHasError((ItemForm as ProductsReviewsItemWithImages).tbId) || orderId <= 0)
             {
-                errorBuilder.AppendLine("Поле \"Id заказа\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Id заказа\" - положительное число;");
             }
-            else if (_itemFormMode == ItemFormMode.Insert && _productService.GetReviewByOrderId(CurrentItem.OrderId) != null)
+            else if (_itemFormMode == ItemFormMode.Insert && _productService.GetReviewByOrderId(orderId) != null)
             {
                 errorBuilder.AppendLine("Такое значение \"Id заказа\" уже используется;");
+            }
+            if (!App.Context.Orders.Where(o => o.Id == orderId).Any())
+            {
+                errorBuilder.AppendLine("Заказа с таким \"Id заказа\" не найдено;");
             }
             if (string.IsNullOrWhiteSpace(CurrentItem.ReviewText))
             {
                 errorBuilder.AppendLine("Свойство \"Отзыв\" обязательно для заполнения;");
             }
-            if (CurrentItem.Stars <= 0 || CurrentItem.Stars > 5)
+            if (Validation.GetHasError((ItemForm as ProductsReviewsItemWithImages).tbStars) || CurrentItem.Stars <= 0 || CurrentItem.Stars > 5)
             {
                 errorBuilder.AppendLine("\"Оценка\" представляет из себя положительное число в диапазоне от 1 до 5 включительно;");
             }

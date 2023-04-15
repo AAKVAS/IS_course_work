@@ -15,8 +15,6 @@ namespace WpfApp1.Views.Users.DefferedProducts
             InitializeComponent();
             _viewModel = (UserDefferedProductsViewModel)_sectionWidgetViewModel;
             DataContext = _viewModel;
-            cbUser.ItemsSource = _viewModel.Users;
-            cbProduct.ItemsSource = _viewModel.Products;
             _viewModel.LoadCurrentItemImages();
             if (_viewModel.CurrentItem.Product != null)
             {

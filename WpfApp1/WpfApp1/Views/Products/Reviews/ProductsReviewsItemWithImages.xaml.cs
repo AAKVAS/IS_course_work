@@ -17,8 +17,6 @@ namespace WpfApp1.Views.Products.Reviews
             DataContext = _viewModel;
             _viewModel.LoadCurrentItemImages();
             lbImages.ItemsSource = _viewModel.CurrentItemFromContext.Images;
-            cbProduct.ItemsSource = _viewModel.Products;
-            cbUser.ItemsSource = _viewModel.Users;
         }
 
         public override ListBox ListBox 

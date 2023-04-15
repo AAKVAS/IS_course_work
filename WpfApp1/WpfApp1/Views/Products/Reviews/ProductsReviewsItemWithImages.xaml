@@ -53,6 +53,7 @@
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
                       Width="200" 
+                      ItemsSource="{Binding Products}"
                       HorizontalAlignment="Left"
                       IsEnabled="False"
                       SelectedValue="{Binding CurrentItem.Order.Product}">
@@ -72,6 +73,7 @@
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
                       Width="200" 
+                      ItemsSource="{Binding Users}"
                       HorizontalAlignment="Left"
                       IsEnabled="False"
                       SelectedValue="{Binding CurrentItem.Order.User}">

@@ -10,7 +10,6 @@ namespace WpfApp1.Views.Workers.WorkersList
         {
             InitializeComponent();
             DataContext = (WorkersListViewModel)_sectionWidgetViewModel;
-            cbPost.ItemsSource = ((WorkersListViewModel)_sectionWidgetViewModel).Posts;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

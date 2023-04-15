@@ -44,24 +44,24 @@ namespace WpfApp1.ViewModels.Users
         private UserService _userService;
         private ProductService _productService;
 
-        public List<Models.Users> Users;
-        public List<Models.Products> Products;
+        public List<Models.Users> Users { get; set; }
+        public List<Models.Products> Products { get; set; }
 
         public UserDefferedProductsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _userService = App.UserService;
             _productService = App.ProductService;
             UpdateSectionData();
-            Users = App.Context.Users.ToList();
-            Products = App.Context.Products.ToList();
         }
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new Models.DeferredProducts();
+            _currentItem = new DeferredProducts();
         }
 
         protected override void CreateNewItemForm()
         {
+            Users = App.Context.Users.ToList();
+            Products = App.Context.Products.ToList();
             _itemForm = new UserDefferedProductsItemWithImages(this);
         }
 

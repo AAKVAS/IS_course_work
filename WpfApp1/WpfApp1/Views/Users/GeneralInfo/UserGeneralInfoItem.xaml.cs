@@ -13,7 +13,6 @@ namespace WpfApp1.Views.Users.GeneralInfo
         {
             InitializeComponent();
             DataContext = (UsersGeneralInfoViewModel)_sectionWidgetViewModel;
-            cbCountry.ItemsSource = ((UsersGeneralInfoViewModel)_sectionWidgetViewModel).Countries;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

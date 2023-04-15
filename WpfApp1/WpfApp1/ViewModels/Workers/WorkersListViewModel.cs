@@ -65,7 +65,7 @@ namespace WpfApp1.ViewModels.Workers
         private WorkerService _workerService;
         private ChangePasswordForm _changePasswordForm;
 
-        public List<Posts> Posts;
+        public List<Posts> Posts { get; set; }
 
         private PasswordEvaluator _passwordEvaluator;
         private PasswordComplexity _passwordComplexity;
@@ -82,7 +82,6 @@ namespace WpfApp1.ViewModels.Workers
             _workerService = App.WorkerService;
             _passwordEvaluator = new();
             UpdateSectionData();
-            Posts = App.Context.Posts.ToList();
         }
 
         private void EvaluatePassword()
@@ -97,6 +96,7 @@ namespace WpfApp1.ViewModels.Workers
 
         protected override void CreateNewItemForm()
         {
+            Posts = App.Context.Posts.ToList();
             _itemForm = new WorkersListItem(this);
         }
 

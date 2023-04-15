@@ -41,18 +41,18 @@ namespace WpfApp1.ViewModels.Storages
 
         public StoragesWorkerShiftsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _storageService = App.StorageService;
-            Storages = App.Context.Storages.Include(s => s.StorageTypeNavigation).ToList();
-            Workers = App.Context.Workers.Include(w => w.Post).ToList();
 	        UpdateSectionData();
         }
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new Models.StorageWorkerShifts();
+            _currentItem = new StorageWorkerShifts();
         }
 
         protected override void CreateNewItemForm()
         {
+            Storages = App.Context.Storages.Include(s => s.StorageTypeNavigation).ToList();
+            Workers = App.Context.Workers.Include(w => w.Post).ToList();
             _itemForm = new StoragesWorkerShiftsItem(this);
         }
 

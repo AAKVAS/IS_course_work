@@ -35,12 +35,11 @@ namespace WpfApp1.ViewModels.Users
 
         private UserService _userService;
 
-        public List<Countries> Countries;
+        public List<Countries> Countries { get; set; }
 
         public UsersGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _userService = App.UserService;
             UpdateSectionData();
-            Countries = App.Context.Countries.ToList();
         }
 
         protected override void MakeCurrentItemEmpty()
@@ -50,6 +49,7 @@ namespace WpfApp1.ViewModels.Users
 
         protected override void CreateNewItemForm()
         {
+            Countries = App.Context.Countries.ToList();
             _itemForm = new UserGeneralInfoItem(this);
         }
 
