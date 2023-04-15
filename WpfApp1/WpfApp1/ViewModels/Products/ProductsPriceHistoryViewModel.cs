@@ -68,8 +68,6 @@ namespace WpfApp1.ViewModels.Products
             _sectionData = _productService.GetPriceHistory();
         }
 
-        protected override void FillItem() {}
-
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();

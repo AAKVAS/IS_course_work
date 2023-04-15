@@ -24,16 +24,18 @@ namespace WpfApp1.Views.Components
     {
         private dynamic _image;
         private ImageFormMode _imageFormMode;
+        private SectionWidgetWithImagesViewModel _viewModel;
 
         public ImageForm(SectionWidgetWithImagesViewModel viewModel, ImageFormMode imageFormMode)
         {
             InitializeComponent();
-            DataContext = viewModel;
-            _image = viewModel.CurrentImage;
+            _viewModel = viewModel;
+            DataContext = _viewModel;
+            _image = _viewModel.CurrentImage;
             image.Source = ImageConverter.ByteArrayToImage(_image.Image);
             _imageFormMode = imageFormMode;
             DisableDeleteButtonIfNeeded();
-            Owner = viewModel.ItemForm;
+            Owner = _viewModel.ItemForm;
         }
 
         private void DisableDeleteButtonIfNeeded()
@@ -53,6 +55,11 @@ namespace WpfApp1.Views.Components
         private void Window_Closed(object sender, EventArgs e)
         {
             ImageFormService.RemoveImageForm(_image);
+        }
+
+        private void miCopy_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.CopyImage(image);
         }
     }
 }

@@ -65,8 +65,6 @@ namespace WpfApp1.ViewModels.Users
             _sectionData = _userService.GetUserAvgCost();
         }
 
-        protected override void FillItem() {}
-
         protected override string GetErrors()
         {
             return new StringBuilder().ToString();

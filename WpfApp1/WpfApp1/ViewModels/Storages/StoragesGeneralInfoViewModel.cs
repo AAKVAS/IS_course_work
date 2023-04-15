@@ -68,8 +68,6 @@ namespace WpfApp1.ViewModels.Storages
             _sectionData = _storageService.GetStoragesGenerealInfo();
         }
 
-        protected override void FillItem() {}
-
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();

@@ -70,8 +70,6 @@ namespace WpfApp1.ViewModels.Storages
             _sectionData = _storageService.GetStoragesProductAmount();
         }
 
-        protected override void FillItem() {}
-
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();

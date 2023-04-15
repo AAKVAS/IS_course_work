@@ -80,10 +80,6 @@ namespace WpfApp1.ViewModels.Users
             _sectionData = _userService.GetUserDeferredProducts();
         }
 
-        protected override void FillItem()
-        {
-        }
-
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();

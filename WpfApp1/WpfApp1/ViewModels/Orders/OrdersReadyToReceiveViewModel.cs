@@ -84,8 +84,6 @@ namespace WpfApp1.ViewModels.Orders
             _sectionData = _orderService.GetOrdersReadyToReceive();
         }
 
-        protected override void FillItem() {}
-
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();

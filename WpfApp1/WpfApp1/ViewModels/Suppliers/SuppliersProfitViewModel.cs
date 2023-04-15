@@ -61,8 +61,6 @@ namespace WpfApp1.ViewModels.Suppliers
             _sectionData = _supplierService.GetSuppliersProfits();
         }
 
-        protected override void FillItem() {}
-
         protected override string GetErrors()
         {
             throw new NotImplementedException();

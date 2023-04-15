@@ -266,8 +266,9 @@ namespace WpfApp1.ViewModels
         protected abstract void AddCurrentItem();
         protected abstract void DeleteCurrentItem();
         protected abstract void MakeCurrentItemEmpty();
-        protected abstract void FillItem();
         protected abstract string GetErrors();
+
+        protected virtual void FillItem() {}
 
         protected void UpdateItems()
         {

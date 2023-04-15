@@ -3,6 +3,8 @@ using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using WpfApp1.Services;
 using WpfApp1.Views;
 using WpfApp1.Views.Components;
@@ -98,6 +100,11 @@ namespace WpfApp1.ViewModels
                 ImageForm imageForm = ImageFormService.TryCreateItemForm(this, imageFormMode);
                 imageForm.Show();
             }
+        }
+
+        public void CopyImage(Image img)
+        {
+            Clipboard.SetImage(img.Source as BitmapImage);
         }
 
     }

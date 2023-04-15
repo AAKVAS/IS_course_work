@@ -48,9 +48,6 @@
     <Page Update="Resources\ComboBoxTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Resources\DataGridTheme.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Resources\MenuTheme.xaml">
       <SubType>Designer</SubType>
     </Page>

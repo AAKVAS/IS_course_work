@@ -67,8 +67,6 @@ namespace WpfApp1.ViewModels.Products
             _sectionData = new ObservableCollection<dynamic>(_productService.GetCategories());
         }
 
-        protected override void FillItem() {}
-
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();
