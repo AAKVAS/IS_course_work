@@ -84,7 +84,7 @@ namespace WpfApp1.ViewModels.Orders
                 CurrentItem.WorkerLastname = worker.Lastname;
                 CurrentItem.WorkerFirstname = worker.Firstname;
                 CurrentItem.WorkerPatronymic = worker.Patronymic;
-                CurrentItem.WorkerPost = worker.Post.Title;
+                CurrentItem.WorkerPost = worker?.Post?.Title;
                 CurrentItem.OrderId = _orderHistoryViewModel.CurrentItem.OrderId;
                 CurrentItem.StatusChangedAt = _orderHistoryViewModel.CurrentItem.StatusChangedAt;
             }
@@ -94,7 +94,7 @@ namespace WpfApp1.ViewModels.Orders
         {
             StringBuilder errorBuilder = new StringBuilder();
 
-            if (CurrentItem.WorkerId == null)
+            if (CurrentItem.WorkerId == null || CurrentItem.WorkerId == 0)
             {
                 errorBuilder.AppendLine("Свойство \"Сотрудник\" обязательно для заполнения;");
             }

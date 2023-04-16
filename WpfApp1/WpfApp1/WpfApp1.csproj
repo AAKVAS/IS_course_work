@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PasswordEvaluatorLib\PasswordEvaluatorLib.csproj" />
+    <ProjectReference Include="..\ValidationLib\ValidationLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

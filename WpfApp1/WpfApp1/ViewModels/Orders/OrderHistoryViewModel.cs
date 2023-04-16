@@ -11,6 +11,7 @@ using WpfApp1.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using Microsoft.Data.SqlClient;
+using System.Windows.Controls;
 
 namespace WpfApp1.ViewModels.Orders
 {
@@ -112,9 +113,9 @@ namespace WpfApp1.ViewModels.Orders
         {
             StringBuilder errorBuilder = new StringBuilder();
 
-            if (CurrentItem.OrderId == 0)
+            if (Validation.GetHasError((ItemForm as OrderHistoryItem).tbId) || CurrentItem.OrderId == 0)
             {
-                errorBuilder.AppendLine("Поле \"Id заказа\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Id заказа\" - положительное число;");
             }
             if (CurrentItem.ProductId == 0)
             {

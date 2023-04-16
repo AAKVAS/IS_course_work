@@ -257,10 +257,17 @@ namespace WpfApp1.ViewModels
 
         protected virtual void Update()
         {
-            CurrentItemFromContext.Copy(CurrentItem);
-            App.Context.SaveChanges();
-            ItemForm.Close();
-            UpdateItems();
+            try
+            {
+                CurrentItemFromContext.Copy(CurrentItem);
+                App.Context.SaveChanges();
+                ItemForm.Close();
+                UpdateItems();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Изменение записи завершилось ошибкой");
+            }
         }
 
         protected abstract void AddCurrentItem();

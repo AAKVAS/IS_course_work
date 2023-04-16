@@ -7,6 +7,7 @@ using WpfApp1.Views;
 using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Products.Categories;
+using ValidationLib;
 
 namespace WpfApp1.ViewModels.Products
 {
@@ -71,9 +72,9 @@ namespace WpfApp1.ViewModels.Products
         {
             StringBuilder errorBuilder = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(CurrentItem.Title))
+            if (!StringValidator.IsValid(CurrentItem.Title))
             {
-                errorBuilder.AppendLine("Поле \"Название\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Название\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
             if (CurrentItem.ParentCategory != null && CurrentItem.ParentCategory.Id == CurrentItem.Id)
             {

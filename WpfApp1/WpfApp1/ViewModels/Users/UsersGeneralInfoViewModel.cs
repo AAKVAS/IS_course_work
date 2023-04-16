@@ -7,6 +7,7 @@ using WpfApp1.Views;
 using WpfApp1.Views.Users.GeneralInfo;
 using WpfApp1.Models;
 using WpfApp1.Services;
+using ValidationLib;
 
 namespace WpfApp1.ViewModels.Users
 {
@@ -77,25 +78,25 @@ namespace WpfApp1.ViewModels.Users
         {
             StringBuilder errorBuilder = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(CurrentItem.Lastname))
+            if (!StringValidator.IsValid(CurrentItem.Lastname))
             {
-                errorBuilder.AppendLine("Поле \"Фамилия\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Фамилия\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.Firstname))
+            if (!StringValidator.IsValid(CurrentItem.Firstname))
             {
-                errorBuilder.AppendLine("Поле \"Имя\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Имя\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.Patronymic))
+            if (!StringValidator.IsValid(CurrentItem.Patronymic))
             {
-                errorBuilder.AppendLine("Поле \"Отчество\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Отчество\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.PhoneNumber))
+            if (!PhoneNumberValidator.IsValid(CurrentItem.PhoneNumber))
             {
-                errorBuilder.AppendLine("Поле \"Номер телефона\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Неверное значение поля \"Номер телефона\";");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.Email))
+            if (!StringValidator.IsValid(CurrentItem.Email))
             {
-                errorBuilder.AppendLine("Поле \"Email\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Email\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
             if (CurrentItem.Country == null)
             {

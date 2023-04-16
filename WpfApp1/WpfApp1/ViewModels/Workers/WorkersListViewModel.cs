@@ -10,6 +10,7 @@ using WpfApp1.Views.Workers.WorkersList;
 using System.Windows.Controls;
 using PasswordEvaluatorLib;
 using System.Windows;
+using ValidationLib;
 
 namespace WpfApp1.ViewModels.Workers
 {
@@ -123,25 +124,31 @@ namespace WpfApp1.ViewModels.Workers
         protected override string GetErrors()
         {
             StringBuilder errorBuilder = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(CurrentItem.WorkerLogin))
+            int workerId = CurrentItem.Id;
+            string login = CurrentItem.WorkerLogin;
+            if (!StringValidator.IsValid(login))
             {
-                errorBuilder.AppendLine("Поле \"Логин\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Логин\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.Lastname))
+            else if (App.Context.Workers.Where(w => w.WorkerLogin == login && w.Id != workerId).Any())
             {
-                errorBuilder.AppendLine("Поле \"Фамилия\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Такой \"Логин\" уже занят;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.Firstname))
+            if (!StringValidator.IsValid(CurrentItem.Lastname))
             {
-                errorBuilder.AppendLine("Поле \"Имя\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Фамилия\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.Patronymic))
+            if (!StringValidator.IsValid(CurrentItem.Firstname))
             {
-                errorBuilder.AppendLine("Поле \"Отчество\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Имя\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.PhoneNumber))
+            if (!StringValidator.IsValid(CurrentItem.Patronymic))
             {
-                errorBuilder.AppendLine("Поле \"Номер телефона\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Отчество\" обязательно для заполнения, максимальная длина - 255 символов;");
+            }
+            if (!PhoneNumberValidator.IsValid(CurrentItem.PhoneNumber))
+            {
+                errorBuilder.AppendLine("Неверное значение поля \"Номер телефона\";");
             }
             if (CurrentItem.Post == null)
             {

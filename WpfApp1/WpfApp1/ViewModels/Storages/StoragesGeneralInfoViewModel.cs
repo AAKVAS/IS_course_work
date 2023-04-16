@@ -7,6 +7,7 @@ using WpfApp1.Views;
 using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Storages.GeneralInfo;
+using ValidationLib;
 
 namespace WpfApp1.ViewModels.Storages
 {
@@ -72,25 +73,25 @@ namespace WpfApp1.ViewModels.Storages
         {
             StringBuilder errorBuilder = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(CurrentItem.Country))
+            if (!StringValidator.IsValid(CurrentItem.Country))
             {
-                errorBuilder.AppendLine("Поле \"Страна\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Страна\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.FederalSubject))
+            if (!StringValidator.IsValid(CurrentItem.FederalSubject))
             {
-                errorBuilder.AppendLine("Поле \"Субъект\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Субъект\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.Locality))
+            if (!StringValidator.IsValid(CurrentItem.Locality))
             {
-                errorBuilder.AppendLine("Поле \"Город\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Город\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.Street))
+            if (!StringValidator.IsValid(CurrentItem.Street))
             {
-                errorBuilder.AppendLine("Поле \"Улица\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Улица\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.HouseNumber))
+            if (!StringValidator.IsValid(CurrentItem.HouseNumber))
             {
-                errorBuilder.AppendLine("Поле \"Номер дома\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Номер дома\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
             if (CurrentItem.StorageTypeNavigation == null)
             {

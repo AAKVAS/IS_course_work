@@ -8,6 +8,7 @@ using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Products.Reviews;
 using System.Windows.Controls;
+using ValidationLib;
 
 namespace WpfApp1.ViewModels.Products
 {
@@ -95,9 +96,9 @@ namespace WpfApp1.ViewModels.Products
             {
                 errorBuilder.AppendLine("Заказа с таким \"Id заказа\" не найдено;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.ReviewText))
+            if (!StringValidator.IsValid(CurrentItem.ReviewText))
             {
-                errorBuilder.AppendLine("Свойство \"Отзыв\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Свойство \"Отзыв\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
             if (Validation.GetHasError((ItemForm as ProductsReviewsItemWithImages).tbStars) || CurrentItem.Stars <= 0 || CurrentItem.Stars > 5)
             {

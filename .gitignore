@@ -6,3 +6,7 @@ WpfApp1/PasswordEvaluatorTests/obj/
 WpfApp1/PasswordEvaluatorLib/bin/
 WpfApp1/PasswordEvaluatorLib/obj/
 WpfApp1/PasswordEvaluatorLib/.vs/
+WpfApp1/ValidationLib/bin
+WpfApp1/ValidationLib/obj
+WpfApp1/validationLibTest/bin
+WpfApp1/validationLibTest/obj

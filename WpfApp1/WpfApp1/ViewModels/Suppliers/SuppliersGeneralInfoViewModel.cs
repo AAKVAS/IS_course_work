@@ -3,6 +3,7 @@ using System.Text;
 using WpfApp1.Views;
 using WpfApp1.Services;
 using WpfApp1.Views.Suppliers.GeneralInfo;
+using ValidationLib;
 
 namespace WpfApp1.ViewModels.Suppliers
 {
@@ -66,9 +67,9 @@ namespace WpfApp1.ViewModels.Suppliers
         {
             StringBuilder errorBuilder = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(CurrentItem.Title))
+            if (!StringValidator.IsValid(CurrentItem.Title))
             {
-                errorBuilder.AppendLine("Поле \"Имя\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Имя\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
 
             return errorBuilder.ToString();

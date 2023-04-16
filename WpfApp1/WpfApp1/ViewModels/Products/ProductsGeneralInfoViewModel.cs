@@ -8,6 +8,7 @@ using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Products.GeneralInfo;
 using System.Windows.Controls;
+using ValidationLib;
 
 namespace WpfApp1.ViewModels.Products
 {
@@ -82,13 +83,13 @@ namespace WpfApp1.ViewModels.Products
         {
             StringBuilder errorBuilder = new StringBuilder();
 
-            if (string.IsNullOrWhiteSpace(CurrentItem.Title))
+            if (!StringValidator.IsValid(CurrentItem.Title))
             {
-                errorBuilder.AppendLine("Поле \"Название\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Название\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (string.IsNullOrWhiteSpace(CurrentItem.Description))
+            if (!StringValidator.IsValid(CurrentItem.Description))
             {
-                errorBuilder.AppendLine("Поле \"Описание\" обязательно для заполнения;");
+                errorBuilder.AppendLine("Поле \"Описание\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
             if (Validation.GetHasError((ItemForm as ProductsGeneralInfoItemWithImages).tbPrice) || CurrentItem.Price <= 0)
             {
