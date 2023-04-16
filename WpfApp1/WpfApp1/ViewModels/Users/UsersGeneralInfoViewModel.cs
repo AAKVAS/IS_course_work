@@ -94,9 +94,9 @@ namespace WpfApp1.ViewModels.Users
             {
                 errorBuilder.AppendLine("Неверное значение поля \"Номер телефона\";");
             }
-            if (!StringValidator.IsValid(CurrentItem.Email))
+            if (!EmailValidatior.IsValid(CurrentItem.Email))
             {
-                errorBuilder.AppendLine("Поле \"Email\" обязательно для заполнения, максимальная длина - 255 символов;");
+                errorBuilder.AppendLine("Неверное значение поля \"Email\";");
             }
             if (CurrentItem.Country == null)
             {
