@@ -111,7 +111,7 @@ namespace WpfApp1.ViewModels.Storages
             catch (Exception ex)
             {
                 entry.Reload();
-                MessageBox.Show("Вы не можете вставить запись, так как её ключ уже используется");
+                MessageBox.Show("Добавление записи завершилось ошибкой");
                 ItemForm.Close();
             }
 

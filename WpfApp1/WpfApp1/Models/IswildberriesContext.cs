@@ -143,13 +143,13 @@ namespace WpfApp1.Models
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.DeferredProducts)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_deferred_products_products");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.DeferredProducts)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_deferred_products_users");
             });
 
@@ -205,7 +205,7 @@ namespace WpfApp1.Models
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderHistory)
                     .HasForeignKey(d => d.OrderId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_order_history_orders");
 
                 entity.HasOne(d => d.Status)
@@ -273,19 +273,19 @@ namespace WpfApp1.Models
                 entity.HasOne(d => d.PickUpPoint)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.PickUpPointId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_ORDERS_PICK_UP_POINT_ID");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_orders_products");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_orders_users");
             });
 
@@ -315,7 +315,7 @@ namespace WpfApp1.Models
 
                 entity.HasOne(d => d.Product).WithMany(p => p.PriceHistory)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("fk_price_history_products");
             });
 
@@ -348,13 +348,13 @@ namespace WpfApp1.Models
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_products_categories1");
 
                 entity.HasOne(d => d.Supplier)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.SupplierId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_products_suppliers");
             });
 
@@ -373,13 +373,13 @@ namespace WpfApp1.Models
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.ProductsOnStorages)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_products_on_storages_products");
 
                 entity.HasOne(d => d.Storage)
                     .WithMany(p => p.ProductsOnStorages)
                     .HasForeignKey(d => d.StorageId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_products_on_storages_storages");
             });
 
@@ -403,7 +403,7 @@ namespace WpfApp1.Models
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.ProductsParameters)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_products_parameters_products");
             });
 
@@ -426,13 +426,13 @@ namespace WpfApp1.Models
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.ReceiptOfProductsToStorages)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_receipt_of_products_to_storages_products");
 
                 entity.HasOne(d => d.Storage)
                     .WithMany(p => p.ReceiptOfProductsToStorages)
                     .HasForeignKey(d => d.StorageId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK__receipt_o__stora__7FEAFD3E");
             });
 
@@ -461,7 +461,7 @@ namespace WpfApp1.Models
                 entity.HasOne(d => d.Order)
                     .WithOne(p => p.Reviews)
                     .HasForeignKey<Reviews>(d => d.OrderId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_reviews_orders");
             });
 
@@ -560,13 +560,13 @@ namespace WpfApp1.Models
                 entity.HasOne(d => d.Storage)
                     .WithMany(p => p.StorageWorkerShifts)
                     .HasForeignKey(d => d.StorageId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_workers_at_storages_storages");
 
                 entity.HasOne(d => d.Worker)
                     .WithMany(p => p.StorageWorkerShifts)
                     .HasForeignKey(d => d.WorkerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientNoAction)
                     .HasConstraintName("FK_workers_at_storages_workers");
             });
 

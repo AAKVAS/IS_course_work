@@ -197,11 +197,19 @@ namespace WpfApp1.ViewModels
                 App.Context.SaveChanges();
                 UpdateItems();
             }
+            catch (DbUpdateException ex)
+            {
+                entry.Reload();
+                MessageBox.Show("Вы не можете удалить эту запись, так как она используется в другом разделе"); 
+            }
             catch (Exception ex)
             {
                 entry.Reload();
-                MakeCurrentItemEmpty();
                 MessageBox.Show("Вы не можете удалить эту запись, так как она используется в другом разделе");
+            }
+            finally
+            {
+                MakeCurrentItemEmpty();
             }
         }
 
@@ -254,7 +262,7 @@ namespace WpfApp1.ViewModels
             catch (Exception ex)
             {
                 entry.Reload();
-                MessageBox.Show("Вы не можете вставить запись, так как её ключ уже используется");
+                MessageBox.Show("Добавление записи завершилось ошибкой");
                 ItemForm.Close();
             }
         }
