@@ -67,11 +67,6 @@ namespace WpfApp1.Services
             return _loginedWorkerSections;
         }
 
-        public List<SectionRights> GetSectionRightsBySectionKey()
-        {
-            return null;
-        }
-
         public bool HasWorkerRightToSection(string sectionKey)
         {
             return LoginedWorkerSections.Where(i => i.SectionKey == sectionKey).Any();

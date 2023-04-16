@@ -138,6 +138,10 @@ namespace WpfApp1.ViewModels
             {
                 SectionWidget.CollapseReadButton();
             }
+            if (!_accessService.HasWorkerRightToPDF(SectionWidget.Section.SectionKey))
+            {
+                SectionWidget.CollapsePDFButton();
+            }
         }
 
         protected abstract void CreateNewItemForm();

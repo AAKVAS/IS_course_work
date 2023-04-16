@@ -31,6 +31,7 @@ namespace WpfApp1.Services
                 _title = title;
                 try
                 {
+                    _document = new Document(new Rectangle(1440, 900));
                     SetupDocumentProperties();
                     _document.Open();
                     DrawTable();
@@ -45,7 +46,6 @@ namespace WpfApp1.Services
 
         private void SetupDocumentProperties()
         {
-            _document = new Document();
             PdfWriter.GetInstance(_document, new FileStream(_filepath, FileMode.Create));
 
             string fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIAL.TTF");
@@ -88,7 +88,7 @@ namespace WpfApp1.Services
             {
                 for (int j = 0; j < _columnCount; j++)
                 {
-                    _table.AddCell(new Phrase((_grid.Columns[j].GetCellContent(_grid.Items[i]) as TextBlock).Text, _font));
+                    _table.AddCell(new Phrase((_grid.Columns[j].GetCellContent(_grid.Items[i]) as TextBlock)?.Text ?? "", _font));
                 }
             }
         }
