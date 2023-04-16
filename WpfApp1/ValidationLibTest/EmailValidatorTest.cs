@@ -62,10 +62,10 @@ namespace ValidationLibTest
         }
 
         [Fact]
-        public void IsValid_BAtBPointru_ReturnedFalse()
+        public void IsValid_BAtBPointru_ReturnedTrue()
         {
             string str = "B@B.ru";
-            Assert.False(EmailValidatior.IsValid(str));
+            Assert.True(EmailValidatior.IsValid(str));
         }
 
         [Fact]

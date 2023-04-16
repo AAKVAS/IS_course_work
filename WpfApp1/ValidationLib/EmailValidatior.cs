@@ -13,7 +13,7 @@ namespace ValidationLib
                 return false;
             }
 
-            return Regex.IsMatch(str, _emailPattern);
+            return Regex.IsMatch(str, _emailPattern, RegexOptions.IgnoreCase);
         }
     }
 }
