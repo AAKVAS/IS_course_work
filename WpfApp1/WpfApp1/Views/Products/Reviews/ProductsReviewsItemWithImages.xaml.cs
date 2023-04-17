@@ -27,7 +27,7 @@ namespace WpfApp1.Views.Products.Reviews
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            TryCloseForm();
         }
 
         protected override void SetFormModeToInsert()

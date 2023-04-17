@@ -14,7 +14,7 @@ namespace WpfApp1.Views.Suppliers.Profit
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            TryCloseForm();
         }
 
         protected override void SetFormModeToInsert() {}

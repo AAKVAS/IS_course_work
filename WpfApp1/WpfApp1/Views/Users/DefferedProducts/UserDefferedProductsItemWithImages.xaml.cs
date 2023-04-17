@@ -30,7 +30,7 @@ namespace WpfApp1.Views.Users.DefferedProducts
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            TryCloseForm();
         }
 
         protected override void SetFormModeToInsert()

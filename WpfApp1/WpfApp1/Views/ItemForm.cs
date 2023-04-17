@@ -13,7 +13,7 @@ namespace WpfApp1.Views
     public abstract class ItemForm : Window
     {
         protected SectionWidgetViewModel _sectionWidgetViewModel;
-        private ItemFormMode _mode = ItemFormMode.Read;
+        protected ItemFormMode _mode = ItemFormMode.Read;
         public ItemFormMode Mode { 
             get
             {
@@ -49,6 +49,20 @@ namespace WpfApp1.Views
         protected abstract void SetFormModeToInsert();
         protected abstract void SetFormModeToUpdate();
         protected abstract void SetFormModeToRead();
+
+        protected void TryCloseForm()
+        {
+            if (_mode == ItemFormMode.Read)
+            {
+                Close();
+            }
+            else if (MessageBox.Show("Возможно есть не сохранённые данные, Вы уверены, что хотите закрыть окно?",
+                                "Предупреждение",
+                                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                Close();
+            }
+        }
 
     }
 }

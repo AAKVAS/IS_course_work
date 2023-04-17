@@ -18,7 +18,7 @@ namespace WpfApp1.Views.Orders.OrderHistory
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            TryCloseForm();
         }
 
         protected override void SetFormModeToInsert()
