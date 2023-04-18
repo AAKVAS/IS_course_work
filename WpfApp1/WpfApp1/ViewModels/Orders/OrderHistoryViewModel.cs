@@ -119,6 +119,10 @@ namespace WpfApp1.ViewModels.Orders
             }
             if (CurrentItem.ProductId == 0)
             {
+                errorBuilder.AppendLine("Свойство \"Товар\" обязательно для заполнения;");
+            }
+            if (CurrentItem.StatusId == 0)
+            {
                 errorBuilder.AppendLine("Свойство \"Статус заказа\" обязательно для заполнения;");
             }
             if (CurrentItem.StorageId == 0)

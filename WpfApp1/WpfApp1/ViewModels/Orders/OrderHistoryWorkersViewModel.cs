@@ -85,7 +85,7 @@ namespace WpfApp1.ViewModels.Orders
                 CurrentItem.WorkerFirstname = worker.Firstname;
                 CurrentItem.WorkerPatronymic = worker.Patronymic;
                 CurrentItem.WorkerPost = worker?.Post?.Title;
-                CurrentItem.OrderId = _orderHistoryViewModel.CurrentItem.OrderId;
+                CurrentItem.OrderId = _orderHistoryViewModel.CurrentItem?.OrderId ?? 0;
                 CurrentItem.StatusChangedAt = _orderHistoryViewModel.CurrentItem.StatusChangedAt;
             }
         }
@@ -104,20 +104,13 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override void TryInsert()
         {
-            if (_orderHistoryViewModel.CurrentItem.OrderId == 0)
-            {
-                MessageBox.Show("Вначале заполните поле \"Id заказа\"");
-            }
-            else
-            {
-                MakeCurrentItemEmpty();
+            MakeCurrentItemEmpty();
 
-                _itemFormMode = ItemFormMode.Insert;
-                CreateNewItemForm();
-                ItemForm.Title = SectionTitle;
-                ItemForm.Mode = _itemFormMode;
-                ItemForm.ShowDialog();
-            }
+            _itemFormMode = ItemFormMode.Insert;
+            CreateNewItemForm();
+            ItemForm.Title = SectionTitle;
+            ItemForm.Mode = _itemFormMode;
+            ItemForm.ShowDialog();
         }
 
         protected override void Insert()

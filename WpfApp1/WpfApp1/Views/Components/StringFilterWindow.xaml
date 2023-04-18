@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.Views.Components"
         mc:Ignorable="d"
         Icon="\Resources\wb.ico"
+        ResizeMode="NoResize"
         Title="Фильтр" Height="155" Width="383">
     <Grid>
         <Grid.ColumnDefinitions>

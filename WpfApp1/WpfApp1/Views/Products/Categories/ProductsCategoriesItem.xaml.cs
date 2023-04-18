@@ -12,7 +12,7 @@ namespace WpfApp1.Views.Products.Categories
             DataContext = (ProductsCategoriesViewModel)_sectionWidgetViewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }
@@ -40,6 +40,5 @@ namespace WpfApp1.Views.Products.Categories
             tbTitle.IsReadOnly = true;
             cbParentCategory.IsEnabled =  false;
         }
-
     }
 }

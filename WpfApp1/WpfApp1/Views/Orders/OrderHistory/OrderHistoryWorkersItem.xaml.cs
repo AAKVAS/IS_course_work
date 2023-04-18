@@ -16,7 +16,7 @@ namespace WpfApp1.Views.Orders.OrderHistory
             DataContext = _viewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }

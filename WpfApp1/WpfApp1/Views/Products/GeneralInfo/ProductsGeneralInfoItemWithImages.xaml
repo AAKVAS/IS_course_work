@@ -5,16 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Icon="\Resources\wb.ico"
-        Title="ItemForm" Height="555" Width="372">
+        Title="ItemForm" Height="577" Width="450">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
             <RowDefinition Height="41" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0"></StackPanel>
-
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
@@ -32,7 +31,7 @@
 
             <Label Grid.Column="0" Grid.Row="0" Content="Id"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbId" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="0"
                      HorizontalAlignment="Left"
@@ -43,7 +42,7 @@
 
             <Label Grid.Column="0" Grid.Row="1" Content="Название"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbTitle" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="1"
                      HorizontalAlignment="Left"
@@ -53,7 +52,7 @@
 
             <Label Grid.Column="0" Grid.Row="2" Content="Описание"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbDescription" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="2"
                      HorizontalAlignment="Left"
@@ -63,7 +62,7 @@
 
             <Label Grid.Column="0" Grid.Row="3" Content="Цена" VerticalAlignment="Center"/>
             <TextBox x:Name="tbPrice" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="3"
                      HorizontalAlignment="Left"
@@ -76,7 +75,7 @@
                       Grid.Row="4"
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
-                      Width="200" 
+                      Width="280" 
                       ItemsSource="{Binding Suppliers}"
                       HorizontalAlignment="Left"
                       SelectedValue="{Binding CurrentItem.Supplier}">
@@ -95,7 +94,7 @@
                       Grid.Row="5"
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}" 
-                      Width="200" 
+                      Width="280" 
                       ItemsSource="{Binding Categories}"
                       HorizontalAlignment="Left"
                       SelectedValue="{Binding CurrentItem.Category}">
@@ -111,7 +110,7 @@
 
             <TextBlock Margin="5 0" Grid.Column="0" Grid.Row="7" Text="Процент поставщика с продажи" TextWrapping="Wrap" VerticalAlignment="Center"/>
             <TextBox x:Name="tbPercent" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="7"
                      HorizontalAlignment="Left"
@@ -137,7 +136,7 @@
 
         <DockPanel Grid.Row="2">
             <Button x:Name="btnDataAction" Margin="20 5" Width="110" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
-            <Button Margin="20 5" Width="110" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
+            <Button x:Name="btnClose" Margin="20 5" Width="110" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="btnClose_Click">Закрыть</Button>
         </DockPanel>
     </Grid>
 </local:ItemWithImages>

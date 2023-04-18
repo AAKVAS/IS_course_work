@@ -12,7 +12,7 @@ namespace WpfApp1.Views.Storages.WorkerShifts
             DataContext = (StoragesWorkerShiftsViewModel)_sectionWidgetViewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }
@@ -42,6 +42,5 @@ namespace WpfApp1.Views.Storages.WorkerShifts
             calendarFinishedShiftAt.IsEnabled = false;
             calendarStartedShiftAt.IsEnabled = false;
         }
-
     }
 }

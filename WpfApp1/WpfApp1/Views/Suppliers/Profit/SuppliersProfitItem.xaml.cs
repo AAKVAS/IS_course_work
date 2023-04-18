@@ -12,7 +12,7 @@ namespace WpfApp1.Views.Suppliers.Profit
             DataContext = (SuppliersProfitViewModel)_sectionWidgetViewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }

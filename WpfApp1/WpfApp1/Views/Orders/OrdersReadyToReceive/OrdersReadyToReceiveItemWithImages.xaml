@@ -6,15 +6,14 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
         Icon="\Resources\wb.ico"
-        Title="ItemForm" Height="555" Width="372">
+        ResizeMode="NoResize"
+        Title="ItemForm" Height="680" Width="460">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
             <RowDefinition Height="41" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0"></StackPanel>
-
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
@@ -35,7 +34,7 @@
                       Grid.Row="0"
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
-                      Width="200" 
+                      Width="280" 
                       ItemsSource="{Binding PickUpPoints}"
                       IsEnabled="False"
                       HorizontalAlignment="Left"
@@ -56,7 +55,7 @@
 
             <Label Grid.Column="0" Grid.Row="1" Content="Id заказа"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbOrderId" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="1"
                      HorizontalAlignment="Left"
@@ -70,7 +69,7 @@
                       Grid.Row="2"
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
-                      Width="200" 
+                      Width="280" 
                       ItemsSource="{Binding Users}"
                       HorizontalAlignment="Left"
                       IsEnabled="False"
@@ -92,7 +91,7 @@
                       Grid.Row="3"
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
-                      Width="200" 
+                      Width="280" 
                       ItemsSource="{Binding Products}"
                       HorizontalAlignment="Left"
                       IsEnabled="False"
@@ -109,7 +108,7 @@
 
             <Label Grid.Column="0" Grid.Row="4" Content="Цена"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbPrice" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="4"
                      HorizontalAlignment="Left"
@@ -123,7 +122,7 @@
                      Grid.Column="1" 
                      Grid.Row="5" 
                      Margin="0 5" 
-                     Width="200"
+                     Width="280"
                      IsReadOnly="True"
                      HorizontalAlignment="Left"
                      Style="{StaticResource CommonTextBox}" 
@@ -134,7 +133,7 @@
                       Grid.Row="6"
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
-                      Width="200" 
+                      Width="280" 
                       ItemsSource="{Binding Statuses}"
                       HorizontalAlignment="Left"
                       SelectedValue="{Binding CurrentItem.Status}">
@@ -151,7 +150,6 @@
         <Grid Grid.Row="1" Margin="10 10 10 5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="41"/>
             </Grid.RowDefinitions>
             <ListBox x:Name="lbImages" Grid.Row="0" PreviewMouseDoubleClick="lbImages_PreviewMouseDoubleClick">
                 <ListBox.ItemTemplate>
@@ -164,7 +162,7 @@
 
         <DockPanel Grid.Row="2">
             <Button x:Name="btnDataAction" Margin="20 5" Width="110" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
-            <Button Margin="20 5" Width="110" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
+            <Button x:Name="btnClose" Margin="20 5" Width="110" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="btnClose_Click">Закрыть</Button>
         </DockPanel>
     </Grid>
 </local:ItemWithImages>

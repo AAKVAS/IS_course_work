@@ -16,7 +16,7 @@ namespace WpfApp1.Views.Orders.OrdersList
             DataContext = _ordersListViewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }
@@ -49,6 +49,5 @@ namespace WpfApp1.Views.Orders.OrdersList
             calendarCreatedAt.IsEnabled = false;
             calendarEstimatedDeliveryAt.IsEnabled = false;
         }
-
     }
 }

@@ -56,7 +56,7 @@ namespace WpfApp1.Views
             {
                 Close();
             }
-            else if (MessageBox.Show("Возможно есть не сохранённые данные, Вы уверены, что хотите закрыть окно?",
+            else if (MessageBox.Show("Возможно есть не сохранённые данные.\nВы уверены, что хотите закрыть окно?",
                                 "Предупреждение",
                                 MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {

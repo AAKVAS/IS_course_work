@@ -15,7 +15,7 @@ namespace WpfApp1.Views.Products.PriceHistory
             DataContext = _viewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }
@@ -44,6 +44,5 @@ namespace WpfApp1.Views.Products.PriceHistory
             tbPrice.IsReadOnly = true;
             calendarPriceDate.IsEnabled = false;
         }
-
     }
 }

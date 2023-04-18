@@ -40,7 +40,7 @@ namespace WpfApp1.Services
             return _context.Sections
                     .FromSqlRaw(query, new SqlParameter("@id", sections.Id))
                     .ToList()
-                    .FirstOrDefault();
+                    .FirstOrDefault() ?? new Sections();
         }
 
         public Sections GetSectionBySectionKey(string sectionKey)

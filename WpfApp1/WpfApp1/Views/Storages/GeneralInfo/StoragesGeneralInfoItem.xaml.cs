@@ -15,7 +15,7 @@ namespace WpfApp1.Views.Storages.GeneralInfo
             DataContext = _viewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }
@@ -47,6 +47,5 @@ namespace WpfApp1.Views.Storages.GeneralInfo
             tbLocality.IsReadOnly = true;
             cbStorages.IsEnabled = false;
         }
-
     }
 }

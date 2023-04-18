@@ -5,16 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Icon="\Resources\wb.ico"
-        Title="ItemForm" Height="555" Width="372">
+        Title="ItemForm" Height="588" Width="458">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="205"/>
             <RowDefinition />
             <RowDefinition Height="41" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0"></StackPanel>
-
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
@@ -30,7 +29,7 @@
 
             <Label Grid.Column="0" Grid.Row="0" Content="Id заказа" VerticalAlignment="Center"/>
             <TextBox x:Name="tbId" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="0"
                      HorizontalAlignment="Left"
@@ -43,7 +42,7 @@
                       Grid.Row="1"
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
-                      Width="200" 
+                      Width="280" 
                       ItemsSource="{Binding Products}"
                       HorizontalAlignment="Left"
                       IsEnabled="False"
@@ -63,7 +62,7 @@
                       Grid.Row="2"
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
-                      Width="200" 
+                      Width="280" 
                       ItemsSource="{Binding Users}"
                       HorizontalAlignment="Left"
                       IsEnabled="False"
@@ -82,7 +81,7 @@
             
             <Label Grid.Column="0" Grid.Row="3" Content="Отзыв"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbReview" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="3"
                      HorizontalAlignment="Left"
@@ -92,7 +91,7 @@
 
             <TextBlock Margin="5 0" Grid.Column="0" Grid.Row="4" Text="Оценка" TextWrapping="Wrap" VerticalAlignment="Center"/>
             <TextBox x:Name="tbStars" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="4"
                      HorizontalAlignment="Left"
@@ -118,7 +117,7 @@
 
         <DockPanel Grid.Row="2">
             <Button x:Name="btnDataAction" Margin="20 5" Width="110" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
-            <Button Margin="20 5" Width="110" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
+            <Button x:Name="btnClose" Margin="20 5" Width="110" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="btnClose_Click">Закрыть</Button>
         </DockPanel>
     </Grid>
 </local:ItemWithImages>

@@ -5,21 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Icon="\Resources\wb.ico"
-        Height="150" Width="368">
+        Height="150" Width="310">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="46*"/>
-            <ColumnDefinition Width="259*"/>
-            <ColumnDefinition Width="28*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions />
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition />
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -50,7 +47,7 @@
         </Grid>
         <DockPanel Grid.Row="1"  Margin="10" Grid.ColumnSpan="3">
             <Button x:Name="btnDataAction" Margin="10 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
-            <Button x:Name="btnClose" Margin="10 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
+            <Button x:Name="btnClose" Margin="10 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="btnClose_Click">Закрыть</Button>
         </DockPanel>
     </Grid>
 </local:ItemForm>

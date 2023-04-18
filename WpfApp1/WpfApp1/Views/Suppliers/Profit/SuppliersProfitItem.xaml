@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Icon="\Resources\wb.ico"
         Height="198" Width="330">
     <Grid>
@@ -62,7 +63,7 @@
                      Style="{StaticResource CommonTextBox}" />
         </Grid>
         <DockPanel Grid.Row="1"  Margin="10,10,10,10" Grid.ColumnSpan="4">
-            <Button x:Name="btnClose" Margin="10 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
+            <Button x:Name="btnClose" Margin="10 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="btnClose_Click">Закрыть</Button>
         </DockPanel>
     </Grid>
 </local:ItemForm>

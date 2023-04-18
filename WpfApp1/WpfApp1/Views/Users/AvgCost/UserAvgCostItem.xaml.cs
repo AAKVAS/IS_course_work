@@ -15,7 +15,7 @@ namespace WpfApp1.Views.Users.GeneralInfo
             DataContext = (UsersAvgCostViewModel)_sectionWidgetViewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }
@@ -45,6 +45,5 @@ namespace WpfApp1.Views.Users.GeneralInfo
             tbPatronymic.IsReadOnly = true;
             tbAvgCost.IsReadOnly = true;
         }
-
     }
 }

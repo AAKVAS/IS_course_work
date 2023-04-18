@@ -4,16 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Icon="\Resources\wb.ico"
         Title="Пользователи / Общие сведения" Height="419" Width="344">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="46*"/>
-            <ColumnDefinition Width="259*"/>
-            <ColumnDefinition Width="28*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="50" />
@@ -130,7 +125,7 @@
         </Grid>
         <DockPanel Grid.Row="1"  Margin="10" Grid.ColumnSpan="3">
             <Button x:Name="btnDataAction" Margin="10 0" Width="90" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
-            <Button x:Name="btnClose" Margin="10 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
+            <Button x:Name="btnClose" Margin="10 0" Width="90" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="btnClose_Click">Закрыть</Button>
         </DockPanel>
     </Grid>
 </local:ItemForm>

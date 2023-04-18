@@ -6,15 +6,13 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
         Icon="\Resources\wb.ico"
-        Title="ItemForm" Height="555" Width="372">
+        Title="ItemForm" Height="555" Width="486">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="123"/>
             <RowDefinition />
             <RowDefinition Height="41" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0"></StackPanel>
-
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140"/>
@@ -28,7 +26,7 @@
 
             <Label Grid.Column="0" Grid.Row="0" Content="Id"  VerticalAlignment="Center"/>
             <TextBox x:Name="tbId" 
-                     Width="200"
+                     Width="280"
                      Grid.Column="1"
                      Grid.Row="0"
                      HorizontalAlignment="Left"
@@ -43,7 +41,7 @@
                       Grid.Row="1"
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
-                      Width="200" 
+                      Width="280" 
                       ItemsSource="{Binding Users}"
                       HorizontalAlignment="Left"
                       SelectedValue="{Binding CurrentItem.User, Mode=TwoWay}">
@@ -64,7 +62,7 @@
                       Grid.Row="2"
                       Grid.Column="1" 
                       Style="{StaticResource CommonComboBox}"
-                      Width="200" 
+                      Width="280" 
                       ItemsSource="{Binding Products}"
                       HorizontalAlignment="Left"
                       SelectedValue="{Binding CurrentItem.Product, Mode=TwoWay}"
@@ -95,7 +93,7 @@
 
         <DockPanel Grid.Row="2">
             <Button x:Name="btnDataAction" Margin="20 5" Width="110" HorizontalAlignment="Left" Template="{StaticResource commonButton}" Command="{Binding SaveCommand}">Сохранить</Button>
-            <Button Margin="20 5" Width="110" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="Button_Click">Закрыть</Button>
+            <Button x:Name="btnClose" Margin="20 5" Width="110" HorizontalAlignment="Right" Template="{StaticResource commonButton}" Click="btnClose_Click">Закрыть</Button>
         </DockPanel>
     </Grid>
 </local:ItemWithImages>

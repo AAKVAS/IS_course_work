@@ -49,7 +49,7 @@ namespace WpfApp1.ViewModels
         {
             if (CurrentItem.Images.Count == 10)
             {
-                MessageBox.Show("Нельзя прикрепить больше 10 файлов!", "Предупреждение!");
+                MessageBox.Show("Нельзя прикрепить больше 10 файлов!", "Предупреждение");
             }
             else
             {
@@ -60,7 +60,7 @@ namespace WpfApp1.ViewModels
                 {
                     if (new FileInfo(fileDialog.FileName).Length >= 10485760)
                     {
-                        MessageBox.Show("Изображение должно быть не больше 10 МБ!", "Предупреждение!");
+                        MessageBox.Show("Изображение должно быть не больше 10 МБ!", "Предупреждение");
                     }
                     else
                     {

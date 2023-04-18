@@ -12,7 +12,7 @@ namespace WpfApp1.Views.Workers.WorkersList
             DataContext = (WorkersListViewModel)_sectionWidgetViewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }
@@ -47,6 +47,5 @@ namespace WpfApp1.Views.Workers.WorkersList
             rbFemale.IsEnabled = false;
             cbPost.IsEnabled = false;
         }
-
     }
 }

@@ -216,7 +216,7 @@ namespace WpfApp1.Services
         {
             if (IsDate(GetPropertyInfo(columnHeader)))
             {
-                FilterWindow filterWindow = new DataFilterWindow(this, columnHeader);
+                FilterWindow filterWindow = new DateFilterWindow(this, columnHeader);
                 filterWindow.ShowDialog();
             }
             else

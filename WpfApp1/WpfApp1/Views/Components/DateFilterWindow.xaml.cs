@@ -5,12 +5,12 @@ using WpfApp1.Services;
 namespace WpfApp1.Views.Components
 {
     /// <summary>
-    /// Логика взаимодействия для DataFilterWindow.xaml
+    /// Логика взаимодействия для DateFilterWindow.xaml
     /// </summary>
-    public partial class DataFilterWindow : FilterWindow
+    public partial class DateFilterWindow : FilterWindow
     {
 
-        public DataFilterWindow(FilterService filterService, DataGridColumnHeader columnHeader) : base(filterService, columnHeader)
+        public DateFilterWindow(FilterService filterService, DataGridColumnHeader columnHeader) : base(filterService, columnHeader)
         {
             InitializeComponent();
             dpParam.Text = _filterService.GetFilterValueByColumn(_columnHeader);

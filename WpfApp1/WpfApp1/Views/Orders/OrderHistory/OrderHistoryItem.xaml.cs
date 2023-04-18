@@ -17,9 +17,10 @@ namespace WpfApp1.Views.Orders.OrderHistory
             _viewModel.FillSectionInItemForm(this);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
+            _viewModel.DefferedQueries.ClearQueries();
         }
 
         protected override void SetFormModeToInsert()

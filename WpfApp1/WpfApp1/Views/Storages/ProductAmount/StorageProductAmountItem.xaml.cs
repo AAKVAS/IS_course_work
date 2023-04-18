@@ -13,7 +13,7 @@ namespace WpfApp1.Views.Storages.ProductAmount
             DataContext = (StorageProductAmountViewModel)_sectionWidgetViewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }
@@ -42,6 +42,5 @@ namespace WpfApp1.Views.Storages.ProductAmount
             cbProduct.IsEnabled = false;
             cbStorage.IsEnabled = false;
         }
-
     }
 }

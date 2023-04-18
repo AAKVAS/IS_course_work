@@ -125,7 +125,6 @@ namespace WpfApp1.ViewModels.Orders
             }
             UpdateItems();
         }
-
     }
 }
 

@@ -28,7 +28,7 @@ namespace WpfApp1.Views.Users.DefferedProducts
             set => lbImages = value; 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }

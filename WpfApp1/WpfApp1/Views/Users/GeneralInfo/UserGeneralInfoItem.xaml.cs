@@ -15,7 +15,7 @@ namespace WpfApp1.Views.Users.GeneralInfo
             DataContext = (UsersGeneralInfoViewModel)_sectionWidgetViewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
         }
@@ -50,6 +50,5 @@ namespace WpfApp1.Views.Users.GeneralInfo
             tbEmail.IsReadOnly = true;
             cbCountry.IsEnabled = false;
         }
-
     }
 }
