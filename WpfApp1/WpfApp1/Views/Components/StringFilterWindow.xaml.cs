@@ -5,11 +5,15 @@ using WpfApp1.Services;
 namespace WpfApp1.Views.Components
 {
     /// <summary>
-    /// Логика взаимодействия для SearchWindow.xaml
+    /// Класс, представляющий окно фильтрации данных с текстовым полем.
     /// </summary>
     public partial class StringFilterWindow : FilterWindow
     {
-
+        /// <summary>
+        /// Конструктор класса StringFilterWindow, принимающий в качестве параметров сервис фильтрации и заголовок столбца.
+        /// </summary>
+        /// <param name="filterService">Сервис фильтрации.</param>
+        /// <param name="columnHeader">Заголовок столбца.</param>
         public StringFilterWindow(FilterService filterService, DataGridColumnHeader columnHeader) : base(filterService, columnHeader)
         {
             InitializeComponent();
@@ -17,6 +21,9 @@ namespace WpfApp1.Views.Components
             SelectFilterType();
         }
 
+        /// <summary>
+        /// Метод применения фильтров.
+        /// </summary>
         protected override void Filter()
         {
             FilterTypes filterTypes = FilterTypes.WithoutFilter;
@@ -39,10 +46,13 @@ namespace WpfApp1.Views.Components
                     filterTypes = FilterTypes.Contains;
                     break;
             }
-            _filterService.Filter(filterTypes, _columnHeader, tbParam.Text);
+            _filterService.SetFilter(filterTypes, _columnHeader, tbParam.Text);
         }
 
-        private void SelectFilterType()
+        /// <summary>
+        /// Метод, который устанавливает в списке видов фильтров текущий выбранный фильтр.
+        /// </summary>
+        protected override void SelectFilterType()
         {
             switch (_filterService.GetFilterTypeByColumn(_columnHeader))
             {

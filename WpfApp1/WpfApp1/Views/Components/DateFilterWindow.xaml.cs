@@ -5,11 +5,15 @@ using WpfApp1.Services;
 namespace WpfApp1.Views.Components
 {
     /// <summary>
-    /// Логика взаимодействия для DateFilterWindow.xaml
+    /// Класс, представляющий окно фильтрации дат.
     /// </summary>
     public partial class DateFilterWindow : FilterWindow
     {
-
+        /// <summary>
+        /// Конструктор класса DateFilterWindow, принимающий в качестве параметров сервис фильтрации и заголовок столбца.
+        /// </summary>
+        /// <param name="filterService">Сервис фильтрации.</param>
+        /// <param name="columnHeader">Заголовок столбца.</param>
         public DateFilterWindow(FilterService filterService, DataGridColumnHeader columnHeader) : base(filterService, columnHeader)
         {
             InitializeComponent();
@@ -17,7 +21,10 @@ namespace WpfApp1.Views.Components
             SelectFilterType();
         }
 
-        private void SelectFilterType()
+        /// <summary>
+        /// Метод, который устанавливает в списке видов фильтров текущий выбранный фильтр.
+        /// </summary>
+        protected override void SelectFilterType()
         {
             switch (_filterService.GetFilterTypeByColumn(_columnHeader))
             {
@@ -42,6 +49,9 @@ namespace WpfApp1.Views.Components
             }
         }
 
+        /// <summary>
+        /// Метод применения фильтров.
+        /// </summary>
         protected override void Filter()
         {
             FilterTypes filterTypes = FilterTypes.WithoutFilter;
@@ -61,7 +71,7 @@ namespace WpfApp1.Views.Components
                     filterTypes = FilterTypes.LessThan;
                     break;
             }
-            _filterService.Filter(filterTypes, _columnHeader, dpParam.Text);
+            _filterService.SetFilter(filterTypes, _columnHeader, dpParam.Text);
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

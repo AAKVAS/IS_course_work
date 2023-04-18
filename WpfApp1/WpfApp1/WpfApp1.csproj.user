@@ -10,9 +10,6 @@
     <Compile Update="App.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControl1.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Components\DateFilterWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,9 +49,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\TextBoxTheme.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UserControl1.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Components\DateFilterWindow.xaml">

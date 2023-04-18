@@ -8,28 +8,88 @@ using WpfApp1.Views;
 
 namespace WpfApp1.ViewModels
 {
+    /// <summary>
+    /// Абстрактный класс, являющийся моделью представления для раздела, чьим представлением является класс SectionWidget.
+    /// </summary>
     public abstract class SectionWidgetViewModel
     {
-        public SectionWidget SectionWidget;
-        public abstract ItemForm ItemForm { get; set; }
-        private PDFGenerateService _pdfGenerateService;
-        public abstract ObservableCollection<dynamic> SectionData { get; set; }
-        public dynamic? CurrentItemFromContext { get; set; }
-        public abstract dynamic? CurrentItem { get; set; }
-
+        protected AccessService _accessService;
+        protected PDFGenerateService _pdfGenerateService;
         protected ItemFormMode _itemFormMode = ItemFormMode.Read;
-        public string SectionTitle { get; set; }
 
-        public FilterService FilterService { get; set; }
-
+        /// <summary>
+        /// Команда вызова окна для вставки записи в базу данных.
+        /// </summary>
         protected RelayCommand? _insertCommand;
+
+        /// <summary>
+        /// Команда вызова окна для удаления записи из базы данных.
+        /// </summary>
         protected RelayCommand? _deleteCommand;
+
+        /// <summary>
+        /// Команда вызова окна для изменения записи в базе данных.
+        /// </summary>
         protected RelayCommand? _updateCommand;
+
+        /// <summary>
+        /// Команда вызова окна для просмотра записи.
+        /// </summary>
         protected RelayCommand? _readCommand;
+
+        /// <summary>
+        /// Команда закрытия вкладки SectionWidget в главном окне.
+        /// </summary>
         protected RelayCommand? _closeCommand;
+
+        /// <summary>
+        /// Команда сохранения изменений из окна работы с записью в базу данных.
+        /// </summary>
         protected RelayCommand? _saveCommand;
+
+        /// <summary>
+        /// Команда создания PDF-документа на основе данных в разделе.
+        /// </summary>
         protected RelayCommand? _pdfCommand;
 
+        /// <summary>
+        /// Заголовок раздела.
+        /// </summary>
+        public string SectionTitle { get; set; }
+
+        /// <summary>
+        /// Ссылка на представление SectionWidget.
+        /// </summary>
+        public SectionWidget SectionWidget;
+
+        /// <summary>
+        /// Сервис для фильтрации данных в разделе SectionWidget.
+        /// </summary>
+        public FilterService FilterService { get; set; }
+
+        /// <summary>
+        /// Запись раздела, с которой происходит работа в текущий момент.
+        /// </summary>
+        public dynamic? CurrentItemFromContext { get; set; }
+
+        /// <summary>
+        /// Копия текущей записи раздела, с которой происходит работа в текущий момент.
+        /// </summary>
+        public abstract dynamic? CurrentItem { get; set; }
+
+        /// <summary>
+        /// Окно работы с текущей записью раздела.
+        /// </summary>
+        public abstract ItemForm ItemForm { get; set; }
+
+        /// <summary>
+        /// Коллекеция данных раздела.
+        /// </summary>
+        public abstract ObservableCollection<dynamic> SectionData { get; set; }
+
+        /// <summary>
+        /// Команда вызова окна для вставки записи в базу данных.
+        /// </summary>
         public RelayCommand InsertCommand
         {
             get
@@ -41,6 +101,10 @@ namespace WpfApp1.ViewModels
                         (obj) => _accessService.HasWorkerRightToInsert(SectionWidget.Section.SectionKey)));
             }
         }
+
+        /// <summary>
+        /// Команда вызова окна для удаления записи из базы данных.
+        /// </summary>
         public RelayCommand DeleteCommand
         {
             get
@@ -52,6 +116,10 @@ namespace WpfApp1.ViewModels
                         (obj) => _accessService.HasWorkerRightToDelete(SectionWidget.Section.SectionKey)));
             }
         }
+
+        /// <summary>
+        /// Команда вызова окна для изменения записи в базе данных.
+        /// </summary>
         public RelayCommand UpdateCommand
         {
             get
@@ -63,6 +131,10 @@ namespace WpfApp1.ViewModels
                         (obj) => _accessService.HasWorkerRightToUpdate(SectionWidget.Section.SectionKey)));
             }
         }
+
+        /// <summary>
+        /// Команда вызова окна для просмотра записи.
+        /// </summary>
         public RelayCommand ReadCommand
         {
             get
@@ -74,6 +146,10 @@ namespace WpfApp1.ViewModels
                         (obj) => _accessService.HasWorkerRightToRead(SectionWidget.Section.SectionKey)));
             }
         }
+
+        /// <summary>
+        /// Команда закрытия вкладки SectionWidget в главном окне.
+        /// </summary>
         public RelayCommand CloseCommand
         {
             get
@@ -84,6 +160,10 @@ namespace WpfApp1.ViewModels
                         }));
             }
         }
+
+        /// <summary>
+        /// Команда сохранения изменений из окна работы с записью в базу данных.
+        /// </summary>
         public RelayCommand SaveCommand
         {
             get
@@ -96,6 +176,10 @@ namespace WpfApp1.ViewModels
                     (obj) => _itemFormMode == ItemFormMode.Insert || _itemFormMode == ItemFormMode.Update));
             }
         }
+
+        /// <summary>
+        /// Команда создания PDF-документа на основе данных в разделе.
+        /// </summary>
         public RelayCommand PDFCommand
         {
             get
@@ -108,9 +192,10 @@ namespace WpfApp1.ViewModels
             }
         }
 
-
-        protected AccessService _accessService;
-
+        /// <summary>
+        /// Конструктор класса SectionWidgetViewModel, принимает в качестве параметра ссылку на представление раздела
+        /// </summary>
+        /// <param name="sectionWidget">Ссылка на представление раздела</param>
         public SectionWidgetViewModel(SectionWidget sectionWidget)
         {
             SectionWidget = sectionWidget;
@@ -121,7 +206,92 @@ namespace WpfApp1.ViewModels
             MakeCurrentItemEmpty();
         }
 
-        protected void CollapseButtonsWithoutRights() {
+        /// <summary>
+        /// Метод вызова окна для вставки записи в БД.
+        /// </summary>
+        protected virtual void TryInsert()
+        {
+            MakeCurrentItemEmpty();
+
+            _itemFormMode = ItemFormMode.Insert;
+            CreateNewItemForm();
+            ItemForm.Title = SectionTitle;
+            ItemForm.Mode = _itemFormMode;
+            ItemForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Метод вызова окна для изменения записи в БД. Если пользователь не выбрал запись, то выводит сообщение об этом.
+        /// </summary>
+        protected void TryUpdate()
+        {
+            if (SectionWidget.DataGrid.SelectedIndex == -1)
+            {
+                MessageBox.Show("Выберите запись!");
+            }
+            else
+            {
+                CurrentItemFromContext = SectionWidget.DataGrid.SelectedItem;
+                CurrentItem = CurrentItemFromContext.Clone();
+
+                _itemFormMode = ItemFormMode.Update;
+                CreateNewItemForm();
+                ItemForm.Title = SectionTitle;
+                ItemForm.Mode = _itemFormMode;
+                ItemForm.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Метод удаления записи. Если пользователь не выбрал запись, то выводит сообщение об этом. Перед удалением, спрашивает пользователя, точно ли тот хочет удалить запись.
+        /// </summary>
+        protected void TryDelete()
+        {
+            if (SectionWidget.DataGrid.SelectedIndex == -1)
+            {
+                MessageBox.Show("Выберите запись!");
+            }
+            else if (MessageBox.Show("Вы уверены, что хотите удалить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                CurrentItemFromContext = SectionWidget.DataGrid.SelectedItem;
+                Delete();
+            }
+        }
+
+        /// <summary>
+        /// Метод вызова окна для просмотра записи. Если пользователь не выбрал запись, то выводит сообщение об этом.
+        /// </summary>
+        protected void Read()
+        {
+            if (SectionWidget.DataGrid.SelectedIndex == -1)
+            {
+                MessageBox.Show("Выберите запись!");
+            }
+            else
+            {
+                CurrentItem = SectionWidget.DataGrid.SelectedItem;
+
+                _itemFormMode = ItemFormMode.Read;
+                CreateNewItemForm();
+                ItemForm.Title = SectionTitle;
+                ItemForm.Mode = _itemFormMode;
+                ItemForm.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Метод, пытающийся создать PDF-файл на основе данных в разделе.
+        /// </summary>
+        protected void ToPDF()
+        {
+            _pdfGenerateService.TryCreatePDF(SectionWidget.Section.Title, SectionWidget.DataGrid);
+        }
+
+        /// <summary>
+        /// Скрывает кнопки работы с данными в разделе, если вошедший пользователь не имеет права на операцию
+        /// </summary>
+        protected void CollapseButtonsWithoutRights()
+        {
             if (!_accessService.HasWorkerRightToInsert(SectionWidget.Section.SectionKey))
             {
                 SectionWidget.CollapseInsertButton();
@@ -144,50 +314,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        protected abstract void CreateNewItemForm();
-
-        protected virtual void TryInsert()
-        {
-            MakeCurrentItemEmpty();
-
-            _itemFormMode = ItemFormMode.Insert;
-            CreateNewItemForm();
-            ItemForm.Title = SectionTitle;
-            ItemForm.Mode = _itemFormMode;
-            ItemForm.ShowDialog();      
-        }
-
-        protected void TryUpdate()
-        {
-            if (SectionWidget.DataGrid.SelectedIndex == -1)
-            {
-                MessageBox.Show("Выберите запись!");
-            }
-            else {
-                CurrentItemFromContext = SectionWidget.DataGrid.SelectedItem;
-                CurrentItem = CurrentItemFromContext.Clone();
-
-                _itemFormMode = ItemFormMode.Update;
-                CreateNewItemForm();
-                ItemForm.Title = SectionTitle;
-                ItemForm.Mode = _itemFormMode;
-                ItemForm.ShowDialog();
-            }
-        }
-
-        protected void TryDelete()
-        {
-            if (SectionWidget.DataGrid.SelectedIndex == -1)
-            {
-                MessageBox.Show("Выберите запись!");
-            }
-            else if (MessageBox.Show("Вы уверены, что хотите удалить запись?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {
-                CurrentItemFromContext = SectionWidget.DataGrid.SelectedItem;
-                Delete();
-            }
-        }
-
+        /// <summary>
+        /// Метод удаления записи из базы данных. Пытается удалить данные, если сталкивается с ошибкой, то возвращает контекст к исходному состоянию и вывод сообщение о невезомжности удаления.
+        /// </summary>
         protected virtual void Delete()
         {
             var entry = App.Context.Entry(CurrentItemFromContext);
@@ -196,11 +325,6 @@ namespace WpfApp1.ViewModels
                 DeleteCurrentItem();
                 App.Context.SaveChanges();
                 UpdateItems();
-            }
-            catch (DbUpdateException ex)
-            {
-                entry.Reload();
-                MessageBox.Show("Вы не можете удалить эту запись, так как она используется в другом разделе"); 
             }
             catch (Exception ex)
             {
@@ -213,24 +337,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        protected void Read()
-        {
-            if (SectionWidget.DataGrid.SelectedIndex == -1)
-            {
-                MessageBox.Show("Выберите запись!");
-            }
-            else
-            {
-                CurrentItem = SectionWidget.DataGrid.SelectedItem;
-
-                _itemFormMode = ItemFormMode.Read;
-                CreateNewItemForm();
-                ItemForm.Title = SectionTitle;
-                ItemForm.Mode = _itemFormMode;
-                ItemForm.ShowDialog();
-            }
-        }
-
+        /// <summary>
+        /// Метод сохранения данных из окна работы с записью. Проверяет корректность данных, затем определяет тип операции - вставка или изменение записи.
+        /// </summary>
         public void Save()
         {
             FillItem();
@@ -249,6 +358,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
+        /// <summary>
+        /// Метод вставки записи в базу данных. Пытается добавить запись, если возникает ошибка - возвращает контекст к прежнему состоянию.
+        /// </summary>
         protected virtual void Insert()
         {
             var entry = App.Context.Entry(CurrentItem);
@@ -267,6 +379,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
+        /// <summary>
+        /// Метод изменения записи в базе данных. Пытается изменить запись, если возникает ошибка - возвращает контекст к прежнему состоянию.
+        /// </summary>
         protected virtual void Update()
         {
             try
@@ -282,31 +397,64 @@ namespace WpfApp1.ViewModels
             }
         }
 
+        /// <summary>
+        /// Абстрактный метод, создающий новый экземпляр формы работы с записью.
+        /// </summary>
+        protected abstract void CreateNewItemForm();
+
+        /// <summary>
+        /// Абстрактный метод, добавляющий в контекст новую запись.
+        /// </summary>
         protected abstract void AddCurrentItem();
+
+        /// <summary>
+        /// Абстрактный метод, удаляющий запись из контекста.
+        /// </summary>
         protected abstract void DeleteCurrentItem();
+
+        /// <summary>
+        /// Абстрактный метод, устанавливающий текущей записи пустое значение.
+        /// </summary>
         protected abstract void MakeCurrentItemEmpty();
+
+        /// <summary>
+        /// Абстрактный метод проверки корректности данных записи. Возвращает список ошибок, если данные не корректны.
+        /// </summary>
+        /// <returns>Перечень некорректных атрибутов записи.</returns>
         protected abstract string GetErrors();
 
+        /// <summary>
+        /// Виртуальный метод, который используется в тех случаях, когда нужно заполнить атрибуты записи значениями из элементов управления окна работы с данными.
+        /// </summary>
         protected virtual void FillItem() {}
 
+        /// <summary>
+        /// Метод, обновляющий записи в таблице раздела.
+        /// </summary>
         protected void UpdateItems()
         {
             UpdateSectionData();
             FilterItems();
         }
 
+        /// <summary>
+        /// Абстрактный метод, который заполняет источник для таблицы раздела коллекцией записей.
+        /// </summary>
+        public abstract void UpdateSectionData();
+
+        /// <summary>
+        /// Метод фильтрации записей в таблице раздела.
+        /// </summary>
         protected void FilterItems()
         {
             FilterService.UseFilters();
         }
 
-        public abstract void UpdateSectionData();
-
-        protected void ToPDF()
-        {
-            _pdfGenerateService.TryCreatePDF(SectionWidget.Section.Title, SectionWidget.DataGrid);
-        }
-
+        /// <summary>
+        /// Метод, который вызывает окно фильтрации для столбца в таблице раздела.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void ShowFilterWindow(object sender, RoutedEventArgs e)
         {
             var columnHeader = sender as DataGridColumnHeader;
@@ -316,6 +464,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
+        /// <summary>
+        /// Метод, закрывающий вкладку раздела в главном окне. 
+        /// </summary>
         protected void Close()
         {
             MainWindow mainWindow = App.MainWindow;

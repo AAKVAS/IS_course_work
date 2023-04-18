@@ -45,7 +45,7 @@ namespace WpfApp1.ViewModels
             get {
                 return _authenticationCommand ??
                         (_authenticationCommand = new RelayCommand((object obj) => {
-                            _password = CryptionService.hashSHA255((obj as PasswordBox).Password);
+                            _password = CryptionService.HashSHA256((obj as PasswordBox).Password);
                             Authentication();
                         }));
             }

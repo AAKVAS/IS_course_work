@@ -176,7 +176,7 @@ namespace WpfApp1.ViewModels.Workers
             }
             else
             {
-                CurrentItem.WorkerPassword = CryptionService.hashSHA255(_changePasswordForm.passwordBox.Password);
+                CurrentItem.WorkerPassword = CryptionService.HashSHA256(_changePasswordForm.passwordBox.Password);
                 _changePasswordForm.Close();
             }
         }

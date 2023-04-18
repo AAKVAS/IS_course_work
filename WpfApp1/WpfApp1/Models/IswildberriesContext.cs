@@ -9,16 +9,22 @@ using WpfApp1.Models.DTO;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Контекст базы данных информационной системы.
+    /// </summary>
     public partial class ISWildberriesContext : DbContext
     {
         #if DEBUG
+            /// <summary>
+            /// Регистратор для действий контекста, используемый при отладке.
+            /// </summary>
             public static readonly Microsoft.Extensions.Logging.LoggerFactory _myLoggerFactory =
                 new LoggerFactory(new[] {
                     new Microsoft.Extensions.Logging.Debug.DebugLoggerProvider()
                 });
         #endif
 
-        public ISWildberriesContext() { }
+        public ISWildberriesContext() {}
 
         public ISWildberriesContext(DbContextOptions<ISWildberriesContext> options)
             : base(options) { }

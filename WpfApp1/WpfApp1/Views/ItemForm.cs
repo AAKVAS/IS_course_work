@@ -3,6 +3,10 @@ using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
+    /// <summary>
+    /// Перечисление, описывающее режимы окна записи.
+    /// Режимы: вставка, изменение, просмотр
+    /// </summary>
     public enum ItemFormMode
     {
         Insert,
