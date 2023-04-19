@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая платёжную карту пользователя.
+    /// </summary>
     public partial class Cards
     {
         public int UserId { get; set; }

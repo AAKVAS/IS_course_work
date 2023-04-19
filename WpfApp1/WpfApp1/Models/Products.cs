@@ -5,6 +5,9 @@ using System.Runtime.CompilerServices;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая товар.
+    /// </summary>
     public partial class Products : INotifyPropertyChanged, ICopied<Products>
     {
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -58,17 +61,6 @@ namespace WpfApp1.Models
             Images = product.Images;
         }
 
-        public Products()
-        {
-            DeferredProducts = new HashSet<DeferredProducts>();
-            Orders = new HashSet<Orders>();
-            PriceHistory = new HashSet<PriceHistory>();
-            ProductsOnStorages = new HashSet<ProductsOnStorages>();
-            ProductsParameters = new HashSet<ProductsParameters>();
-            ReceiptOfProductsToStorages = new HashSet<ReceiptOfProductsToStorages>();
-            Images = new ObservableCollection<ProductImage>();
-        }
-
         public int Id { get; set; }
         public string Title { get; set; } = null!;
         public double Price { get; set; }
@@ -94,6 +86,17 @@ namespace WpfApp1.Models
                 _images = value;
                 OnPropertyChanged();
             }
+        }
+
+        public Products()
+        {
+            DeferredProducts = new HashSet<DeferredProducts>();
+            Orders = new HashSet<Orders>();
+            PriceHistory = new HashSet<PriceHistory>();
+            ProductsOnStorages = new HashSet<ProductsOnStorages>();
+            ProductsParameters = new HashSet<ProductsParameters>();
+            ReceiptOfProductsToStorages = new HashSet<ReceiptOfProductsToStorages>();
+            Images = new ObservableCollection<ProductImage>();
         }
 
         public override bool Equals(object? obj)

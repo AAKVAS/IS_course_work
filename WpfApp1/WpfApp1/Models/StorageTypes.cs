@@ -2,8 +2,14 @@
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая вид склада.
+    /// </summary>
     public partial class StorageTypes
     {
+        /// <summary>
+        /// Идентификатор пункта выдачи товаров.
+        /// </summary>
         public const int PickUpPointId = 1;
 
         public StorageTypes()

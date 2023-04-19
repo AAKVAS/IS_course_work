@@ -33,7 +33,6 @@ namespace WpfApp1.Models
         public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<Countries> Countries { get; set; }
         public virtual DbSet<DeferredProducts> DeferredProducts { get; set; }
-        public virtual DbSet<Files> Files { get; set; }
         public virtual DbSet<LoginedWorkerRights> LoginedWorkerRights { get; set; }
         public virtual DbSet<OrderHistory> OrderHistory { get; set; }
         public virtual DbSet<OrderHistoryDTO> OrderHistoryDTO { get; set; }
@@ -56,7 +55,6 @@ namespace WpfApp1.Models
         public virtual DbSet<Storages> Storages { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<SuppliersProfitDTO> SuppliersProfitDTO { get; set; }
-        public virtual DbSet<TableFiles> TableFiles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserAverageCostDTO> UserAverageCostDTO { get; set; }
         public virtual DbSet<Workers> Workers { get; set; }

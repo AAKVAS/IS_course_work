@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая отработанную смену сотрудника на складе.
+    /// </summary>
     public partial class StorageWorkerShifts : ICopied<StorageWorkerShifts>, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -74,7 +77,5 @@ namespace WpfApp1.Models
             Storage = storageWorkerShifts.Storage;
             Worker = storageWorkerShifts.Worker;
         }
-
-
     }
 }

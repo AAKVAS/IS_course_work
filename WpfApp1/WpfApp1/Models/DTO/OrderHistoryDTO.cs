@@ -5,6 +5,9 @@ using WpfApp1.Services;
 
 namespace WpfApp1.Models.DTO
 {
+    /// <summary>
+    /// Объект передачи данных, отображающий изменение статуса доставки.
+    /// </summary>
     [PrimaryKey(nameof(OrderId), nameof(StatusChangedAt), nameof(WorkerIdNotNullable))]
     public class OrderHistoryDTO : ICopied<OrderHistoryDTO>
     {

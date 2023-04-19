@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -13,8 +12,19 @@ namespace WpfApp1.ViewModels
     /// </summary>
     public abstract class SectionWidgetViewModel
     {
+        /// <summary>
+        /// Ссылка на объект класса AccessService для авторизации.
+        /// </summary>
         protected AccessService _accessService;
+
+        /// <summary>
+        /// Ссылка на объект класса PDFGenerateService для генерации PDF-документов.
+        /// </summary>
         protected PDFGenerateService _pdfGenerateService;
+
+        /// <summary>
+        /// Текущий режим окна работы с данными.
+        /// </summary>
         protected ItemFormMode _itemFormMode = ItemFormMode.Read;
 
         /// <summary>

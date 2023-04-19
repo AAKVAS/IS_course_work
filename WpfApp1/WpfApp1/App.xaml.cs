@@ -11,7 +11,6 @@ namespace WpfApp1
         public readonly static AccessService AccessService = new();
         public readonly static MainWindow MainWindow = new();
         public readonly static PDFGenerateService PDFGenerateService = new();
-        public readonly static ProductService ProductService = new();
         public readonly static SectionCreator SectionCreator = new();
         public readonly static SectionService SectionService = new();
         public readonly static StorageService StorageService = new();

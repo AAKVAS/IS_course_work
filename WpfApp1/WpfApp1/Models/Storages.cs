@@ -2,6 +2,9 @@
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая склад.
+    /// </summary>
     public partial class Storages : ICopied<Storages>
     {
         public Storages()

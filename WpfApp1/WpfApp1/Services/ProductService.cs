@@ -6,11 +6,18 @@ using WpfApp1.Models;
 
 namespace WpfApp1.Services
 {
+    /// <summary>
+    /// Класс, предоставляющий методы работы с данными, связанными с товарами.
+    /// </summary>
     public class ProductService
     {
         private static readonly ISWildberriesContext _context = App.Context;
 
-        public ObservableCollection<dynamic> GetProductsGeneralInfo()
+        /// <summary>
+        /// Метод, возвращающий коллекцию товаров для раздела "Товары / Общие сведения".
+        /// </summary>
+        /// <returns>Коллекия товаров.</returns>
+        public static ObservableCollection<dynamic> GetProductsGeneralInfo()
         {
             return new ObservableCollection<dynamic>(_context.Products
                     .Include(p => p.Supplier)
@@ -18,12 +25,21 @@ namespace WpfApp1.Services
                     .ToList());
         }
 
-        public ObservableCollection<dynamic> GetProductsReviews()
+        /// <summary>
+        /// Метод, возвращающий коллекцию отзывов к товарам для раздела "Товары / Отзывы к товару".
+        /// </summary>
+        /// <returns>Отзывы к товарам.</returns>
+        public static ObservableCollection<dynamic> GetProductsReviews()
         {
             return new ObservableCollection<dynamic>(_context.Reviews.Include(r => r.Order).ThenInclude(o => o.User).Include(r => r.Order).ThenInclude(o => o.Product));
         }
 
-        public ObservableCollection<dynamic> GetReviewImages(Reviews review)
+        /// <summary>
+        /// Метод, возвращающий коллекцию изображений к отзыву к товару.
+        /// </summary>
+        /// <param name="review">Отзыв.</param>
+        /// <returns>Изображения отзыва.</returns>
+        public static ObservableCollection<dynamic> GetReviewImages(Reviews review)
         {
             if (review != null)
             {
@@ -35,17 +51,34 @@ namespace WpfApp1.Services
             }
         }
 
-        public Products GetProductWithImages(Products product)
+        /// <summary>
+        /// Метод, возвращающий товар с его изображениями.
+        /// В качестве параметра принимает модель товара.
+        /// </summary>
+        /// <param name="product">Товар.</param>
+        /// <returns>Товар с его изображениями.</returns>
+        public static Products GetProductWithImages(Products product)
         {
             return _context.Products.Where(p => p.Equals(product)).Include(p => p.Images).ToList().FirstOrDefault() ?? new Products();
         }
 
-        public Reviews GetReviewByOrderId(int orderId)
+        /// <summary>
+        /// Метод, возвращающий отзыв к доствке по её Id.
+        /// </summary>
+        /// <param name="orderId">Id доставки.</param>
+        /// <returns>Отзыв к доставке.</returns>
+        public static Reviews GetReviewByOrderId(int orderId)
         {
             return _context.Reviews.Where(r => r.OrderId == orderId).Include(r => r.Order).ThenInclude(o => o.User).Include(r => r.Order).ThenInclude(o => o.Product).FirstOrDefault();
         }
 
-        public Reviews GetReviewsWithImages(Reviews review)
+        /// <summary>
+        /// Метод, возвращающий отзыв с его изображениями.
+        /// В качестве параметра принимается модель отзыва.
+        /// </summary>
+        /// <param name="review">Отзыв.</param>
+        /// <returns>Отзыв с его изображениями.</returns>
+        public static Reviews GetReviewsWithImages(Reviews review)
         {
             return _context.Reviews
                 .Where(r => r.OrderId == review.OrderId)
@@ -58,20 +91,22 @@ namespace WpfApp1.Services
                 .FirstOrDefault() ?? new Reviews();
         }
 
-        public List<Categories> GetCategories()
+        /// <summary>
+        /// Метод, возвращающий коллекцию категорий товаров.
+        /// </summary>
+        /// <returns>Категории товаров.</returns>
+        public static List<Categories> GetCategories()
         {
             return _context.Categories.Include(c => c.ParentCategory).ToList();
         }
 
-        public bool IsExistCategory(int id)
-        {
-            return _context.Categories.Where(c => c.Id == id).Any();
-        }
-
-        public ObservableCollection<dynamic> GetPriceHistory()
+        /// <summary>
+        /// Метод, возвращающий коллекцию истории цен на товары.
+        /// </summary>
+        /// <returns>История цен на товары.</returns>
+        public static ObservableCollection<dynamic> GetPriceHistory()
         {
             return new ObservableCollection<dynamic>(_context.PriceHistory.Include(ph => ph.Product).ToList());
         }
-
     }
 }

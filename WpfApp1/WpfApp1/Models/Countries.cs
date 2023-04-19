@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая страны, в которых находятся пользователи.
+    /// </summary>
     public partial class Countries
     {
         public Countries()

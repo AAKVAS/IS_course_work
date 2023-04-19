@@ -5,9 +5,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая истории цен.
+    /// </summary>
     public partial class PriceHistory : ICopied<PriceHistory>
     {
-        [Key]
         public int Id { get; set; }
         public int ProductId { get; set; }
         public double Price { get; set; }

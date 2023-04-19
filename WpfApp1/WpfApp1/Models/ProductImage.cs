@@ -2,6 +2,9 @@
 
 namespace WpfApp1.Models;
 
+/// <summary>
+/// Модель, описывающая изображение к товару.
+/// </summary>
 public partial class ProductImage
 {
     public int Id { get; set; }

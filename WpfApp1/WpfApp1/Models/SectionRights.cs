@@ -3,9 +3,11 @@
 using System;
 using System.Collections.Generic;
 
-
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая права на действия с разделами.
+    /// </summary>
     public partial class SectionRights
     {
         public int Id { get; set; }

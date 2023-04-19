@@ -5,13 +5,11 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, отображающая изменение статуса доставки.
+    /// </summary>
     public partial class OrderHistory : ICopied<OrderHistory>
     {
-        public OrderHistory()
-        {
-            Worker = new HashSet<Workers>();
-        }
-
         public int OrderId { get; set; }
         public DateTime StatusChangedAt { get; set; }
         public int? StatusId { get; set; }
@@ -23,6 +21,11 @@ namespace WpfApp1.Models
         public virtual OrderStatuses Status { get; set; }
 
         public virtual ICollection<Workers> Worker { get; set; }
+
+        public OrderHistory()
+        {
+            Worker = new HashSet<Workers>();
+        }
 
         public OrderHistory Clone()
         {

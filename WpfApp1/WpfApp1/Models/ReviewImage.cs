@@ -2,6 +2,9 @@
 
 namespace WpfApp1.Models;
 
+/// <summary>
+/// Модель, описывающая изображение к отзыву товара.
+/// </summary>
 public partial class ReviewImage
 {
     public int Id { get; set; }

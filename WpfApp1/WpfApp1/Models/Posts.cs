@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая должности сотрудников.
+    /// </summary>
     public partial class Posts
     {
         public Posts()

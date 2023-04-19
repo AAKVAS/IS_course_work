@@ -6,16 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая пользователя Интернет-магазина.
+    /// </summary>
     public partial class Users : ICopied<Users>
     {
-
-        public Users()
-        {
-            Cards = new HashSet<Cards>();
-            DeferredProducts = new HashSet<DeferredProducts>();
-            Orders = new HashSet<Orders>();
-        }
-
         public int Id { get; set; }
         public string Firstname { get; set; } = null!;
         public string Lastname { get; set; } = null!;
@@ -69,6 +64,13 @@ namespace WpfApp1.Models
         public virtual ICollection<DeferredProducts> DeferredProducts { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
 
+        public Users()
+        {
+            Cards = new HashSet<Cards>();
+            DeferredProducts = new HashSet<DeferredProducts>();
+            Orders = new HashSet<Orders>();
+        }
+
         public Users Clone()
         {
             Users user = new Users();
@@ -115,7 +117,5 @@ namespace WpfApp1.Models
             }
             return (obj as Users).Id == Id;
         }
-
-
     }
 }

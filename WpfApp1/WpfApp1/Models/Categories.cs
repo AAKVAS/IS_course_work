@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая категории товаров.
+    /// </summary>
     public partial class Categories : ICopied<Categories>
     {
         public Categories()

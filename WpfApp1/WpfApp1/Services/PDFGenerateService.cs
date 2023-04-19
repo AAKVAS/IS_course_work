@@ -8,16 +8,52 @@ using System.Windows.Controls;
 
 namespace WpfApp1.Services
 {
+    /// <summary>
+    /// Класс, обеспечивающий генерацию PDF-документа на основе данных таблицы раздела.
+    /// </summary>
     public class PDFGenerateService
     {
-        private static string _filepath;
-        private static string _title;
-        private static int _columnCount;        
-        private static DataGrid _grid;
-        private static Document _document;
-        private static Font _font;
-        private static PdfPTable _table;
+        /// <summary>
+        /// Путь к PDF-файлу.
+        /// </summary>
+        private string _filepath;
 
+        /// <summary>
+        /// Заголовок таблицы в PDF-документе.
+        /// </summary>
+        private string _title;
+
+        /// <summary>
+        /// Количество столбцов в таблице.
+        /// </summary>
+        private int _columnCount;   
+        
+        /// <summary>
+        /// Ссылка на таблицу раздела.
+        /// </summary>
+        private DataGrid _grid;
+
+        /// <summary>
+        /// Создаваемый PDF-документ.
+        /// </summary>
+        private Document _document;
+
+        /// <summary>
+        /// Шрифт в PDF-документе.
+        /// </summary>
+        private Font _font;
+
+        /// <summary>
+        /// Таблица в PDF-документе.
+        /// </summary>
+        private PdfPTable _table;
+
+        /// <summary>
+        /// Метод, пытающийся создать PDF-документ.
+        /// В качестве параметров принимает заголовок таблицы в создаваемом PDF-документе, а также ссылку на таблицу раздела.
+        /// </summary>
+        /// <param name="title">Заголовок таблицы.</param>
+        /// <param name="dataGrid">Таблица раздела.</param>
         public void TryCreatePDF(string title, DataGrid dataGrid)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -44,15 +80,23 @@ namespace WpfApp1.Services
             }
         }
 
+        /// <summary>
+        /// Метод, настраивающий PDF-документ, перед записью данных.
+        /// </summary>
         private void SetupDocumentProperties()
         {
+            //Добавление объекта записи данных в PDF-файл.
             PdfWriter.GetInstance(_document, new FileStream(_filepath, FileMode.Create));
 
+            //Установка в документе шрифта Arial, в целях использования русских символов.
             string fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIAL.TTF");
             BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             _font = new Font(baseFont, 8, Font.NORMAL);
         }
 
+        /// <summary>
+        /// Метод, создающий таблицу в PDF-документе.
+        /// </summary>
         private void DrawTable()
         {
             _columnCount = _grid.Columns.Count;
@@ -63,6 +107,9 @@ namespace WpfApp1.Services
             _document.Add(_table);
         }
 
+        /// <summary>
+        /// Метод, создающий заголовок таблицы в PDF-документе.
+        /// </summary>
         private void DrawTitle()
         {
             PdfPCell title = new PdfPCell(new Phrase(_title, _font));
@@ -72,6 +119,9 @@ namespace WpfApp1.Services
             _table.AddCell(title);
         }
 
+        /// <summary>
+        /// Метод, создающий заголовки столбцов таблицы в PDF-документе.
+        /// </summary>
         private void DrawTableHeader()
         {
             for (int i = 0; i < _columnCount; i++)
@@ -82,6 +132,9 @@ namespace WpfApp1.Services
             }
         }
 
+        /// <summary>
+        /// Метод, создающий таблицу с данными из раздела.
+        /// </summary>
         private void DrawTableItems()
         {
             for (int i = 0; i < _grid.Items.Count; i++)

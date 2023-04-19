@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая параметры товаров.
+    /// </summary>
     public partial class ProductsParameters
     {
         public int ProductId { get; set; }

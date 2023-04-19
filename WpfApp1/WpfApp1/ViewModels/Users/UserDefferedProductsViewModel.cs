@@ -42,14 +42,12 @@ namespace WpfApp1.ViewModels.Users
 
 
         private UserService _userService;
-        private ProductService _productService;
 
         public List<Models.Users> Users { get; set; }
         public List<Models.Products> Products { get; set; }
 
         public UserDefferedProductsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _userService = App.UserService;
-            _productService = App.ProductService;
             UpdateSectionData();
         }
 
@@ -107,7 +105,7 @@ namespace WpfApp1.ViewModels.Users
 
         public void LoadDefferedProductImages()
         {
-            CurrentItem.Product = _productService.GetProductWithImages(CurrentItem.Product);
+            CurrentItem.Product = ProductService.GetProductWithImages(CurrentItem.Product);
         }
 
 

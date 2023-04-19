@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая поставщика.
+    /// </summary>
     public partial class Suppliers : ICopied<Suppliers>
     {
         public Suppliers()

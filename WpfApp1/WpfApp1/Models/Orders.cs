@@ -7,6 +7,9 @@ using System.Runtime.CompilerServices;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая доставки.
+    /// </summary>
     public partial class Orders : INotifyPropertyChanged, ICopied<Orders>
     {
         public event PropertyChangedEventHandler? PropertyChanged;

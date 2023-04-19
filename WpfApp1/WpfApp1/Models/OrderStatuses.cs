@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая статусы доставок.
+    /// </summary>
     public partial class OrderStatuses
     {
         public OrderStatuses()

@@ -7,6 +7,9 @@ using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
+    /// <summary>
+    /// Представление раздела "Товары / Общие сведения".
+    /// </summary>
     public partial class ProductsGeneralInfoSectionWidget : SectionWidget
     {
         public override Dictionary<string, string> HeadersProperties {

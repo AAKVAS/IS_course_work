@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая поступления товаров на склады.
+    /// </summary>
     public partial class ReceiptOfProductsToStorages : ICopied<ReceiptOfProductsToStorages>
     {
         public int Id { get; set; }

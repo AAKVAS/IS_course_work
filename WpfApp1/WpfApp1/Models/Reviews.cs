@@ -8,6 +8,9 @@ using WpfApp1.Services;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая отзыв пользователя к купленному товару.
+    /// </summary>
     public partial class Reviews : INotifyPropertyChanged, ICopied<Reviews>
     {
         private static OrderService _orderService = App.OrderService;

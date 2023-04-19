@@ -42,13 +42,10 @@ namespace WpfApp1.ViewModels.Products
             set => _image = value;
         }
 
-        private ProductService _productService;
-
         public List<Models.Suppliers> Suppliers { get; set; }
         public List<Categories> Categories { get; set; }
 
         public ProductsGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _productService = App.ProductService;
             UpdateSectionData();
         }
 
@@ -76,7 +73,7 @@ namespace WpfApp1.ViewModels.Products
 
         public override void UpdateSectionData()
         {
-            _sectionData = _productService.GetProductsGeneralInfo();
+            _sectionData = ProductService.GetProductsGeneralInfo();
         }
 
         protected override string GetErrors()
@@ -120,7 +117,7 @@ namespace WpfApp1.ViewModels.Products
 
         public override void LoadCurrentItemImages()
         {
-            CurrentItemFromContext = _productService.GetProductWithImages(CurrentItem);
+            CurrentItemFromContext = ProductService.GetProductWithImages(CurrentItem);
             CurrentItem = CurrentItemFromContext.Clone();
         }
 

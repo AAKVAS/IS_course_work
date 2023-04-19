@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая виды прав к разделам.
+    /// </summary>
     public partial class Rights
     {
         public Rights()

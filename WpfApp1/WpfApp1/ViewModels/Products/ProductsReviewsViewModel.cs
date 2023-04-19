@@ -42,13 +42,10 @@ namespace WpfApp1.ViewModels.Products
             set => _image = value;
         }
 
-        private ProductService _productService;
-
         public List<Models.Products> Products { get; set; }
         public List<Models.Users> Users { get; set; }
 
         public ProductsReviewsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _productService = App.ProductService;
             UpdateSectionData();
         }
 
@@ -76,7 +73,7 @@ namespace WpfApp1.ViewModels.Products
 
         public override void UpdateSectionData()
         {
-            _sectionData = _productService.GetProductsReviews();
+            _sectionData = ProductService.GetProductsReviews();
         }
 
         protected override string GetErrors()
@@ -88,7 +85,7 @@ namespace WpfApp1.ViewModels.Products
             {
                 errorBuilder.AppendLine("Поле \"Id заказа\" - положительное число;");
             }
-            else if (_itemFormMode == ItemFormMode.Insert && _productService.GetReviewByOrderId(orderId) != null)
+            else if (_itemFormMode == ItemFormMode.Insert && ProductService.GetReviewByOrderId(orderId) != null)
             {
                 errorBuilder.AppendLine("Такое значение \"Id заказа\" уже используется;");
             }
@@ -116,7 +113,7 @@ namespace WpfApp1.ViewModels.Products
 
         public override void LoadCurrentItemImages()
         {
-            CurrentItemFromContext = _productService.GetReviewsWithImages(CurrentItem as Reviews);
+            CurrentItemFromContext = ProductService.GetReviewsWithImages(CurrentItem as Reviews);
             CurrentItem = CurrentItemFromContext.Clone();
         }
 

@@ -42,7 +42,6 @@ namespace WpfApp1.ViewModels.Orders
         }
 
         private OrderService _orderService;
-        private ProductService _productService;
 
         public List<Models.Users> Users { get; set; }
         public List<Models.Products> Products { get; set; }
@@ -51,7 +50,6 @@ namespace WpfApp1.ViewModels.Orders
 
         public OrdersReadyToReceiveViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _orderService = App.OrderService;
-            _productService = App.ProductService;
             UpdateSectionData();
         }
 

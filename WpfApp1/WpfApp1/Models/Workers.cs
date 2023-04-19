@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая сотрудника.
+    /// </summary>
     public partial class Workers : ICopied<Workers>
     {
         public Workers()

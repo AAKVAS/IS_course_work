@@ -1,5 +1,8 @@
 ﻿namespace WpfApp1.Models.DTO
 {
+    /// <summary>
+    /// Объект передачи данных, отображающий средние затраты пользователя.
+    /// </summary>
     public class UserAverageCostDTO : ICopied<UserAverageCostDTO>
     {
         public int Id { get; set; }

@@ -34,11 +34,9 @@ namespace WpfApp1.ViewModels.Products
             set => _currentItem = value;
         }
 
-        private ProductService _productService;
         public List<Models.Products> Products { get; set; }
 
         public ProductsPriceHistoryViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _productService = App.ProductService;
             UpdateSectionData();
         }
 
@@ -65,7 +63,7 @@ namespace WpfApp1.ViewModels.Products
 
         public override void UpdateSectionData()
         {
-            _sectionData = _productService.GetPriceHistory();
+            _sectionData = ProductService.GetPriceHistory();
         }
 
         protected override string GetErrors()

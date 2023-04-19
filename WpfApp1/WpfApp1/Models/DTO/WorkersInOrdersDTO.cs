@@ -4,6 +4,9 @@ using System;
 
 namespace WpfApp1.Models.DTO
 {
+    /// <summary>
+    /// Объект передачи данных, отображающий участие сотрудника в изменении статуса доставки.
+    /// </summary>
     [PrimaryKey(nameof(OrderId), nameof(StatusChangedAt), nameof(WorkerId))]
     public class WorkersInOrdersDTO : ICopied<WorkersInOrdersDTO>
     {

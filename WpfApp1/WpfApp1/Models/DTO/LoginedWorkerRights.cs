@@ -1,5 +1,8 @@
 ﻿namespace WpfApp1.Models.DTO
 {
+    /// <summary>
+    /// Объект передачи данных, отображающий право на раздел вошедшего в систему сотрудника.
+    /// </summary>
     public class LoginedWorkerRights
     { 
         public int Id { get; set; }

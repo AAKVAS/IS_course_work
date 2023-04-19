@@ -3,6 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace WpfApp1.Models
 {
+    /// <summary>
+    /// Модель, описывающая товары в корзинах покупателей.
+    /// </summary>
     public partial class DeferredProducts : INotifyPropertyChanged, ICopied<DeferredProducts>
     {
         public event PropertyChangedEventHandler? PropertyChanged;
