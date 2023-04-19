@@ -62,7 +62,7 @@ namespace WpfApp1.Views.Products.GeneralInfo
 
         private void lbImages_PreviewMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            _viewModel.TryShowImageForm();
+            _viewModel.TryShowImageWindow();
         }
     }
 }

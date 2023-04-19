@@ -432,18 +432,33 @@ namespace WpfApp1.Services
             }
         }
 
+        /// <summary>
+        /// Метод, возвращающий текущее фильтруемое значение столбца таблицы раздела.        
+        /// </summary>
+        /// <param name="columnHeader">Заголовок столбца таблицы раздела.</param>
+        /// <returns>Фильтруемое значение для переданного столбца.</returns>
         public string GetFilterValueByColumn(DataGridColumnHeader columnHeader)
         {
             FilterCondition filterCondition = GetFilterConditionByColumn(columnHeader);
             return filterCondition != null ? filterCondition.Value : "";
         }
 
+        /// <summary>
+        /// Метод, возвращающий текущий вид фильтрации столбца таблицы. Если фильтр не определён, то возвращает WithoutFilter.
+        /// </summary>
+        /// <param name="columnHeader">Заголовок столбца таблицы раздела.</param>
+        /// <returns>Вид фильтрации для переданного столбца.</returns>
         public FilterTypes GetFilterTypeByColumn(DataGridColumnHeader columnHeader)
         {
             FilterCondition filterCondition = GetFilterConditionByColumn(columnHeader);
             return filterCondition != null ? filterCondition.Type : FilterTypes.WithoutFilter;
         }
 
+        /// <summary>
+        /// Метод, возвращающий условие фильтрации столбца таблицы раздела.
+        /// </summary>
+        /// <param name="columnHeader">Заголовок столбца таблицы раздела.</param>
+        /// <returns>Условие фильтрации для переданного столбца.</returns>
         private FilterCondition GetFilterConditionByColumn(DataGridColumnHeader columnHeader)
         {
             FilterCondition filterCondition;

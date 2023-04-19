@@ -59,7 +59,7 @@ namespace WpfApp1.Views.Users.DefferedProducts
 
         private void lbImages_PreviewMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            _viewModel.TryShowImageForm(ImageFormMode.Read);
+            _viewModel.TryShowImageWindow(ImageWindowMode.Read);
         }
 
         private void cbProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)

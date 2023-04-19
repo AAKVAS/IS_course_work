@@ -13,7 +13,7 @@
     <Compile Update="Views\Components\DateFilterWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Components\ImageForm.xaml.cs">
+    <Compile Update="Views\Components\ImageWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Components\StringFilterWindow.xaml.cs">
@@ -54,7 +54,7 @@
     <Page Update="Views\Components\DateFilterWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Components\ImageForm.xaml">
+    <Page Update="Views\Components\ImageWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Components\StringFilterWindow.xaml">

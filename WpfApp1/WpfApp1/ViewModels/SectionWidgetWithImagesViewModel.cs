@@ -34,7 +34,7 @@ namespace WpfApp1.ViewModels
             {
                 return _deleteImageCommand ??
                         (_deleteImageCommand = new RelayCommand((object obj) => {
-                            DeleteImage();
+                            DeleteImage(obj);
                         },
                         (obj) => _accessService.HasWorkerRightToDelete(SectionWidget.Section.SectionKey)));
             }
@@ -75,29 +75,29 @@ namespace WpfApp1.ViewModels
         protected abstract dynamic CreateNewImage(byte[] image);
         public abstract void LoadCurrentItemImages();
 
-        private void DeleteImage()
+        private void DeleteImage(dynamic image)
         {
             if (MessageBox.Show("Вы уверены, что хотите удалить изображение?", "Предупреждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                if (CurrentImage != null)
+                if (image != null)
                 {
-                    CurrentItem.Images.Remove(CurrentImage);
+                    CurrentItem.Images.Remove(image);
                     ((ItemWithImages)ItemForm).ListBox.ItemsSource = CurrentItem.Images;
-                    ImageFormService.TryCloseImageForm(CurrentImage);
+                    ImageWindowService.TryCloseImageWindow(image);
                 }
             }
         }
 
-        public void TryShowImageForm(ImageFormMode imageFormMode = ImageFormMode.Delete)
+        public void TryShowImageWindow(ImageWindowMode imageFormMode = ImageWindowMode.Delete)
         {
             CurrentImage = ((ItemWithImages)ItemForm).ListBox.SelectedItem;
             if (_itemFormMode == ItemFormMode.Read)
             {
-                imageFormMode = ImageFormMode.Read;
+                imageFormMode = ImageWindowMode.Read;
             }
-            if (CurrentImage != null && !ImageFormService.IsExistImageForm(CurrentImage))
+            if (CurrentImage != null && !ImageWindowService.IsExistImageWindow(CurrentImage))
             {
-                ImageForm imageForm = ImageFormService.TryCreateItemForm(this, imageFormMode);
+                ImageWindow imageForm = ImageWindowService.TryCreateItemForm(this, imageFormMode);
                 imageForm.Show();
             }
         }
