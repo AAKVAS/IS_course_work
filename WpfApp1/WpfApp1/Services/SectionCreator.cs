@@ -1,13 +1,20 @@
 ﻿using WpfApp1.Models;
 using WpfApp1.Views;
 
-
 namespace WpfApp1.Services
 {
+    /// <summary>
+    /// Класс, создающий представление раздела на основе названия раздела.
+    /// </summary>
     public class SectionCreator
     {
-
-        public SectionWidget GetSectionWidget(Sections section)
+        /// <summary>
+        /// Метод, создающий представление раздела на основе модели раздела.
+        /// В качестве параметра принимает раздел, затем выбирает по имени раздела выбирает конкретный класс представления раздела.
+        /// </summary>
+        /// <param name="section">Модель раздела.</param>
+        /// <returns>Конкретное представление раздела.</returns>
+        public static SectionWidget GetSectionWidget(Sections section)
         {
             SectionWidget sectionWidget = null;
             switch (section.SectionKey)
@@ -50,6 +57,5 @@ namespace WpfApp1.Services
 
             return sectionWidget;
         }
-
     }
 }

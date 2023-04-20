@@ -40,14 +40,10 @@ namespace WpfApp1.ViewModels.Users
             set => _image = value;
         }
 
-
-        private UserService _userService;
-
         public List<Models.Users> Users { get; set; }
         public List<Models.Products> Products { get; set; }
 
         public UserDefferedProductsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _userService = App.UserService;
             UpdateSectionData();
         }
 
@@ -75,7 +71,7 @@ namespace WpfApp1.ViewModels.Users
 
         public override void UpdateSectionData()
         {
-            _sectionData = _userService.GetUserDeferredProducts();
+            _sectionData = UserService.GetUserDeferredProducts();
         }
 
         protected override string GetErrors()
@@ -99,7 +95,7 @@ namespace WpfApp1.ViewModels.Users
 
         public override void LoadCurrentItemImages()
         {
-            CurrentItemFromContext = _userService.GetDeferredProductsWithProductImages(CurrentItem as DeferredProducts);
+            CurrentItemFromContext = UserService.GetDeferredProductsWithProductImages(CurrentItem as DeferredProducts);
             CurrentItem = CurrentItemFromContext.Clone();
         }
 
@@ -107,7 +103,5 @@ namespace WpfApp1.ViewModels.Users
         {
             CurrentItem.Product = ProductService.GetProductWithImages(CurrentItem.Product);
         }
-
-
     }
 }

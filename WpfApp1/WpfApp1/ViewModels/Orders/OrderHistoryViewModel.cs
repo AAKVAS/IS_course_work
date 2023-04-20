@@ -8,7 +8,6 @@ using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Orders.OrderHistory;
 using WpfApp1.Models.DTO;
-using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using Microsoft.Data.SqlClient;
 using System.Windows.Controls;
@@ -38,9 +37,6 @@ namespace WpfApp1.ViewModels.Orders
             set => _currentItem = value;
         }
 
-        private OrderService _orderService;
-        private SectionCreator _sectionCreator;
-        private SectionService _sectionService;
         public DefferedQueries DefferedQueries { get; set; }
 
         public List<Models.Products> Products { get; set; }
@@ -48,16 +44,13 @@ namespace WpfApp1.ViewModels.Orders
         public List<Models.Storages> Storages { get; set; }
 
         public OrderHistoryViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _orderService = App.OrderService;
-            _sectionCreator = App.SectionCreator;
-            _sectionService = App.SectionService;
             UpdateSectionData();
             DefferedQueries = new();
         }
 
         public void FillSectionInItemForm(OrderHistoryItem item)
         {
-            Sections section = _sectionService.GetSectionBySectionKey("workers_in_orders");
+            Sections section = SectionService.GetSectionBySectionKey("workers_in_orders");
             SectionWidget sectionWidget = new OrderHistoryWorkersSectionWidget(section, this);
 
             if (sectionWidget != null)
@@ -67,7 +60,7 @@ namespace WpfApp1.ViewModels.Orders
                     sectionWidget.CollapseAllButtonsExceptReadButton();
                 }
 
-                string parentSectionTitle = _sectionService.GetSectionParent(section).Title;
+                string parentSectionTitle = SectionService.GetSectionParent(section).Title;
                 sectionWidget.ViewModel.SectionTitle = parentSectionTitle + " / " + section.Title;
 
                 item.ucSection.Content = sectionWidget;
@@ -99,7 +92,7 @@ namespace WpfApp1.ViewModels.Orders
 
         public override void UpdateSectionData()
         {
-            _sectionData = _orderService.GetOrderHistory();
+            _sectionData = OrderService.GetOrderHistory();
         }
 
         protected override void FillItem() {
@@ -137,7 +130,7 @@ namespace WpfApp1.ViewModels.Orders
         {
             try
             {
-                DefferedQueries.PushQueryToFront(_orderService.GetInsertOrderHistoryQuery(CurrentItem));
+                DefferedQueries.PushQueryToFront(OrderService.GetInsertOrderHistoryQuery(CurrentItem));
                 DefferedQueries.CommonParameters.Add(new SqlParameter("@order_id", CurrentItem.OrderId));
                 DefferedQueries.CommonParameters.Add(new SqlParameter("@status_changed_at", CurrentItem.StatusChangedAt));
                 
@@ -157,7 +150,7 @@ namespace WpfApp1.ViewModels.Orders
             try
             {
                 CurrentItemFromContext.Copy(CurrentItem);
-                DefferedQueries.PushQueryToFront(_orderService.GetUpdateOrderHistoryQuery(CurrentItem));
+                DefferedQueries.PushQueryToFront(OrderService.GetUpdateOrderHistoryQuery(CurrentItem));
                 DefferedQueries.CommonParameters.Add(new SqlParameter("@order_id", CurrentItem.OrderId));
                 DefferedQueries.CommonParameters.Add(new SqlParameter("@status_changed_at", CurrentItem.StatusChangedAt));
                 DefferedQueries.ExecuteQueries();
@@ -177,7 +170,7 @@ namespace WpfApp1.ViewModels.Orders
         {
             try
             {
-                _orderService.DeleteOrderHistory(CurrentItemFromContext);
+                OrderService.DeleteOrderHistory(CurrentItemFromContext);
                 RefreshDataGrid();
                 UpdateItems();
             }

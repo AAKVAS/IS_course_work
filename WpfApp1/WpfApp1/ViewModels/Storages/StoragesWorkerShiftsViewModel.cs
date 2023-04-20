@@ -35,12 +35,10 @@ namespace WpfApp1.ViewModels.Storages
             set => _currentItem = value;
         }
 
-        private StorageService _storageService;
         public List<Models.Storages> Storages { get; set; }
         public List<Models.Workers> Workers { get; set; }
 
         public StoragesWorkerShiftsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _storageService = App.StorageService;
 	        UpdateSectionData();
         }
 
@@ -68,7 +66,7 @@ namespace WpfApp1.ViewModels.Storages
 
         public override void UpdateSectionData()
         {
-            _sectionData = _storageService.GetStorageWorkerShifts();
+            _sectionData = StorageService.GetStorageWorkerShifts();
         }
 
         protected override string GetErrors()
@@ -104,7 +102,7 @@ namespace WpfApp1.ViewModels.Storages
             var entry = App.Context.Entry(CurrentItem);
             try
             {
-                _storageService.InsertStorageWorkerShift(CurrentItem);
+                StorageService.InsertStorageWorkerShift(CurrentItem);
                 ItemForm.Close();
                 UpdateItems();
             }

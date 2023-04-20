@@ -41,15 +41,12 @@ namespace WpfApp1.ViewModels.Orders
             set => _image = value;
         }
 
-        private OrderService _orderService;
-
         public List<Models.Users> Users { get; set; }
         public List<Models.Products> Products { get; set; }
         public List<Models.Storages> PickUpPoints { get; set; }
         public List<OrderStatuses> Statuses { get; set; }
 
         public OrdersReadyToReceiveViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _orderService = App.OrderService;
             UpdateSectionData();
         }
 
@@ -62,8 +59,8 @@ namespace WpfApp1.ViewModels.Orders
         {
             Users = App.Context.Users.ToList();
             Products = App.Context.Products.ToList();
-            PickUpPoints = App.StorageService.GetPickUpPoints();
-            Statuses = _orderService.GetStatusesForReadyToRecieveOrder();
+            PickUpPoints = StorageService.GetPickUpPoints();
+            Statuses = OrderService.GetStatusesForReadyToRecieveOrder();
             _itemForm = new OrdersReadyToReceiveItemWithImages(this);
         }
 
@@ -79,7 +76,7 @@ namespace WpfApp1.ViewModels.Orders
 
         public override void UpdateSectionData()
         {
-            _sectionData = _orderService.GetOrdersReadyToReceive();
+            _sectionData = OrderService.GetOrdersReadyToReceive();
         }
 
         protected override string GetErrors()
@@ -98,7 +95,7 @@ namespace WpfApp1.ViewModels.Orders
 
         public override void LoadCurrentItemImages()
         {
-            CurrentItemFromContext = _orderService.GetOrderHistoryWithProductImages(CurrentItem);
+            CurrentItemFromContext = OrderService.GetOrderHistoryWithProductImages(CurrentItem);
             CurrentItem = CurrentItemFromContext.Clone();
         }
 
@@ -108,7 +105,7 @@ namespace WpfApp1.ViewModels.Orders
             var entry = App.Context.Entry(CurrentItemFromContext);
             try
             {
-                _orderService.ChangeOrderStatus(CurrentItemFromContext);
+                OrderService.ChangeOrderStatus(CurrentItemFromContext);
                 ItemForm.Close();
                 UpdateItems();
             }

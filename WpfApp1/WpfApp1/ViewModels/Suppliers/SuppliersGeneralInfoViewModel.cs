@@ -30,11 +30,7 @@ namespace WpfApp1.ViewModels.Suppliers
             set => _currentItem = value;
         }
 
-
-        private SupplierService _supplierService;
-
         public SuppliersGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _supplierService = App.SupplierService;
 	        UpdateSectionData();
         }
 
@@ -60,7 +56,7 @@ namespace WpfApp1.ViewModels.Suppliers
 
         public override void UpdateSectionData()
         {
-            _sectionData = _supplierService.GetSuppliersGeneralInfo();
+            _sectionData = SupplierService.GetSuppliersGeneralInfo();
         }
 
         protected override string GetErrors()

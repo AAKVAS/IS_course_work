@@ -11,8 +11,6 @@ namespace WpfApp1.Models.DTO
     [PrimaryKey(nameof(OrderId), nameof(StatusChangedAt), nameof(WorkerIdNotNullable))]
     public class OrderHistoryDTO : ICopied<OrderHistoryDTO>
     {
-        private static OrderService _orderService = App.OrderService;
-
         private int _orderId;
         public int OrderId 
         { 
@@ -23,7 +21,7 @@ namespace WpfApp1.Models.DTO
             set 
             { 
                 _orderId = value;
-                Orders order = _orderService.GetOrderByOrderId(_orderId);
+                Orders order = OrderService.GetOrderByOrderId(_orderId);
                 ProductId = order?.ProductId ?? 0;
             }
         }
@@ -133,7 +131,5 @@ namespace WpfApp1.Models.DTO
             WorkerPatronymic = orderHistoryDTO.WorkerPatronymic;
             WorkerPost = orderHistoryDTO.WorkerPost;
         }
-
-
     }
 }

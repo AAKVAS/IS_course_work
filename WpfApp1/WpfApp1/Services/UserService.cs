@@ -7,11 +7,18 @@ using WpfApp1.Models;
 
 namespace WpfApp1.Services
 {
+    /// <summary>
+    /// Класс, предоставляющий методы для работы с данными, связанными с пользователями.
+    /// </summary>
     public class UserService
     {
         private static readonly ISWildberriesContext _context = App.Context;
 
-        public ObservableCollection<dynamic> GetUserGeneralInfo()
+        /// <summary>
+        /// Метод, возвращающий сведения о пользователях.
+        /// </summary>
+        /// <returns>Пользователи.</returns>
+        public static ObservableCollection<dynamic> GetUserGeneralInfo()
         {
             FormattableString query = $@"SELECT 
 	                                            u.id,
@@ -31,7 +38,11 @@ namespace WpfApp1.Services
                     .ToList());
         }
 
-        public ObservableCollection<dynamic> GetUserAvgCost()
+        /// <summary>
+        /// Метод, возвращающий средние затраты пользователей.
+        /// </summary>
+        /// <returns>Средние затраты пользователей.</returns>
+        public static ObservableCollection<dynamic> GetUserAvgCost()
         {
             FormattableString query = $@"SELECT u.id, 
                                                 u.firstname, 
@@ -50,7 +61,11 @@ namespace WpfApp1.Services
                 .ToList());
         }
 
-        public ObservableCollection<dynamic> GetUserDeferredProducts()
+        /// <summary>
+        /// Метод, возвращающий товары пользователей в корзине.
+        /// </summary>
+        /// <returns>Товары пользователей в корзине.</returns>
+        public static ObservableCollection<dynamic> GetUserDeferredProducts()
         {
             return new ObservableCollection<dynamic>(_context.DeferredProducts
                 .Include(dp => dp.User)
@@ -58,30 +73,16 @@ namespace WpfApp1.Services
                 .ToList());
         }
 
-        public ObservableCollection<dynamic> GetUserDeferredProductsImages(DeferredProducts deferredProducts)
-        {
-            string query = $@"SELECT pri.id,
-                                     pri.product_id,
-	                                 pri.product_image
-                                FROM product_images pri
-                               WHERE product_id = @product_id";
-            if (deferredProducts.ProductId != null)
-            {
-                return new ObservableCollection<dynamic>(_context.ProductImages
-                    .FromSqlRaw(query, new SqlParameter("@product_id", deferredProducts.ProductId))
-                    .ToList());
-            }
-            else
-            {
-                return new ObservableCollection<dynamic> { };
-            }
-        }
-
-        public DeferredProducts GetDeferredProductsWithProductImages(DeferredProducts deferredProduct)
+        /// <summary>
+        /// Метод, возвращающий товар в корзине вместе с его изображениями.
+        /// В качетсве параметра принимает товар в корзине.
+        /// </summary>
+        /// <param name="deferredProduct">Товар в корзине.</param>
+        /// <returns>Товар в корзине с его изображениями.</returns>
+        public static DeferredProducts GetDeferredProductsWithProductImages(DeferredProducts deferredProduct)
         {
             return _context.DeferredProducts.Where(dp => dp.Id == deferredProduct.Id).Include(dp => dp.Product).ThenInclude(p => p.Images).FirstOrDefault()
                 ?? new DeferredProducts();
         }
-
     }
 }

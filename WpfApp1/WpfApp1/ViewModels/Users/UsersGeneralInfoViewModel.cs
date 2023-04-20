@@ -34,12 +34,9 @@ namespace WpfApp1.ViewModels.Users
             set => _currentItem = value;
         }
 
-        private UserService _userService;
-
         public List<Countries> Countries { get; set; }
 
         public UsersGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _userService = App.UserService;
             UpdateSectionData();
         }
 
@@ -66,7 +63,7 @@ namespace WpfApp1.ViewModels.Users
 
         public override void UpdateSectionData()
         {
-            _sectionData = _userService.GetUserGeneralInfo();
+            _sectionData = UserService.GetUserGeneralInfo();
         }
 
         protected override void FillItem()
@@ -109,6 +106,5 @@ namespace WpfApp1.ViewModels.Users
 
             return errorBuilder.ToString();
         }
-
     }
 }

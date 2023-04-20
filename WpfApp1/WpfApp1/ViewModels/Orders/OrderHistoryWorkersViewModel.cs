@@ -33,18 +33,14 @@ namespace WpfApp1.ViewModels.Orders
             set => _currentItem = value;
         }
 
-        private OrderService _orderService;
         private OrderHistoryDTO _orderHistoryDTO;
         private OrderHistoryViewModel _orderHistoryViewModel;
-        private WorkerService _workerService;
         public List<Models.Workers> Workers;
 
         public OrderHistoryWorkersViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _orderService = App.OrderService;
             OrderHistoryWorkersSectionWidget orderHistoryWorkersSectionWidget = sectionWidget as OrderHistoryWorkersSectionWidget;
             _orderHistoryDTO = orderHistoryWorkersSectionWidget.OrderHistoryDTO;
             _orderHistoryViewModel = orderHistoryWorkersSectionWidget.OrderHistoryViewModel;
-            _workerService = App.WorkerService;
             Workers = App.Context.Workers.ToList();
             UpdateSectionData();
         }
@@ -71,13 +67,13 @@ namespace WpfApp1.ViewModels.Orders
 
         public override void UpdateSectionData()
         {
-            _sectionData = _orderService.GetWorkersInOrder(_orderHistoryDTO);
+            _sectionData = OrderService.GetWorkersInOrder(_orderHistoryDTO);
         }
 
         protected override void FillItem() {
             OrderHistoryWorkersItem orderHistoryWorkersItem = ItemForm as OrderHistoryWorkersItem;
             int workerId = (orderHistoryWorkersItem?.cbWorker.SelectedItem as Models.Workers)?.Id ?? 0;
-            Models.Workers worker = _workerService.GetWorkerById(workerId);
+            Models.Workers worker = WorkerService.GetWorkerById(workerId);
             if (worker != null)
             {
                 CurrentItem.WorkerId = workerId;
@@ -122,7 +118,7 @@ namespace WpfApp1.ViewModels.Orders
             }
             else
             {
-                _orderHistoryViewModel.DefferedQueries.AddQuery(_orderService.GetInsertWorkerInOrderHistoryQuery(CurrentItem));
+                _orderHistoryViewModel.DefferedQueries.AddQuery(OrderService.GetInsertWorkerInOrderHistoryQuery(CurrentItem));
                 SectionData.Add(CurrentItem);
                 ItemForm.Close();
             }
@@ -130,10 +126,9 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override void Delete()
         {
-            _orderHistoryViewModel.DefferedQueries.AddQuery(_orderService.GetDeleteWorkerInOrderHistoryQuery(CurrentItemFromContext));
+            _orderHistoryViewModel.DefferedQueries.AddQuery(OrderService.GetDeleteWorkerInOrderHistoryQuery(CurrentItemFromContext));
             SectionData.Remove(CurrentItemFromContext);
             MakeCurrentItemEmpty();
         }
-
     }
 }

@@ -63,7 +63,6 @@ namespace WpfApp1.ViewModels.Workers
             }
         }
 
-        private WorkerService _workerService;
         private ChangePasswordForm _changePasswordForm;
 
         public List<Posts> Posts { get; set; }
@@ -80,7 +79,6 @@ namespace WpfApp1.ViewModels.Workers
         }
 
         public WorkersListViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _workerService = App.WorkerService;
             _passwordEvaluator = new();
             UpdateSectionData();
         }
@@ -113,7 +111,7 @@ namespace WpfApp1.ViewModels.Workers
 
         public override void UpdateSectionData()
         {
-            _sectionData = _workerService.GetWorkers();
+            _sectionData = WorkerService.GetWorkers();
         }
 
         protected override void FillItem()

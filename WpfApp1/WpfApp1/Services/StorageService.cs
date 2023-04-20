@@ -10,21 +10,36 @@ using WpfApp1.Models;
 
 namespace WpfApp1.Services
 {
+    /// <summary>
+    /// Класс, предоставляющий методы для работы с данными, связанными со складами.
+    /// </summary>
     public class StorageService
     {
         private static readonly ISWildberriesContext _context = App.Context;
 
-        public List<Storages> GetPickUpPoints()
+        /// <summary>
+        /// Метод, возвращающий коллекцию пунктов выдачи заказов.
+        /// </summary>
+        /// <returns>Пункты выдачи товаров.</returns>
+        public static List<Storages> GetPickUpPoints()
         {
             return _context.Storages.Where(s => (s.StorageType ?? 0) == StorageTypes.PickUpPointId).ToList();
         }
 
-        public ObservableCollection<dynamic> GetStoragesGenerealInfo()
+        /// <summary>
+        /// Метод, возвращающий коллекцию складов. Используется для раздела "Склады / Общие сведения".
+        /// </summary>
+        /// <returns>Коллекция складов.</returns>
+        public static ObservableCollection<dynamic> GetStoragesGeneralInfo()
         {
             return new ObservableCollection<dynamic>(_context.Storages.Include(s => s.StorageTypeNavigation).ToList());
         }
 
-        public ObservableCollection<dynamic> GetStorageReceipts()
+        /// <summary>
+        /// Метод, возвращающий коллекцию поступлений товаров на склады. Используется для раздела "Склады / Поступления на склады".
+        /// </summary>
+        /// <returns>Поступления товаров на склады.</returns>
+        public static ObservableCollection<dynamic> GetStorageReceipts()
         {
             return new ObservableCollection<dynamic>(
                 _context.ReceiptOfProductsToStorages
@@ -34,7 +49,11 @@ namespace WpfApp1.Services
                     .ToList());
         }
 
-        public ObservableCollection<dynamic> GetStorageWorkerShifts()
+        /// <summary>
+        /// Метод, возвращающий коллекцию смен сотрудников на складе. Используется для раздела "Склады / Работа сотрудников на складе".
+        /// </summary>
+        /// <returns>Смены сотрудников на складе.</returns>
+        public static ObservableCollection<dynamic> GetStorageWorkerShifts()
         {
             return new ObservableCollection<dynamic>(
                 _context.StorageWorkerShifts
@@ -45,7 +64,11 @@ namespace WpfApp1.Services
                     .ToList());
         }
 
-        public void InsertStorageWorkerShift(StorageWorkerShifts storageWorkerShifts)
+        /// <summary>
+        /// Метод, выполняющий добавление смены сотрудника на складе в БД.
+        /// </summary>
+        /// <param name="storageWorkerShifts">Смена сотрудника.</param>
+        public static void InsertStorageWorkerShift(StorageWorkerShifts storageWorkerShifts)
         {
             string query = @"INSERT INTO storage_worker_shifts (
                                         storage_id,
@@ -70,7 +93,11 @@ namespace WpfApp1.Services
             _context.Database.ExecuteSqlRaw(query, parameters);
         }
 
-        public ObservableCollection<dynamic> GetStoragesProductAmount()
+        /// <summary>
+        /// Метод, возвращающий количество продуктов на складах.
+        /// </summary>
+        /// <returns>Количество продуктов на складах.</returns>
+        public static ObservableCollection<dynamic> GetStoragesProductAmount()
         {
             return new ObservableCollection<dynamic>(
                 _context.ProductsOnStorages

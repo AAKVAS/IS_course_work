@@ -9,16 +9,27 @@ using WpfApp1.Models;
 
 namespace WpfApp1.Services
 {
+    /// <summary>
+    /// Класс, предоставляющий методы для работы с данными, связанными с поставщиками.
+    /// </summary>
     public class SupplierService
     {
         private static readonly ISWildberriesContext _context = App.Context;
 
-        public ObservableCollection<dynamic> GetSuppliersGeneralInfo()
+        /// <summary>
+        /// Метод, возвращающий коллекцию поставщиков. Используется для раздела "Поставщики / Общие сведения".
+        /// </summary>
+        /// <returns>Поставщики.</returns>
+        public static ObservableCollection<dynamic> GetSuppliersGeneralInfo()
         {
             return new ObservableCollection<dynamic>(_context.Suppliers.ToList());
         }
 
-        public ObservableCollection<dynamic> GetSuppliersProfits()
+        /// <summary>
+        /// Метод, возвращающий прибыль поставщиков. Используется для раздела "Поставщики / Прибыль".
+        /// </summary>
+        /// <returns>Прибыль поставщиков.</returns>
+        public static ObservableCollection<dynamic> GetSuppliersProfits()
         {
             string query = @"SELECT 
                                     s.id as Id,

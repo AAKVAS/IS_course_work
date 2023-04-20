@@ -18,9 +18,9 @@ namespace WpfApp1.ViewModels
         protected AccessService _accessService;
 
         /// <summary>
-        /// Ссылка на объект класса PDFGenerateService для генерации PDF-документов.
+        /// Ссылка на объект класса PDFGenerator для генерации PDF-документов.
         /// </summary>
-        protected PDFGenerateService _pdfGenerateService;
+        protected PDFGenerator _pdfGenarator;
 
         /// <summary>
         /// Текущий режим окна работы с данными.
@@ -210,7 +210,7 @@ namespace WpfApp1.ViewModels
         {
             SectionWidget = sectionWidget;
             _accessService = App.AccessService;
-            _pdfGenerateService = App.PDFGenerateService;
+            _pdfGenarator = App.PDFGenerator;
             CollapseButtonsWithoutRights();
             FilterService = new FilterService(this);
             MakeCurrentItemEmpty();
@@ -294,7 +294,7 @@ namespace WpfApp1.ViewModels
         /// </summary>
         protected void ToPDF()
         {
-            _pdfGenerateService.TryCreatePDF(SectionWidget.Section.Title, SectionWidget.DataGrid);
+            _pdfGenarator.TryCreatePDF(SectionWidget.Section.Title, SectionWidget.DataGrid);
         }
 
         /// <summary>

@@ -13,8 +13,6 @@ namespace WpfApp1.Models
     /// </summary>
     public partial class Reviews : INotifyPropertyChanged, ICopied<Reviews>
     {
-        private static OrderService _orderService = App.OrderService;
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
@@ -57,7 +55,7 @@ namespace WpfApp1.Models
             set
             {
                 _orderId = value;
-                Order = _orderService.GetOrderByOrderId(_orderId);
+                Order = OrderService.GetOrderByOrderId(_orderId);
                 OnPropertyChanged();
                 
             }

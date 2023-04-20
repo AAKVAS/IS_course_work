@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Text;
 using WpfApp1.Views;
 using WpfApp1.Views.Users.GeneralInfo;
-using WpfApp1.Models;
 using WpfApp1.Services;
 using System;
 
@@ -33,10 +30,7 @@ namespace WpfApp1.ViewModels.Users
             set => _currentItem = value;
         }
 
-        private UserService _userService;
-
         public UsersAvgCostViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _userService = App.UserService;
             UpdateSectionData();
         }
 
@@ -62,13 +56,12 @@ namespace WpfApp1.ViewModels.Users
 
         public override void UpdateSectionData()
         {
-            _sectionData = _userService.GetUserAvgCost();
+            _sectionData = UserService.GetUserAvgCost();
         }
 
         protected override string GetErrors()
         {
             return new StringBuilder().ToString();
         }
-
     }
 }

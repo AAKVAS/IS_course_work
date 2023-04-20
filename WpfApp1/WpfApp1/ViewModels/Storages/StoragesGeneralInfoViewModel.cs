@@ -34,12 +34,10 @@ namespace WpfApp1.ViewModels.Storages
             set => _currentItem = value;
         }
 
-        private StorageService _storageService;
         public List<StorageTypes> StorageTypes { get; set; }
 
         public StoragesGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget)
         {
-            _storageService = App.StorageService;
             StorageTypes = App.Context.StorageTypes.ToList();
             UpdateSectionData();
         }
@@ -66,7 +64,7 @@ namespace WpfApp1.ViewModels.Storages
 
         public override void UpdateSectionData()
         {
-            _sectionData = _storageService.GetStoragesGenerealInfo();
+            _sectionData = StorageService.GetStoragesGeneralInfo();
         }
 
         protected override string GetErrors()

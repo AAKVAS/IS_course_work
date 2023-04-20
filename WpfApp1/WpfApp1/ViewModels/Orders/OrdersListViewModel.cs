@@ -35,15 +35,12 @@ namespace WpfApp1.ViewModels.Orders
             set => _currentItem = value;
         }
 
-        private OrderService _orderService;
-
         public List<Models.Users> Users { get; set; }
         public List<Models.Storages> PickUpPoints { get; set; }
         public List<Models.Products> Products { get; set; }
 
         public OrdersListViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _orderService = App.OrderService;
-            _sectionData = _orderService.GetOrdersList();
+            _sectionData = OrderService.GetOrdersList();
         }
 
         protected override void MakeCurrentItemEmpty()
@@ -54,7 +51,7 @@ namespace WpfApp1.ViewModels.Orders
         protected override void CreateNewItemForm()
         {
             Users = App.Context.Users.ToList();
-            PickUpPoints = App.StorageService.GetPickUpPoints();
+            PickUpPoints = StorageService.GetPickUpPoints();
             Products = App.Context.Products.ToList();
             _itemForm = new OrdersListItem(this);
         }
@@ -71,7 +68,7 @@ namespace WpfApp1.ViewModels.Orders
 
         public override void UpdateSectionData()
         {
-            _sectionData = _orderService.GetOrdersList();
+            _sectionData = OrderService.GetOrdersList();
         }
 
         protected override string GetErrors()
@@ -115,7 +112,7 @@ namespace WpfApp1.ViewModels.Orders
             var entry = App.Context.Entry(CurrentItem);
             try
             {
-                _orderService.InsertOrder(CurrentItem);
+                OrderService.InsertOrder(CurrentItem);
                 ItemForm.Close();
                 UpdateItems();
             }
@@ -132,7 +129,7 @@ namespace WpfApp1.ViewModels.Orders
             var entry = App.Context.Entry(CurrentItemFromContext);
             try
             {
-                _orderService.DeleteOrder(CurrentItemFromContext);
+                OrderService.DeleteOrder(CurrentItemFromContext);
                 UpdateItems();
             }
             catch (DbUpdateException ex)

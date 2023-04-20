@@ -10,14 +10,7 @@ namespace WpfApp1
         public static ISWildberriesContext Context = new();
         public readonly static AccessService AccessService = new();
         public readonly static MainWindow MainWindow = new();
-        public readonly static PDFGenerateService PDFGenerateService = new();
-        public readonly static SectionCreator SectionCreator = new();
-        public readonly static SectionService SectionService = new();
-        public readonly static StorageService StorageService = new();
-        public readonly static UserService UserService = new();
-        public readonly static SupplierService SupplierService = new();
-        public readonly static WorkerService WorkerService = new();
-        public readonly static OrderService OrderService = new();
+        public readonly static PDFGenerator PDFGenerator = new();
 
         protected override void OnStartup(StartupEventArgs e)
         {

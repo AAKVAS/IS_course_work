@@ -11,8 +11,6 @@ namespace WpfApp1.ViewModels
     internal class MainWindowViewModel
     {
         private AccessService _accessService;
-        private SectionCreator _sectionCreator;
-        private SectionService _sectionService;
         private List<LoginedWorkerRights> _sections = null!;
 
         private RelayCommand? _sectionChoosedCommand;
@@ -34,8 +32,6 @@ namespace WpfApp1.ViewModels
         public MainWindowViewModel(MainWindow mainWindow)
         {
             _accessService = App.AccessService;
-            _sectionCreator = App.SectionCreator;
-            _sectionService = App.SectionService;
             _mainWindow = mainWindow;
             HideMenuItemsWithoutRights();
         }
@@ -74,15 +70,15 @@ namespace WpfApp1.ViewModels
 
         private void AddSectionToMainTabControl(string sectionKey)
         {
-            Sections section = _sectionService.GetSectionBySectionKey(sectionKey);
+            Sections section = SectionService.GetSectionBySectionKey(sectionKey);
 
-            SectionWidget sectionWidget = _sectionCreator.GetSectionWidget(section);
+            SectionWidget sectionWidget = SectionCreator.GetSectionWidget(section);
 
             if (sectionWidget != null)
             {
                 TabControl tabControl = _mainWindow.mainTabControl;
 
-                string parentSectionTitle = _sectionService.GetSectionParent(section).Title;
+                string parentSectionTitle = SectionService.GetSectionParent(section).Title;
                 sectionWidget.ViewModel.SectionTitle = parentSectionTitle + " / " + section.Title;
 
                 tabControl.Items.Add(new TabItem

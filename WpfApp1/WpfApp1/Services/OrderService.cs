@@ -20,7 +20,7 @@ namespace WpfApp1.Services
         /// </summary>
         /// <param name="OrderId">Id доставки.</param>
         /// <returns>Модель доставки.</returns>
-        public dynamic GetOrderByOrderId(int OrderId)
+        public static dynamic GetOrderByOrderId(int OrderId)
         {
             return _context.Orders.Where(o => o.Id == OrderId).Include(o => o.User).Include(o => o.Product).FirstOrDefault();
         }
@@ -29,7 +29,7 @@ namespace WpfApp1.Services
         /// Метод, возвращающий коллекцию доставок для раздела "Доставки / Список доставок."
         /// </summary>
         /// <returns>Коллекция доставок.</returns>
-        public ObservableCollection<dynamic> GetOrdersList()
+        public static ObservableCollection<dynamic> GetOrdersList()
         {
             return new ObservableCollection<dynamic>(_context.Orders
                 .Include(o => o.User)
@@ -42,7 +42,7 @@ namespace WpfApp1.Services
         /// Метод, добавляющий в базу данных доставку. В качестве параметра принимает модель доставки.
         /// </summary>
         /// <param name="order">Модель доставки.</param>
-        public void InsertOrder(Orders order)
+        public static void InsertOrder(Orders order)
         {
             string query = @"INSERT INTO orders (
                                                user_id,
@@ -77,7 +77,7 @@ namespace WpfApp1.Services
         /// Метод, удаляющий доставку из БД. В качестве параметра принимает модель доставки.
         /// </summary>
         /// <param name="order">Модель доставки.</param>
-        public void DeleteOrder(Orders order)
+        public static void DeleteOrder(Orders order)
         {
             string query = @"DELETE FROM orders
                               WHERE id = @id;";
@@ -88,7 +88,7 @@ namespace WpfApp1.Services
         /// Метод, добавляющий статус доставки в БД. В качестве параметра принимает модель изменения статуса доставки.
         /// </summary>
         /// <param name="orderHistory">Изменение статуса доставки.</param>
-        public void ChangeOrderStatus(OrderHistory orderHistory)
+        public static void ChangeOrderStatus(OrderHistory orderHistory)
         {
             string query = @"INSERT INTO order_history (
 	                                order_id,
@@ -112,7 +112,7 @@ namespace WpfApp1.Services
         /// Метод, извлекающий коллекцию доставок, готовых к получению.
         /// </summary>
         /// <returns>Коллекция доставок, готовых к получению.</returns>
-        public ObservableCollection<dynamic> GetOrdersReadyToReceive()
+        public static ObservableCollection<dynamic> GetOrdersReadyToReceive()
         {
             //Id статуса доставки, готового к получению.
             const int readyToReceiveStatus = 11;
@@ -135,7 +135,7 @@ namespace WpfApp1.Services
         /// </summary>
         /// <param name="orderHistory">Модель истории доставки.</param>
         /// <returns>Модель истории доставки с изображениями товара.</returns>
-        public OrderHistory GetOrderHistoryWithProductImages(OrderHistory orderHistory)
+        public static OrderHistory GetOrderHistoryWithProductImages(OrderHistory orderHistory)
         {
             return _context.OrderHistory.Where(oh => oh.Equals(orderHistory))
                     .Include(oh => oh.Order)
@@ -154,7 +154,7 @@ namespace WpfApp1.Services
         /// Метод, возвращающий статусы, в которые может перейти доставка, готовая к получению.
         /// </summary>
         /// <returns>Коллекция статусов, в которые может перейти доставка, готовая к получению.</returns>
-        public List<OrderStatuses> GetStatusesForReadyToRecieveOrder()
+        public static List<OrderStatuses> GetStatusesForReadyToRecieveOrder()
         {
             string query = @"SELECT os.id,
                                     os.description
@@ -168,7 +168,7 @@ namespace WpfApp1.Services
         /// Метод, возвращающий коллекцию изменений статусов доставки.
         /// </summary>
         /// <returns>Коллкция изменений статусов доставки.</returns>
-        public ObservableCollection<dynamic> GetOrderHistory()
+        public static ObservableCollection<dynamic> GetOrderHistory()
         {
             string query = @"
                             SELECT 
@@ -213,7 +213,7 @@ namespace WpfApp1.Services
         /// </summary>
         /// <param name="orderHistoryDTO">Изменение статуса доставки.</param>
         /// <returns>Коллекция сотрудников, участвоваших в изменении заказа.</returns>
-        public ObservableCollection<dynamic> GetWorkersInOrder(OrderHistoryDTO orderHistoryDTO)
+        public static ObservableCollection<dynamic> GetWorkersInOrder(OrderHistoryDTO orderHistoryDTO)
         {
             string query = @"SELECT 
                                    oh.order_id as OrderId,
@@ -245,7 +245,7 @@ namespace WpfApp1.Services
         /// </summary>
         /// <param name="orderHistoryDTO">Изменение статуса доставки.</param>
         /// <returns>Запрос вставки изменения статуса доставки с параметрами.</returns>
-        public QueryWithParameters GetInsertOrderHistoryQuery(OrderHistoryDTO orderHistoryDTO)
+        public static QueryWithParameters GetInsertOrderHistoryQuery(OrderHistoryDTO orderHistoryDTO)
         {
             string query = @"INSERT INTO order_history (
                                     order_id,
@@ -276,7 +276,7 @@ namespace WpfApp1.Services
         /// </summary>
         /// <param name="orderHistoryDTO">Изменение статуса доставки.</param>
         /// <returns>Запрос обновления записи об изменении статуса доставки.</returns>
-        public QueryWithParameters GetUpdateOrderHistoryQuery(OrderHistoryDTO orderHistoryDTO)
+        public static QueryWithParameters GetUpdateOrderHistoryQuery(OrderHistoryDTO orderHistoryDTO)
         {
             string query = @"UPDATE oh
                                SET 
@@ -303,7 +303,7 @@ namespace WpfApp1.Services
         /// </summary>
         /// <param name="orderHistoryDTO">Изменение статуса доставки.</param>
         /// <returns>Запрос удаления изменения статуса доставки.</returns>
-        public void DeleteOrderHistory(OrderHistoryDTO orderHistoryDTO)
+        public static void DeleteOrderHistory(OrderHistoryDTO orderHistoryDTO)
         {
             string query = @"DELETE FROM order_history
                               WHERE order_id            = @order_id
@@ -323,7 +323,7 @@ namespace WpfApp1.Services
         /// </summary>
         /// <param name="workersInOrdersDTO">Участие сотрудника в изменении статуса доставки.</param>
         /// <returns>Запрос добавления участия сотрудника в изменении статуса доставки.</returns>
-        public QueryWithParameters GetInsertWorkerInOrderHistoryQuery(WorkersInOrdersDTO workersInOrdersDTO)
+        public static QueryWithParameters GetInsertWorkerInOrderHistoryQuery(WorkersInOrdersDTO workersInOrdersDTO)
         {
             string query = @"INSERT INTO workers_in_orders (
                                     order_id,
@@ -349,7 +349,7 @@ namespace WpfApp1.Services
         /// </summary>
         /// <param name="workersInOrdersDTO">Участие сотрудника в изменении статуса доставки.</param>
         /// <returns>Запрос удаления участия сотрудника в изменении статуса доставки.</returns>
-        public QueryWithParameters GetDeleteWorkerInOrderHistoryQuery(WorkersInOrdersDTO workersInOrdersDTO)
+        public static QueryWithParameters GetDeleteWorkerInOrderHistoryQuery(WorkersInOrdersDTO workersInOrdersDTO)
         {
             string query = @"DELETE FROM workers_in_orders
                               WHERE order_id          = @order_id

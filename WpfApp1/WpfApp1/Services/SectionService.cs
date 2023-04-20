@@ -1,19 +1,23 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WpfApp1.Models;
 
 namespace WpfApp1.Services
 {
+    /// <summary>
+    /// Класс, предоставляющий методы для работы с данными, связанными с разделами.
+    /// </summary>
     public class SectionService
     {
         private static readonly ISWildberriesContext _context = App.Context;
 
-        public Sections GetSectionParent(Sections sections)
+        /// <summary>
+        /// Метод, возвращающий корневой родительский раздел переданного раздела.
+        /// </summary>
+        /// <param name="sections">Раздел, для которого нужно найти корневой родительский раздел.</param>
+        /// <returns>Корневой родительский раздел.</returns>
+        public static Sections GetSectionParent(Sections sections)
         {
             string query = $@"WITH cte AS (
                             SELECT  id,
@@ -43,7 +47,12 @@ namespace WpfApp1.Services
                     .FirstOrDefault() ?? new Sections();
         }
 
-        public Sections GetSectionBySectionKey(string sectionKey)
+        /// <summary>
+        /// Метод, возвращающий раздел по его английскому названию.
+        /// </summary>
+        /// <param name="sectionKey">Английское название раздела.</param>
+        /// <returns>Раздел.</returns>
+        public static Sections GetSectionBySectionKey(string sectionKey)
         {
             return _context.Sections.Where(s => s.SectionKey == sectionKey).ToList().FirstOrDefault();
         }

@@ -11,7 +11,7 @@ namespace WpfApp1.Services
     /// <summary>
     /// Класс, обеспечивающий генерацию PDF-документа на основе данных таблицы раздела.
     /// </summary>
-    public class PDFGenerateService
+    public class PDFGenerator
     {
         /// <summary>
         /// Путь к PDF-файлу.
