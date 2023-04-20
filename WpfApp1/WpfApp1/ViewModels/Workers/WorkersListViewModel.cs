@@ -30,13 +30,6 @@ namespace WpfApp1.ViewModels.Workers
             set => _sectionData = value;
         }
 
-        private dynamic _currentItem;
-        public override dynamic? CurrentItem
-        {
-            get => _currentItem;
-            set => _currentItem = value;
-        }
-
         private RelayCommand? _tryChangePasswordCommand;
         public RelayCommand TryChangePasswordCommand
         {
@@ -90,7 +83,7 @@ namespace WpfApp1.ViewModels.Workers
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new Models.Workers();
+            CurrentItem = new Models.Workers();
         }
 
         protected override void CreateNewItemForm()

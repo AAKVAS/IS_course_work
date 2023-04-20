@@ -27,13 +27,6 @@ namespace WpfApp1.ViewModels.Users
             set => _sectionData = value;
         }
 
-        private dynamic _currentItem;
-        public override dynamic? CurrentItem
-        {
-            get => _currentItem;
-            set => _currentItem = value;
-        }
-
         public List<Countries> Countries { get; set; }
 
         public UsersGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
@@ -42,7 +35,7 @@ namespace WpfApp1.ViewModels.Users
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new Models.Users();
+            CurrentItem = new Models.Users();
         }
 
         protected override void CreateNewItemForm()

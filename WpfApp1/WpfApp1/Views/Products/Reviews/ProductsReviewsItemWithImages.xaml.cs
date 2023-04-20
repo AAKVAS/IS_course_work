@@ -19,7 +19,7 @@ namespace WpfApp1.Views.Products.Reviews
             lbImages.ItemsSource = _viewModel.CurrentItemFromContext.Images;
         }
 
-        public override ListBox ListBox 
+        public override ListBox ImagesListBox
         { 
             get => lbImages;
             set => lbImages = value; 

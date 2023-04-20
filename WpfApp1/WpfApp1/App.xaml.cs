@@ -5,13 +5,36 @@ using WpfApp1.Views;
 
 namespace WpfApp1
 {
+    /// <summary>
+    /// Класс, инкапсулирующий приложение WPF.
+    /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// Контекст БД.
+        /// </summary>
         public static ISWildberriesContext Context = new();
-        public readonly static AccessService AccessService = new();
-        public readonly static MainWindow MainWindow = new();
-        public readonly static PDFGenerator PDFGenerator = new();
 
+        /// <summary>
+        /// Свойство, обеспечивающее аутентификацию и авторизацию в приложении. 
+        /// </summary>
+        public static AccessService AccessService = new();
+
+        /// <summary>
+        /// Основное окно приложения.
+        /// </summary>
+        public static MainWindow MainWindow = new();
+
+        /// <summary>
+        /// Объект, генерирующий PDF-документы.
+        /// </summary>
+        public static PDFGenerator PDFGenerator = new();
+
+        /// <summary>
+        /// Обработчик события OnStartup.
+        /// Проверяет доступ к БД, если он отсутствиет, то приложение выдаёт предупреждение и завершает работу.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -28,11 +51,20 @@ namespace WpfApp1
             }
         }
 
+        /// <summary>
+        /// Метод проверки наличия доступа к БД.
+        /// </summary>
+        /// <returns></returns>
         private bool IsEnableDB()
         {
             return Context.Database.CanConnect();
         }
 
+        /// <summary>
+        /// Обработчик необработанных исключений. Выводит сообщение о возникшей ошибке.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             MessageBox.Show($"Возникла непредвиденная ошибка: {e.Exception.Message}");

@@ -26,13 +26,6 @@ namespace WpfApp1.ViewModels.Orders
             set => _sectionData = value;
         }
 
-        private dynamic _currentItem;
-        public override dynamic? CurrentItem
-        {
-            get => _currentItem;
-            set => _currentItem = value;
-        }
-
         private OrderHistoryDTO _orderHistoryDTO;
         private OrderHistoryViewModel _orderHistoryViewModel;
         public List<Models.Workers> Workers;
@@ -47,7 +40,7 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new WorkersInOrdersDTO();
+            CurrentItem = new WorkersInOrdersDTO();
         }
 
         protected override void CreateNewItemForm()

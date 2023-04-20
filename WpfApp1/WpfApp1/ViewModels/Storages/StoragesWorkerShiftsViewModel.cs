@@ -28,13 +28,6 @@ namespace WpfApp1.ViewModels.Storages
             set => _sectionData = value;
         }
 
-        private dynamic _currentItem;
-        public override dynamic? CurrentItem
-        {
-            get => _currentItem;
-            set => _currentItem = value;
-        }
-
         public List<Models.Storages> Storages { get; set; }
         public List<Models.Workers> Workers { get; set; }
 
@@ -44,7 +37,7 @@ namespace WpfApp1.ViewModels.Storages
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new StorageWorkerShifts();
+            CurrentItem = new StorageWorkerShifts();
         }
 
         protected override void CreateNewItemForm()

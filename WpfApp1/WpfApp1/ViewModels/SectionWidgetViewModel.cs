@@ -79,13 +79,15 @@ namespace WpfApp1.ViewModels
 
         /// <summary>
         /// Запись раздела, с которой происходит работа в текущий момент.
+        /// Имеет тип данных dynamic в связи с тем, что базовый класс модели представления не знает, какого типа данных будет запись.
         /// </summary>
         public dynamic? CurrentItemFromContext { get; set; }
 
         /// <summary>
         /// Копия текущей записи раздела, с которой происходит работа в текущий момент.
+        /// Имеет тип данных dynamic в связи с тем, что базовый класс модели представления не знает, какого типа данных будет запись.
         /// </summary>
-        public abstract dynamic? CurrentItem { get; set; }
+        public dynamic? CurrentItem { get; set; }
 
         /// <summary>
         /// Окно работы с текущей записью раздела.
@@ -94,6 +96,7 @@ namespace WpfApp1.ViewModels
 
         /// <summary>
         /// Коллекеция данных раздела.
+        /// Имеет тип данных ObservableCollection<dynamic>, потому что базовый класс модели представления не знает, какого типа данных будут записи в разделе.
         /// </summary>
         public abstract ObservableCollection<dynamic> SectionData { get; set; }
 
@@ -206,7 +209,7 @@ namespace WpfApp1.ViewModels
         /// Конструктор класса SectionWidgetViewModel, принимает в качестве параметра ссылку на представление раздела
         /// </summary>
         /// <param name="sectionWidget">Ссылка на представление раздела</param>
-        public SectionWidgetViewModel(SectionWidget sectionWidget)
+        protected SectionWidgetViewModel(SectionWidget sectionWidget)
         {
             SectionWidget = sectionWidget;
             _accessService = App.AccessService;

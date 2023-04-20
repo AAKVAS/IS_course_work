@@ -22,7 +22,7 @@ namespace WpfApp1.Views.Orders.OrdersReadyToReceive {
             lbImages.ItemsSource = _viewModel.CurrentItemFromContext.Order.Product.Images;
         }
 
-        public override ListBox ListBox 
+        public override ListBox ImagesListBox
         { 
             get => lbImages;
             set => lbImages = value; 

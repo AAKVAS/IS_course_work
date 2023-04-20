@@ -26,20 +26,6 @@ namespace WpfApp1.ViewModels.Users
             set => _sectionData = value;
         }
 
-        private dynamic _currentItem;
-        public override dynamic? CurrentItem
-        {
-            get => _currentItem;
-            set => _currentItem = value;
-        }
-
-        private ProductImage _image;
-        public override dynamic CurrentImage 
-        {
-            get => _image;
-            set => _image = value;
-        }
-
         public List<Models.Users> Users { get; set; }
         public List<Models.Products> Products { get; set; }
 
@@ -49,7 +35,7 @@ namespace WpfApp1.ViewModels.Users
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new DeferredProducts();
+            CurrentItem = new DeferredProducts();
         }
 
         protected override void CreateNewItemForm()

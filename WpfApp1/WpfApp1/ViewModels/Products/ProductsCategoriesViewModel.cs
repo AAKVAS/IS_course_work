@@ -24,13 +24,6 @@ namespace WpfApp1.ViewModels.Products
             set => _sectionData = value;
         }
 
-        private dynamic _currentItem;
-        public override dynamic? CurrentItem
-        {
-            get => _currentItem;
-            set => _currentItem = value;
-        }
-
         public ObservableCollection<Categories> Categories { get; set; }
 
         public ProductsCategoriesViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
@@ -39,7 +32,7 @@ namespace WpfApp1.ViewModels.Products
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new Categories();
+            CurrentItem = new Categories();
         }
 
         protected override void CreateNewItemForm()

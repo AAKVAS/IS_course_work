@@ -23,20 +23,13 @@ namespace WpfApp1.ViewModels.Users
             set => _sectionData = value;
         }
 
-        private dynamic _currentItem;
-        public override dynamic? CurrentItem
-        {
-            get => _currentItem;
-            set => _currentItem = value;
-        }
-
         public UsersAvgCostViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             UpdateSectionData();
         }
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new Models.DTO.UserAverageCostDTO();
+            CurrentItem = new Models.DTO.UserAverageCostDTO();
         }
 
         protected override void CreateNewItemForm()

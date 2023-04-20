@@ -28,13 +28,6 @@ namespace WpfApp1.ViewModels.Orders
             set => _sectionData = value;
         }
 
-        private dynamic _currentItem;
-        public override dynamic? CurrentItem
-        {
-            get => _currentItem;
-            set => _currentItem = value;
-        }
-
         public List<Models.Users> Users { get; set; }
         public List<Models.Storages> PickUpPoints { get; set; }
         public List<Models.Products> Products { get; set; }
@@ -45,7 +38,7 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new Models.Orders();
+            CurrentItem = new Models.Orders();
         }
 
         protected override void CreateNewItemForm()

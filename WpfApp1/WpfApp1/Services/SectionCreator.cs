@@ -14,9 +14,9 @@ namespace WpfApp1.Services
         /// </summary>
         /// <param name="section">Модель раздела.</param>
         /// <returns>Конкретное представление раздела.</returns>
-        public static SectionWidget GetSectionWidget(Sections section)
+        public static SectionWidget? GetSectionWidget(Sections section)
         {
-            SectionWidget sectionWidget = null;
+            SectionWidget? sectionWidget = null;
             switch (section.SectionKey)
             {
                 case "users_general_info":

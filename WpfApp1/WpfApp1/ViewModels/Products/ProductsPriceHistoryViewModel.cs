@@ -27,13 +27,6 @@ namespace WpfApp1.ViewModels.Products
             set => _sectionData = value;
         }
 
-        private dynamic _currentItem;
-        public override dynamic? CurrentItem
-        {
-            get => _currentItem;
-            set => _currentItem = value;
-        }
-
         public List<Models.Products> Products { get; set; }
 
         public ProductsPriceHistoryViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
@@ -42,7 +35,7 @@ namespace WpfApp1.ViewModels.Products
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new PriceHistory();
+            CurrentItem = new PriceHistory();
         }
 
         protected override void CreateNewItemForm()

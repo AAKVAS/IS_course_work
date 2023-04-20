@@ -22,20 +22,13 @@ namespace WpfApp1.ViewModels.Suppliers
             set => _sectionData = value;
         }
 
-        private dynamic _currentItem;
-        public override dynamic? CurrentItem
-        {
-            get => _currentItem;
-            set => _currentItem = value;
-        }
-
         public SuppliersProfitViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
 	        UpdateSectionData();
         }
 
         protected override void MakeCurrentItemEmpty()
         {
-            _currentItem = new Models.DTO.SuppliersProfitDTO();
+            CurrentItem = new Models.DTO.SuppliersProfitDTO();
         }
 
         protected override void CreateNewItemForm()

@@ -22,7 +22,7 @@ namespace WpfApp1.Views.Users.DefferedProducts
             }
         }
 
-        public override ListBox ListBox 
+        public override ListBox ImagesListBox
         { 
             get => lbImages;
             set => lbImages = value; 

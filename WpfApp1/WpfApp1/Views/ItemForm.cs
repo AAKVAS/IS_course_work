@@ -15,7 +15,7 @@ namespace WpfApp1.Views
     }
 
     /// <summary>
-    /// Абстрактный класс окна записи раздела.
+    /// Абстрактный класс окна работы с записью раздела.
     /// </summary>
     public abstract class ItemForm : Window
     {
