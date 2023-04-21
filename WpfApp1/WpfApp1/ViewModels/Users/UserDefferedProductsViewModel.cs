@@ -19,13 +19,6 @@ namespace WpfApp1.ViewModels.Users
             set => _itemForm = value as UserDefferedProductsItemWithImages;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public List<Models.Users> Users { get; set; }
         public List<Models.Products> Products { get; set; }
 
@@ -57,7 +50,7 @@ namespace WpfApp1.ViewModels.Users
 
         public override void UpdateSectionData()
         {
-            _sectionData = UserService.GetUserDeferredProducts();
+            SectionData = UserService.GetUserDeferredProducts();
         }
 
         protected override string GetErrors()

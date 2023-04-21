@@ -9,16 +9,24 @@ using WpfApp1.ViewModels.Orders;
 
 namespace WpfApp1.Views
 {
+    /// <summary>
+    /// Представление раздела "Доставки / История заказов / Сотрудники в заказах".
+    /// </summary>
     public partial class OrderHistoryWorkersSectionWidget : SectionWidget
     {
-        public override Dictionary<string, string> HeadersProperties {
+        /// <summary>
+        /// Пустой словарь, так как фильтрация данных в таблице сотрудников, причастных к изменению статуса заказа не предусмотренна.
+        /// </summary>
+        public override Dictionary<string, string> HeadersProperties 
+        {
             get 
             {
                 return new Dictionary<string, string> {};
             }
         }
 
-        protected override Button InsertButton { 
+        protected override Button InsertButton 
+        { 
             get => btnInsert;
         }
         protected override Button UpdateButton
@@ -48,24 +56,32 @@ namespace WpfApp1.Views
         }
 
         public override SectionWidgetViewModel ViewModel { get; set; }
-        
-        public OrderHistoryDTO OrderHistoryDTO { get; set; }
+
+        /// <summary>
+        /// Ссылка на модель представления раздела "Доставки / История заказов".
+        /// </summary>
         public OrderHistoryViewModel OrderHistoryViewModel { get; set; }
 
+        /// <summary>
+        /// Ссылка на текущую запись в разделе "Доставки / История заказов".
+        /// </summary>
+        public OrderHistoryDTO CurrentOrderHistoryDTO { get; set; }
+
+        /// <summary>
+        /// Конструктор класса OrderHistoryWorkersSectionWidget, принимающий в качестве параметров модель раздела и ссылку на модель представления раздела "Доставки / История заказов".
+        /// </summary>
+        /// <param name="section">Модель раздела.</param>
+        /// <param name="orderHistoryViewModel">Модель представления  раздела "Доставки / История заказов".</param>
         public OrderHistoryWorkersSectionWidget(Sections section, OrderHistoryViewModel orderHistoryViewModel) : base(section)
         {
             InitializeComponent();
-            OrderHistoryDTO = orderHistoryViewModel.CurrentItem;
+            //Запоминаем ссылку на модель представления раздела "Доставки / История заказов".
             OrderHistoryViewModel = orderHistoryViewModel;
+            ///Запоминаем текущую запись раздела "Доставки / История заказов".
+            CurrentOrderHistoryDTO = orderHistoryViewModel.CurrentItem;
             ViewModel = new OrderHistoryWorkersViewModel(this);
             DataContext = ViewModel;
             DataGrid.ItemsSource = ViewModel.SectionData;
         }
-
-        private void UserControl_Initialized(object sender, EventArgs e)
-        {
-            DataContext = ViewModel;
-        }
-
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using WpfApp1.Views;
@@ -21,19 +20,12 @@ namespace WpfApp1.ViewModels.Orders
             set => _itemForm = value as OrdersListItem;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public List<Models.Users> Users { get; set; }
         public List<Models.Storages> PickUpPoints { get; set; }
         public List<Models.Products> Products { get; set; }
 
         public OrdersListViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            _sectionData = OrderService.GetOrdersList();
+            UpdateSectionData();
         }
 
         protected override void MakeCurrentItemEmpty()
@@ -61,7 +53,7 @@ namespace WpfApp1.ViewModels.Orders
 
         public override void UpdateSectionData()
         {
-            _sectionData = OrderService.GetOrdersList();
+            SectionData = OrderService.GetOrdersList();
         }
 
         protected override string GetErrors()

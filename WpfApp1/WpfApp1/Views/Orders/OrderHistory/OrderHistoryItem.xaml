@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         Icon="\Resources\wb.ico"
         Height="450" Width="488"
-        Loaded="ItemForm_Loaded">
+        Loaded="ItemForm_Loaded" Closing="ItemForm_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />

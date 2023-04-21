@@ -8,7 +8,7 @@ using WpfApp1.Views;
 namespace WpfApp1.ViewModels
 {
     /// <summary>
-    /// Абстрактный класс, являющийся моделью представления для раздела, чьим представлением является класс SectionWidget.
+    /// Абстрактный класс, являющийся моделью представления для раздела информационной системы.
     /// </summary>
     public abstract class SectionWidgetViewModel
     {
@@ -98,7 +98,7 @@ namespace WpfApp1.ViewModels
         /// Коллекеция данных раздела.
         /// Имеет тип данных ObservableCollection<dynamic>, потому что базовый класс модели представления не знает, какого типа данных будут записи в разделе.
         /// </summary>
-        public abstract ObservableCollection<dynamic> SectionData { get; set; }
+        public ObservableCollection<dynamic> SectionData { get; set; }
 
         /// <summary>
         /// Команда вызова окна для вставки записи в базу данных.
@@ -206,9 +206,9 @@ namespace WpfApp1.ViewModels
         }
 
         /// <summary>
-        /// Конструктор класса SectionWidgetViewModel, принимает в качестве параметра ссылку на представление раздела
+        /// Конструктор класса SectionWidgetViewModel, принимает в качестве параметра ссылку на представление раздела.
         /// </summary>
-        /// <param name="sectionWidget">Ссылка на представление раздела</param>
+        /// <param name="sectionWidget">Ссылка на представление раздела.</param>
         protected SectionWidgetViewModel(SectionWidget sectionWidget)
         {
             SectionWidget = sectionWidget;
@@ -328,7 +328,7 @@ namespace WpfApp1.ViewModels
         }
 
         /// <summary>
-        /// Метод удаления записи из базы данных. Пытается удалить данные, если сталкивается с ошибкой, то возвращает контекст к исходному состоянию и вывод сообщение о невезомжности удаления.
+        /// Метод удаления записи из базы данных. Пытается удалить данные, если сталкивается с ошибкой, то возвращает контекст к исходному состоянию и выводит сообщение о невозможности удаления.
         /// </summary>
         protected virtual void Delete()
         {
@@ -373,6 +373,7 @@ namespace WpfApp1.ViewModels
 
         /// <summary>
         /// Метод вставки записи в базу данных. Пытается добавить запись, если возникает ошибка - возвращает контекст к прежнему состоянию.
+        /// Закрывает окно работы с записью элемента.
         /// </summary>
         protected virtual void Insert()
         {
@@ -381,19 +382,19 @@ namespace WpfApp1.ViewModels
             {
                 AddCurrentItem();
                 App.Context.SaveChanges();
-                ItemForm.Close();
                 UpdateItems();
             }
             catch (Exception ex)
             {
                 entry.Reload();
                 MessageBox.Show("Добавление записи завершилось ошибкой");
-                ItemForm.Close();
             }
+            ItemForm.Close();
         }
 
         /// <summary>
         /// Метод изменения записи в базе данных. Пытается изменить запись, если возникает ошибка - возвращает контекст к прежнему состоянию.
+        /// Закрывает окно работы с записью элемента.
         /// </summary>
         protected virtual void Update()
         {
@@ -401,43 +402,43 @@ namespace WpfApp1.ViewModels
             {
                 CurrentItemFromContext.Copy(CurrentItem);
                 App.Context.SaveChanges();
-                ItemForm.Close();
                 UpdateItems();
             }
             catch(Exception ex)
             {
                 MessageBox.Show("Изменение записи завершилось ошибкой");
             }
+            ItemForm.Close();
         }
 
         /// <summary>
-        /// Абстрактный метод, создающий новый экземпляр формы работы с записью.
+        /// Метод, создающий новый экземпляр формы работы с записью.
         /// </summary>
         protected abstract void CreateNewItemForm();
 
         /// <summary>
-        /// Абстрактный метод, добавляющий в контекст новую запись.
+        /// Метод, добавляющий в контекст новую запись.
         /// </summary>
         protected abstract void AddCurrentItem();
 
         /// <summary>
-        /// Абстрактный метод, удаляющий запись из контекста.
+        /// Метод, удаляющий запись из контекста.
         /// </summary>
         protected abstract void DeleteCurrentItem();
 
         /// <summary>
-        /// Абстрактный метод, устанавливающий текущей записи пустое значение.
+        /// Метод, устанавливающий текущей записи пустое значение.
         /// </summary>
         protected abstract void MakeCurrentItemEmpty();
 
         /// <summary>
-        /// Абстрактный метод проверки корректности данных записи. Возвращает список ошибок, если данные не корректны.
+        /// Метод проверки корректности данных записи. Возвращает список ошибок, если данные не корректны.
         /// </summary>
         /// <returns>Перечень некорректных атрибутов записи.</returns>
         protected abstract string GetErrors();
 
         /// <summary>
-        /// Виртуальный метод, который используется в тех случаях, когда нужно заполнить атрибуты записи значениями из элементов управления окна работы с данными.
+        /// Метод, который используется в тех случаях, когда нужно заполнить атрибуты записи значениями из элементов управления окна работы с записью.
         /// </summary>
         protected virtual void FillItem() {}
 
@@ -451,7 +452,7 @@ namespace WpfApp1.ViewModels
         }
 
         /// <summary>
-        /// Абстрактный метод, который заполняет источник для таблицы раздела коллекцией записей.
+        /// Метод заполнения таблицы раздела коллекцией записей.
         /// </summary>
         public abstract void UpdateSectionData();
 

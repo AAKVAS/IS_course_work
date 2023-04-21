@@ -21,13 +21,6 @@ namespace WpfApp1.ViewModels.Products
             set => _itemForm = value as ProductsGeneralInfoItemWithImages;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public List<Models.Suppliers> Suppliers { get; set; }
         public List<Categories> Categories { get; set; }
 
@@ -59,7 +52,7 @@ namespace WpfApp1.ViewModels.Products
 
         public override void UpdateSectionData()
         {
-            _sectionData = ProductService.GetProductsGeneralInfo();
+            SectionData = ProductService.GetProductsGeneralInfo();
         }
 
         protected override string GetErrors()

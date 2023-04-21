@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using WpfApp1.Views;
@@ -7,34 +6,49 @@ using WpfApp1.Services;
 using WpfApp1.Views.Orders.OrderHistory;
 using WpfApp1.Models.DTO;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
 
 namespace WpfApp1.ViewModels.Orders
 {
+    /// <summary>
+    /// Модель представления для подраздела "Доставки / История заказов / Сотрудники в заказах".
+    /// </summary>
     internal class OrderHistoryWorkersViewModel : SectionWidgetViewModel
     {
+        /// <summary>
+        /// Окно работы с текущей записью подраздела.
+        /// </summary>
         private OrderHistoryWorkersItem _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as OrderHistoryWorkersItem;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
+        /// <summary>
+        /// Ссылка на текущую запись в разделе "Доставки / История заказов".
+        /// </summary>
+        private OrderHistoryDTO _currentOrderHistoryDTO { get; set; }
 
-        private OrderHistoryDTO _orderHistoryDTO;
+        /// <summary>
+        /// Ссылка на модель представления раздела "Доставки / История заказов".
+        /// </summary>
         private OrderHistoryViewModel _orderHistoryViewModel;
-        public List<Models.Workers> Workers;
 
+        /// <summary>
+        /// Коллекция сотрудников, необходимая для выпадающего списка в окне работы с записью подраздела.
+        /// </summary>
+        public List<Models.Workers> Workers { get; set; }
+
+        /// <summary>
+        /// Конструктор класса OrderHistoryWorkersViewModel, принимающий в качестве параметра ссылку на представление раздела. 
+        /// </summary>
+        /// <param name="sectionWidget"></param>
         public OrderHistoryWorkersViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             OrderHistoryWorkersSectionWidget orderHistoryWorkersSectionWidget = sectionWidget as OrderHistoryWorkersSectionWidget;
-            _orderHistoryDTO = orderHistoryWorkersSectionWidget.OrderHistoryDTO;
+            _currentOrderHistoryDTO = orderHistoryWorkersSectionWidget.CurrentOrderHistoryDTO;
             _orderHistoryViewModel = orderHistoryWorkersSectionWidget.OrderHistoryViewModel;
-            Workers = App.Context.Workers.ToList();
             UpdateSectionData();
         }
 
@@ -45,6 +59,7 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override void CreateNewItemForm()
         {
+            Workers = App.Context.Workers.Include(w => w.Post).ToList();
             _itemForm = new OrderHistoryWorkersItem(this);
         }
 
@@ -60,16 +75,17 @@ namespace WpfApp1.ViewModels.Orders
 
         public override void UpdateSectionData()
         {
-            _sectionData = OrderService.GetWorkersInOrder(_orderHistoryDTO);
+            SectionData = OrderService.GetWorkersInOrder(_currentOrderHistoryDTO);
         }
 
         protected override void FillItem() {
             OrderHistoryWorkersItem orderHistoryWorkersItem = ItemForm as OrderHistoryWorkersItem;
-            int workerId = (orderHistoryWorkersItem?.cbWorker.SelectedItem as Models.Workers)?.Id ?? 0;
-            Models.Workers worker = WorkerService.GetWorkerById(workerId);
+
+            //Берём сотрудника из выпадающего списка и заполняем WorkersInOrdersDTO.
+            Models.Workers worker = orderHistoryWorkersItem?.cbWorker.SelectedItem as Models.Workers;
             if (worker != null)
             {
-                CurrentItem.WorkerId = workerId;
+                CurrentItem.WorkerId = worker.Id;
                 CurrentItem.WorkerLastname = worker.Lastname;
                 CurrentItem.WorkerFirstname = worker.Firstname;
                 CurrentItem.WorkerPatronymic = worker.Patronymic;
@@ -91,32 +107,28 @@ namespace WpfApp1.ViewModels.Orders
             return errorBuilder.ToString();
         }
 
-        protected override void TryInsert()
-        {
-            MakeCurrentItemEmpty();
-
-            _itemFormMode = ItemFormMode.Insert;
-            CreateNewItemForm();
-            ItemForm.Title = SectionTitle;
-            ItemForm.Mode = _itemFormMode;
-            ItemForm.ShowDialog();
-        }
-
+        /// <summary>
+        /// Метод, добавляющий запрос на добавление сотрудника, участвовашего в изменении статуса доставки, в конец списка отложенных запросов.
+        /// Добавляет сотрудника в таблицу подраздела "Доставки / История заказов / Сотрудники в заказах".
+        /// </summary>
         protected override void Insert()
         {
             if (SectionData.Where(w => w.WorkerId == CurrentItem.WorkerId).Any())
             {
                 MessageBox.Show("Такой пользователь уже участвует в изменении статуса");
-                ItemForm.Close();
             }
             else
             {
                 _orderHistoryViewModel.DefferedQueries.AddQuery(OrderService.GetInsertWorkerInOrderHistoryQuery(CurrentItem));
                 SectionData.Add(CurrentItem);
-                ItemForm.Close();
             }
+            ItemForm.Close();
         }
 
+        /// <summary>
+        /// Метод, добавляющий запрос на удаление сотрудника, участвовашего в изменении статуса доставки, в конец списка отложенных запросов.
+        /// Удаляет сотрудника из таблицы подраздела "Доставки / История заказов / Сотрудники в заказах".
+        /// </summary>
         protected override void Delete()
         {
             _orderHistoryViewModel.DefferedQueries.AddQuery(OrderService.GetDeleteWorkerInOrderHistoryQuery(CurrentItemFromContext));

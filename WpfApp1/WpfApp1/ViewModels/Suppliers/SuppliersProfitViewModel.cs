@@ -15,13 +15,6 @@ namespace WpfApp1.ViewModels.Suppliers
             set => _itemForm = value as SuppliersProfitItem;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public SuppliersProfitViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
 	        UpdateSectionData();
         }
@@ -48,7 +41,7 @@ namespace WpfApp1.ViewModels.Suppliers
 
         public override void UpdateSectionData()
         {
-            _sectionData = SupplierService.GetSuppliersProfits();
+            SectionData = SupplierService.GetSuppliersProfits();
         }
 
         protected override string GetErrors()

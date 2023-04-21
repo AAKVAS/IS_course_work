@@ -20,13 +20,6 @@ namespace WpfApp1.ViewModels.Users
             set => _itemForm = value as UserGeneralInfoItem;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public List<Countries> Countries { get; set; }
 
         public UsersGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
@@ -56,7 +49,7 @@ namespace WpfApp1.ViewModels.Users
 
         public override void UpdateSectionData()
         {
-            _sectionData = UserService.GetUserGeneralInfo();
+            SectionData = UserService.GetUserGeneralInfo();
         }
 
         protected override void FillItem()

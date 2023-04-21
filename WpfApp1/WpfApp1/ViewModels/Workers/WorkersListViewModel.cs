@@ -23,13 +23,6 @@ namespace WpfApp1.ViewModels.Workers
             set => _itemForm = value as WorkersListItem;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         private RelayCommand? _tryChangePasswordCommand;
         public RelayCommand TryChangePasswordCommand
         {
@@ -104,7 +97,7 @@ namespace WpfApp1.ViewModels.Workers
 
         public override void UpdateSectionData()
         {
-            _sectionData = WorkerService.GetWorkers();
+            SectionData = WorkerService.GetWorkers();
         }
 
         protected override void FillItem()

@@ -12,6 +12,10 @@ namespace WpfApp1.Models.DTO
     public class OrderHistoryDTO : ICopied<OrderHistoryDTO>
     {
         private int _orderId;
+
+        /// <summary>
+        /// Id заказа. При изменении, автоматически обновляет Id товара.
+        /// </summary>
         public int OrderId 
         { 
             get 

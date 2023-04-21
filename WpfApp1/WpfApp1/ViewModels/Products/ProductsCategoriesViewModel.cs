@@ -17,13 +17,6 @@ namespace WpfApp1.ViewModels.Products
             set => _itemForm = value as ProductsCategoriesItem;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public ObservableCollection<Categories> Categories { get; set; }
 
         public ProductsCategoriesViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
@@ -53,7 +46,7 @@ namespace WpfApp1.ViewModels.Products
 
         public override void UpdateSectionData()
         {
-            _sectionData = new ObservableCollection<dynamic>(ProductService.GetCategories());
+            SectionData = new ObservableCollection<dynamic>(ProductService.GetCategories());
         }
 
         protected override string GetErrors()

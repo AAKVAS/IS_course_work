@@ -21,13 +21,6 @@ namespace WpfApp1.ViewModels.Storages
             set => _itemForm = value as StoragesWorkerShiftsItem;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public List<Models.Storages> Storages { get; set; }
         public List<Models.Workers> Workers { get; set; }
 
@@ -59,7 +52,7 @@ namespace WpfApp1.ViewModels.Storages
 
         public override void UpdateSectionData()
         {
-            _sectionData = StorageService.GetStorageWorkerShifts();
+            SectionData = StorageService.GetStorageWorkerShifts();
         }
 
         protected override string GetErrors()

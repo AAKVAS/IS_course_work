@@ -20,13 +20,6 @@ namespace WpfApp1.ViewModels.Products
             set => _itemForm = value as ProductsPriceHistoryItem;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public List<Models.Products> Products { get; set; }
 
         public ProductsPriceHistoryViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
@@ -56,7 +49,7 @@ namespace WpfApp1.ViewModels.Products
 
         public override void UpdateSectionData()
         {
-            _sectionData = ProductService.GetPriceHistory();
+            SectionData = ProductService.GetPriceHistory();
         }
 
         protected override string GetErrors()

@@ -20,13 +20,6 @@ namespace WpfApp1.ViewModels.Storages
             set => _itemForm = value as StoragesGeneralInfoItem;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public List<StorageTypes> StorageTypes { get; set; }
 
         public StoragesGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget)
@@ -57,7 +50,7 @@ namespace WpfApp1.ViewModels.Storages
 
         public override void UpdateSectionData()
         {
-            _sectionData = StorageService.GetStoragesGeneralInfo();
+            SectionData = StorageService.GetStoragesGeneralInfo();
         }
 
         protected override string GetErrors()

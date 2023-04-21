@@ -72,17 +72,17 @@ namespace WpfApp1.Views
         }
 
         /// <summary>
-        /// Абстрактный метод, меняющий внешний вид окна для вставки записи в БД.
+        /// Метод, меняющий внешний вид окна для вставки записи в БД.
         /// </summary>
         protected abstract void SetFormModeToInsert();
 
         /// <summary>
-        /// Абстрактный метод, меняющий внешний вид окна для изменения записи в БД.
+        /// Метод, меняющий внешний вид окна для изменения записи в БД.
         /// </summary>
         protected abstract void SetFormModeToUpdate();
 
         /// <summary>
-        /// Абстрактный метод, меняющий внешний вид окна для просмотра записи.
+        /// Метод, меняющий внешний вид окна только для просмотра записи.
         /// </summary>
         protected abstract void SetFormModeToRead();
 

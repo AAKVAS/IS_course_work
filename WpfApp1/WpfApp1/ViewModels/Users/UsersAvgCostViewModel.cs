@@ -16,13 +16,6 @@ namespace WpfApp1.ViewModels.Users
             set => _itemForm = value as UserAvgCostItem;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public UsersAvgCostViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             UpdateSectionData();
         }
@@ -49,7 +42,7 @@ namespace WpfApp1.ViewModels.Users
 
         public override void UpdateSectionData()
         {
-            _sectionData = UserService.GetUserAvgCost();
+            SectionData = UserService.GetUserAvgCost();
         }
 
         protected override string GetErrors()

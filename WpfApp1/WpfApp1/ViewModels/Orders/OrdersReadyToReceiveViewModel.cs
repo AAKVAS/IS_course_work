@@ -20,13 +20,6 @@ namespace WpfApp1.ViewModels.Orders
             set => _itemForm = value as OrdersReadyToReceiveItemWithImages;
         }
 
-        private ObservableCollection<dynamic> _sectionData;
-        public override ObservableCollection<dynamic> SectionData
-        {
-            get => _sectionData;
-            set => _sectionData = value;
-        }
-
         public List<Models.Users> Users { get; set; }
         public List<Models.Products> Products { get; set; }
         public List<Models.Storages> PickUpPoints { get; set; }
@@ -62,7 +55,7 @@ namespace WpfApp1.ViewModels.Orders
 
         public override void UpdateSectionData()
         {
-            _sectionData = OrderService.GetOrdersReadyToReceive();
+            SectionData = OrderService.GetOrdersReadyToReceive();
         }
 
         protected override string GetErrors()
