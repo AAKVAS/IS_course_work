@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WpfApp1.Views;
@@ -12,21 +10,37 @@ using ValidationLib;
 
 namespace WpfApp1.ViewModels.Products
 {
+    /// <summary>
+    /// Модель представления для раздела "Товары / Отзывы к товару".
+    /// </summary>
     internal class ProductsReviewsViewModel : SectionWidgetWithImagesViewModel
     {
+        /// <summary>
+        /// Ссылка на окно работы с записью раздела. 
+        /// </summary>
         private ProductsReviewsItemWithImages _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as ProductsReviewsItemWithImages;
         }
 
+        /// <summary>
+        /// Коллекция товаров, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Products> Products { get; set; }
+
+        /// <summary>
+        /// Коллекция пользователей, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Users> Users { get; set; }
 
-        public ProductsReviewsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            UpdateSectionData();
-        }
+        /// <summary>
+        /// Конструктор класса ProductsReviewsViewModel, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
+        public ProductsReviewsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {}
 
         protected override void MakeCurrentItemEmpty()
         {
@@ -95,7 +109,6 @@ namespace WpfApp1.ViewModels.Products
             CurrentItemFromContext = ProductService.GetReviewsWithImages(CurrentItem as Reviews);
             CurrentItem = CurrentItemFromContext.Clone();
         }
-
     }
 }
 

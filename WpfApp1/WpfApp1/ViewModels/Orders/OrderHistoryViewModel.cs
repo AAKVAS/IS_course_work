@@ -52,9 +52,9 @@ namespace WpfApp1.ViewModels.Orders
         /// <summary>
         /// Конструктор класса OrderHistoryViewModel, в качестве параметра принимает ссылку на представление раздела.
         /// </summary>
-        /// <param name="sectionWidget"></param>
-        public OrderHistoryViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            UpdateSectionData();
+        /// <param name="sectionWidget">Представление раздела.</param>
+        public OrderHistoryViewModel(SectionWidget sectionWidget) : base(sectionWidget) 
+        {
             DefferedQueries = new();
         }
 

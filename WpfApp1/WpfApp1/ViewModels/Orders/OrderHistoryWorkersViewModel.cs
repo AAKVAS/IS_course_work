@@ -45,7 +45,8 @@ namespace WpfApp1.ViewModels.Orders
         /// Конструктор класса OrderHistoryWorkersViewModel, принимающий в качестве параметра ссылку на представление раздела. 
         /// </summary>
         /// <param name="sectionWidget"></param>
-        public OrderHistoryWorkersViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
+        public OrderHistoryWorkersViewModel(SectionWidget sectionWidget) : base(sectionWidget)
+        {
             OrderHistoryWorkersSectionWidget orderHistoryWorkersSectionWidget = sectionWidget as OrderHistoryWorkersSectionWidget;
             _currentOrderHistoryDTO = orderHistoryWorkersSectionWidget.CurrentOrderHistoryDTO;
             _orderHistoryViewModel = orderHistoryWorkersSectionWidget.OrderHistoryViewModel;
@@ -75,7 +76,10 @@ namespace WpfApp1.ViewModels.Orders
 
         public override void UpdateSectionData()
         {
-            SectionData = OrderService.GetWorkersInOrder(_currentOrderHistoryDTO);
+            if (_currentOrderHistoryDTO != null)
+            {
+                SectionData = OrderService.GetWorkersInOrder(_currentOrderHistoryDTO);
+            }
         }
 
         protected override void FillItem() {

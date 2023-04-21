@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using WpfApp1.Views;
@@ -11,23 +10,47 @@ using System.Windows;
 
 namespace WpfApp1.ViewModels.Orders
 {
+    /// <summary>
+    /// Модель представления для раздела "Доставки / Доставки, готовые к получению".
+    /// </summary>
     internal class OrdersReadyToReceiveViewModel : SectionWidgetWithImagesViewModel
     {
+        /// <summary>
+        /// Ссылка на окно работы с записью раздела. 
+        /// </summary>
         private OrdersReadyToReceiveItemWithImages _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as OrdersReadyToReceiveItemWithImages;
         }
 
+        /// <summary>
+        /// Коллекция пользователей, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Users> Users { get; set; }
+
+        /// <summary>
+        /// Коллекция товаров, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Products> Products { get; set; }
+
+        /// <summary>
+        /// Коллекция пунктов выдачи, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Storages> PickUpPoints { get; set; }
+
+        /// <summary>
+        /// Коллекция статусов заказа, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<OrderStatuses> Statuses { get; set; }
 
-        public OrdersReadyToReceiveViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            UpdateSectionData();
-        }
+        /// <summary>
+        /// Конструктор класса OrdersReadyToReceiveViewModel, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
+        public OrdersReadyToReceiveViewModel(SectionWidget sectionWidget) : base(sectionWidget) {}
 
         protected override void MakeCurrentItemEmpty()
         {
@@ -36,20 +59,24 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override void CreateNewItemForm()
         {
+            //Обновляем данные в выпадающих списках.
             Users = App.Context.Users.ToList();
             Products = App.Context.Products.ToList();
             PickUpPoints = StorageService.GetPickUpPoints();
             Statuses = OrderService.GetStatusesForReadyToRecieveOrder();
+
             _itemForm = new OrdersReadyToReceiveItemWithImages(this);
         }
 
         protected override void AddCurrentItem()
         {
+            //Добавление новых записей невозможно.
             throw new NotImplementedException();
         }
 
 	    protected override void DeleteCurrentItem()
         {
+            //Удаление записей невозможно.
             throw new NotImplementedException();
         }
 
@@ -60,9 +87,8 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override string GetErrors()
         {
-            StringBuilder errorBuilder = new StringBuilder();
-
-            return errorBuilder.ToString();
+            //Ошибок в записи быть не может.
+            return new StringBuilder().ToString();
         }
 
         protected override dynamic CreateNewImage(byte[] image)
@@ -78,6 +104,10 @@ namespace WpfApp1.ViewModels.Orders
             CurrentItem = CurrentItemFromContext.Clone();
         }
 
+        /// <summary>
+        /// Метод, изменяющий текущий статус доставки.
+        /// Явлется не обновлением существующего статуса, а добавлением нового статуса доставки.
+        /// </summary>
         protected override void Update()
         {
             CurrentItemFromContext.Copy(CurrentItem);
@@ -85,8 +115,6 @@ namespace WpfApp1.ViewModels.Orders
             try
             {
                 OrderService.ChangeOrderStatus(CurrentItemFromContext);
-                ItemForm.Close();
-                UpdateItems();
             }
             catch (Exception ex)
             {
@@ -97,6 +125,7 @@ namespace WpfApp1.ViewModels.Orders
                 entry.Reload();
                 MakeCurrentItemEmpty();
             }
+            ItemForm.Close();
             UpdateItems();
         }
     }

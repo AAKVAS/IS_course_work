@@ -44,7 +44,7 @@ namespace WpfApp1.Views
         /// <summary>
         /// Ссылка на модель представления раздела.
         /// </summary>
-        public abstract SectionWidgetViewModel ViewModel { get; set; }
+        public SectionWidgetViewModel ViewModel { get; set; }
 
         /// <summary>
         /// Словарь хранящий названия столбцов таблицы раздела и названия свойств модели, которые привязаны к этим столбцам.

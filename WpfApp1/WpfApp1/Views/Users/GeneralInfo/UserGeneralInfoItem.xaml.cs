@@ -5,16 +5,25 @@ using WpfApp1.ViewModels.Users;
 namespace WpfApp1.Views.Users.GeneralInfo
 {
     /// <summary>
-    /// Логика взаимодействия для UserGeneralInfoItem.xaml
+    /// Окно работы с записью раздела "Пользователи / Общие сведения".
     /// </summary>
     public partial class UserGeneralInfoItem : ItemForm
     {
+        /// <summary>
+        /// Конструктор класса UserGeneralInfoItem, принимающий в качестве параметра ссылку на модель представления раздела.
+        /// </summary>
+        /// <param name="sectionWidgetViewModel">Модель представления раздела.</param>
         public UserGeneralInfoItem(SectionWidgetViewModel sectionWidgetViewModel) : base(sectionWidgetViewModel)
         {
             InitializeComponent();
             DataContext = (UsersGeneralInfoViewModel)_sectionWidgetViewModel;
         }
 
+        /// <summary>
+        /// Обработчик нажатия на кнопку закрытия окна.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
@@ -38,6 +47,9 @@ namespace WpfApp1.Views.Users.GeneralInfo
             DisableAllInputs();
         }
 
+        /// <summary>
+        /// Метод, делающий все поля окна раздела доступными только для просмотра.
+        /// </summary>
         private void DisableAllInputs()
         {
             tbLastname.IsReadOnly = true;

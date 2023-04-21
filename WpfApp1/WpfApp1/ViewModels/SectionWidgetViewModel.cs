@@ -217,6 +217,7 @@ namespace WpfApp1.ViewModels
             CollapseButtonsWithoutRights();
             FilterService = new FilterService(this);
             MakeCurrentItemEmpty();
+            UpdateSectionData();
         }
 
         /// <summary>
@@ -452,7 +453,7 @@ namespace WpfApp1.ViewModels
         }
 
         /// <summary>
-        /// Метод заполнения таблицы раздела коллекцией записей.
+        /// Метод обновления данных в таблице раздела.
         /// </summary>
         public abstract void UpdateSectionData();
 

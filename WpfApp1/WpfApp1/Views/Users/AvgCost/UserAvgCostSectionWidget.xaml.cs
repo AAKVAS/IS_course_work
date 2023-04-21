@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using WpfApp1.Models;
-using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
+    /// <summary>
+    /// Модель представления для раздела "Пользователи / Средние затраты пользователей".
+    /// </summary>
     public partial class UserAvgCostSectionWidget : SectionWidget
     {
         public override Dictionary<string, string> HeadersProperties {
@@ -22,7 +23,8 @@ namespace WpfApp1.Views
             }
         }
 
-        protected override Button InsertButton { 
+        protected override Button InsertButton 
+        { 
             get => btnInsert;
         }
         protected override Button UpdateButton
@@ -51,8 +53,10 @@ namespace WpfApp1.Views
             }
         }
 
-        public override SectionWidgetViewModel ViewModel { get; set; }
-
+        /// <summary>
+        /// Конструктор класса UserAvgCostSectionWidget, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
         public UserAvgCostSectionWidget(Sections section) : base(section)
         {
             InitializeComponent();
@@ -61,11 +65,12 @@ namespace WpfApp1.Views
             DataGrid.ItemsSource = ViewModel.SectionData;
         }
 
-        private void UserControl_Initialized(object sender, EventArgs e)
-        {
-            DataContext = ViewModel;
-        }
-
+        /// <summary>
+        /// Обработчик события двойного клика на заголовок столбца таблицы раздела.
+        /// Вызывает окно фильтрации для столбца таблицы раздела.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DataGridColumnHeader_DoubleClick(object sender, RoutedEventArgs e)
         {
             ViewModel.ShowFilterWindow(sender, e);

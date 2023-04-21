@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using WpfApp1.Views;
@@ -11,20 +10,32 @@ using ValidationLib;
 
 namespace WpfApp1.ViewModels.Users
 {
+    /// <summary>
+    /// Модель представления для раздела "Пользователи / Общие сведения".
+    /// </summary>
     internal class UsersGeneralInfoViewModel : SectionWidgetViewModel
     {
+        /// <summary>
+        /// Ссылка на окно работы с записью раздела. 
+        /// </summary>
         private UserGeneralInfoItem _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as UserGeneralInfoItem;
         }
 
+        /// <summary>
+        /// Коллекция стран, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Countries> Countries { get; set; }
 
-        public UsersGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            UpdateSectionData();
-        }
+        /// <summary>
+        /// Конструктор класса UsersGeneralInfoViewModel, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
+        public UsersGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {}
 
         protected override void MakeCurrentItemEmpty()
         {
@@ -69,9 +80,9 @@ namespace WpfApp1.ViewModels.Users
             {
                 errorBuilder.AppendLine("Поле \"Имя\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (!StringValidator.IsValid(CurrentItem.Patronymic))
+            if (CurrentItem.Patronymic.Length > 255)
             {
-                errorBuilder.AppendLine("Поле \"Отчество\" обязательно для заполнения, максимальная длина - 255 символов;");
+                errorBuilder.AppendLine("Максимальная длина поля \"Отчество\" - 255 символов;");
             }
             if (!PhoneNumberValidator.IsValid(CurrentItem.PhoneNumber))
             {

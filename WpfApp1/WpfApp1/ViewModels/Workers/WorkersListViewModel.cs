@@ -1,29 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using WpfApp1.Views;
 using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views.Workers.WorkersList;
-using System.Windows.Controls;
 using PasswordEvaluatorLib;
 using System.Windows;
 using ValidationLib;
 
 namespace WpfApp1.ViewModels.Workers
 {
+    /// <summary>
+    /// Модель представления для раздела "Сотрудники / Список сотрудников".
+    /// </summary>
     public class WorkersListViewModel : SectionWidgetViewModel
     {
+        /// <summary>
+        /// Ссылка на окно работы с записью раздела. 
+        /// </summary>
         private WorkersListItem _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as WorkersListItem;
         }
 
+        /// <summary>
+        /// Команда  открытия окна изменения пароля сотрудника.
+        /// </summary>
         private RelayCommand? _tryChangePasswordCommand;
+
+        /// <summary>
+        /// Команда открытия окна изменения пароля сотрудника. Доступна, если вошедший пользователь является администратором системы.
+        /// </summary>
         public RelayCommand TryChangePasswordCommand
         {
             get
@@ -36,7 +48,13 @@ namespace WpfApp1.ViewModels.Workers
             }
         }
 
+        /// <summary>
+        /// Команда изменения пароля сотрудника.
+        /// </summary>
         private RelayCommand? _changePasswordCommand;
+        /// <summary>
+        /// Команда изменения пароля сотрудника. Доступна, если вошедший пользователь является администратором системы.
+        /// </summary>
         public RelayCommand ChangePasswordCommand
         {
             get
@@ -49,12 +67,29 @@ namespace WpfApp1.ViewModels.Workers
             }
         }
 
+        /// <summary>
+        /// Ссылка на окно изменения пароля.
+        /// </summary>
         private ChangePasswordForm _changePasswordForm;
 
+        /// <summary>
+        /// Коллекция должностей, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Posts> Posts { get; set; }
 
+        /// <summary>
+        /// Оценщик сложности пароля.
+        /// </summary>
         private PasswordEvaluator _passwordEvaluator;
+
+        /// <summary>
+        /// Сложность введённого пароля.
+        /// </summary>
         private PasswordComplexity _passwordComplexity;
+
+        /// <summary>
+        /// Сложность введённого пароля на русском языке.
+        /// </summary>
         public string RusPasswordComplexity
         {
             get
@@ -64,11 +99,17 @@ namespace WpfApp1.ViewModels.Workers
             }
         }
 
+        /// <summary>
+        /// Конструктор класса WorkersListViewModel, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
         public WorkersListViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
             _passwordEvaluator = new();
-            UpdateSectionData();
         }
 
+        /// <summary>
+        /// Метод, оценивающий сложность введённого пароля.
+        /// </summary>
         private void EvaluatePassword()
         {
             _passwordComplexity = _passwordEvaluator.EvaluatePassword(_changePasswordForm.passwordBox.Password);
@@ -145,12 +186,18 @@ namespace WpfApp1.ViewModels.Workers
             return errorBuilder.ToString();
         }
 
+        /// <summary>
+        /// Метод, создающий и открывающий окно изменения пароля.
+        /// </summary>
         private void ShowChangePasswordForm()
         {
             _changePasswordForm = new ChangePasswordForm(this);
             _changePasswordForm.ShowDialog();
         }
 
+        /// <summary>
+        /// Метод, изменяющий пароль, если тот не слабый.
+        /// </summary>
         public void ChangePassword()
         {
             EvaluatePassword();
@@ -164,6 +211,5 @@ namespace WpfApp1.ViewModels.Workers
                 _changePasswordForm.Close();
             }
         }
-
     }
 }

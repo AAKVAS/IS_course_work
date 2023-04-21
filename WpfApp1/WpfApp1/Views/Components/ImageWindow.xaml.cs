@@ -53,6 +53,11 @@ namespace WpfApp1.Views.Components
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия на кнопку закрытия окна.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();

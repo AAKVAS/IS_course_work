@@ -11,22 +11,42 @@ using System.Windows.Controls;
 
 namespace WpfApp1.ViewModels.Orders
 {
+    /// <summary>
+    /// Модель представления для раздела "Доставки / Список доставок".
+    /// </summary>
     internal class OrdersListViewModel : SectionWidgetViewModel
     {
+        /// <summary>
+        /// Ссылка на окно работы с записью раздела. 
+        /// </summary>
         private OrdersListItem _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as OrdersListItem;
         }
 
+        /// <summary>
+        /// Коллекция пользователей, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Users> Users { get; set; }
+
+        /// <summary>
+        /// Коллекция складов, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Storages> PickUpPoints { get; set; }
+
+        /// <summary>
+        /// Коллекция товаров, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Products> Products { get; set; }
 
-        public OrdersListViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            UpdateSectionData();
-        }
+        /// <summary>
+        /// Конструктор класса OrdersListViewModel, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
+        public OrdersListViewModel(SectionWidget sectionWidget) : base(sectionWidget) {}
 
         protected override void MakeCurrentItemEmpty()
         {
@@ -35,6 +55,7 @@ namespace WpfApp1.ViewModels.Orders
 
         protected override void CreateNewItemForm()
         {
+            //Обновляем данные в выпадающих списках.
             Users = App.Context.Users.ToList();
             PickUpPoints = StorageService.GetPickUpPoints();
             Products = App.Context.Products.ToList();

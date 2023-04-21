@@ -1,24 +1,31 @@
-﻿using System.Collections.ObjectModel;
-using System.Text;
-using WpfApp1.Views;
+﻿using WpfApp1.Views;
 using WpfApp1.Views.Users.GeneralInfo;
 using WpfApp1.Services;
 using System;
 
 namespace WpfApp1.ViewModels.Users
 {
+    /// <summary>
+    /// Модель представления для раздела "Пользователи / Средние затраты пользователей".
+    /// </summary>
     internal class UsersAvgCostViewModel : SectionWidgetViewModel
     {
+        /// <summary>
+        /// Ссылка на окно работы с записью раздела. 
+        /// </summary>
         private UserAvgCostItem _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as UserAvgCostItem;
         }
 
-        public UsersAvgCostViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            UpdateSectionData();
-        }
+        /// <summary>
+        /// Конструктор класса UsersAvgCostViewModel, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
+        public UsersAvgCostViewModel(SectionWidget sectionWidget) : base(sectionWidget) {}
 
         protected override void MakeCurrentItemEmpty()
         {
@@ -32,11 +39,13 @@ namespace WpfApp1.ViewModels.Users
 
         protected override void AddCurrentItem()
         {
+            //Добавление новых записей невозможно.
             throw new Exception("Добавление данных в этом разделе не предусмотрено");
         }
 
         protected override void DeleteCurrentItem()
         {
+            //Удаление записей невозможно.
             throw new Exception("Удаление данных в этом разделе не предусмотрено");
         }
 
@@ -47,7 +56,8 @@ namespace WpfApp1.ViewModels.Users
 
         protected override string GetErrors()
         {
-            return new StringBuilder().ToString();
+            //Ошибок в записи быть не может.
+            throw new NotImplementedException();
         }
     }
 }

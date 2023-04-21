@@ -2,13 +2,22 @@
 using WpfApp1.ViewModels;
 using WpfApp1.ViewModels.Orders;
 
-
 namespace WpfApp1.Views.Orders.OrdersList
 {
+    /// <summary>
+    /// Окно работы с записью раздела "Доставки / Список доставок".
+    /// </summary>
     public partial class OrdersListItem: ItemForm
     {
+        /// <summary>
+        /// Ссылка на модель представления раздела.
+        /// </summary>
         private OrdersListViewModel _ordersListViewModel;
 
+        /// <summary>
+        /// Конструктор класса OrdersListItem, принимающий в качестве параметра ссылку на модель представления раздела.
+        /// </summary>
+        /// <param name="sectionWidgetViewModel">Модель представления раздела.</param>
         public OrdersListItem(SectionWidgetViewModel sectionWidgetViewModel) : base(sectionWidgetViewModel)
         {
             InitializeComponent();
@@ -16,6 +25,11 @@ namespace WpfApp1.Views.Orders.OrdersList
             DataContext = _ordersListViewModel;
         }
 
+        /// <summary>
+        /// Обработчик нажатия на кнопку закрытия окна.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TryCloseForm();
@@ -39,6 +53,9 @@ namespace WpfApp1.Views.Orders.OrdersList
             DisableAllInputs();
         }
 
+        /// <summary>
+        /// Метод, делающий все поля окна раздела доступными только для просмотра.
+        /// </summary>
         private void DisableAllInputs()
         {
             tbProductCount.IsReadOnly = true;

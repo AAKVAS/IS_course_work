@@ -17,7 +17,7 @@ namespace WpfApp1.Views.Orders.OrderHistory
         /// <summary>
         /// Конструктор класса OrderHistoryItem, принимающий в качестве параметра ссылку на модель представления раздела.
         /// </summary>
-        /// <param name="sectionWidgetViewModel">Модель представления.</param>
+        /// <param name="sectionWidgetViewModel">Модель представления раздела.</param>
         public OrderHistoryItem(SectionWidgetViewModel sectionWidgetViewModel) : base(sectionWidgetViewModel)
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace WpfApp1.Views.Orders.OrderHistory
         }
 
         /// <summary>
-        /// Метод, делающий все поля записи доступными только для просмотра.
+        /// Метод, делающий все поля окна раздела доступными только для просмотра.
         /// </summary>
         private void DisableAllInputs()
         {

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using WpfApp1.Views;
@@ -11,21 +10,37 @@ using System.Windows.Controls;
 
 namespace WpfApp1.ViewModels.Storages
 {
+    /// <summary>
+    /// Модель представления для раздела "Склады / Товары на складах".
+    /// </summary>
     internal class StorageProductAmountViewModel : SectionWidgetViewModel
     {
+        /// <summary>
+        /// Ссылка на окно работы с записью раздела. 
+        /// </summary>
         private StorageProductAmountItem _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as StorageProductAmountItem;
         }
 
+        /// <summary>
+        /// Коллекция товаров, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Products> Products { get; set; }
+
+        /// <summary>
+        /// Коллекция складов, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Storages> Storages { get; set; }
 
-        public StorageProductAmountViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-	        UpdateSectionData();
-        }
+        /// <summary>
+        /// Конструктор класса StorageProductAmountViewModel, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
+        public StorageProductAmountViewModel(SectionWidget sectionWidget) : base(sectionWidget) {}
 
         protected override void MakeCurrentItemEmpty()
         {
@@ -73,6 +88,5 @@ namespace WpfApp1.ViewModels.Storages
 
             return errorBuilder.ToString();
         }
-
     }
 }

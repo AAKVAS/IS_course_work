@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using WpfApp1.Models;
-using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
+    /// <summary>
+    /// Представление раздела "Доставки / Список доставок".
+    /// </summary>
     public partial class OrdersListSectionWidget : SectionWidget
     {
         public override Dictionary<string, string> HeadersProperties {
@@ -63,8 +64,10 @@ namespace WpfApp1.Views
             }
         }
 
-        public override SectionWidgetViewModel ViewModel { get; set; }
-
+        /// <summary>
+        /// Конструктор класса OrdersListSectionWidget, принимающий в качестве параметра ссылку на модель раздела.
+        /// </summary>
+        /// <param name="section">Модель раздела.</param>
         public OrdersListSectionWidget(Sections section) : base(section)
         {
             InitializeComponent();
@@ -73,11 +76,12 @@ namespace WpfApp1.Views
             DataGrid.ItemsSource = ViewModel.SectionData;
         }
 
-        private void UserControl_Initialized(object sender, EventArgs e)
-        {
-            DataContext = ViewModel;
-        }
-
+        /// <summary>
+        /// Обработчик события двойного клика на заголовок столбца таблицы раздела.
+        /// Вызывает окно фильтрации для столбца таблицы раздела.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DataGridColumnHeader_DoubleClick(object sender, RoutedEventArgs e)
         {
             ViewModel.ShowFilterWindow(sender, e);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using WpfApp1.Views;
@@ -10,21 +9,37 @@ using WpfApp1.Views.Users.DefferedProducts;
 
 namespace WpfApp1.ViewModels.Users
 {
+    /// <summary>
+    /// Модель представления для раздела "Пользователи / Список товаров в корзине".
+    /// </summary>
     internal class UserDefferedProductsViewModel : SectionWidgetWithImagesViewModel
     {
+        /// <summary>
+        /// Ссылка на окно работы с записью раздела. 
+        /// </summary>
         private UserDefferedProductsItemWithImages _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as UserDefferedProductsItemWithImages;
         }
 
+        /// <summary>
+        /// Коллекция пользователей, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Users> Users { get; set; }
+
+        /// <summary>
+        /// Коллекция товаров, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<Models.Products> Products { get; set; }
 
-        public UserDefferedProductsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-            UpdateSectionData();
-        }
+        /// <summary>
+        /// Конструктор класса UserDefferedProductsViewModel, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
+        public UserDefferedProductsViewModel(SectionWidget sectionWidget) : base(sectionWidget) {}
 
         protected override void MakeCurrentItemEmpty()
         {
@@ -69,6 +84,7 @@ namespace WpfApp1.ViewModels.Users
 
         protected override dynamic CreateNewImage(byte[] image)
         {
+            //Изображения в разделе можно только просматривать.
             throw new Exception("Сохранение изображений в данном разделе не предусмотрено");
         }
 
@@ -78,6 +94,9 @@ namespace WpfApp1.ViewModels.Users
             CurrentItem = CurrentItemFromContext.Clone();
         }
 
+        /// <summary>
+        /// Метод, подтягивающий к текущей записи изображения товара.
+        /// </summary>
         public void LoadDefferedProductImages()
         {
             CurrentItem.Product = ProductService.GetProductWithImages(CurrentItem.Product);

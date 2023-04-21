@@ -54,7 +54,7 @@ namespace WpfApp1.Views.Orders.OrderHistory
         }
 
         /// <summary>
-        /// Метод, делающий все поля записи доступными только для просмотра.
+        /// Метод, делающий все поля окна раздела доступными только для просмотра.
         /// </summary>
         private void DisableAllInputs()
         {

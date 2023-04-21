@@ -55,8 +55,6 @@ namespace WpfApp1.Views
             }
         }
 
-        public override SectionWidgetViewModel ViewModel { get; set; }
-
         /// <summary>
         /// Ссылка на модель представления раздела "Доставки / История заказов".
         /// </summary>

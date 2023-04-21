@@ -123,7 +123,7 @@ namespace WpfApp1.ViewModels
         }
 
         /// <summary>
-        /// Абстрактный метод, создающий модель изображения для текущей записи раздела.
+        /// Метод, создающий модель изображения для текущей записи раздела.
         /// В качетсве параметра принимает само изображение.
         /// </summary>
         /// <param name="image">Изображение, для которого нужно создать модель.</param>
@@ -131,7 +131,7 @@ namespace WpfApp1.ViewModels
         protected abstract dynamic CreateNewImage(byte[] image);
 
         /// <summary>
-        /// Абстрактный метод, выполняющий загрузку изображений для текущей записи.
+        /// Метод, выполняющий загрузку изображений для текущей записи.
         /// </summary>
         public abstract void LoadCurrentItemImages();
 

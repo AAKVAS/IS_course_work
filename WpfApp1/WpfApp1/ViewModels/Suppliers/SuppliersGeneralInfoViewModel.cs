@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Text;
 using WpfApp1.Views;
 using WpfApp1.Services;
 using WpfApp1.Views.Suppliers.GeneralInfo;
@@ -7,18 +6,27 @@ using ValidationLib;
 
 namespace WpfApp1.ViewModels.Suppliers
 {
+    /// <summary>
+    /// Модель представления для раздела "Поставщики / Общие сведения".
+    /// </summary>
     internal class SuppliersGeneralInfoViewModel : SectionWidgetViewModel
     {
+        /// <summary>
+        /// Ссылка на окно работы с записью раздела. 
+        /// </summary>
         private SuppliersGeneralInfoItem _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as SuppliersGeneralInfoItem;
         }
 
-        public SuppliersGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {
-	        UpdateSectionData();
-        }
+        /// <summary>
+        /// Конструктор класса SuppliersGeneralInfoViewModel, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
+        public SuppliersGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {}
 
         protected override void MakeCurrentItemEmpty()
         {
@@ -56,6 +64,5 @@ namespace WpfApp1.ViewModels.Suppliers
 
             return errorBuilder.ToString();
         }
-
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WpfApp1.Views;
@@ -11,22 +9,32 @@ using ValidationLib;
 
 namespace WpfApp1.ViewModels.Storages
 {
+    /// <summary>
+    /// Модель представления для раздела "Склады / Общие сведения".
+    /// </summary>
     internal class StoragesGeneralInfoViewModel : SectionWidgetViewModel
     {
+        /// <summary>
+        /// Ссылка на окно работы с записью раздела. 
+        /// </summary>
         private StoragesGeneralInfoItem _itemForm;
+
         public override ItemForm ItemForm
         {
             get => _itemForm as object as ItemForm;
             set => _itemForm = value as StoragesGeneralInfoItem;
         }
 
+        /// <summary>
+        /// Коллекция видов складов, используется для заполнения выпадающего списка в окне работы с записью раздела.
+        /// </summary>
         public List<StorageTypes> StorageTypes { get; set; }
 
-        public StoragesGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget)
-        {
-            StorageTypes = App.Context.StorageTypes.ToList();
-            UpdateSectionData();
-        }
+        /// <summary>
+        /// Конструктор класса StoragesGeneralInfoViewModel, в качестве параметра принимает ссылку на представление раздела.
+        /// </summary>
+        /// <param name="sectionWidget">Представление раздела.</param>
+        public StoragesGeneralInfoViewModel(SectionWidget sectionWidget) : base(sectionWidget) {}
 
         protected override void MakeCurrentItemEmpty()
         {
@@ -35,6 +43,7 @@ namespace WpfApp1.ViewModels.Storages
 
         protected override void CreateNewItemForm()
         {
+            StorageTypes = App.Context.StorageTypes.ToList();
             _itemForm = new StoragesGeneralInfoItem(this);
         }
 
@@ -84,6 +93,5 @@ namespace WpfApp1.ViewModels.Storages
 
             return errorBuilder.ToString();
         }
-
     }
 }

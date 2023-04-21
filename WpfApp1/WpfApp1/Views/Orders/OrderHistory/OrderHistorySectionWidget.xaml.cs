@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using WpfApp1.Models;
-using WpfApp1.ViewModels;
 
 namespace WpfApp1.Views
 {
@@ -67,10 +65,8 @@ namespace WpfApp1.Views
             }
         }
 
-        public override SectionWidgetViewModel ViewModel { get; set; }
-
         /// <summary>
-        /// Конструктор класса OrderHistorySectionWidget, принимающий в качестве параметра ссыку на модель раздела.
+        /// Конструктор класса OrderHistorySectionWidget, принимающий в качестве параметра ссылку на модель раздела.
         /// </summary>
         /// <param name="section">Модель раздела.</param>
         public OrderHistorySectionWidget(Sections section) : base(section)
