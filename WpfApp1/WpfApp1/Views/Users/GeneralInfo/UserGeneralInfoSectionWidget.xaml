@@ -7,8 +7,8 @@
              mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="88*"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="88*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <DataGrid x:Name="dataGrid" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Resources>
@@ -38,6 +38,5 @@
                 <Button x:Name="btnInsert" Width="90" Margin="10 0" Template="{StaticResource commonButton}" Command="{Binding InsertCommand}">Вставить</Button>
             </StackPanel>
         </DockPanel>
-
     </Grid>
 </local:SectionWidget >
