@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using WpfApp1.Models.DTO;
 
@@ -62,7 +63,11 @@ namespace WpfApp1.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source = LAPTOP-LJNAL6S6; Initial Catalog = ISWildberries; Integrated Security = True; Encrypt = False");
+            if (!optionsBuilder.IsConfigured)
+            {
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ISWildberries"].ConnectionString;
+                optionsBuilder.UseSqlServer(connectionString);
+            }
 
             #if DEBUG
                 optionsBuilder.UseLoggerFactory(_myLoggerFactory);

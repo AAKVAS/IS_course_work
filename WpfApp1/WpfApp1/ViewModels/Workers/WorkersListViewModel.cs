@@ -167,9 +167,9 @@ namespace WpfApp1.ViewModels.Workers
             {
                 errorBuilder.AppendLine("Поле \"Имя\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (!StringValidator.IsValid(CurrentItem.Patronymic))
+            if (CurrentItem != null && CurrentItem.Patronymic.Length > 255)
             {
-                errorBuilder.AppendLine("Поле \"Отчество\" обязательно для заполнения, максимальная длина - 255 символов;");
+                errorBuilder.AppendLine("Максимальная длина поля \"Отчество\" - 255 символов;");
             }
             if (!PhoneNumberValidator.IsValid(CurrentItem.PhoneNumber))
             {
@@ -204,6 +204,10 @@ namespace WpfApp1.ViewModels.Workers
             if (_passwordComplexity == PasswordComplexity.Weak)
             {
                 MessageBox.Show("Ваш пароль - слабый");
+            }
+            else if (_changePasswordForm.passwordBox.Password.Length > 31)
+            {
+                MessageBox.Show("Максимальная длина пароля - 31 символ");
             }
             else
             {

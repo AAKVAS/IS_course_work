@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using WpfApp1.Models;
 using WpfApp1.Services;
 using WpfApp1.Views;
@@ -54,7 +55,7 @@ namespace WpfApp1
         /// <summary>
         /// Метод проверки наличия доступа к БД.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Истина, если база данных доступна.</returns>
         private bool IsEnableDB()
         {
             return Context.Database.CanConnect();
