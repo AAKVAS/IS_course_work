@@ -17,7 +17,7 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id заказ" Binding="{Binding Path=OrderId}" Width="40" />
+                <DataGridTextColumn Header="Id заказа" Binding="{Binding Path=OrderId}" Width="40" />
                 <DataGridTextColumn Header="Id товара" Binding="{Binding Path=ProductId}" Width="40" />
                 <DataGridTextColumn Header="Товар" Binding="{Binding Path=ProductTitle}" Width="80" />
                 <DataGridTextColumn Header="Статус заказа" Binding="{Binding Path=StatusDescription}" Width="110" />

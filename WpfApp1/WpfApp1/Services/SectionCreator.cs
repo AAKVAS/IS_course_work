@@ -39,20 +39,20 @@ namespace WpfApp1.Services
                     return new StoragesWorkerShiftsSectionWidget(section);
                 case "storages_product_amount":
                     return new StorageProductAmountSectionWidget(section);
-                  case "products_general_info": 
-                      return new ProductsGeneralInfoSectionWidget(section);
-                  case "products_reviews":
-                      return new ProductsReviewsSectionWidget(section);
-                  case "products_categories": 
-                      return new ProductsCategoriesSectionWidget(section);
-                  case "products_price_history": 
-                      return new ProductsPriceHistorySectionWidget(section);
-                  case "suppliers_general_info":
-                      return new SuppliersGeneralInfoSectionWidget(section);
-                  case "suppliers_profit": 
-                      return new SuppliersProfitSectionWidget(section);
-                  case "workers_list": 
-                      return new WorkersListSectionWidget(section);
+                case "products_general_info": 
+                    return new ProductsGeneralInfoSectionWidget(section);
+                case "products_reviews":
+                    return new ProductsReviewsSectionWidget(section);
+                case "products_categories": 
+                    return new ProductsCategoriesSectionWidget(section);
+                case "products_price_history": 
+                    return new ProductsPriceHistorySectionWidget(section);
+                case "suppliers_general_info":
+                    return new SuppliersGeneralInfoSectionWidget(section);
+                case "suppliers_profit": 
+                    return new SuppliersProfitSectionWidget(section);
+                case "workers_list": 
+                    return new WorkersListSectionWidget(section);
             }
 
             return sectionWidget;

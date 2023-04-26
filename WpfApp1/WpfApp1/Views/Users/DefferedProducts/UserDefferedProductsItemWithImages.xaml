@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Views"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Icon="\Resources\wb.ico"
-        Title="ItemForm" Height="555" Width="486">
+        Title="ItemForm" Height="555" Width="449">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="123"/>
