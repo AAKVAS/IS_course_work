@@ -97,7 +97,6 @@
                       Width="200"
                       Margin="0 5" 
                       HorizontalAlignment="Left"
-                      BorderThickness="2"
                       ItemsSource="{Binding StorageTypes}"
                       SelectedValue="{Binding CurrentItem.StorageTypeNavigation}"
                       Style="{StaticResource CommonComboBox}">

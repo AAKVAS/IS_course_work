@@ -114,7 +114,6 @@
                       Width="200"
                       Margin="0 5" 
                       HorizontalAlignment="Left"
-                      BorderThickness="2"
                       ItemsSource="{Binding Posts}"
                       SelectedValue="{Binding CurrentItem.Post}"
                       Style="{StaticResource CommonComboBox}">
