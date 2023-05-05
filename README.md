@@ -1,4 +1,25 @@
-# IS_course_work
-This repository contain files for my course project which is an information system.
-My information system is desktop application with CRUD functional.
-This repository have requirements of future information system, sql-scripts and source code of the developed system.
+# Курсовой проект на тему "Разработка модуля информационной системы универсального интернет-магазина Wildberries"
+
+Данный репозиторий содержит курсовой проект на тему "Разработка модуля информационной системы универсального интернет-магазина Wildberries".
+Суть проекта заключалась в создании настольного приложения с CRUD-функционалом, обеспечивающего работу с данными интернет-магазина Wildberries.
+
+## Используемые технологии
+
+- .Net 6;
+- WPF;
+- EF 7;
+- Microsoft SQL Server 2022 Express Edition.
+
+## Структура проекта
+
+- `docs/` - директория с запиской и презентацией курсового проекта;
+- `src/` - директория с исходным кодом курсового проекта;
+- `sql/` - директория со скриптом БД;
+- `passwords.txt` - сведения для входа в систему.
+
+## Запуск приложения
+
+1. Создать базу данных, используя скрипт `sql/db.sql`.
+2. Собрать решение `src/WpfApp1.sln`.
+3. Изменить строку подключения к БД в файле `WpfApp1.dll.config`, располагающемся в папке с собранным решением.
+4. Приложение готово к запуску.
