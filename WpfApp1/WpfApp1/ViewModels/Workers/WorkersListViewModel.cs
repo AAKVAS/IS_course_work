@@ -167,7 +167,7 @@ namespace WpfApp1.ViewModels.Workers
             {
                 errorBuilder.AppendLine("Поле \"Имя\" обязательно для заполнения, максимальная длина - 255 символов;");
             }
-            if (CurrentItem != null && CurrentItem.Patronymic.Length > 255)
+            if (CurrentItem.Patronymic != null && CurrentItem.Patronymic.Length > 255)
             {
                 errorBuilder.AppendLine("Максимальная длина поля \"Отчество\" - 255 символов;");
             }
